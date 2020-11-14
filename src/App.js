@@ -2,13 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 import {Route} from 'react-router-dom';
-
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import CampPage from './pages/CampPage';
-import PostPage from './pages/PostPage';
-
-
+import {LoginPage, RegisterPage, CampPage, PostPage} from './pages';
 
 const App=()=>{
   return (
