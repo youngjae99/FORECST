@@ -1,4 +1,6 @@
-export {default as LoginPage} from './LoginPage';
-export {default as RegisterPage} from './RegisterPage';
-export {deafalt as CampPage} from './CampPage';
-export {default as PostPage} from './PostPage';
+export {default as Autentication} from './Autentication';
+export {default as CampHome} from './CampHome';
+export {default as CampQnA} from './CampQnA';
+export {default as CampRank} from './CampRank';
+export {default as MainPage} from './MainPage'
+export {default as MyPage} from './MyPage'
