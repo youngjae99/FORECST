@@ -1,9 +1,9 @@
 import React from 'react';
-import {Header, Menu} from '../components';
+import {Forecst, Menu} from '../components';
 
 const MainPage = () =>{
     return (<div>
-        <Header></Header>
+        <Forecst></Forecst>
         </div>);
 };
 

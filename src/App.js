@@ -3,6 +3,8 @@ import './App.css';
 import React from 'react';
 import {Route} from 'react-router-dom';
 import {Autentication, CampHome, CampQnA, CampRank, MainPage, MyPage} from './pages';
+import {Layout, Menu, Breadcrumb, Icon} from 'antd';
+import 'antd/dist/antd.css';
 
 const App=()=>{
   return (
