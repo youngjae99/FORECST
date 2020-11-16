@@ -1,18 +1,20 @@
 import logo from './logo.svg';
 //import './App.css';
 import React from 'react';
+import './App.css';
+import 'antd/dist/antd.css';
 import {Route} from 'react-router-dom';
-import { StyleReset } from 'atomize';
-import {LoginPage, RegisterPage, CampPage, PostPage} from './pages';
+import {Autentication, CampHome, CampQnA, CampRank, MainPage, MyPage} from './pages';
 
 const App=()=>{
   return (
     <>
-      <StyleReset/>
-      <Route component={LoginPage} path="/login"/>
-      <Route component={RegisterPage} path="/register"/>
-      <Route component={CampPage} path="/camp"/>
-      <Route component={PostPage} path="/post"/>
+      <Route component={MainPage} path="/"/>
+      <Route component={Autentication} path="/authentication"/>
+      <Route component={CampHome} path="/camphome"/>
+      <Route component={CampQnA} path="/campqna"/>
+      <Route component={CampRank} path="/camprank"/>
+      <Route component={MyPage} path="/mypage"/>
     </>
   );
 };
