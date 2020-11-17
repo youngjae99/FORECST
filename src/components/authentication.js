@@ -29,13 +29,13 @@ class Authentication extends React.Component{
         let id=this.state.username;
         let pw=this.state.password;
 
-        this.props.onLogin(id, pw).then(
-            (success)=>{
-                this.setState({
-                    password:''
-                });
-            }
-        )
+        // this.props.onLogin(id, pw).then(
+        //     (success)=>{
+        //         this.setState({
+        //             password:''
+        //         });
+        //     }
+        // )
     }
 
     render(){

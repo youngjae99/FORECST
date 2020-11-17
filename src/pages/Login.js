@@ -10,7 +10,6 @@ class Login extends React.Component{
     }
 
     handleLogin(id, pw){
-
     }
     
     render(){
