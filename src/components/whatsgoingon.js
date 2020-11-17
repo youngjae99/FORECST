@@ -33,6 +33,7 @@ class WGO extends Component {
     render() {
         return (
             <div className="col-md-4">
+                <h3>What's Going On?</h3>
                 {this.renderItem()}
             </div>
         );
