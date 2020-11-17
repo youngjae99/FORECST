@@ -1,6 +1,41 @@
 import React, {Component} from 'react';
-import { Comment, Avatar, Form, Button, List, Input } from 'antd';
+import { Comment, Form, Button, List, Input, Tooltip } from 'antd';
 import moment from 'moment';
+
+const data = [
+    {
+      actions: [<span key="comment-list-reply-to-0">Reply to</span>],
+      author: 'Han Solo',
+      content: (
+        <p>
+          We supply a series of design principles, practical patterns and high quality design
+          resources (Sketch and Axure), to help people create their product prototypes beautifully and
+          efficiently.
+        </p>
+      ),
+      datetime: (
+        <Tooltip title={moment().subtract(1, 'days').format('YYYY-MM-DD HH:mm:ss')}>
+          <span>{moment().subtract(1, 'days').fromNow()}</span>
+        </Tooltip>
+      ),
+    },
+    {
+      actions: [<span key="comment-list-reply-to-0">Reply to</span>],
+      author: 'Han Solo',
+      content: (
+        <p>
+          We supply a series of design principles, practical patterns and high quality design
+          resources (Sketch and Axure), to help people create their product prototypes beautifully and
+          efficiently.
+        </p>
+      ),
+      datetime: (
+        <Tooltip title={moment().subtract(2, 'days').format('YYYY-MM-DD HH:mm:ss')}>
+          <span>{moment().subtract(2, 'days').fromNow()}</span>
+        </Tooltip>
+      ),
+    },
+  ];
 
 const { TextArea } = Input;
 
@@ -15,6 +50,7 @@ const CommentList = ({ comments }) => (
 
 const Editor = ({ onChange, onSubmit, submitting, value }) => (
   <>
+    <div>Comment</div>
     <Form.Item>
       <TextArea rows={4} onChange={onChange} value={value} />
     </Form.Item>
@@ -49,7 +85,6 @@ class FeedComment extends Component {
         comments: [
           {
             author: 'Han Solo',
-            avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
             content: <p>{this.state.value}</p>,
             datetime: moment().fromNow(),
           },
@@ -71,13 +106,23 @@ class FeedComment extends Component {
     return (
       <>
         {comments.length > 0 && <CommentList comments={comments} />}
-        <Comment
-          avatar={
-            <Avatar
-              src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-              alt="Han Solo"
+        <List
+            className="comment-list"
+            header={`${data.length} replies`}
+            itemLayout="horizontal"
+            dataSource={data}
+            renderItem={item => (
+                <li>
+                <Comment
+                    actions={item.actions}
+                    author={item.author}
+                    content={item.content}
+                    datetime={item.datetime}
+                />
+                </li>
+            )}
             />
-          }
+        <Comment
           content={
             <Editor
               onChange={this.handleChange}
@@ -93,4 +138,3 @@ class FeedComment extends Component {
 }
 
 export default FeedComment;
-//ReactDOM.render(<App />, mountNode);
