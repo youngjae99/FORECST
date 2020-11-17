@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types'
 import { render } from '@testing-library/react';
 import { PageHeader, Button } from 'antd';
+import { Router, Route, browserHistory, IndexRoute } from 'react-router';
+import { Toast } from 'antd-mobile'
 
 class Forecst extends React.Component{
 
@@ -15,7 +17,8 @@ class Forecst extends React.Component{
     }
 
     handleHome(){
-        <Link to={"/"}></Link>
+        Toast.info('handleHome');
+        browserHistory.push('/');
     }
     
     render(){
@@ -38,7 +41,8 @@ class Forecst extends React.Component{
             <PageHeader
             ghost={false}
             backIcon="FORECST"
-            onBack={(()=>this.handleHome())}
+            // onBack={()=>this.handleHome()}
+            onBack={()=>null}
             extra={[
                 <Link to={"/mypage"} style={{color: '#000', marginRight: 20}}>{this.props.currentUser}</Link>
             ]}
