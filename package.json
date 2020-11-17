@@ -13,6 +13,9 @@
     "react-router": "^3.2.6",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
+    "react-transition-group": "^4.4.1",
+    "styletron-engine-atomic": "^1.4.6",
+    "styletron-react": "^5.2.7",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

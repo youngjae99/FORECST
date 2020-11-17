@@ -1,8 +1,10 @@
 import logo from './logo.svg';
-import './App.css';
+//import './App.css';
 import React from 'react';
+import './App.css';
+import 'antd/dist/antd.css';
 import {Route} from 'react-router-dom';
-import {Login, Register, CampHome, CampQnA, CampRank, MainPage, MyPage} from './pages';
+import {Login, Register, CampHome, CampQnA, CampRank, MainPage, MyPage, Autentication} from './pages';
 import {Layout, Menu, Breadcrumb, Icon} from 'antd';
 import 'antd/dist/antd.css';
 
