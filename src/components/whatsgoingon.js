@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import WGOSingle from './whatsgoingon single';
+import { List } from 'antd';
 
 class WGO extends Component {
     constructor(props) {
@@ -25,19 +25,27 @@ class WGO extends Component {
             .catch((error) => console.log(error));
     }
 
-    renderItem() {
-        return this.state.news.map((item) => (
-            <WGOSingle key={item.url} item={item} />
-        ));
-    }
     render() {
         return (
-            <div className="col-md-4">
-                <h3>What's Going On?</h3>
-                {this.renderItem()}
-            </div>
+            <List
+                itemLayout="vertical"
+                size="large"
+                dataSource={this.state.news}
+                renderItem={item => (
+                    <div>
+                        <img src={item.urlToImage} style={typeimgStyle} alt="profileimg"/>
+                        <h3>{item.source.name}</h3>
+                        {item.content}
+                    </div>
+                )}
+        />
         );
     }
+}
+
+const typeimgStyle = {
+    width: "30px",
+    height: "30px"
 }
 
 export default WGO;
