@@ -1,12 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {Layout, Menu, Breadcrumb, Icon, Button} from 'antd';
-import 'antd/dist/antd.css';
 import PropTypes from 'prop-types'
 import { render } from '@testing-library/react';
-
-const { SubMenu } = Menu;
-const { Header, Content, Sider, Footer } = Layout;
+import { PageHeader, Button } from 'antd';
 
 class Forecst extends React.Component{
 
@@ -17,35 +13,42 @@ class Forecst extends React.Component{
             currentUser: ''
         };
     }
+
+    handleHome(){
+        <Link to={"/"}></Link>
+    }
     
     render(){
 
         const joinButton=(
-            <div className='right' style={{paddingRight:20}}>
-                <Link to={"/authentication"} style={{color: '#000', marginRight: 20}}>Login</Link>
+            <PageHeader
+            ghost={false}
+            backIcon="FORECST"
+            onBack={() => window.history.back()}
+            extra={[
+                <Link to={"/login"} style={{color: '#000', marginRight: 20}}>Login</Link>,
                 <Button type='primary'>
-                    <Link to={"/authentication"}>JOIN</Link>
+                    <Link to={"/register"}>JOIN</Link>
                 </Button>
-            </div>
+            ]}
+            />
         );
     
         const mypageButton=(
-            <div className='right' style={{paddingRight:20}}>
+            <PageHeader
+            ghost={false}
+            backIcon="FORECST"
+            onBack={(()=>this.handleHome())}
+            extra={[
                 <Link to={"/mypage"} style={{color: '#000', marginRight: 20}}>{this.props.currentUser}</Link>
-            </div>
+            ]}
+            />
         );
 
         return (
-            <nav style={{background: '#fff', padding: 0, boxShadow: 'none'}}>
-                <Header style={{background: '#fff', padding:0}}>
-    
-                    <Link to={"/"} style={{marginLeft: 20, color: '#000'}}>FORECST</Link>
-                    <Link style={{marginLeft: 20, color: '#000'}}>About US</Link>
-    
-                    {this.props.isLoggedIn ? mypageButton : joinButton}
-                    
-                </Header>
-            </nav>
+            <div>
+                {this.props.isLoggedIn ? mypageButton : joinButton}
+            </div>
         );
     }
 };
@@ -56,7 +59,7 @@ Forecst.propTypes={
 };
 
 Forecst.defaultProps={
-    isLoggedIn: true,
+    isLoggedIn: false,
     currentUser: 'Youngjae'
 };
 
