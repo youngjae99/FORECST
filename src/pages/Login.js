@@ -1,5 +1,5 @@
 import React from 'react';
-import {Authentication} from '../components'
+import {Authentication, Forecst} from '../components'
 import { render } from '@testing-library/react';
 
 class Login extends React.Component{
@@ -10,14 +10,17 @@ class Login extends React.Component{
     }
 
     handleLogin(id, pw){
+        console.log('handle login');
+        return true;
     }
     
     render(){
         return(
             <div>
+                <Forecst></Forecst>
                 <Authentication mode={true}
                 onLogin={this.handleLogin}/>
-                Login page
+                {/* Login page */}
             </div>
         );
     }
