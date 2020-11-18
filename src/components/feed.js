@@ -3,28 +3,45 @@ import { List, Button } from 'antd';
 import { GiWateringCan } from 'react-icons/gi';
 import { BsBookmark } from 'react-icons/bs';
 import FeedComment from './feed  comment';
+import { db,storage } from "../firebase";
 
 class Feed extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            news: [],
+            feed: []
         };
     }
 
     componentDidMount() {
-        const url = `https://newsapi.org/v2/${this.props.news.type}?${this.props.news.query}&apiKey=56538f95cb824a6ca0acf842f60a5fed`;
+        // const url = `https://newsapi.org/v2/${this.props.feed.type}?${this.props.feed.query}&apiKey=56538f95cb824a6ca0acf842f60a5fed`;
 
-        fetch(url)
-            .then((response) => {
-                return response.json();
+        // fetch(url)
+        //     .then((response) => {
+        //         return response.json();
+        //     })
+        //     .then((data) => {
+        //         this.setState({
+        //             feed: data.articles
+        //         })
+        //         console.log(this.state)
+        //     })
+        //     .catch((error) => console.log(error));
+        var lists =[];
+        const handleDownload = () => {
+
+            db.collection('Feeds').get().then(function(querySnapshot){
+              querySnapshot.forEach(function(doc){
+                  console.log(doc.data());
+                  lists.push(doc.data());
+                  this.setState({feed:this.state.feed.concat(doc.data())});
+
+              })
             })
-            .then((data) => {
-                this.setState({
-                    news: data.articles
-                })
-            })
-            .catch((error) => console.log(error));
+            console.log(lists);
+            console.log(this.state.feed);
+          }
+        handleDownload();
     }
 
     render(){
@@ -32,14 +49,14 @@ class Feed extends Component {
             <List
                 itemLayout="vertical"
                 size="large"
-                dataSource={this.state.news}
+                dataSource={this.state.feed}
                 renderItem={item => (
                 <div>
-                    <img src={item.urlToImage} style={profileStyle} alt="profileimg"/>
-                    <h3>{item.source.name}</h3>
+                    <img src={item.photo} style={profileStyle} alt="profileimg"/>
+                    <h3>{'Id'}</h3>
                     <List.Item.Meta
-                        title={<a href={item.href}>{item.title}</a>}
-                        content={item.content}
+                        title={item.title}
+                        content={item.writing}
                     />
                     <List.Item
                         key={item.title}
@@ -55,7 +72,7 @@ class Feed extends Component {
                         <BsBookmark size="4%" color="6b6b6b"/>
                         ]}
                     />
-                    {item.content}
+                    {item.writing}
                     <Button type="link">See more</Button>
                     <FeedComment></FeedComment>
                 </div>

@@ -21,29 +21,19 @@ class CampHome extends Component {
     
     
     render() {
+      
       return (
         <div className="CampHome">
           <Menu></Menu>
           <div className="container">
             <div className="row"> 
-              <Feed news={this.state.feed} />
+              <Feed feed={this.state.feed} />
               <WGO news={this.state.whatsgoingon} />
             </div>
-          </div>
-          
+          </div>  
         </div>
       );
     }
   }
   
   export default CampHome;
-// const CampHome = () =>{
-//     return (<div>
-//         <Menu></Menu>
-//         Camp Home
-//         <Feed></Feed>
-//         <WGO></WGO>
-//         </div>);
-// };
-
-// export default CampHome;
