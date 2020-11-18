@@ -105,6 +105,8 @@ class CampPage extends React.Component {
           <CampTabView tabnum={tab}></CampTabView>
         </Layout>
 
+        <div></div>
+
         <Sider
           theme="light"
           style={{
