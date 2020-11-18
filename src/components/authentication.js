@@ -34,6 +34,7 @@ class Authentication extends React.Component{
 
     handleRegister(){
         console.log('handle register');
+        browserHistory.push('/login')
     }
 
     handleKeyPress(e) {
@@ -112,8 +113,8 @@ class Authentication extends React.Component{
         
         const loginView=(
             <Form.Item {...tailLayout}>
-                <Button type='primary' htmlType='submit' onClick={this.handleLogin}>
-                    Login
+                <Button type='primary' htmlType='submit' onClick={this.handleLogin} style={{marginTop: 10, marginLeft: 150}}>
+                {this.state.password=='' ? <div>Login</div> : <Link to={"/"}>Login</Link>}
                 </Button>
             </Form.Item>
         );
@@ -128,9 +129,9 @@ class Authentication extends React.Component{
                     <Checkbox>I agree to the Email Marketing Policy (optional)</Checkbox>
                 </Form.Item>
                 
-                <Form.Item {...tailLayout}>
-                    <Button type='primary' htmlType='submit' onClick={this.handleRegister}>
-                        Create Account
+                <Form.Item {...tailLayout}> 
+                    <Button type='primary' htmlType='submit' onClick={this.handleRegister} style={{marginLeft: 120}}>
+                        {this.state.password=='' ? <div>Create Account</div> : <Link to={"/login"}>Create Account</Link>}
                     </Button>
                 </Form.Item>
             </div>

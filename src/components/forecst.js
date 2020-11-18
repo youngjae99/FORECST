@@ -1,9 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types'
-import { render } from '@testing-library/react';
+// import { render } from '@testing-library/react';
 import { PageHeader, Button } from 'antd';
-import { Router, Route, browserHistory, IndexRoute } from 'react-router';
+// import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 
 class Forecst extends React.Component{
 
@@ -17,7 +17,8 @@ class Forecst extends React.Component{
 
     handleHome(){
         console.log('handleHome');
-        browserHistory.push('/');
+        // browserHistory.push('/');
+        // this.props.history.push('/')
     }
     
     render(){
@@ -26,7 +27,7 @@ class Forecst extends React.Component{
             <PageHeader
             ghost={false}
             backIcon="FORECST"
-            onBack={() => window.history.back()}
+            onBack={()=>this.handleHome()}
             extra={[
                 <Link to={"/login"} style={{color: '#000', marginRight: 20}}>Login</Link>,
                 <Button type='primary'>
@@ -49,7 +50,7 @@ class Forecst extends React.Component{
 
         return (
             <div>
-                {this.props.isLoggedIn ? mypageButton : joinButton}
+                {this.props.isLoggedIn ? mypageButton : joinButton}              
             </div>
         );
     }
