@@ -1,3 +1,3 @@
-export {default as Forecst} from './forecst';
-export {default as Menu} from './menu';
-export {default as Authentication} from './authentication';
+export {default as Forecst} from './Forecst';
+export {default as Menu} from './Menu';
+export {default as Authentication} from './Authentication';

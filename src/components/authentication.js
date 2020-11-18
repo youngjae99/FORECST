@@ -28,12 +28,13 @@ class Authentication extends React.Component{
 
     handleLogin(){
         let id=this.state.username;
-        let pw=this.state.password;
-        console.log('handle login', id, pw);
+        // console.log('handle login', id);
+
+        this.props.onLogin(id);
     }
 
     handleRegister(){
-        console.log('handle register');
+        // console.log('handle register');
         browserHistory.push('/login')
     }
 
@@ -62,14 +63,6 @@ class Authentication extends React.Component{
                 offset:4,
                 span:18,
             },
-        };
-
-        const onFinish=(values)=>{
-            console.log('Success:', values);
-        };
-
-        const onFinishFailed=(errorInfo)=>{
-            console.log('Failed:', errorInfo);
         };
 
         const inputBoxes = (
@@ -146,8 +139,7 @@ class Authentication extends React.Component{
                     initialValues={{
                         remember:true
                     }}
-                    onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}>
+                    >
                         {inputBoxes}
                         {this.props.mode ? loginView : registerView}
                 </Form> 

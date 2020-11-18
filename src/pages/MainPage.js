@@ -3,7 +3,7 @@ import {Forecst, Menu} from '../components';
 
 const MainPage = () =>{
     return (<div>
-        <Forecst></Forecst>
+        MainPage
         </div>);
 };
 

@@ -1,27 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
 import React from 'react';
-import {Login, Register, CampHome, CampQnA, CampRank, MainPage, MyPage} from './pages';
-// import {Layout, Menu, Breadcrumb, Icon} from 'antd';
+// Pages
+import {Home, Login, Register, CampHome, CampQnA, CampRank, MainPage, MyPage} from './pages';
+// Router
+import {Switch, Route, BrowserRouter, IndexRoute as Router} from "react-router-dom";
 import 'antd/dist/antd.css';
-import {Switch, Route, BrowserRouter as Router, BrowserRouter} from "react-router-dom";
-// import {browserHistory} from 'react-dom'
-// import {createBrowserHistory} from 'history';
+// Redux
+import {Provider} from 'react-redux';
+import {createStore, applyMiddleware} from 'redux';
+import reducers from './reducers';
+import thunk from 'redux-thunk';
+
+const store=createStore(reducers, applyMiddleware(thunk));
 
 class App extends React.Component{
   render(){
     return(
-      <BrowserRouter>
-        <Route exact path='/' component={MainPage}></Route>
-        <Switch>
-          <Route component={Login} path="/login"/>
-          <Route component={Register} path="/register"/>
-          <Route component={CampHome} path="/camphome"/>
-          <Route component={CampQnA} path="/campqna"/>
-          <Route component={CampRank} path="/camprank"/>
-          <Route component={MyPage} path="/mypage"/>
-        </Switch>
-      </BrowserRouter>
+      <Provider store={store}>
+        <Route path ="/" component={Home}></Route>
+        <Route path ="/CS473_DesignProject" component={MainPage}></Route>
+        <Route component={Login} path="/login"/>
+        <Route component={Register} path="/register"/>
+        <Route component={CampHome} path="/camphome"/>
+        <Route component={CampQnA} path="/campqna"/>
+        <Route component={CampRank} path="/camprank"/>
+        <Route component={MyPage} path="/mypage"/>
+      </Provider>
     );
   }
 }

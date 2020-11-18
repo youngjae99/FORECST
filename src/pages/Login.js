@@ -1,6 +1,7 @@
 import React from 'react';
 import {Authentication, Forecst} from '../components'
-import { render } from '@testing-library/react';
+import {loginRequest} from '../actions/authentication';
+import {connect} from 'react-redux';
 
 class Login extends React.Component{
     
@@ -9,21 +10,56 @@ class Login extends React.Component{
         this.handleLogin=this.handleLogin.bind(this);
     }
 
-    handleLogin(id, pw){
-        console.log('handle login');
-        return true;
+    handleLogin(id){
+        // console.log("handle login", id);
+
+        this.props.loginRequest(id);
+
+        if(this.props.status==="SUCCESS"){
+            //create session data
+            let loginData={
+                isLoggedIn: true,
+                username: id
+            };
+
+            document.cookie='key='+btoa(JSON.stringify(loginData));
+
+            // console.log('is logged in: ', loginData.isLoggedIn);
+            // console.log('username: ', loginData.username);
+
+            return true;
+        }
+        else{
+            return false;
+        }
     }
     
     render(){
         return(
             <div>
-                <Forecst></Forecst>
                 <Authentication mode={true}
                 onLogin={this.handleLogin}/>
-                {/* Login page */}
             </div>
         );
     }
 };
 
-export default Login;
+const mapStateToProps=(state)=>{
+    // console.log('map state to props:', state.authentication.login.status);
+
+    return{
+        status: state.authentication.login.status
+    };
+};
+
+const mapDispatchToProps=(dispatch)=>{    
+    return{
+        loginRequest: (id)=>{
+            // console.log('map dispatch to props:', id);
+
+            return dispatch(loginRequest(id));
+        }
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

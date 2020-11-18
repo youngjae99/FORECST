@@ -1,9 +1,10 @@
 import React from 'react';
-import {Header, Menu} from '../components';
+import {Forecst, Menu} from '../components';
 
 const MyPage = () =>{
-    return (<div>
-        My Page
+    return (
+        <div>
+            MY PAGE
         </div>);
 };
 

@@ -1,9 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types'
-// import { render } from '@testing-library/react';
-import { PageHeader, Button } from 'antd';
-// import { Router, Route, browserHistory, IndexRoute } from 'react-router';
+import { PageHeader, Button, Avatar } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+import {createBrowserHistory} from 'history';
+
+const browserHistory=createBrowserHistory();
 
 class Forecst extends React.Component{
 
@@ -17,12 +19,10 @@ class Forecst extends React.Component{
 
     handleHome(){
         console.log('handleHome');
-        // browserHistory.push('/');
-        // this.props.history.push('/')
+        browserHistory.push('/');
     }
     
     render(){
-
         const joinButton=(
             <PageHeader
             ghost={false}
@@ -43,7 +43,8 @@ class Forecst extends React.Component{
             backIcon="FORECST"
             onBack={()=>this.handleHome()}
             extra={[
-                <Link to={"/mypage"} style={{color: '#000', marginRight: 20}}>{this.props.currentUser}</Link>
+                <Link to={"/mypage"} style={{color: '#000'}}>{this.props.currentUser}</Link>,
+                <Avatar size={35} icon={<UserOutlined></UserOutlined>}></Avatar>
             ]}
             />
         );
