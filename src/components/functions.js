@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 
 import { db,storage } from "../firebase";
@@ -7,7 +8,6 @@ import {Layout, Menu, Breadcrumb, Icon, Button} from 'antd';
 import 'antd/dist/antd.css';
 import PropTypes from 'prop-types'
 import { render } from '@testing-library/react';
-
 const { SubMenu } = Menu;
 const { Header, Content, Sider, Footer } = Layout;
 // function handleClick (id){
@@ -39,7 +39,7 @@ const { Header, Content, Sider, Footer } = Layout;
 
 
 
-function Functions() {
+function App() {
   const [id, setString] = useState();
   const handleClick = () => {
     db.collection('users')
@@ -60,7 +60,6 @@ function Functions() {
             .get()
             .then(doc => {
               const currentConsAmount = doc.data().cons_amount;
-
               db.doc(`/users/${id}`).update({
                 cons_amount: currentConsAmount + 1
               });
@@ -94,20 +93,42 @@ function Functions() {
     //   .putString('Some File Contents')
     //   .then((snap) => console.log('upload successful', snap))
     //   .catch((err) => console.error('error uploading file', err))
-    fileRef.put(file).then(function(snapshot) {
-        console.log(fileRef._delegate._location.bucket+'/'+file.name);
+    fileRef.put(file).then(function(snapshot) { 
+      console.log(file.path);
+      console.log(snapshot);   
+      const filepath ="gs://"+fileRef._delegate._location.bucket+'/'+file.name;
 
+        console.log(filepath);
+        db.collection('Feeds').doc().set({photo:filepath});
         console.log('Uploaded a blob or file!');
       });
-      const filepath =fileRef._delegate._location.bucket+'/'+file.name;
-      storageRef.child(file.name).getDownloadURL(filepath).then(function(url) {
-        console.log(url);
-      }).catch(function(error) {
-        // Handle any errors
-      });
-    
 
-  }
+    }
+      // const filepath =fileRef._delegate._location.bucket+'/'+file.name;
+      // storageRef.child(file.name).getDownloadURL(filepath).then(function(url) {
+      //   console.log(url);
+      // }).catch(function(error) {
+      //   // Handle any errors
+      // });
+    const handleDownload = () => {
+
+      db.collection('Feeds').get().then(function(querySnapshot){
+        querySnapshot.forEach(function(doc){
+          console.log(doc.data());
+          var gsReference = storage.refFromURL(doc.data().photo)
+
+          gsReference.getDownloadURL().then(function(url) {
+            console.log(url);
+            setState
+            return(url)
+          }).catch(function(error) {
+            console.log("error!!");
+          });
+        })
+      })
+    }
+
+  
   const joinButton=(
     <div className='right' style={{paddingRight:20}}>
         <Link to={"/authentication"} style={{color: '#000', marginRight: 20}}>Login</Link>
@@ -126,7 +147,7 @@ const mypageButton=(
     <>
     <div>
         <input type="file" name="file" onChange={handleImage}/>
-        <button type="button" onClick={handlePost}>Upload</button>
+        <button type="button" onClick={handleDownload}>Upload</button>
       </div>
     <div>
       ID
@@ -140,6 +161,8 @@ const mypageButton=(
       <button onClick={handleClick}>Log in</button>
 
       </div>
+      <Link to={"/post"} style={{marginLeft: 20, color: '#000'}}>Post</Link>
+
       <nav style={{background: '#fff', padding: 0, boxShadow: 'none'}}>
                 <Header style={{background: '#fff', padding:0}}>
     
@@ -156,4 +179,4 @@ const mypageButton=(
   );
 }
 
-export default Functions;  
+export default App;  
