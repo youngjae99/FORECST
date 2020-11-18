@@ -1,17 +1,10 @@
 import React from 'react';
-import {Header, Menu} from '../components';
-import {Link} from 'react-router-dom';
-
+import {Forecst, Menu} from '../components';
 
 const MainPage = () =>{
-    return (
-        <div>
-            <Header>
-
-            </Header>
-            <Link to={"/camphome"}>GotoCamp</Link>
-        </div>
-    );
+    return (<div>
+        <Forecst></Forecst>
+        </div>);
 };
 
 export default MainPage;
