@@ -10,6 +10,8 @@ import {
   List,
   Avatar,
   Space,
+  Button,
+  Row, Col 
 } from "antd";
 import {
   HomeOutlined,
@@ -18,6 +20,8 @@ import {
   MessageOutlined,
   LikeOutlined,
   StarOutlined,
+  SearchOutlined,
+  PlusOutlined,
 } from "@ant-design/icons";
 const { Countdown } = Statistic;
 const { Title } = Typography;
@@ -71,7 +75,10 @@ const CampHome = () => {
         </Menu>
       </Sider>
 
-      <Layout className="site-layout" style={{ marginLeft: 200 }}>
+      <Layout
+        className="site-layout"
+        style={{ marginLeft: 200, marginRight: 200 }}
+      >
         <Header className="site-layout-background" style={{ padding: 0 }}>
           <div style={{ "padding-left": 20, width: 200 }}>
             <Title level={3} id="camptitle">
@@ -79,10 +86,23 @@ const CampHome = () => {
             </Title>
           </div>
         </Header>
+        
         <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
+
+        <Row style={{backgroundColor:"white"}}>
+          <Col span={24}>col</Col>
+        </Row>
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            style={{ position: "absolute", right: 210, margin:10}}
+          >
+            New Post
+          </Button>
+
           <div
             className="site-layout-background"
-            style={{ padding: 24, textAlign: "center" }}
+            style={{ padding: 24, textAlign: "center", marginTop: 50 }}
           >
             <List
               itemLayout="vertical"
@@ -136,7 +156,6 @@ const CampHome = () => {
                 </List.Item>
               )}
             />
-
           </div>
         </Content>
         <Footer style={{ textAlign: "center" }}>
@@ -151,6 +170,7 @@ const CampHome = () => {
           height: "100vh",
           position: "fixed",
           right: 0,
+          padding: 20,
         }}
       >
         <div
