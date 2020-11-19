@@ -4,39 +4,33 @@ import Feed from '../components/feed';
 import WGO from '../components/whatsgoingon';
 import { db,storage } from "../firebase";
 import {Link} from 'react-router-dom';
-
+import Post from './post';
 
 class CampHome extends Component {
     constructor(props) {
       super(props);
       this.state = {
+        id : "default",
         feed: [],
         whatsgoingon: {
           type: 'everything',
           query: 'domains=techcrunch.com&language=en'
         }
       }
-    }
-    
-    componentDidMount() {
-      var lists =[];
-      const handleDownload = () => {
-          db.collection('Feeds').get().then(function(querySnapshot){
-            querySnapshot.forEach(function(doc){
-                console.log(doc.data());
-                lists.push(doc);
-            })
-                      console.log(lists);
 
-          })
-          console.log(lists);
-          this.setState({feed:lists}, function () {
-            console.log(this.state.feed);
-        });
-        }
-      handleDownload();
     }
-    
+    componentDidMount(){
+      this.getMarker();
+    }
+    getMarker = async () => {
+      const snapshot = await db.collection('Feeds').get()
+      console.log(snapshot.docs)
+          this.setState({feed:snapshot.docs})  
+      }
+
+
+
+
     render() {
 
       return (
@@ -48,7 +42,7 @@ class CampHome extends Component {
               <WGO news={this.state.whatsgoingon} />
             </div>
           </div>  
-          <Link to={"./post"} style={{color: '#000', marginRight: 20}}>post</Link>
+          <Post id={this.state.id}/>
 
         </div>
 
