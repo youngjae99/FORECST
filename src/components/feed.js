@@ -36,7 +36,7 @@ class Feed extends Component {
                 renderItem={item => (
                 <div>
                     <img src={item.data().photo} style={profileStyle} alt="profileimg"/>
-                    <h3>{'Id'}</h3>
+                    <h3>{item.data().id}</h3>
                     <List.Item.Meta
                         title={item.data().title}
                         content={item.data().writing}
