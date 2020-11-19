@@ -30,7 +30,6 @@ class CampHome extends Component {
 
       return (
         <div className="CampHome">
-          <Menu></Menu>
           <div className="container">
             <div className="row"> 
               <Feed feed={this.state.feed} />
