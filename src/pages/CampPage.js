@@ -63,32 +63,12 @@ class CampPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: 1,
+      tab:1,
       feed: [],
       whatsgoingon: []
     };
   }
 
-  componentDidMount() {
-    var lists = [];
-    const handleDownload = () => {
-      db.collection("Feeds")
-        .get()
-        .then(function (querySnapshot) {
-          querySnapshot.forEach(function (doc) {
-            console.log(doc.data());
-            lists.push(doc);
-          });
-          console.log("list get finish", lists);
-        })
-        .then(
-          this.setState({ feed: lists, whatsgoingon: lists }, function () {
-            console.log("list setstate finish", this.state.feed);
-          })
-        );
-    };
-    handleDownload();
-  }
 
   handleClick = (e) => {
     console.log("clicked tab", e.key);
@@ -96,7 +76,6 @@ class CampPage extends React.Component {
   };
 
   render() {
-    const { tab } = this.state;
 
     return (
       <Layout>
@@ -154,7 +133,7 @@ class CampPage extends React.Component {
               position: "fixed",
             }}
           >
-            <CampTabView tabnum={tab}></CampTabView>
+            <CampTabView tabnum={this.state.tab}></CampTabView>
           </Layout>
 
           <div></div>
