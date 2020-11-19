@@ -1,7 +1,8 @@
 import React from 'react';
-import {Card, Avatar, Row, Col, Tabs, Slider} from 'antd';
+import {Card, Avatar, Row, Col, Tabs, Slider, Button} from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 const {TabPane}=Tabs;
 
@@ -48,14 +49,25 @@ class MyPage extends React.Component{
                     </Row>
                 </Card>
 
-                <Tabs defaultActiveKey="1" type="card" size={"large"} style={{width: 1000, margin: "auto", marginTop: 20}}>
-                    <TabPane tab="MY" key="1">
-                        {MyView}
-                    </TabPane>
-                    <TabPane tab="BOOKMARK" key="2">
-                        {BookmarkView}
-                    </TabPane>
-                </Tabs>
+                <Row>
+                    <Col span={20}>
+                        <Tabs defaultActiveKey="1" type="card" size={"large"} style={{width: 1000, margin: "auto", marginTop: 20}}>
+                            <TabPane tab="MY" key="1">
+                                {MyView}
+                            </TabPane>
+                            <TabPane tab="BOOKMARK" key="2">
+                                {BookmarkView}
+                            </TabPane>
+                        </Tabs>
+                    </Col>
+
+                    <Col span={4} style={{textAlign: "right"}}>
+                        <Button type='primary' style={{marginTop: 20}}>
+                            <Link to={"/uploadpost"} style={{fontSize: 18}}>New Post</Link>
+                        </Button>
+                    </Col>
+                </Row>
+
             </div>
         );
     }
