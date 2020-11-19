@@ -13,7 +13,7 @@ class MainPage extends React.Component{
     render(){
         const joinButton=(
             <Button type='primary'>
-                <Link to={"/camphome"} style={{fontSize: 18}}>Join Now</Link>
+                <Link to={"/camp"} style={{fontSize: 18}}>Join Now</Link>
             </Button>
         )
 
