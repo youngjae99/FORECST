@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { List, Button, Avatar, Space } from 'antd';
-// import { GiWateringCan } from 'react-icons/gi';
-// import { BsBookmark } from 'react-icons/bs';
+import { GiWateringCan } from 'react-icons/gi';
+import { BsBookmark } from 'react-icons/bs';
 import FeedComment from './feed  comment';
 
 class Feed extends Component {
@@ -31,8 +31,8 @@ class Feed extends Component {
                             <img src={item.data().photo} style={profileStyle} alt="contentimage"/>
                         }
                         actions={[
-                        // <GiWateringCan size="5%" color="1e71f7"/>,
-                        // <BsBookmark size="4%" color="6b6b6b"/>
+                        <GiWateringCan size="5%" color="1e71f7"/>,
+                        <BsBookmark size="4%" color="6b6b6b"/>
                         ]}
                     />
                     {item.data().writing}
