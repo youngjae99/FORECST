@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Input, Space, Card, Button, Form, Checkbox, AutoComplete } from 'antd';
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
+import {Input, Card, Button, Form, Checkbox} from 'antd';
 import {Link} from 'react-router-dom';
-import { Router, Route, browserHistory, IndexRoute } from 'react-router';
+import {browserHistory} from 'react-router';
 
 class Authentication extends React.Component{
 
@@ -28,13 +27,13 @@ class Authentication extends React.Component{
 
     handleLogin(){
         let id=this.state.username;
-        // console.log('handle login', id);
 
-        this.props.onLogin(id);
+        if(id===""||this.state.password==="")
+            return;
+        else this.props.onLogin(id);
     }
 
     handleRegister(){
-        // console.log('handle register');
         browserHistory.push('/login')
     }
 
@@ -73,7 +72,7 @@ class Authentication extends React.Component{
                 rules={[
                     {
                         required:true,
-                        message: 'Please input your username.'
+                        message: 'Please input your username.',
                     }
                 ]}>
                     <Input
@@ -106,8 +105,10 @@ class Authentication extends React.Component{
         
         const loginView=(
             <Form.Item {...tailLayout}>
-                <Button type='primary' htmlType='submit' onClick={this.handleLogin} style={{marginTop: 10, marginLeft: 150}}>
-                {this.state.password=='' ? <div>Login</div> : <Link to={"/"}>Login</Link>}
+                <Button type='primary' htmlType='submit' onClick={this.handleLogin} style={{marginTop: 10, marginLeft: 145}}>
+                {this.state.password=='' ? 
+                <div style={{fontSize: 18}}>Login</div> : 
+                <Link to={"/"} style={{fontSize: 18}}>Login</Link>}
                 </Button>
             </Form.Item>
         );
@@ -123,16 +124,18 @@ class Authentication extends React.Component{
                 </Form.Item>
                 
                 <Form.Item {...tailLayout}> 
-                    <Button type='primary' htmlType='submit' onClick={this.handleRegister} style={{marginLeft: 120}}>
-                        {this.state.password=='' ? <div>Create Account</div> : <Link to={"/login"}>Create Account</Link>}
+                    <Button type='primary' htmlType='submit' onClick={this.handleRegister} style={{marginLeft: 110}}>
+                        {this.state.password=='' ? 
+                        <div style={{fontSize: 18}}>Create Account</div> : 
+                        <Link to={"/login"} style={{fontSize: 18}}>Create Account</Link>}
                     </Button>
                 </Form.Item>
             </div>
         );
 
         return(
-            <Card style={{padding: 20, width: 600, height: 500, margin: "auto", marginTop: 50}}>
-                <div style={{fontSize: 40, fontFamily: 'Roboto', textAlign: "center", marginBottom: 60, paddingTop: 40}}>{this.props.mode ? "LOGIN FORECST" : "JOIN FORECST"}</div>
+            <Card style={{padding: 20, width: 600, height: 500, margin: "auto", marginTop: 50, fontFamily: 'Roboto'}}>
+                <div style={{fontSize: 40, textAlign: "center", marginBottom: 60, paddingTop: 40}}>{this.props.mode ? "LOGIN FORECST" : "JOIN FORECST"}</div>
                 <Form
                     {...layout}
                     name="basic"

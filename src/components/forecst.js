@@ -19,7 +19,7 @@ class Forecst extends React.Component{
 
     handleHome(){
         console.log('handleHome');
-        browserHistory.push('/');
+        browserHistory.push('/CS473_DesignProject');
     }
     
     render(){
@@ -29,9 +29,9 @@ class Forecst extends React.Component{
             backIcon="FORECST"
             onBack={()=>this.handleHome()}
             extra={[
-                <Link to={"/login"} style={{color: '#000', marginRight: 20}}>Login</Link>,
+                <Link to={"/login"} style={{color: '#000', marginRight: 20, fontSize: 18, fontFamily: "Roboto"}}>Login</Link>,
                 <Button type='primary'>
-                    <Link to={"/register"}>JOIN</Link>
+                    <Link to={"/register"} style={{fontSize: 18, fontFamily: "Roboto"}}>JOIN</Link>
                 </Button>
             ]}
             />
@@ -43,8 +43,8 @@ class Forecst extends React.Component{
             backIcon="FORECST"
             onBack={()=>this.handleHome()}
             extra={[
-                <Link to={"/mypage"} style={{color: '#000'}}>{this.props.currentUser}</Link>,
-                <Avatar size={35} icon={<UserOutlined></UserOutlined>}></Avatar>
+                <Link to={"/mypage"} style={{color: '#000', fontSize: 18, fontFamily: "Roboto"}}>{this.props.currentUser}</Link>,
+                <Avatar size={30} icon={<UserOutlined></UserOutlined>}></Avatar>
             ]}
             />
         );

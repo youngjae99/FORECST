@@ -11,27 +11,12 @@ class Login extends React.Component{
     }
 
     handleLogin(id){
-        // console.log("handle login", id);
-
         this.props.loginRequest(id);
 
-        if(this.props.status==="SUCCESS"){
-            //create session data
-            let loginData={
-                isLoggedIn: true,
-                username: id
-            };
-
-            document.cookie='key='+btoa(JSON.stringify(loginData));
-
-            // console.log('is logged in: ', loginData.isLoggedIn);
-            // console.log('username: ', loginData.username);
-
+        if(this.props.status==="SUCCESS")
             return true;
-        }
-        else{
+        else
             return false;
-        }
     }
     
     render(){
@@ -45,8 +30,6 @@ class Login extends React.Component{
 };
 
 const mapStateToProps=(state)=>{
-    // console.log('map state to props:', state.authentication.login.status);
-
     return{
         status: state.authentication.login.status
     };
@@ -55,8 +38,6 @@ const mapStateToProps=(state)=>{
 const mapDispatchToProps=(dispatch)=>{    
     return{
         loginRequest: (id)=>{
-            // console.log('map dispatch to props:', id);
-
             return dispatch(loginRequest(id));
         }
     };

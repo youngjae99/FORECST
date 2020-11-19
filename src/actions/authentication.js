@@ -1,7 +1,6 @@
 import {
     AUTH_LOGIN,
     AUTH_LOGIN_SUCCESS,
-    AUTH_GET_STATUS,
 } from './ActionTypes'
 
 /** AUTHENTICATION */
@@ -46,13 +45,3 @@ export function loginSuccess(username) {
         username
     };
 }
-
-// /** GET STATUS */
-// export function getStatusRequest(){
-//     return(dispatch)=>{
-//         // inform get status API is starting
-//         dispatch(getStatus());
-
-//         return dispatch(getStatusSuccess(respos.data.info.username));
-//     }
-// }

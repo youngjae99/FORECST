@@ -2,7 +2,7 @@ import React from 'react';
 // Pages
 import {Home, Login, Register, CampHome, CampQnA, CampRank, MainPage, MyPage} from './pages';
 // Router
-import {Switch, Route, BrowserRouter, IndexRoute as Router} from "react-router-dom";
+import {Route} from "react-router-dom";
 import 'antd/dist/antd.css';
 // Redux
 import {Provider} from 'react-redux';

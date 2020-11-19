@@ -6,9 +6,7 @@ class Register extends React.Component{
     render(){
         return(
             <div>
-                {/* <Forecst></Forecst> */}
                 <Authentication mode={false}></Authentication>
-                {/* Register page */}
             </div>
         );
     }
