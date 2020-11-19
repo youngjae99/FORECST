@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types'
 import { PageHeader, Button, Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
@@ -18,8 +18,7 @@ class Forecst extends React.Component{
     }
 
     handleHome(){
-        console.log('handleHome');
-        browserHistory.push('/CS473_DesignProject');
+        this.props.history.push('/CS473_DesignProject');
     }
     
     render(){
@@ -67,4 +66,4 @@ Forecst.defaultProps={
     currentUser: 'Youngjae'
 };
 
-export default Forecst;
+export default withRouter(Forecst);

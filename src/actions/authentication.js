@@ -38,8 +38,6 @@ export function login() {
 }
 
 export function loginSuccess(username) {
-    console.log('login success', username);
-
     return {
         type: AUTH_LOGIN_SUCCESS,
         username

@@ -18,8 +18,6 @@ export default function authentication(state, action){
     switch(action.type){
         /** LOGIN */
         case types.AUTH_LOGIN:
-            console.log('auth login');
-
             return update(state, {
                 login: {
                     status: {$set: 'WAITING'}
@@ -27,8 +25,6 @@ export default function authentication(state, action){
             });
         
         case types.AUTH_LOGIN_SUCCESS:
-            console.log('auth login success', action.username);
-
             return update(state, {
                 login: {
                     status: {$set: 'SUCCESS'}

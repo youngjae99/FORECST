@@ -13,8 +13,11 @@ class Login extends React.Component{
     handleLogin(id){
         this.props.loginRequest(id);
 
-        if(this.props.status==="SUCCESS")
+        if(this.props.status==="SUCCESS"){
+            this.props.history.push('/CS473_DesignProject');
             return true;
+
+        }
         else
             return false;
     }
