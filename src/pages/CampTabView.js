@@ -7,7 +7,6 @@ import CampRank from './CampRank';
 
 
 const CampTabView = ({tabnum}) =>{
-    console.log(tabnum);
     if (tabnum==1){
         console.log(tabnum);
         return (

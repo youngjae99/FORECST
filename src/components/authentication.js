@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Input, Space, Card, Button, Form, Checkbox } from 'antd';
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
+import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import {Link} from 'react-router-dom';
 import { browserHistory } from 'react-router';
 
