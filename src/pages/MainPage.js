@@ -1,16 +1,46 @@
 import React from 'react';
-import {Forecst, Menu} from '../components';
+import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import {Button} from 'antd';
 
 
-const MainPage = () =>{
-    return (<div>
-        <Forecst></Forecst>
+class MainPage extends React.Component{
 
-            <Link to={"/camp"} style={{color: '#000', marginRight: 20}}>Go to Camp</Link>
+    constructor(props){
+        super(props)
+    }
 
-        </div>
-    );
+    render(){
+        const joinButton=(
+            <Button type='primary'>
+                <Link to={"/camphome"} style={{fontSize: 18}}>Join Now</Link>
+            </Button>
+        )
+
+        const goButton=(
+            <Button type='primary'>
+                <Link to={"/register"} style={{fontSize: 18}}>Go to Hackathon</Link>
+            </Button>
+        )
+
+        return(
+            <div style={{fontFamily: "Roboto"}}>
+                {this.props.status.isLoggedIn ? joinButton : goButton}
+            </div>
+        );
+    }
 };
 
-export default MainPage;
+
+const mapStateToProps=(state)=>{
+    return{
+        status: state.authentication.status
+    };
+};
+
+const mapDispatchToProps=(dispatch)=>{
+    return{
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

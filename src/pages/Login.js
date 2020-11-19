@@ -1,6 +1,7 @@
 import React from 'react';
 import {Authentication} from '../components'
-import { render } from '@testing-library/react';
+import {loginRequest} from '../actions/authentication';
+import {connect} from 'react-redux';
 
 class Login extends React.Component{
     
@@ -9,7 +10,18 @@ class Login extends React.Component{
         this.handleLogin=this.handleLogin.bind(this);
     }
 
-    handleLogin(id, pw){
+    handleLogin(id){
+        this.props.loginRequest(id);
+
+        if(this.props.status==="SUCCESS"){
+            // console.log(this.props.status, id);
+            this.props.history.push('/campjoin');
+            return true;
+        }
+        else{
+            // console.log(this.props.status, id);
+            return false;
+        }
     }
     
     render(){
@@ -17,10 +29,23 @@ class Login extends React.Component{
             <div>
                 <Authentication mode={true}
                 onLogin={this.handleLogin}/>
-                Login page
             </div>
         );
     }
 };
 
-export default Login;
+const mapStateToProps=(state)=>{
+    return{
+        status: state.authentication.login.status
+    };
+};
+
+const mapDispatchToProps=(dispatch)=>{    
+    return{
+        loginRequest: (id)=>{
+            return dispatch(loginRequest(id));
+        }
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

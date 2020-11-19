@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Input, Space, Card, Button, Form, Checkbox } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import {Link} from 'react-router-dom';
-import { browserHistory } from 'react-router';
+import {browserHistory} from 'react-router';
 
 class Authentication extends React.Component{
 
@@ -16,7 +16,8 @@ class Authentication extends React.Component{
         };
 
         this.handleChange=this.handleChange.bind(this);
-        this.handleLogin=this.handleLogin.bind(this)
+        this.handleLogin=this.handleLogin.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
     handleChange(e){
@@ -27,40 +28,41 @@ class Authentication extends React.Component{
 
     handleLogin(){
         let id=this.state.username;
-        let pw=this.state.password;
 
-        // this.props.onLogin(id, pw).then(
-        //     (success)=>{
-        //         this.setState({
-        //             password:''
-        //         });
-        //     }
-        // )
+        if(id===""||this.state.password==="")
+            return;
+        else this.props.onLogin(id);
+    }
+
+    handleRegister(){
+        browserHistory.push('/login')
+    }
+
+    handleKeyPress(e) {
+        if(e.charCode===13 ){
+            if(this.props.mode) {
+                this.handleLogin();
+            } else {
+                this.handleRegister();
+            }
+        }
     }
 
     render(){
         const layout={
             labelCol:{
-                span:8,
+                span:4,
             },
             wrapperCol:{
-                span:16,
+                span:18,
             },
         };
 
         const tailLayout={
             wrapperCol:{
-                offset:8,
-                span:16,
+                offset:4,
+                span:18,
             },
-        };
-
-        const onFinish=(values)=>{
-            console.log('Success:', values);
-        };
-
-        const onFinishFailed=(errorInfo)=>{
-            console.log('Failed:', errorInfo);
         };
 
         const inputBoxes = (
@@ -71,7 +73,7 @@ class Authentication extends React.Component{
                 rules={[
                     {
                         required:true,
-                        message: 'Please input your username.'
+                        message: 'Please input your username.',
                     }
                 ]}>
                     <Input
@@ -95,7 +97,8 @@ class Authentication extends React.Component{
                     name='password'
                     type='password'
                     onChange={this.handleChange}
-                    value={this.state.password}>
+                    value={this.state.password}
+                    onKeyPress={this.handleKeyPress}>
                     </Input.Password>
                 </Form.Item>
             </div>
@@ -103,8 +106,11 @@ class Authentication extends React.Component{
         
         const loginView=(
             <Form.Item {...tailLayout}>
-                <Button type='primary' htmlType='submit' onClick={this.handleLogin}>
-                    Login
+                <Button type='primary' htmlType='submit' onClick={this.handleLogin} style={{marginTop: 10, marginLeft: 145}}>
+                {this.state.password==='' ? 
+                <div style={{fontSize: 18}}>Login</div> :
+                <Link to={"/campjoin"} style={{fontSize: 18}}>Login</Link>}
+                {/* <div style={{fontSize: 18}}>Login</div> */}
                 </Button>
             </Form.Item>
         );
@@ -119,25 +125,26 @@ class Authentication extends React.Component{
                     <Checkbox>I agree to the Email Marketing Policy (optional)</Checkbox>
                 </Form.Item>
                 
-                <Form.Item {...tailLayout}>
-                    <Button type='primary' htmlType='submit'>
-                        Create Account
+                <Form.Item {...tailLayout}> 
+                    <Button type='primary' htmlType='submit' onClick={this.handleRegister} style={{marginLeft: 110}}>
+                        {this.state.password==='' ? 
+                        <div style={{fontSize: 18}}>Create Account</div> : 
+                        <Link to={"/login"} style={{fontSize: 18}}>Create Account</Link>}
                     </Button>
                 </Form.Item>
             </div>
         );
 
         return(
-            <Card>
-                <div>{this.props.mode ? "LOGIN FORECST" : "JOIN FORECST"}</div>
+            <Card style={{padding: 20, width: 600, height: 500, margin: "auto", marginTop: 50, fontFamily: 'Roboto'}}>
+                <div style={{fontSize: 40, textAlign: "center", marginBottom: 60, paddingTop: 40}}>{this.props.mode ? "LOGIN FORECST" : "JOIN FORECST"}</div>
                 <Form
                     {...layout}
                     name="basic"
                     initialValues={{
                         remember:true
                     }}
-                    onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}>
+                    >
                         {inputBoxes}
                         {this.props.mode ? loginView : registerView}
                 </Form> 

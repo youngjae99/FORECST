@@ -1,10 +1,10 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types'
-import { render } from '@testing-library/react';
-import { PageHeader, Button } from 'antd';
-import { Router, Route, browserHistory, IndexRoute } from 'react-router';
-import { Toast } from 'antd-mobile'
+import { PageHeader, Button, Avatar, Row, Col } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+import logo from '../logo.png';
+
 
 class Forecst extends React.Component{
 
@@ -14,44 +14,49 @@ class Forecst extends React.Component{
         this.state={
             currentUser: ''
         };
+
+        this.handleHome=this.handleHome.bind(this);
     }
 
     handleHome(){
-        Toast.info('handleHome');
-        browserHistory.push('/');
+        this.props.history.push('/CS473_DesignProject');
     }
     
     render(){
-
         const joinButton=(
             <PageHeader
             ghost={false}
-            backIcon="FORECST"
-            onBack={() => window.history.back()}
             extra={[
-                <Link to={"/login"} style={{color: '#000', marginRight: 20}}>Login</Link>,
+                <Link to={"/login"} style={{color: '#000', marginRight: 20, fontSize: 18,}}>Login</Link>,
                 <Button type='primary'>
-                    <Link to={"/register"}>JOIN</Link>
+                    <Link to={"/register"} style={{fontSize: 18}}>JOIN</Link>
                 </Button>
             ]}
             />
         );
-    
+
         const mypageButton=(
             <PageHeader
             ghost={false}
-            backIcon="FORECST"
-            // onBack={()=>this.handleHome()}
-            onBack={()=>null}
             extra={[
-                <Link to={"/mypage"} style={{color: '#000', marginRight: 20}}>{this.props.currentUser}</Link>
+                <Link to={"/mypage"} style={{color: '#000', fontSize: 18}}>{this.props.currentUser}</Link>,
+                <Avatar size={30} icon={<UserOutlined></UserOutlined>}></Avatar>
             ]}
             />
         );
 
         return (
-            <div>
-                {this.props.isLoggedIn ? mypageButton : joinButton}
+            <div style={{fontFamily: "Roboto"}}>
+                <Row>
+                    <Col span={3}>
+                        <a>
+                            <img src={logo} style={{width: 100, marginTop: 20, marginLeft: 10}} onClick={this.handleHome}></img>
+                        </a>
+                    </Col>
+                    <Col span={21}>
+                        {this.props.isLoggedIn ? mypageButton : joinButton}              
+                    </Col>
+                </Row>
             </div>
         );
     }
@@ -67,4 +72,4 @@ Forecst.defaultProps={
     currentUser: 'Youngjae'
 };
 
-export default Forecst;
+export default withRouter(Forecst);

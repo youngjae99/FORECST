@@ -1,5 +1,5 @@
 import React from 'react';
-import {Authentication} from '../components'
+import {Authentication, Forecst} from '../components'
 import { render } from '@testing-library/react';
 
 class Register extends React.Component{
@@ -7,7 +7,6 @@ class Register extends React.Component{
         return(
             <div>
                 <Authentication mode={false}></Authentication>
-                Register page
             </div>
         );
     }
