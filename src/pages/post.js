@@ -2,6 +2,8 @@ import {useEffect,useState} from 'react';
 
 import { db,storage } from "../firebase";
 import 'antd/dist/antd.css';
+import PropTypes from 'prop-types'
+import { render } from '@testing-library/react';
 
 function Post(props) {
   const [inputs, setInputs] = useState({

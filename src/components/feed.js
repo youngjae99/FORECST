@@ -12,20 +12,6 @@ class Feed extends Component {
         };
     }
 
-    componentDidMount() {
-        // const url = `https://newsapi.org/v2/${this.props.feed.type}?${this.props.feed.query}&apiKey=56538f95cb824a6ca0acf842f60a5fed`;
-        // fetch(url)
-        //     .then((response) => {
-        //         return response.json();
-        //     })
-        //     .then((data) => {
-        //         this.setState({
-        //             feed: data.articles
-        //         })
-        //         console.log(this.state)
-        //     })
-        //     .catch((error) => console.log(error));
-    }
 
     render(){
         return(
