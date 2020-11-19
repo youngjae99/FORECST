@@ -3,9 +3,7 @@ import {Link, withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types'
 import { PageHeader, Button, Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import {createBrowserHistory} from 'history';
 
-const browserHistory=createBrowserHistory();
 
 class Forecst extends React.Component{
 

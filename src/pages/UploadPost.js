@@ -1,5 +1,6 @@
 import React from 'react';
-import {Row, Col, Form, Input} from 'antd';
+import {Row, Col, Form, Input, Button} from 'antd';
+import {Link, } from 'react-router-dom';
 
 class UploadPost extends React.Component{
     render(){
@@ -76,10 +77,16 @@ class UploadPost extends React.Component{
                             type='text'
                             // onChange={this.handleChange}
                             // value={this.state.username}
-                            style={{height: 200}}
+                            style={{height: 300}}
                             >
                             </Input>
                         </Form.Item>
+
+                        <div style={{textAlign: "right"}}>
+                            <Button type='primary' style={{marginLeft: 100}}>
+                                <Link to={"/mypage"} style={{fontSize: 18}}>UPLOAD</Link>
+                            </Button>
+                        </div>
                     </Col>
                 </Row>
             </div>
