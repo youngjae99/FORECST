@@ -109,6 +109,7 @@ class Authentication extends React.Component{
                 {this.state.password==='' ? 
                 <div style={{fontSize: 18}}>Login</div> :
                 <Link to={"/campjoin"} style={{fontSize: 18}}>Login</Link>}
+                {/* <div style={{fontSize: 18}}>Login</div> */}
                 </Button>
             </Form.Item>
         );

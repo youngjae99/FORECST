@@ -5,6 +5,7 @@ import {
 
 /** AUTHENTICATION */
 export function loginRequest(username){
+    // console.log('login request', username);
     // API REQUEST
     return(dispatch)=>{
         // inform login API is starting
@@ -36,6 +37,7 @@ export function login() {
 }
 
 export function loginSuccess(username) {
+    // console.log('login success', username);
     return {
         type: AUTH_LOGIN_SUCCESS,
         username
