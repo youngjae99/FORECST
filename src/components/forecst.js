@@ -1,8 +1,9 @@
 import React from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types'
-import { PageHeader, Button, Avatar } from 'antd';
+import { PageHeader, Button, Avatar, Row, Col } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+import logo from '../logo.png';
 
 
 class Forecst extends React.Component{
@@ -13,6 +14,8 @@ class Forecst extends React.Component{
         this.state={
             currentUser: ''
         };
+
+        this.handleHome=this.handleHome.bind(this);
     }
 
     handleHome(){
@@ -23,8 +26,6 @@ class Forecst extends React.Component{
         const joinButton=(
             <PageHeader
             ghost={false}
-            backIcon="FORECST"
-            onBack={()=>this.handleHome()}
             extra={[
                 <Link to={"/login"} style={{color: '#000', marginRight: 20, fontSize: 18,}}>Login</Link>,
                 <Button type='primary'>
@@ -33,12 +34,10 @@ class Forecst extends React.Component{
             ]}
             />
         );
-    
+
         const mypageButton=(
             <PageHeader
             ghost={false}
-            backIcon="FORECST"
-            onBack={()=>this.handleHome()}
             extra={[
                 <Link to={"/mypage"} style={{color: '#000', fontSize: 18}}>{this.props.currentUser}</Link>,
                 <Avatar size={30} icon={<UserOutlined></UserOutlined>}></Avatar>
@@ -48,7 +47,16 @@ class Forecst extends React.Component{
 
         return (
             <div style={{fontFamily: "Roboto"}}>
-                {this.props.isLoggedIn ? mypageButton : joinButton}              
+                <Row>
+                    <Col span={3}>
+                        <a>
+                            <img src={logo} style={{width: 100, marginTop: 20, marginLeft: 10}} onClick={this.handleHome}></img>
+                        </a>
+                    </Col>
+                    <Col span={21}>
+                        {this.props.isLoggedIn ? mypageButton : joinButton}              
+                    </Col>
+                </Row>
             </div>
         );
     }
