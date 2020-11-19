@@ -11,7 +11,8 @@ import {
   Avatar,
   Space,
   Button,
-  Row, Col 
+  Row,
+  Col,
 } from "antd";
 import {
   HomeOutlined,
@@ -41,8 +42,7 @@ for (let i = 0; i < 23; i++) {
 }
 const IconText = ({ icon, text }) => (
   <Space>
-    {React.createElement(icon)}
-    {text}
+    {React.createElement(icon)}∂{text}
   </Space>
 );
 
@@ -53,92 +53,96 @@ function onFinish() {
 const CampHome = () => {
   const { Header, Content, Footer, Sider } = Layout;
   return (
-    <Layout
-        className="site-layout"
-      >
-        <Header className="site-layout-background" style={{ padding: 0 }}>
-          <div style={{ "padding-left": 20, width: 200 }}>
-            <Title level={3} id="camptitle">
-              Hackathon Title
-            </Title>
-          </div>
-        </Header>
-        
-        <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
+    <Layout className="site-layout">
+      <Header className="site-layout-background" style={{
+            overflow: "auto",
+            display: "inline-block",
+            height: 100,
+            position: "fixed",
+            backgroundColor: "ivory"
+          }}>
+        <div
+          
+        >
+          <Title level={3} id="camptitle">
+            Hackathon Title
+          </Title>
+        </div>
+      </Header>
 
-        <Row style={{backgroundColor:"white"}}>
+      <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
+        <Row style={{ backgroundColor: "white" }}>
           <Col span={24}>col</Col>
         </Row>
-          <Button
-            type="primary"
-            icon={<PlusOutlined />}
-            style={{ position: "absolute", right: 210, margin:10}}
-          >
-            New Post
-          </Button>
+        <Button
+          type="primary"
+          icon={<PlusOutlined />}
+          style={{ position: "absolute", right: 210, margin: 10 }}
+        >
+          New Post
+        </Button>
 
-          <div
-            className="site-layout-background"
-            style={{ padding: 24, textAlign: "center", marginTop: 50 }}
-          >
-            <List
-              itemLayout="vertical"
-              size="large"
-              pagination={{
-                onChange: (page) => {
-                  console.log(page);
-                },
-                pageSize: 3,
-              }}
-              dataSource={listData}
-              footer={
-                <div>
-                  <b>ant design</b> footer part
-                </div>
-              }
-              renderItem={(item) => (
-                <List.Item
-                  key={item.title}
-                  actions={[
-                    <IconText
-                      icon={StarOutlined}
-                      text="156"
-                      key="list-vertical-star-o"
-                    />,
-                    <IconText
-                      icon={LikeOutlined}
-                      text="156"
-                      key="list-vertical-like-o"
-                    />,
-                    <IconText
-                      icon={MessageOutlined}
-                      text="2"
-                      key="list-vertical-message"
-                    />,
-                  ]}
-                  extra={
-                    <img
-                      width={272}
-                      alt="logo"
-                      src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-                    />
-                  }
-                >
-                  <List.Item.Meta
-                    avatar={<Avatar src={item.avatar} />}
-                    title={<a href={item.href}>{item.title}</a>}
-                    description={item.description}
+        <div
+          className="site-layout-background"
+          style={{ padding: 24, textAlign: "center", marginTop: 50 }}>
+          <List
+            itemLayout="vertical"
+            size="large"
+            pagination={{
+              onChange: (page) => {
+                console.log(page);
+              },
+              pageSize: 3,
+            }}
+            dataSource={listData}
+            footer={
+              <div>
+                <b>ant design</b> footer part
+              </div>
+            }
+            renderItem={(item) => (
+              <List.Item
+                key={item.title}
+                actions={[
+                  <IconText
+                    icon={StarOutlined}
+                    text="156"
+                    key="list-vertical-star-o"
+                  />,
+                  <IconText
+                    icon={LikeOutlined}
+                    text="156"
+                    key="list-vertical-like-o"
+                  />,
+                  <IconText
+                    icon={MessageOutlined}
+                    text="2"
+                    key="list-vertical-message"
+                  />,
+                ]}
+                extra={
+                  <img
+                    width={272}
+                    alt="logo"
+                    src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
                   />
-                  {item.content}
-                </List.Item>
-              )}
-            />
-          </div>
-        </Content>
-        <Footer style={{ textAlign: "center" }}>
-          FORECST ©2020 Created by MADMAX
-        </Footer>
-      </Layout>
+                }
+              >
+                <List.Item.Meta
+                  avatar={<Avatar src={item.avatar} />}
+                  title={<a href={item.href}>{item.title}</a>}
+                  description={item.description}
+                />
+                {item.content}
+              </List.Item>
+            )}
+          />
+        </div>
+      </Content>
+      <Footer style={{ textAlign: "center" }}>
+        FORECST ©2020 Created by MADMAX
+      </Footer>
+    </Layout>
   );
 };
 

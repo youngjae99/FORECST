@@ -75,8 +75,9 @@ class CampPage extends React.Component {
             position: "fixed",
             left: 0,
           }}
+          theme="light"
         >
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
+          <Menu theme="light" mode="inline" defaultSelectedKeys={["1"]}>
             <Menu.Item
               key="1"
               icon={<HomeOutlined />}
@@ -102,6 +103,7 @@ class CampPage extends React.Component {
         </Sider>
 
         <Layout style={{ marginLeft: 200, marginRight: 200 }}>
+          
           <CampTabView tabnum={tab}></CampTabView>
         </Layout>
 

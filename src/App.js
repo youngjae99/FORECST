@@ -14,10 +14,10 @@ const App=()=>{
       <Route component={MainPage} path="/main"/>
       <Route component={Login} path="/login"/>
       <Route component={Register} path="/register"/>
-      <Route component={CampPage} path="/camp/"/>
       <Route component={CampHome} path="/camp/home"/>
       <Route component={CampQnA} path="/camp/qna"/>
       <Route component={CampRank} path="/camp/rank"/>
+      <Route component={CampPage} path="/camp/"/>
       <Route component={MyPage} path="/mypage"/>
     </>
   );
