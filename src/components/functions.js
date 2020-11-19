@@ -39,7 +39,6 @@ const { Header, Content, Sider, Footer } = Layout;
 
 
 
-function App() {
   const [id, setString] = useState();
   const handleClick = () => {
     db.collection('users')
@@ -127,8 +126,32 @@ function App() {
         })
       })
     }
+    const handleDownloadComments= (Doc_id) =>{
+      db.collection('Feeds').doc(Doc_id).collection("Comments").get()
 
-  
+    }
+    const handleDownloadUser = (UserId) => {
+      var lists = [];
+      db.collection('Feeds').get(UserId).then(function(querySnapshot){
+        querySnapshot.forEach(function(doc){
+            console.log(doc.data());
+            lists.push(doc);
+        })
+                  console.log(lists);
+
+      })
+      console.log(lists);
+      this.setState({feed:lists}, function () {
+        console.log(this.state.feed);
+    });
+    }
+    const handleWatering = (UserId) =>{
+      var prevLevel = db.collection("Users").doc(UserId).get().data();
+      db.collection("Users").doc(UserId).update({level:prevLevel+1});
+    }
+    const handleLogin = (UserId) =>{
+      db.collection("Users").doc(UserId).set({level:0});
+    }
   const joinButton=(
     <div className='right' style={{paddingRight:20}}>
         <Link to={"/authentication"} style={{color: '#000', marginRight: 20}}>Login</Link>
@@ -143,40 +166,6 @@ const mypageButton=(
         <Link to={"/mypage"} style={{color: '#000', marginRight: 20}}>Join}</Link>
     </div>
 );
-  return (
-    <>
-    <div>
-        <input type="file" name="file" onChange={handleImage}/>
-        <button type="button" onClick={handleDownload}>Upload</button>
-      </div>
-    <div>
-      ID
-      <input value={id} onChange={handleChange}style={{margin:50}}></input>
-      </div>
-      <div>
-        Password
-      <input ></input>
-      </div>
-      <div>
-      <button onClick={handleClick}>Log in</button>
 
-      </div>
-      <Link to={"/post"} style={{marginLeft: 20, color: '#000'}}>Post</Link>
-
-      <nav style={{background: '#fff', padding: 0, boxShadow: 'none'}}>
-                <Header style={{background: '#fff', padding:0}}>
-    
-                    <Link to={"/"} style={{marginLeft: 20, color: '#000'}}>FORECST</Link>
-                    <Link style={{marginLeft: 20, color: '#000'}}>About US</Link>
-    
-                    {mypageButton}
-                    {joinButton}
-                    
-                </Header>
-            </nav>
-
-    </>
-  );
-}
 
 export default App;  
