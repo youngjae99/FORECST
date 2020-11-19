@@ -106,9 +106,9 @@ class Authentication extends React.Component{
         const loginView=(
             <Form.Item {...tailLayout}>
                 <Button type='primary' htmlType='submit' onClick={this.handleLogin} style={{marginTop: 10, marginLeft: 145}}>
-                {this.state.password=='' ? 
-                <div style={{fontSize: 18}}>Login</div> : 
-                <Link to={"/"} style={{fontSize: 18}}>Login</Link>}
+                {this.state.password==='' ? 
+                <div style={{fontSize: 18}}>Login</div> :
+                <Link to={"/campjoin"} style={{fontSize: 18}}>Login</Link>}
                 </Button>
             </Form.Item>
         );
@@ -125,7 +125,7 @@ class Authentication extends React.Component{
                 
                 <Form.Item {...tailLayout}> 
                     <Button type='primary' htmlType='submit' onClick={this.handleRegister} style={{marginLeft: 110}}>
-                        {this.state.password=='' ? 
+                        {this.state.password==='' ? 
                         <div style={{fontSize: 18}}>Create Account</div> : 
                         <Link to={"/login"} style={{fontSize: 18}}>Create Account</Link>}
                     </Button>

@@ -28,9 +28,9 @@ class Forecst extends React.Component{
             backIcon="FORECST"
             onBack={()=>this.handleHome()}
             extra={[
-                <Link to={"/login"} style={{color: '#000', marginRight: 20, fontSize: 18, fontFamily: "Roboto"}}>Login</Link>,
+                <Link to={"/login"} style={{color: '#000', marginRight: 20, fontSize: 18,}}>Login</Link>,
                 <Button type='primary'>
-                    <Link to={"/register"} style={{fontSize: 18, fontFamily: "Roboto"}}>JOIN</Link>
+                    <Link to={"/register"} style={{fontSize: 18}}>JOIN</Link>
                 </Button>
             ]}
             />
@@ -42,14 +42,14 @@ class Forecst extends React.Component{
             backIcon="FORECST"
             onBack={()=>this.handleHome()}
             extra={[
-                <Link to={"/mypage"} style={{color: '#000', fontSize: 18, fontFamily: "Roboto"}}>{this.props.currentUser}</Link>,
+                <Link to={"/mypage"} style={{color: '#000', fontSize: 18}}>{this.props.currentUser}</Link>,
                 <Avatar size={30} icon={<UserOutlined></UserOutlined>}></Avatar>
             ]}
             />
         );
 
         return (
-            <div>
+            <div style={{fontFamily: "Roboto"}}>
                 {this.props.isLoggedIn ? mypageButton : joinButton}              
             </div>
         );

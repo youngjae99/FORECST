@@ -1,5 +1,5 @@
 import React from 'react';
-import {Authentication, Forecst} from '../components'
+import {Authentication} from '../components'
 import {loginRequest} from '../actions/authentication';
 import {connect} from 'react-redux';
 
@@ -14,12 +14,14 @@ class Login extends React.Component{
         this.props.loginRequest(id);
 
         if(this.props.status==="SUCCESS"){
-            this.props.history.push('/CS473_DesignProject');
+            // console.log(this.props.status, id);
+            this.props.history.push('/campjoin');
             return true;
-
         }
-        else
+        else{
+            // console.log(this.props.status, id);
             return false;
+        }
     }
     
     render(){
