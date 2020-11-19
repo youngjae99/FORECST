@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, Avatar, Row, Col, Tabs} from 'antd';
+import {Card, Avatar, Row, Col, Tabs, Slider} from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import {connect} from 'react-redux';
 
@@ -43,7 +43,7 @@ class MyPage extends React.Component{
                         </Col>
     
                         <Col span={10}>
-    
+                            <Slider defaultValue={0} tooltipVisible disabled={true} style={{marginTop: 100}}></Slider>
                         </Col>
                     </Row>
                 </Card>

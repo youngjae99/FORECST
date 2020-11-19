@@ -1,6 +1,6 @@
 import React from 'react';
 // Pages
-import {Home, Login, Register, CampHome, CampQnA, CampRank, MainPage, MyPage, CampJoin} from './pages';
+import {Home, Login, Register, CampHome, CampQnA, CampRank, MainPage, MyPage, CampJoin, UploadPost} from './pages';
 // Router
 import {Route, Router} from "react-router-dom";
 import 'antd/dist/antd.css';
@@ -28,6 +28,7 @@ class App extends React.Component{
           <Route component={CampQnA} path="/campqna"/>
           <Route component={CampRank} path="/camprank"/>
           <Route component={MyPage} path="/mypage"/>
+          <Route component={UploadPost} path="/uploadpost"/>
         </Router>
       </Provider>
     );
