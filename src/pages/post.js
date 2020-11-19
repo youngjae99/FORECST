@@ -2,39 +2,8 @@ import {useEffect,useState} from 'react';
 
 import { db,storage } from "../firebase";
 import 'antd/dist/antd.css';
-import PropTypes from 'prop-types'
-import { render } from '@testing-library/react';
 
-// function handleClick (id){
-//     db.collection('users')
-//       .doc(id)
-//       .get()
-//       .then(doc => {
-//         if (!doc.data()) {
-//           db.collection('users')
-//             .doc(id)
-//             .set({
-//               currentUser : id,
-//               isLoggedIn : true,
-//               Tree : 0
-//             });
-//           alert(`${id}님 환영합니다.`);
-//           return(id);
-//         } else { 
-//           db.doc(`/users/${id}`)
-//             .get()
-//             .set({isLoggedIn : true})
-
-//         }})
-//   };
-//   function handleChange(e){
-//     this.setState(e.target.value);
-//     setString(e.target.value);
-//   };
-
-
-
-function Post() {
+function Post(props) {
   const [inputs, setInputs] = useState({
     title: "",
     writing: "",
@@ -43,10 +12,10 @@ function Post() {
   const [image,setImage] = useState(0);
   const { title,writing } = inputs;
 
-  useEffect(() => {
-    // 브라우저 API를 이용하여 문서 타이틀을 업데이트합니다.
-    console.log(file.name);
-  });
+  // useEffect(() => {
+  //   // 브라우저 API를 이용하여 문서 타이틀을 업데이트합니다.
+  //   console.log(file.name);
+  // });
 
 
 //   const handleClick = (mode) => {
@@ -105,7 +74,7 @@ function Post() {
     const fileRef = storageRef.child(file.name);
     await fileRef.put(file)
       
-        db.collection('Feeds').doc().set({photo:await fileRef.getDownloadURL(),writing:writing,title:title});
+        db.collection('Feeds').doc().set({id:props.id,photo:await fileRef.getDownloadURL(),writing:writing,title:title});
         console.log('Uploaded a blob or file!');
 
     }
@@ -128,7 +97,6 @@ function Post() {
       </div>
     <div>
     <button type="button" onClick={handlePost}>Post</button>
-
     </div>
     </>
   );
