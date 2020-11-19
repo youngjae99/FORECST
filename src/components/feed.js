@@ -37,26 +37,33 @@ class Feed extends Component {
                 <div>
                     <img src={item.data().photo} style={profileStyle} alt="profileimg"/>
                     <h3>{'Id'}</h3>
-                    <List.Item.Meta
+                    <div itemLayout="horizontal">
+                        {item.data().title}
+                        {item.data().writing}
+                    </div>
+                    <img src={item.data().photo} style={postimgStyle} alt="contentimage"/>
+                    <GiWateringCan size="2%" color="1e71f7"/>
+                    <BsBookmark size="1.5%" color="6b6b6b"/>
+                    {/* <List.Item.Meta
                         title={item.data().title}
                         content={item.data().writing}
                     />
                     <List.Item
                         key={item.data().title}
                         extra={
-                            <img src={item.data().photo} style={profileStyle} alt="contentimage"/>
+                            <img src={item.data().photo} style={postimgStyle} alt="contentimage"/>
                         }
                         actions={[
                         <GiWateringCan size="5%" color="1e71f7"/>,
                         <BsBookmark size="4%" color="6b6b6b"/>
                         ]}
-                    />
+                    /> */}
                     {item.data().writing}
                     <Button type="link">See more</Button>
                     <FeedComment posting = {item.id} ></FeedComment>
                 </div>
                 )}
-        />
+            />
         )}
 }
 const profileStyle = {

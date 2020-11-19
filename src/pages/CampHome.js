@@ -11,10 +11,7 @@ class CampHome extends Component {
       super(props);
       this.state = {
         feed: [],
-        whatsgoingon: {
-          type: 'everything',
-          query: 'domains=techcrunch.com&language=en'
-        }
+        whatsgoingon: [],
       }
     }
     
@@ -30,7 +27,7 @@ class CampHome extends Component {
 
           })
           console.log(lists);
-          this.setState({feed:lists}, function () {
+          this.setState({feed:lists, whatsgoingon:lists}, function () {
             console.log(this.state.feed);
         });
         }
@@ -45,10 +42,11 @@ class CampHome extends Component {
           <div className="container">
             <div className="row"> 
               <Feed feed={this.state.feed} />
-              <WGO news={this.state.whatsgoingon} />
+              <Link to={"./post"} style={{color: '#000', marginRight: 20}}>post</Link>
+              <h1>What's Going On?</h1>
+              <WGO wgo={this.state.whatsgoingon} />
             </div>
           </div>  
-          <Link to={"./post"} style={{color: '#000', marginRight: 20}}>post</Link>
 
         </div>
 
