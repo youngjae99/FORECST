@@ -49,9 +49,9 @@ class MyPage extends React.Component{
                     </Row>
                 </Card>
 
-                <Row>
+                <Row style={{width: 1000, margin: "auto", marginTop: 20}}>
                     <Col span={20}>
-                        <Tabs defaultActiveKey="1" type="card" size={"large"} style={{width: 1000, margin: "auto", marginTop: 20}}>
+                        <Tabs defaultActiveKey="1" type="card" size={"large"} >
                             <TabPane tab="MY" key="1">
                                 {MyView}
                             </TabPane>
@@ -62,7 +62,7 @@ class MyPage extends React.Component{
                     </Col>
 
                     <Col span={4} style={{textAlign: "right"}}>
-                        <Button type='primary' style={{marginTop: 20}}>
+                        <Button type='primary'>
                             <Link to={"/uploadpost"} style={{fontSize: 18}}>New Post</Link>
                         </Button>
                     </Col>
