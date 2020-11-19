@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Comment, Form, Button, List, Input, Tooltip } from 'antd';
 import moment from 'moment';
+import { db,storage } from "../firebase";
 
 const data = [
     {
@@ -63,11 +64,15 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
 );
 
 class FeedComment extends Component {
-  state = {
-    comments: [],
-    submitting: false,
-    value: '',
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      comments: [],
+      submitting: false,
+      value: '',
+    };
+  
+}
 
   handleSubmit = () => {
     if (!this.state.value) {
@@ -77,8 +82,11 @@ class FeedComment extends Component {
     this.setState({
       submitting: true,
     });
-
+    // this.setState({comments:[]})
     setTimeout(() => {
+      console.log(this.props.posting);
+      db.collection('Feeds').doc(this.props.posting).collection('Comments').doc().set({author : "default",comment:this.state.value})
+
       this.setState({
         submitting: false,
         value: '',
@@ -91,6 +99,7 @@ class FeedComment extends Component {
           ...this.state.comments,
         ],
       });
+    
     }, 1000);
   };
 

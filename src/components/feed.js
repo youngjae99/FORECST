@@ -3,7 +3,6 @@ import { List, Button } from 'antd';
 import { GiWateringCan } from 'react-icons/gi';
 import { BsBookmark } from 'react-icons/bs';
 import FeedComment from './feed  comment';
-import { db,storage } from "../firebase";
 
 class Feed extends Component {
     constructor(props) {
@@ -15,7 +14,6 @@ class Feed extends Component {
 
     componentDidMount() {
         // const url = `https://newsapi.org/v2/${this.props.feed.type}?${this.props.feed.query}&apiKey=56538f95cb824a6ca0acf842f60a5fed`;
-
         // fetch(url)
         //     .then((response) => {
         //         return response.json();
@@ -27,21 +25,6 @@ class Feed extends Component {
         //         console.log(this.state)
         //     })
         //     .catch((error) => console.log(error));
-        var lists =[];
-        const handleDownload = () => {
-
-            db.collection('Feeds').get().then(function(querySnapshot){
-              querySnapshot.forEach(function(doc){
-                  console.log(doc.data());
-                  lists.push(doc.data());
-                  this.setState({feed:this.state.feed.concat(doc.data())});
-
-              })
-            })
-            console.log(lists);
-            console.log(this.state.feed);
-          }
-        handleDownload();
     }
 
     render(){
@@ -49,32 +32,28 @@ class Feed extends Component {
             <List
                 itemLayout="vertical"
                 size="large"
-                dataSource={this.state.feed}
+                dataSource={this.props.feed}
                 renderItem={item => (
                 <div>
-                    <img src={item.photo} style={profileStyle} alt="profileimg"/>
+                    <img src={item.data().photo} style={profileStyle} alt="profileimg"/>
                     <h3>{'Id'}</h3>
                     <List.Item.Meta
-                        title={item.title}
-                        content={item.writing}
+                        title={item.data().title}
+                        content={item.data().writing}
                     />
                     <List.Item
-                        key={item.title}
+                        key={item.data().title}
                         extra={
-                            <img
-                                style={postimgStyle}
-                                alt="logo"
-                                src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-                            />
+                            <img src={item.data().photo} style={profileStyle} alt="contentimage"/>
                         }
                         actions={[
                         <GiWateringCan size="5%" color="1e71f7"/>,
                         <BsBookmark size="4%" color="6b6b6b"/>
                         ]}
                     />
-                    {item.writing}
+                    {item.data().writing}
                     <Button type="link">See more</Button>
-                    <FeedComment></FeedComment>
+                    <FeedComment posting = {item.id} ></FeedComment>
                 </div>
                 )}
         />

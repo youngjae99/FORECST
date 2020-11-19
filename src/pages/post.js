@@ -100,17 +100,13 @@ function Post() {
 
   }
 
-  const handlePost = () =>{
+  const handlePost = async() =>{
     const storageRef = storage.ref();
     const fileRef = storageRef.child(file.name);
-    fileRef.put(file).then(function(snapshot) { 
-      console.log(snapshot);   
-      const filepath ="gs://"+fileRef._delegate._location.bucket+'/'+file.name;
-
-        console.log(filepath);
-        db.collection('Feeds').doc().set({photo:filepath,writing:writing,title:title});
+    await fileRef.put(file)
+      
+        db.collection('Feeds').doc().set({photo:await fileRef.getDownloadURL(),writing:writing,title:title});
         console.log('Uploaded a blob or file!');
-      });
 
     }
 
