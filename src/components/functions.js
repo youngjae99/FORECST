@@ -109,23 +109,46 @@ const { Header, Content, Sider, Footer } = Layout;
       // }).catch(function(error) {
       //   // Handle any errors
       // });
-    const handleDownload = () => {
+    // const handleDownload = () => {
 
+    //   db.collection('Feeds').get().then(function(querySnapshot){
+    //     querySnapshot.forEach(function(doc){
+    //       console.log(doc.data());
+    //       var gsReference = storage.refFromURL(doc.data().photo)
+
+    //       gsReference.getDownloadURL().then(function(url) {
+    //         console.log(url);
+    //         setState
+    //         return(url)
+    //       }).catch(function(error) {
+    //         console.log("error!!");
+    //       });
+    //     })
+    //   })
+    // }
+
+    const handleDownload = () => {
       db.collection('Feeds').get().then(function(querySnapshot){
         querySnapshot.forEach(function(doc){
-          console.log(doc.data());
-          var gsReference = storage.refFromURL(doc.data().photo)
-
-          gsReference.getDownloadURL().then(function(url) {
-            console.log(url);
-            setState
-            return(url)
-          }).catch(function(error) {
-            console.log("error!!");
-          });
+            console.log(doc.data());
+            lists.push(doc);
         })
+            console.log(lists);
+
       })
-    }
+      console.log(lists);
+  }
+
+  // componentDidMount(){
+  //   this.getMarker();
+  // }
+  getMarker = async () => {
+    const snapshot = await db.collection('Feeds').get()
+    console.log(snapshot.docs)
+        this.setState({feed:snapshot.docs})  
+    } 
+
+
     const handleDownloadComments= (Doc_id) =>{
       db.collection('Feeds').doc(Doc_id).collection("Comments").get()
 
