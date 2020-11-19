@@ -4,6 +4,8 @@ import React from 'react';
 import {Route} from 'react-router-dom';
 import {Autentication, CampHome, CampQnA, CampRank, MainPage, MyPage} from './pages';
 import Post from './pages/post';
+import CampRankResult from './pages/CampRankResult';
+
 const App=()=>{
   return (
     <>
@@ -15,6 +17,7 @@ const App=()=>{
       <Route component={CampQnA} path="/campqna"/>
       <Route component={CampRank} path="/camprank"/>
       <Route component={MyPage} path="/mypage"/>
+      <Route component={CampRankResult} path="/camprankresult"/>
     </>
   );
 };
