@@ -1,6 +1,6 @@
 import React from "react";
-import { Header, Menu } from "../components";
-import CampHome from "./CampHome";
+// import CampHome from "./CampHome";
+import CampPage from "./CampPage";
 import CampQnA from "./CampQnA";
 import CampRank from "./CampRank";
 
@@ -9,7 +9,8 @@ const CampTabView = ({ tabnum }) => {
     console.log(tabnum);
     return (
       <>
-        <CampHome></CampHome>
+        {/* <CampHome></CampHome> */}
+        <CampPage></CampPage>
       </>
     );
   } else if (tabnum == 2) {
