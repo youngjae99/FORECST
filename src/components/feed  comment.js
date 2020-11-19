@@ -82,7 +82,6 @@ class FeedComment extends Component {
     this.setState({
       submitting: true,
     });
-    // this.setState({comments:[]})
     setTimeout(() => {
       console.log(this.props.posting);
       db.collection('Feeds').doc(this.props.posting).collection('Comments').doc().set({author : "default",comment:this.state.value})

@@ -12,6 +12,7 @@ class CampHome extends Component {
       this.state = {
         feed: [],
         whatsgoingon: [],
+        
       }
     }
     

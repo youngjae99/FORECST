@@ -36,15 +36,8 @@ class Feed extends Component {
                 renderItem={item => (
                 <div>
                     <img src={item.data().photo} style={profileStyle} alt="profileimg"/>
-                    <h3>{'Id'}</h3>
-                    <div itemLayout="horizontal">
-                        {item.data().title}
-                        {item.data().writing}
-                    </div>
-                    <img src={item.data().photo} style={postimgStyle} alt="contentimage"/>
-                    <GiWateringCan size="2%" color="1e71f7"/>
-                    <BsBookmark size="1.5%" color="6b6b6b"/>
-                    {/* <List.Item.Meta
+                    <h3>{item.data().id}</h3>
+                    <List.Item.Meta
                         title={item.data().title}
                         content={item.data().writing}
                     />
@@ -57,7 +50,7 @@ class Feed extends Component {
                         <GiWateringCan size="5%" color="1e71f7"/>,
                         <BsBookmark size="4%" color="6b6b6b"/>
                         ]}
-                    /> */}
+                    /> 
                     {item.data().writing}
                     <Button type="link">See more</Button>
                     <FeedComment posting = {item.id} ></FeedComment>
