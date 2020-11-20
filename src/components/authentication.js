@@ -4,7 +4,7 @@ import { Input, Space, Card, Button, Form, Checkbox } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import {Link} from 'react-router-dom';
 import {browserHistory} from 'react-router';
-
+import {backend_Login,backend_Join} from "../backend";
 class Authentication extends React.Component{
 
     constructor(props){
@@ -17,6 +17,8 @@ class Authentication extends React.Component{
 
         this.handleChange=this.handleChange.bind(this);
         this.handleLogin=this.handleLogin.bind(this);
+        this.handleRegister=this.handleRegister.bind(this);
+
         this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
@@ -26,16 +28,27 @@ class Authentication extends React.Component{
         this.setState(nextState);
     }
 
-    handleLogin(){
+    handleLogin=async ()=>{
         let id=this.state.username;
 
         if(id===""||this.state.password==="")
             return;
-        else this.props.onLogin(id);
+        else 
+        {
+            let registered = await backend_Login(id)
+            console.log(registered)
+            if(registered){
+                this.props.onLogin(id);
+                console.log("what")
+            }
+            else
+                return;
+        }
     }
 
     handleRegister(){
         browserHistory.push('/login')
+        backend_Join(this.state.username)
     }
 
     handleKeyPress(e) {

@@ -3,6 +3,7 @@ import {Card, Avatar, Row, Col, Tabs, Slider, Button} from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import { db,storage } from "../firebase";
 
 const {TabPane}=Tabs;
 
@@ -11,7 +12,15 @@ class MyPage extends React.Component{
     constructor(props){
         super(props);
     }
-
+    componentDidMount(){
+        this.getMyPost();
+      }
+    getMyPost = async () => {
+        const snapshot = await db.collection('Feeds').where("id","==",this.props.status.currentUser).get()
+        console.log(snapshot.docs)
+            // this.setState({feed:snapshot.docs})  
+        }
+        //my view 보여주는 코드가 필요함
     render(){
         const MyView=(
             <div style={{width: 1000, margin: "auto", marginTop: 20}}>
@@ -63,7 +72,7 @@ class MyPage extends React.Component{
 
                     <Col span={4} style={{textAlign: "right"}}>
                         <Button type='primary'>
-                            <Link to={"/uploadpost"} style={{fontSize: 18}}>New Post</Link>
+                            <Link to={"/uploadpost"} id={this.props.status.currentUser} style={{fontSize: 18}}>New Post</Link>
                         </Button>
                     </Col>
                 </Row>
