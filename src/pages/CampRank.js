@@ -82,7 +82,7 @@ class CampRank extends Component {
                         </Radio.Group>
                     <Col>
                     <Link to="./camprankresult">
-                    <Button type="primary" onClick={openNotification}>Submit</Button>
+                        <Button type="primary" onClick={openNotification}>Submit</Button>
                     </Link>
                     </Col>
                     </Col>
