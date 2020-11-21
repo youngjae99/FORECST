@@ -92,8 +92,8 @@ import 'antd/dist/antd.css';
         }
 
     }
-    export const backend_Login= async (id) => {
-        if(!await check_register(id)){
+    export const backend_Login= (id) => {
+        if(!check_register(id)){
             console.log("not registered!")
             return false
         }
@@ -113,6 +113,7 @@ import 'antd/dist/antd.css';
             db.collection("Users").doc(id).update('point',firebase.firestore.FieldValue.increment(5))
         }
         else if(mode =="login"){
+            console.log("login")
             db.collection("Users").doc(id).update('point',firebase.firestore.FieldValue.increment(1))
         }
         else if(mode == "comment"){
@@ -123,6 +124,15 @@ import 'antd/dist/antd.css';
         db.collection("Users").doc(id).update('point',firebase.firestore.FieldValue.increment(2))
         db.collection("Feeds").doc(doc).update('watering',firebase.firestore.FieldValue.increment(1))
     }
+
+
+
+    // export const backend_Comment = async () => {
+    //     const snapshot = await db.collection('Feeds').doc(this.props.posting).collection("Comments").get()
+    //     console.log(snapshot.docs)
+    //         this.setState({comments:snapshot.docs})  
+    //     }
+    
 //     const handleDownload = () => {
 //       db.collection('Feeds').get().then(function(querySnapshot){
 //         querySnapshot.forEach(function(doc){

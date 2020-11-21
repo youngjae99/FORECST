@@ -5,6 +5,8 @@ import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import {Link} from 'react-router-dom';
 import {browserHistory} from 'react-router';
 import {backend_Login,backend_Join} from "../backend";
+import { db,storage } from "../firebase";
+
 class Authentication extends React.Component{
 
     constructor(props){
@@ -28,16 +30,33 @@ class Authentication extends React.Component{
         this.setState(nextState);
     }
 
-    handleLogin=async ()=>{
-        let id=this.state.username;
+    // handleLogin=async ()=>{
+    //     let id=this.state.username;
+    //     console.log(id)
+    //     if(id===""||this.state.password==="")
+    //         return;
+    //     else 
+    //     {
+    //         console.log(id)
 
+    //         const registered = await db.collection('Users').doc(id)
+    //         console.log(registered)
+    //         if(registered.exist){
+    //             this.props.onLogin(id);
+    //             console.log("what")
+    //         }
+    //         else
+    //             return;
+    //     }
+    // }
+    handleLogin(){
+        let id=this.state.username;
+        console.log(id)
         if(id===""||this.state.password==="")
             return;
         else 
         {
-            let registered = await backend_Login(id)
-            console.log(registered)
-            if(registered){
+            if(backend_Login(id)){
                 this.props.onLogin(id);
                 console.log("what")
             }

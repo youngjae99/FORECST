@@ -33,13 +33,14 @@ class Feed extends Component {
                         }
                         actions={[
                         //물주기 버튼 눌렀을 때 피드에 있는 모든 post에 적용되는 점, 한번 밖에 누르지 못하는 점 fix해야됨
-                        <Button  onClick={backend_Feed_watering(item.id,item.data().id)}>watering</Button>
                         // <GiWateringCan size="5%" color="1e71f7" onclick={backend_Point(item.data().id,"watered")}  />,
                         // <BsBookmark size="4%" color="6b6b6b"/>
                         ]}
                     />
                     {item.data().writing}
                     <Button type="link">See more</Button>
+                    <Button  onClick={backend_Feed_watering(item.id,item.data().id)}>watering</Button>
+
                     <FeedComment posting = {item.id} ></FeedComment>
                 </div>
                 )}
