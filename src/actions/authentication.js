@@ -14,20 +14,6 @@ export function loginRequest(username){
         // API REQUEST
         return dispatch(loginSuccess(username))
     };
-
-    // // API REQUEST
-    // return axios.post('/routes/account/login', { email, password }) //loginRequest가 실행되면 thunk함수의 인자를 post에 전송
-    // .then((response) => {
-    //     // SUCCEED
-    //     const data = response.data.data[0];
-    //     const name = data.name;
-    //     const department = data.department;
-        
-    //     dispatch(loginSuccess(email, name, department));
-    // }).catch((error) => {
-    //     // FAILED
-    //     dispatch(loginFailure());
-    // });
 }
 
 export function login() {
@@ -42,4 +28,14 @@ export function loginSuccess(username) {
         type: AUTH_LOGIN_SUCCESS,
         username
     };
+}
+
+export function getLevel(point){
+    if(point<parseInt("10")){
+        return 0;
+    }else if(point<parseInt("30")){
+        return 1;
+    }else{
+        return 2;
+    }
 }

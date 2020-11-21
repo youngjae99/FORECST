@@ -7,6 +7,7 @@ import lv0 from '../level_tree/lv0.png';
 import lv1 from '../level_tree/lv1.png';
 import lv2 from '../level_tree/lv2.png';
 import lv3 from '../level_tree/lv3.png';
+import {getLevel} from '../actions/authentication';
 
 const {TabPane}=Tabs;
 
@@ -33,34 +34,25 @@ class MyPage extends React.Component{
             </div>
         )
 
-        var level=0;
         var point=this.state.point;
+        const level=this.props.getLevel(point);
         var nextPoint=0;
-
-        if(point<parseInt("10")){
-            level=0;
-            nextPoint=10;
-        }else if(point<parseInt("30")){
-            level=1;
-            nextPoint=30;
-        }else{
-            level=2;
-            nextPoint=60;
-        }
-
         let currentTree=null;
         let nextTree=null;
 
         switch (level) {
             case 1:
+                nextPoint=20;
                 currentTree=<img src={lv1} style={{width: 120}}></img>
                 nextTree=<img src={lv2} style={{width: 70, marginTop: 50}}></img>
                 break;
             case 2:
+                nextPoint=30;
                 currentTree=<img src={lv2} style={{width: 120}}></img>
                 nextTree=<img src={lv3} style={{width: 70, marginTop: 50}}></img>
                 break;
             default:
+                nextPoint=10;
                 currentTree=<img src={lv0} style={{width: 120}}></img>
                 nextTree=<img src={lv1} style={{width: 70, marginTop: 50}}></img>
                 break;
@@ -133,6 +125,9 @@ const mapStateToProps=(state)=>{
 
 const mapDispatchToProps=(dispatch)=>{
     return{
+        getLevel: (point)=>{
+            return getLevel(point);
+        }
     };
 };
 
