@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
-import {Row, Col, Form, Input, Button, Space, notification} from 'antd';
+import {Row, Col, Form, Input, Button, Space, message} from 'antd';
 import {Link} from 'react-router-dom';
-import notificationqna from '../components/notification_qnaupload';
-import notificationqnacancel from '../components/notification_qnauploadcancel';
+import notificationqnacancel from '../components/notification_uploadcancel';
+
+const success = () => {
+    message
+      .loading('Uploading...', 2.5)
+      .then(() => message.success('Upload SUCCESS!', 2.5))
+  };
 
 class QnAWrite extends Component{
     render(){
@@ -75,18 +80,15 @@ class QnAWrite extends Component{
                         </Form.Item>
 
                         <div style={{textAlign: "right"}}>
-                            <Space style={{marginRight: 16}}>
-                                <Button onClick={notificationqna}>Cancel</Button>
-                            </Space>
-                            <Space style={{marginRight: 16}}>
-                                <Button onClick={notificationqna}>Upload</Button>
-                            </Space>
-                            {/* <Link to="./campqna">
-                                <Button type="primary" onClick={openNotification}>UPLOAD</Button>
-                            </Link> */}
-                            {/* <Button type='primary' style={{marginLeft: 100}}>
-                                <Link to={"/campqna"} style={{fontSize: 18}}>UPLOAD</Link>
-                            </Button> */}
+                            {/* <Space style={{marginRight: 16}}>
+                                <Button onClick={notificationqnacancel}>Cancel</Button>
+                            </Space> */}
+                            <Link to="/camp/">
+                                <Button type="primary" onClick={notificationqnacancel}>CANCEL</Button>
+                            </Link>
+                            <Link to="/camp/">
+                                <Button type="primary" onClick={success}>UPLOAD</Button>
+                            </Link>
                         </div>
                     </Col>
                 </Row>

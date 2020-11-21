@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import {Menu} from '../components';
 import {Table, Button, Space, Input} from 'antd';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';

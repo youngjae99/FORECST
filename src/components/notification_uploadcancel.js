@@ -12,14 +12,14 @@ const notificationqnacancel = () => {
   const btn = (
     <Button type="primary" size="small" onClick={() => notification.close(key)}>
         <BrowserRouter>
-            <Link to={"/campqna"}>Confirm</Link>
+            <Link to={"/camp/"}>Ok</Link>
         </BrowserRouter>
     </Button>
   );
   notification.open({
-    message: 'Confirmation of your writing',
+    message: 'Cancel',
     description:
-      'Are you sure that you want to upload the question?',
+      'You upload has been cancelled.',
     btn,
     key,
     onClose: close,
