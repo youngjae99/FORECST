@@ -16,7 +16,6 @@ class MyPage extends React.Component{
         super(props);
         
         this.state={
-            // level: 0, 
             point: 0,
         }
     }
@@ -34,24 +33,19 @@ class MyPage extends React.Component{
             </div>
         )
 
-        let level=0;
-        // parseInt point=this.state.point;
-        console.log("point: ", this.state.point);
-        // point=point+1;
+        var level=0;
+        var point=this.state.point;
+        var nextPoint=0;
 
-        switch (point) {
-            case point<10:
-                level=0
-                console.log("level: ", level);
-                break;
-            case point<30:
-                level=1
-                console.log("level: ", level);
-                break;
-            default:
-                level=2
-                console.log("level: ", level);
-                break;
+        if(point<parseInt("10")){
+            level=0;
+            nextPoint=10;
+        }else if(point<parseInt("30")){
+            level=1;
+            nextPoint=30;
+        }else{
+            level=2;
+            nextPoint=60;
         }
 
         let currentTree=null;
@@ -96,8 +90,8 @@ class MyPage extends React.Component{
                                     {currentTree}
                                 </Col>
                                 <Col span={12}>
-                                    <div style={{marginTop: 25, fontWeight: "bold"}}>1000 points left to grow up!</div>
-                                   <Slider defaultValue={this.state.point} tooltipVisible disabled={true} style={{marginTop: 50}}></Slider>
+                                    <div style={{marginTop: 25, fontWeight: "bold"}}>{nextPoint} points left to grow up!</div>
+                                   <Slider max={nextPoint} defaultValue={this.state.point} tooltipVisible disabled={true} style={{marginTop: 50}}></Slider>
                                 </Col>
                                 <Col span={6}>
                                     {nextTree}
