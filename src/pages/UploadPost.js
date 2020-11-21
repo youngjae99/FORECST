@@ -2,6 +2,7 @@ import React from 'react';
 import {Row, Col, Form, Input, Button} from 'antd';
 import {Link, } from 'react-router-dom';
 import {useEffect,useState} from 'react';
+import {connect} from 'react-redux';
 
 import { db,storage } from "../firebase";
 import 'antd/dist/antd.css';
@@ -10,7 +11,7 @@ import { render } from '@testing-library/react';
 import {backend_Point} from "../backend";
 
 function UploadPost(props){
-    console.log(props)
+    console.log("upload post: ", props);
     const [inputs, setInputs] = useState({
         title: "",
         writing: "",
@@ -140,4 +141,15 @@ function UploadPost(props){
     
 }
 
-export default UploadPost;
+const mapStateToProps=(state)=>{
+    return{
+        status: state.authentication.status
+    };
+};
+
+const mapDispatchToProps=(dispatch)=>{
+    return{
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UploadPost);
