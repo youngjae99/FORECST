@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Menu} from '../components';
+// import {Menu} from '../components';
 import {Table, Button, Space, Input} from 'antd';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
@@ -204,8 +204,7 @@ class CampQnA extends Component {
         ]
         return(
             <div>
-                <Menu></Menu>
-                Camp QnA
+                {/* <Menu></Menu> */}
                 <Space style={{marginBottom: 16}}>
                     <Button onClick={this.setNoSort}>Sort by No.</Button>
                     <Button onClick={this.setNoSort}>Sort by Date</Button>
@@ -213,7 +212,7 @@ class CampQnA extends Component {
                     <Button onClick={this.setViewsSort}>Sort by Views</Button>
                 </Space>
                 <Table columns={columns} dataSource={data} onChange={this.handleChange} pagination={{position: ["bottomCenter"]}}/>
-                <Link to="./qnawrite">
+                <Link to="/qnawrite">
                     <Button type="primary">WRITE</Button>
                 </Link>
             </div>

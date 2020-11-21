@@ -1,6 +1,6 @@
 import React from 'react';
 // Pages
-import {Home, Login, Register, CampHome, CampQnA, CampRank, MainPage, MyPage, CampJoin, UploadPost, CampPage} from './pages';
+import {Home, Login, Register, CampHome, CampQnA, CampRank, MainPage, MyPage, CampJoin, UploadPost, CampPage, QnAWrite, CampRankResult} from './pages';
 // Router
 import {Route, Router} from "react-router-dom";
 import 'antd/dist/antd.css';
@@ -10,6 +10,8 @@ import {createStore, applyMiddleware} from 'redux';
 import reducers from './reducers';
 import thunk from 'redux-thunk';
 import {createBrowserHistory} from 'history';
+// import QnAWrite from './pages/QnAWrite';
+// import CampRankResult from './pages/CampRankResult';
 
 // const App=()=>{
 //   return (
@@ -44,6 +46,8 @@ class App extends React.Component{
           <Route component={MyPage} path="/mypage"/>
           <Route component={UploadPost} path="/uploadpost"/>
           <Route component={CampPage} path="/camp/"/>
+          <Route component={QnAWrite} path="/qnawrite"/>
+          <Route component={CampRankResult} path="/camprankresult"/>
         </Router>
       </Provider>
     );
