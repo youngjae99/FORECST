@@ -202,7 +202,7 @@ class CampQnA extends Component {
             },
         ]
         return(
-            <div>
+            <div style={{padding:20}}>
                 {/* <Menu></Menu> */}
                 <Space style={{marginBottom: 16}}>
                     <Button onClick={this.setNoSort}>Sort by No.</Button>

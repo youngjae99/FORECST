@@ -18,7 +18,7 @@ class Feed extends Component {
                 size="large"
                 dataSource={this.props.feed}
                 renderItem={item => (
-                <div>
+                <div className="postitem">
                     <img src={item.data().photo} style={profileStyle} alt="profileimg"/>
                     <h3>{item.data().id}</h3>
                     <List.Item.Meta
