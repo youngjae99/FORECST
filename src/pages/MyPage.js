@@ -3,6 +3,10 @@ import {Card, Avatar, Row, Col, Tabs, Slider, Button} from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import lv0 from '../level_tree/lv0.png';
+import lv1 from '../level_tree/lv1.png';
+import lv2 from '../level_tree/lv2.png';
+import lv3 from '../level_tree/lv3.png';
 
 const {TabPane}=Tabs;
 
@@ -10,6 +14,11 @@ class MyPage extends React.Component{
 
     constructor(props){
         super(props);
+        
+        this.state={
+            // level: 0, 
+            point: 0,
+        }
     }
 
     render(){
@@ -25,6 +34,44 @@ class MyPage extends React.Component{
             </div>
         )
 
+        let level=0;
+        // parseInt point=this.state.point;
+        console.log("point: ", this.state.point);
+        // point=point+1;
+
+        switch (point) {
+            case point<10:
+                level=0
+                console.log("level: ", level);
+                break;
+            case point<30:
+                level=1
+                console.log("level: ", level);
+                break;
+            default:
+                level=2
+                console.log("level: ", level);
+                break;
+        }
+
+        let currentTree=null;
+        let nextTree=null;
+
+        switch (level) {
+            case 1:
+                currentTree=<img src={lv1} style={{width: 120}}></img>
+                nextTree=<img src={lv2} style={{width: 70, marginTop: 50}}></img>
+                break;
+            case 2:
+                currentTree=<img src={lv2} style={{width: 120}}></img>
+                nextTree=<img src={lv3} style={{width: 70, marginTop: 50}}></img>
+                break;
+            default:
+                currentTree=<img src={lv0} style={{width: 120}}></img>
+                nextTree=<img src={lv1} style={{width: 70, marginTop: 50}}></img>
+                break;
+        }
+
         return (
             <div style={{fontFamily: 'Roboto'}}>
                 <div style={{width: 1000, margin: "auto", fontSize: 25, marginTop: 20, fontWeight: "bold"}}>
@@ -37,21 +84,32 @@ class MyPage extends React.Component{
                             <Avatar size={120} icon={<UserOutlined></UserOutlined>}></Avatar>
                         </Col>
     
-                        <Col span={10}>
+                        <Col span={8}>
                             <div style={{marginTop: 5, fontWeight: "bold", fontSize: 20}}>{this.props.status.currentUser}</div>
                             <div style={{marginTop: 10, fontSize: 18}}>Joined Today.</div>
                             <div style={{marginTop: 10, fontSize: 18}}>KAIST School of Computing</div>
                         </Col>
     
-                        <Col span={10}>
-                            <Slider defaultValue={0} tooltipVisible disabled={true} style={{marginTop: 100}}></Slider>
+                        <Col span={12}>
+                            <Row>
+                                <Col span={6}>
+                                    {currentTree}
+                                </Col>
+                                <Col span={12}>
+                                    <div style={{marginTop: 25, fontWeight: "bold"}}>1000 points left to grow up!</div>
+                                   <Slider defaultValue={this.state.point} tooltipVisible disabled={true} style={{marginTop: 50}}></Slider>
+                                </Col>
+                                <Col span={6}>
+                                    {nextTree}
+                                </Col>
+                            </Row>
                         </Col>
                     </Row>
                 </Card>
 
-                <Row>
+                <Row style={{width: 1000, margin: "auto"}}>
                     <Col span={20}>
-                        <Tabs defaultActiveKey="1" type="card" size={"large"} style={{width: 1000, margin: "auto", marginTop: 20}}>
+                        <Tabs defaultActiveKey="1" type="card" size={"large"} style={{margin: "auto", marginTop: 20}}>
                             <TabPane tab="MY" key="1">
                                 {MyView}
                             </TabPane>
