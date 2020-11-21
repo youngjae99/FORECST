@@ -27,14 +27,13 @@ class CampHome extends Component {
       }
 
     render() {
-
       return (
         <div className="CampHome">
           <div className="container">
             <div className="row"> 
               <Feed feed={this.state.feed} />
             </div>
-          </div>  
+          </div>
         </div>
 
       );

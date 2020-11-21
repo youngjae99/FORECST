@@ -79,9 +79,9 @@ class CampPage extends React.Component {
 
     return (
       <Layout>
-        <Header className="campheader" theme="light">
+        <Header className="campheader" theme="light" style={{color:"white"}}>
           <div>
-            <Title level={3} id="camptitle" style={{ margin: 0, padding: 0 }}>
+            <Title level={3} id="camptitle" style={{ margin: 0, padding: 0, color:"white" }}>
               Make an application for the pandemic COVID 19 situation!
             </Title>
             <Divider />
