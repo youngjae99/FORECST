@@ -121,6 +121,7 @@ import 'antd/dist/antd.css';
         }
     }
     export const backend_Feed_watering = (doc,id) => {
+        console.log(id)
         db.collection("Users").doc(id).update('point',firebase.firestore.FieldValue.increment(2))
         db.collection("Feeds").doc(doc).update('watering',firebase.firestore.FieldValue.increment(1))
     }

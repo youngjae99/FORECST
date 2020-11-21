@@ -11,7 +11,7 @@ import { render } from '@testing-library/react';
 import {backend_Point} from "../backend";
 
 function UploadPost(props){
-    console.log("upload post: ", props);
+    console.log("upload post: ", props.status.currentUser);
     const [inputs, setInputs] = useState({
         title: "",
         writing: "",
@@ -42,10 +42,11 @@ function UploadPost(props){
         const storageRef = storage.ref();
         const fileRef = storageRef.child(file.name);
         await fileRef.put(file)
-          
-            db.collection('Feeds').doc().set({id:props.id,photo:await fileRef.getDownloadURL(),writing:writing,title:title});
+        const currentUser = await props.status.currentUser
+        console.log(currentUser)
+            db.collection('Feeds').doc().set({id:currentUser,photo:await fileRef.getDownloadURL(),writing:writing,title:title});
             console.log('Uploaded a blob or file!');
-            backend_Point(props.id,"post")
+            backend_Point(currentUser,"post")
         }
     
     return(

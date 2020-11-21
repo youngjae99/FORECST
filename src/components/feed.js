@@ -29,7 +29,7 @@ class Feed extends Component {
                     <List.Item
                         key={item.data().title}
                         extra={
-                            <img src={item.data().photo} style={profileStyle} alt="contentimage"/>
+                            <img src={item.data().photo} style={postimgStyle} alt="contentimage"/>
                         }
                         actions={[
                         //물주기 버튼 눌렀을 때 피드에 있는 모든 post에 적용되는 점, 한번 밖에 누르지 못하는 점 fix해야됨

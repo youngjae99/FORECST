@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Comment, Form, Button, List, Input, Tooltip } from 'antd';
 import moment from 'moment';
 import { db,storage } from "../firebase";
-
+import {connect} from 'react-redux';
 // const data = [
 //     {
 //       actions: [<span key="comment-list-reply-to-0">Reply to</span>],
@@ -64,6 +64,7 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
 );
 
 class FeedComment extends Component {
+  
   constructor(props){
     super(props);
 
@@ -72,33 +73,34 @@ class FeedComment extends Component {
     submitting: false,
     value: '',
   };    
+  console.log(this.props.status.currentUser)
 }
   componentDidMount(){
     this.getComments()
   }
   getComments = async () => {
     const snapshot = await db.collection("Feeds/"+this.props.posting+"/Comments").get()
-    console.log(snapshot.docs)
-        this.setState({comments:snapshot.docs})  
+    console.log(snapshot.docs.map(doc=>doc.data()))
+        this.setState({comments:snapshot.docs.map(doc=>doc.data())})  
     }
 
   handleSubmit = () => {
     if (!this.state.value) {
       return;
     }
-    console.log(this.state.comments)
+    console.log(this.props.status.currentUser)
     this.setState({
       submitting: true,
     });
 
     setTimeout(() => {
-      db.collection('Feeds').doc(this.props.posting).collection("Comments").doc().set({author:"defualt",content:this.state.value,datetime: moment().fromNow()})
+      db.collection('Feeds').doc(this.props.posting).collection("Comments").doc().set({author:this.props.status.currentUser,content:this.state.value,datetime: moment().fromNow()})
       this.setState({
         submitting: false,
         value: '',
         comments: [
           {
-            author: 'Han Solo',
+            author: this.props.status.currentUser,
             content: <p>{this.state.value}</p>,
             datetime: moment().fromNow(),
           },
@@ -127,10 +129,10 @@ class FeedComment extends Component {
             renderItem={item => (
                 <li>
                 <Comment
-                    actions={item.data().actions}
-                    author={item.data().author}
-                    content={item.data().content}
-                    datetime={item.data().datetime}
+                    actions={item.actions}
+                    author={item.author}
+                    content={item.content}
+                    datetime={item.datetime}
                 />
                 </li>
             )}
@@ -149,5 +151,15 @@ class FeedComment extends Component {
     );
   }
 }
+const mapStateToProps=(state)=>{
+  return{
+      status: state.authentication.status
+  };
+};
 
-export default FeedComment;
+const mapDispatchToProps=(dispatch)=>{
+  return{
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FeedComment);
