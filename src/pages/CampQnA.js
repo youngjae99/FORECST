@@ -40,7 +40,7 @@ import {backend_QnAList} from '../backend';
 class CampQnA extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.state = { 
         data: []
     };
   }
