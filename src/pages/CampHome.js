@@ -23,9 +23,6 @@ class CampHome extends Component {
     getMarker = async () => {
       const snapshot = await db.collection('Feeds').get()
       console.log(snapshot.docs)
-      const snapshot2 = await db.collection("Feeds/"+this.props.posting+"/Comments").get()
-      console.log(snapshot2.docs)
-  
           this.setState({feed:snapshot.docs})  
       }
 

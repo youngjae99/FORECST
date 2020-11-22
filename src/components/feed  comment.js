@@ -94,7 +94,7 @@ class FeedComment extends Component {
     });
 
     setTimeout(() => {
-      db.collection('Feeds').doc(this.props.posting).collection("Comments").doc().set({author:this.props.status.currentUser,content:this.state.value,datetime: moment().fromNow()})
+      db.collection('Feeds').doc(this.props.posting).collection("Comments").doc().set({author:this.props.status.currentUser,content:this.state.value,datetime:moment()})
       this.setState({
         submitting: false,
         value: '',
@@ -132,7 +132,7 @@ class FeedComment extends Component {
                     actions={item.actions}
                     author={item.author}
                     content={item.content}
-                    datetime={item.datetime}
+                    datetime={moment(item.datetime).fromNow()}
                 />
                 </li>
             )}

@@ -125,6 +125,12 @@ import 'antd/dist/antd.css';
         db.collection("Users").doc(id).update('point',firebase.firestore.FieldValue.increment(2))
         db.collection("Feeds").doc(doc).update('watering',firebase.firestore.FieldValue.increment(1))
     }
+    export const backend_WGO = (id,mode)=>{
+        if(mode =="post")
+            db.collection("WGO").doc().set({content : id + " uploaded a post",mode:mode })
+        else if(mode == "question")
+            db.collection("WGO").doc().set({content : id + " wrote a post",mode:mode })
+    }
 
 
 

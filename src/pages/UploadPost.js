@@ -3,12 +3,13 @@ import {Row, Col, Form, Input, Button} from 'antd';
 import {Link, } from 'react-router-dom';
 import {useEffect,useState} from 'react';
 import {connect} from 'react-redux';
+import firebase from "firebase/app";
 
 import { db,storage } from "../firebase";
 import 'antd/dist/antd.css';
 import PropTypes from 'prop-types'
 import { render } from '@testing-library/react';
-import {backend_Point} from "../backend";
+import {backend_Point,backend_WGO} from "../backend";
 
 function UploadPost(props){
     console.log("upload post: ", props.status.currentUser);
@@ -44,9 +45,10 @@ function UploadPost(props){
         await fileRef.put(file)
         const currentUser = await props.status.currentUser
         console.log(currentUser)
-            db.collection('Feeds').doc().set({id:currentUser,photo:await fileRef.getDownloadURL(),writing:writing,title:title});
+            db.collection('Feeds').doc().set({id:currentUser,photo:await fileRef.getDownloadURL(),writing:writing,title:title,time: firebase.firestore.Timestamp.now()});
             console.log('Uploaded a blob or file!');
             backend_Point(currentUser,"post")
+            backend_WGO(currentUser,"post")
         }
     
     return(
