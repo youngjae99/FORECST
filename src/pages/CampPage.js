@@ -130,7 +130,7 @@ class CampPage extends React.Component {
               marginRight: 200,
               overflow: "auto",
               height: "100vh",
-              position: "fixed",
+              width: "match-parent"
             }}
           >
             <CampTabView tabnum={this.state.tab}></CampTabView>
@@ -146,7 +146,9 @@ class CampPage extends React.Component {
               position: "fixed",
               right: 0,
               padding: 20,
+              backgroundColor: "gray"
             }}
+
           >
             <div
               style={{

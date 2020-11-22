@@ -8,9 +8,7 @@ const CampTabView = ({ tabnum }) => {
   if (tabnum == 1) {
     console.log(tabnum);
     return (
-      <>
         <CampHome></CampHome>
-      </>
     );
   } else if (tabnum == 2) {
     console.log(tabnum);
