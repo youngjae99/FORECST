@@ -95,7 +95,7 @@ class FeedComment extends Component {
   };
 
   handleChange = e => {
-    this.setState({
+    this.setState({ 
       value: e.target.value,
     });
   };

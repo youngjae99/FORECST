@@ -51,7 +51,7 @@ class App extends React.Component{
           <Route component={QnAWrite} path="/qnawrite"/>
           <Route component={CampRankResult} path="/camprankresult"/>
           <Route component={QnAsingle} path="/campqnaview"/>
-        </Router>
+        </Router> 
       </Provider>
     );
   }

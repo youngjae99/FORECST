@@ -4,7 +4,7 @@ import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
 import {Link} from 'react-router-dom';
 import {db} from '../firebase';
-import {backend_QnAList} from '../backend';
+import {backend_QnAList} from '../backend'; 
 
 
 // const data = [
