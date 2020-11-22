@@ -3,38 +3,56 @@ import {Table, Button, Space, Input} from 'antd';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
 import {Link} from 'react-router-dom';
+import {db} from '../firebase';
+import {backend_QnAList} from '../backend';
 
-const data = [
-    {
-      key: '1',
-      no: 234,
-      title: 'i do not know who you are. who are you.',
-      writer: 'you',
-      date: '2020.03.04',
-      likes: 45,
-      views: 3,
-    },
-    {
-        key: '2',
-        no: 2359,
-        title: 'i don',
-        writer: 'you',
-        date: '2020.03.02',
-        likes: 23,
-        views: 34,
-      },
-      {
-        key: '3',
-        no: 235,
-        title: 'i don',
-        writer: 'you',
-        date: '2020.03.05',
-        likes: 267,
-        views: 384,
-      },
-  ];
+
+// const data = [
+//     {
+//       key: '1',
+//       no: 234,
+//       title: 'i do not know who you are. who are you.',
+//       writer: 'you',
+//       date: '2020.03.04',
+//       likes: 45,
+//       views: 3,
+//     },
+//     {
+//         key: '2',
+//         no: 2359,
+//         title: 'i don',
+//         writer: 'you',
+//         date: '2020.03.02',
+//         likes: 23,
+//         views: 34,
+//       },
+//       {
+//         key: '3',
+//         no: 235,
+//         title: 'i don',
+//         writer: 'you',
+//         date: '2020.03.05',
+//         likes: 267,
+//         views: 384,
+//       },
+//   ];
 
 class CampQnA extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        data: []
+    };
+  }
+  componentDidMount(){
+      this.getMarker();
+  }
+  getMarker = async () => {
+      const snapshot = await db.collection('QnAList').get()
+      console.log(snapshot.docs)
+      this.setState({data:snapshot.docs})  
+  }
+
     state = {
         sortedInfo: null,
         searchText: '',
@@ -48,6 +66,10 @@ class CampQnA extends Component {
           sortedInfo: sorter,
         });
     };
+
+    handleQnA = () => {
+      backend_QnAList(1,'asdf', 'asdf', 'asdf', 'asdf', 23, 24)
+    }
 
     setNoSort = () => {
         this.setState({
@@ -165,6 +187,10 @@ class CampQnA extends Component {
                 key: 'title',
                 align: 'center',
                 ...this.getColumnSearchProps('title'),
+                render: text =>
+                  <Link to="/campqnaview">
+                    <a>{text}</a>
+                  </Link>
             },
             {
                 title: 'Writer',
@@ -210,7 +236,10 @@ class CampQnA extends Component {
                     <Button onClick={this.setLikesSort}>Sort by Likes</Button>
                     <Button onClick={this.setViewsSort}>Sort by Views</Button>
                 </Space>
-                <Table columns={columns} dataSource={data} onChange={this.handleChange} pagination={{position: ["bottomCenter"]}}/>
+                <Table columns={columns} dataSource={this.state.data} onChange={this.handleChange} pagination={{position: ["bottomCenter"]}}/>
+                <Button onClick={this.handleQnA}>
+                  REFRESH
+                </Button>
                 <Link to="/qnawrite">
                     <Button type="primary">WRITE</Button>
                 </Link>
