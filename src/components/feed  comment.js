@@ -59,6 +59,12 @@ class FeedComment extends Component {
     console.log(snapshot.docs.map(doc=>doc.data()))
         this.setState({comments:snapshot.docs.map(doc=>doc.data())})  
     }
+    getPoints = async (id) => {
+      const snapshot = await db.collection("Users").doc(id).get()
+      console.log(snapshot.docs.map(doc=>doc.data()))
+      return snapshot.data().point
+    }
+  
 
   handleSubmit = () => {
     if (!this.state.value) {

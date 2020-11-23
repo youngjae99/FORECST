@@ -131,9 +131,9 @@ import 'antd/dist/antd.css';
         else if(mode == "question")
             db.collection("WGO").doc().set({content : id + " wrote a post",mode:mode })
     }
-    export const backend_QnAList = (key, no, title, id, date, likes, views) => {
+    export const backend_QnAList = (key, no, title, content, id, date, likes, views) => {
         db.collection("QnAList").doc().set({
-            key:key, no: no, title: title, writer: id, date: date, likes: likes, views: views
+            key:key, no: no, title: title, content : content, writer: id, date: date, likes: likes, views: views
         }) 
     }
 
