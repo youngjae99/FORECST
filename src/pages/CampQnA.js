@@ -67,10 +67,6 @@ class CampQnA extends Component {
         });
     };
 
-    handleQnA = () => {
-      backend_QnAList(1,'asdf', 'asdf', 'asdf', 'asdf', 23, 24)
-    }
-
     setNoSort = () => {
         this.setState({
             sortedInfo: {
@@ -237,9 +233,6 @@ class CampQnA extends Component {
                     <Button onClick={this.setViewsSort}>Sort by Views</Button>
                 </Space>
                 <Table columns={columns} dataSource={this.state.data} onChange={this.handleChange} pagination={{position: ["bottomCenter"]}}/>
-                <Button onClick={this.handleQnA}>
-                  REFRESH
-                </Button>
                 <Link to="/qnawrite">
                     <Button type="primary">WRITE</Button>
                 </Link>

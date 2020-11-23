@@ -47,41 +47,41 @@ class MainPage extends React.Component {
             FORECST is the online community where everyone codes and do their own project together
           </Title>
           <div>
-            <Title level={4}>
+            <Title level={3} style={{marginBottom: "20"}}>
             Get motivation to finish the project, and freely share your coding experiences.
             </Title>
             
             <div>
-            <Title level={4} style={{ display: "block" }}>
-            1. Make an application for the pandemic COVID 19 situation!
-            <Button type="primary" size="large">
+            <Title level={5} style={{ display: "block", fontSize: 18 }}>
+            1. Make an application for the pandemic COVID 19 situation! (11/24~12/1)
+            <Button type="primary" style={{marginLeft: "16px"}}>
               <Link to={"/camp"} style={{ fontSize: 18 }}>
-                Go to Hackathon
+              Enter Hackathon
               </Link>
             </Button>
             </Title>
-            <Title level={4} style={{ display: "block" }}>
-            1. Make an application for the pandemic COVID 19 situation!
-            <Button type="primary" size="large">
-              <Link to={"/camp"} style={{ fontSize: 18 }}>
-                Go to Hackathon
+            <Title level={5} style={{ display: "block", marginRight: "16px", fontSize: 18 }}>
+            2. Create a website using React and Firebase. (Starting from 12/4)
+            <Button disabled style={{marginLeft: "16px"}}>
+              <Link to={"/camp"}>
+                <div style={{ fontSize: 18 }}>Enter Hackathon</div>
               </Link>
             </Button>
             </Title>
-            <Title level={4} style={{ display: "block" }}>
-            1. Make an application for the pandemic COVID 19 situation!
-            <Button type="primary" size="large">
+            <Title level={5} style={{ display: "block", marginRight: "16px", fontSize: 18  }}>
+            3. Come up with a platform for people who live alone in the city. (Starting from 12/10)
+            <Button disabled style={{marginLeft: "16px"}}>
               <Link to={"/camp"} style={{ fontSize: 18 }}>
-                Go to Hackathon
+              Enter Hackathon
               </Link>
             </Button>
             </Title>
-            <Title level={4} style={{ display: "block" }}>
-            1. Make an application for the pandemic COVID 19 situation!
-            <Button type="primary" size="large">
-              <Link to={"/camp"} style={{ fontSize: 18 }}>
-                Go to Hackathon
-              </Link>
+            <Title level={5} style={{ display: "block", marginRight: "16px", fontSize: 18  }}>
+            4. Design a service that helps children to concentrate easily on their studying! (11/21~12/8)
+            <Button type="primary" style={{marginLeft: "16px"}}>
+              {/* <Link to={"/camp"} style={{ fontSize: 18 }}> */}
+                <div style={{fontSize: 18}}>Enter Hackathon</div>
+              {/* </Link> */}
             </Button>
             </Title>
           </div>
