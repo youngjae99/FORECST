@@ -33,9 +33,12 @@ class Feed extends Component {
                         />
                     </Col>
 
-                    <Col span={10} style={{paddingRight: 60}}>
+                    <Col span={10} 
+                    style={{paddingRight: 40}}
+                    >
                         <img src={item.data().photo} 
-                        style={{width: "100%", padding: 30, 
+                        style={{width: "100%", 
+                        padding: 10
                         // border: "solid", borderWidth: 0.5
                         }} alt="contentimage"/>
                     </Col>
