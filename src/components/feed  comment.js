@@ -8,6 +8,10 @@ import lv1 from '../level_tree/lv1.png';
 import lv2 from '../level_tree/lv2.png';
 import {getLevel} from '../actions/authentication';
 import PropTypes from 'prop-types';
+import {backend_Feed_watering} from "../backend";
+import watering1 from "../water1.png";
+import watering2 from "../water2.png";
+
 
 const { Panel } = Collapse;
 
@@ -43,6 +47,7 @@ class FeedComment extends Component {
     comments: [],
     submitting: false,
     value: '',
+    watered : 1
   };    
   console.log(this.props.status.currentUser)
 }
@@ -81,6 +86,14 @@ class FeedComment extends Component {
     }, 1000);
   };
 
+  handleWatering = e => {
+    if(this.state.watered == 1){
+      backend_Feed_watering(this.props.posting,this.props.id)
+      setTimeout(()=>{
+        this.setState({watered:2})
+      },100);
+    }
+  }
   handleChange = e => {
     this.setState({
       value: e.target.value,
@@ -88,6 +101,13 @@ class FeedComment extends Component {
   };
 
   render() {
+    const watering =() =>{
+      if (this.state.watered ==1){
+        return watering1
+      }
+      else
+        return watering2
+    }
     const { comments, submitting, value } = this.state;
 
     // var point=this.state.point;
@@ -108,6 +128,7 @@ class FeedComment extends Component {
     }
 
     const addComment=(
+      <>
       <Comment
         content={
           <Editor
@@ -124,10 +145,12 @@ class FeedComment extends Component {
           />
         }
       />
+      </>
     )
 
     return (
       <>
+        <Button onClick={this.handleWatering} style={{float: "right"}}><img src={watering()} alt ="wc" style={{width:"30px", height:"30px"}}/></Button>
         <List
             className="comment-list"
             header={`${comments.length} replies`}
