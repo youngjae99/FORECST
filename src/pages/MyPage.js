@@ -23,7 +23,7 @@ class MyPage extends React.Component{
         }
     }
 
-    componentDidMount(){
+    componentWillMount(){
         this.getMyPost();
         this.getMarker();
     }
@@ -37,7 +37,7 @@ class MyPage extends React.Component{
     getMarker = async () => {
         console.log(this.props.writer);
         const snapshot = await db.collection('Users').doc(this.props.status.currentUser).get()
-        console.log(snapshot)
+        console.log(snapshot.data().point)
         this.setState({point:snapshot.data().point})  
     }
 
@@ -108,7 +108,7 @@ class MyPage extends React.Component{
                                 </Col>
                                 <Col span={12}>
                                     <div style={{marginTop: 25, fontWeight: "bold"}}>{nextPoint} points left to grow up!</div>
-                                    <Slider max={100} defaultValue={parseInt(point)} tooltipVisible disabled={true} style={{marginTop: 50}}></Slider>
+                                    <Slider max={100} defaultValue={[0,this.state.point]} tooltipVisible disabled={true} style={{marginTop: 50}}></Slider>
                                     {/* <Slider max={100} defaultValue={parseInt(36)} tooltipVisible disabled={true} style={{marginTop: 50}}></Slider> */}
                                     {/* <div>{point}</div> */}
                                 </Col>
