@@ -17,17 +17,18 @@ class Profile extends React.Component{
             point: 0,
         }
     }
+
     componentDidMount(){
         this.getMarker();
       }
   
-      getMarker = async () => {
-        console.log(this.props.writer);
-        const snapshot = await db.collection('Users').doc(this.props.writer).get()
-        console.log(snapshot)
-        this.setState({point:snapshot.data().point})  
-        }
-  
+    getMarker = async () => {
+    console.log(this.props.writer);
+    const snapshot = await db.collection('Users').doc(this.props.writer).get()
+    console.log(snapshot)
+    this.setState({point:snapshot.data().point})  
+    }
+
     render(){
         // var point=this.state.point;
         var point=this.state.point;

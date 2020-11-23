@@ -46,9 +46,9 @@ class Feed extends Component {
                             {item.data().writing}
                         </div>
                         {/* <Button type="link">See more</Button> */}
-                        <Button 
+                        {/* <Button 
                         style={{float: "right"}}
-                        onClick={backend_Feed_watering(item.id,item.data().id)}>watering</Button>
+                        onClick={backend_Feed_watering(item.id,item.data().id)}>watering</Button> */}
                         <FeedComment posting = {item.id} id ={item.data().id}></FeedComment>
                     </Col>
                 </Row>
