@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# FORECST
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+CS473 Social Computing Design Project
+Team Name: MadMax
+20170773 Gunwoo Kim / 20180162 Jisu Kim /20180555 Youngjae Jang / 20180697 Jeanne Choi
 
 ## Available Scripts
 
