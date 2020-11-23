@@ -48,9 +48,9 @@ Project is: _in progress_, _finished_, _no longer continue_ and why?
 Add here credits. Project inspired by..., based on...
 
 ## Contact
-20170773 Gunwoo Kim [@kakaloto85]
-20180162 Jisu Kim [@ddiddu]
-20180555 Youngjae Jang [@youngjae99]
-20180697 Jeanne Choi [@jeannechoi99]
+20170773 Gunwoo Kim [@kakaloto85](https://github.com/kakaloto85)
+20180162 Jisu Kim [@ddiddu](https://github.com/ddiddu)
+20180555 Youngjae Jang [@youngjae99](https://github.com/youngjae99)
+20180697 Jeanne Choi [@jeannechoi99](https://github.com/jeannechoi99)
 
 Created by [@flynerdpl](https://www.flynerd.pl/) - feel free to contact me!
