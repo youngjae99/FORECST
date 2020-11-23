@@ -41,7 +41,7 @@ class MainPage extends React.Component {
     );
 
     const goCampPage = (
-      <div className="banner">
+      <div className="banner_camp">
         <Button type="primary">
           <Link to={"/camp"} style={{ fontSize: 18 }}>
             Go to Hackathon

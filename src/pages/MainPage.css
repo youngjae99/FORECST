@@ -10,6 +10,19 @@
     display: flex;
 }
 
+.banner_camp {
+    text-align: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    padding: 40px;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    display: flex;
+}
+
 .bannerTitle{
     -webkit-box-flex: 0;
     -ms-flex: 0 0 550px;

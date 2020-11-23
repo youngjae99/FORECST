@@ -78,8 +78,8 @@ class CampPage extends React.Component {
   render() {
 
     return (
-      <Layout style={{fontFamily: 'Roboto'}}>
-        <Header style={{background: '#fff', paddingTop: 15, paddingLeft: 130}}>
+      <Layout style={{fontFamily: 'Roboto', position: "fixed", overflow: "hidden"}}>
+        <Header style={{ background: '#fff', paddingTop: 15, paddingLeft:30}}>
           <div>
             <Title level={3} id="camptitle" style={{ margin: 0, padding: 0 }}>
               CAMP | Make an application for the pandemic COVID 19 situation!
@@ -145,7 +145,6 @@ class CampPage extends React.Component {
               position: "fixed",
               right: 0,
               padding: 20,
-              backgroundColor: "gray"
             }}
 
           >
