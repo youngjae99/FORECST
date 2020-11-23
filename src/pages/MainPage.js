@@ -41,14 +41,67 @@ class MainPage extends React.Component {
     );
 
     const goCampPage = (
-      <div className="banner_camp">
-        <Button type="primary">
-          <Link to={"/camp"} style={{ fontSize: 18 }}>
-            Go to Hackathon
-          </Link>
-        </Button>
+      <div className="banner">
+        <div className="bannerTitle">
+          <Title>
+            FORECST is the online community where everyone codes and do their own project together
+          </Title>
+          <div>
+            <Title level={4}>
+            Get motivation to finish the project, and freely share your coding experiences.
+            </Title>
+            
+            <div>
+            <Title level={4} style={{ display: "block" }}>
+            1. Make an application for the pandemic COVID 19 situation!
+            <Button type="primary" size="large">
+              <Link to={"/camp"} style={{ fontSize: 18 }}>
+                Go to Hackathon
+              </Link>
+            </Button>
+            </Title>
+            <Title level={4} style={{ display: "block" }}>
+            1. Make an application for the pandemic COVID 19 situation!
+            <Button type="primary" size="large">
+              <Link to={"/camp"} style={{ fontSize: 18 }}>
+                Go to Hackathon
+              </Link>
+            </Button>
+            </Title>
+            <Title level={4} style={{ display: "block" }}>
+            1. Make an application for the pandemic COVID 19 situation!
+            <Button type="primary" size="large">
+              <Link to={"/camp"} style={{ fontSize: 18 }}>
+                Go to Hackathon
+              </Link>
+            </Button>
+            </Title>
+            <Title level={4} style={{ display: "block" }}>
+            1. Make an application for the pandemic COVID 19 situation!
+            <Button type="primary" size="large">
+              <Link to={"/camp"} style={{ fontSize: 18 }}>
+                Go to Hackathon
+              </Link>
+            </Button>
+            </Title>
+          </div>
+
+          </div>
+        </div>
+        <div className="bannerImgWrap">
+          <div style={{ height: "450px", marginBottom: "-304px" }}>
+            <img
+              src="https://cdn.glitch.com/605e2a51-d45f-4d87-a285-9410ad350515%2Fhomepage-illo-editor.svg?v=1587129125983"
+              alt="Glitch code editor"
+            />
+          </div>
+        </div>
+        
       </div>
-    );
+
+
+
+      );
 
     return (
       <div style={{ fontFamily: "Roboto" }}>
