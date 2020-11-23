@@ -75,7 +75,6 @@ import 'antd/dist/antd.css';
             active:true});
     }
     export const backend_Handle_login= async(id,password) =>{
-
         if(id===""||password==="")
             return;
         else 
@@ -85,12 +84,11 @@ import 'antd/dist/antd.css';
             if(exist){
                 console.log("registered!")
                 backend_Point(id,"login")
-                }
+            }
             else{
                 return
             }
         }
-
     }
     export const backend_Login= (id) => {
         if(!check_register(id)){
