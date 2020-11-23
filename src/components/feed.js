@@ -9,6 +9,7 @@ import {backend_Feed_watering} from "../backend";
 class Feed extends Component {
     constructor(props) {
         super(props);
+        
         this.state = {
             feed: []
         };
