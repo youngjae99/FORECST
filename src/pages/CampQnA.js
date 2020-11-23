@@ -50,7 +50,7 @@ class CampQnA extends Component {
   getMarker = async () => {
       const snapshot = await db.collection('QnAList').get()
       console.log(snapshot.docs)
-      this.setState({data:snapshot.docs})  
+      this.setState({data:snapshot.docs.map(doc=>doc.data())})  
   }
 
     state = {
@@ -188,7 +188,7 @@ class CampQnA extends Component {
                 align: 'center',
                 ...this.getColumnSearchProps('title'),
                 render: text =>
-                  <Link to="/campqnaview">
+                  <Link to="/campqnaview/">
                     <a>{text}</a>
                   </Link>
             },
