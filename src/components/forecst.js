@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link, withRouter} from 'react-router-dom';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import { PageHeader, Button, Avatar, Row, Col } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import logo from '../logo.png';

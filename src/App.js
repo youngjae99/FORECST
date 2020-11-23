@@ -11,20 +11,6 @@ import reducers from './reducers';
 import thunk from 'redux-thunk';
 import {createBrowserHistory} from 'history';
 
-// const App=()=>{
-//   return (
-//     <>
-//       <Route component={MainPage} path="/main"/>
-//       <Route component={Login} path="/login"/>
-//       <Route component={Register} path="/register"/>
-//       <Route component={CampHome} path="/camp/home"/>
-//       <Route component={CampQnA} path="/camp/qna"/>
-//       <Route component={CampRank} path="/camp/rank"/>
-//       <Route component={CampPage} path="/camp/"/>
-//       <Route component={MyPage} path="/mypage"/>
-//     </>
-//   );
-// };
 const store=createStore(reducers, applyMiddleware(thunk));
 const browserHistory=createBrowserHistory();
 

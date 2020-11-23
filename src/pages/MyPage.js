@@ -1,6 +1,5 @@
 import React from 'react';
 import {Card, Avatar, Row, Col, Tabs, Slider, Button} from 'antd';
-import { UserOutlined } from '@ant-design/icons';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import lv0 from '../level_tree/lv0.png';
@@ -8,6 +7,7 @@ import lv1 from '../level_tree/lv1.png';
 import lv2 from '../level_tree/lv2.png';
 import lv3 from '../level_tree/lv3.png';
 import {getLevel} from '../actions/authentication';
+import {MyFeed} from '../components';
 
 const {TabPane}=Tabs;
 
@@ -24,7 +24,7 @@ class MyPage extends React.Component{
     render(){
         const MyView=(
             <div style={{width: 1000, margin: "auto", marginTop: 20}}>
-                    MY VIEW
+                    <MyFeed></MyFeed>
             </div>
         )
 
@@ -98,8 +98,11 @@ class MyPage extends React.Component{
                 </Card>
 
                 <Row style={{width: 1000, margin: "auto"}}>
-                    <Col span={20}>
+                    {/* <Col span={20}> */}
                         <Tabs defaultActiveKey="1" type="card" size={"large"} style={{margin: "auto", marginTop: 20}}>
+                        {/* <Button type='primary'>
+                            <Link to={"/uploadpost"} style={{fontSize: 18}}>New Post</Link>
+                        </Button> */}
                             <TabPane tab="MY" key="1">
                                 {MyView}
                             </TabPane>
@@ -107,13 +110,13 @@ class MyPage extends React.Component{
                                 {BookmarkView}
                             </TabPane>
                         </Tabs>
-                    </Col>
+                    {/* </Col> */}
 
-                    <Col span={4} style={{textAlign: "right"}}>
-                        <Button type='primary'>
+                    {/* <Col span={4} style={{textAlign: "right", marginTop: 20}}> */}
+                        <Button type='primary' style={{float: "right"}}>
                             <Link to={"/uploadpost"} style={{fontSize: 18}}>New Post</Link>
                         </Button>
-                    </Col>
+                    {/* </Col> */}
                 </Row>
 
             </div>

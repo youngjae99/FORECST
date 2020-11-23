@@ -1,12 +1,25 @@
 import React, {Component} from 'react';
-import { Comment, Form, Button, List, Input, Tooltip, Avatar } from 'antd';
+import { Comment, Form, Button, List, Input, Tooltip, Avatar, Collapse } from 'antd';
 import moment from 'moment';
 import {connect} from 'react-redux';
 import lv0 from '../level_tree/lv0.png';
 import lv1 from '../level_tree/lv1.png';
 import lv2 from '../level_tree/lv2.png';
-import lv3 from '../level_tree/lv3.png';
 import {getLevel} from '../actions/authentication';
+import PropTypes from 'prop-types';
+
+const { Panel } = Collapse;
+
+function callback(key) {
+  console.log(key);
+}
+
+const text = `
+  A dog is a type of domesticated animal.
+  Known for its loyalty and faithfulness,
+  it can be found as a welcome guest in many households across the world.
+`;
+
 
 const data = [
     {
@@ -134,6 +147,25 @@ class FeedComment extends Component {
             break;
     }
 
+    const addComment=(
+      <Comment
+        content={
+          <Editor
+            onChange={this.handleChange}
+            onSubmit={this.handleSubmit}
+            submitting={submitting}
+            value={value}
+            username={this.props.status.currentUser}
+          />
+        }
+        avatar={
+          <Avatar
+          icon={profileTree}
+          />
+        }
+      />
+    )
+
     return (
       <>
         {comments.length > 0 && <CommentList comments={comments} />}
@@ -159,22 +191,7 @@ class FeedComment extends Component {
                 </li>
             )}
             />
-        <Comment
-          content={
-            <Editor
-              onChange={this.handleChange}
-              onSubmit={this.handleSubmit}
-              submitting={submitting}
-              value={value}
-              username={this.props.status.currentUser}
-            />
-          }
-          avatar={
-            <Avatar
-            icon={profileTree}
-            />
-          }
-        />
+        {this.props.status.isLoggedIn ? addComment : null}
       </>
     );
   }

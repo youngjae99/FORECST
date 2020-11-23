@@ -12,40 +12,44 @@ class Feed extends Component {
             feed: []
         };
     }
+    
     render(){
         return(
             <List
-                itemLayout="vertical"
-                size="large"
-                dataSource={this.props.feed}
-                renderItem={item => (
-                <div style={{margin: 20, background: "#fff", padding: 20}}>
-                    <Row>
-                        <Col span={3}>
-                            <Profile></Profile>
-                            <List.Item.Meta
-                            title={item.data().title}
-                            content={item.data().writing}
-                           />
-                        </Col>
+            style={{paddingBottom: 140}}
+            itemLayout="vertical"
+            size="large"
+            dataSource={this.props.feed}
+            renderItem={item => (
+            <div style={{margin: 20, background: "#fff", padding: 20}}>
+                <Row>
+                    <Col span={3}>
+                        <Profile
+                        writer={item.data().id}></Profile>
+                        <List.Item.Meta
+                        title={item.data().title}
+                        content={item.data().writing}
+                        />
+                    </Col>
 
-                        <Col span={10} style={{paddingRight: 60}}>
-                            <img src={item.data().photo} 
-                            style={{width: "100%", padding: 30, 
-                            // border: "solid", borderWidth: 0.5
-                            }} alt="contentimage"/>
-                        </Col>
+                    <Col span={10} style={{paddingRight: 60}}>
+                        <img src={item.data().photo} 
+                        style={{width: "100%", padding: 30, 
+                        // border: "solid", borderWidth: 0.5
+                        }} alt="contentimage"/>
+                    </Col>
 
-                        <Col span={11}>
-                            {item.data().writing}
-                            <FeedComment posting = {item.id} ></FeedComment>
-                        </Col>
-                    </Row>
-                </div>
-                )}
-        />
+                    <Col span={11}>
+                        {item.data().writing}
+                        <FeedComment posting = {item.id} ></FeedComment>
+                    </Col>
+                </Row>
+            </div>
+            )}
+            />
         )}
 }
+
 const profileStyle = {
     width: "60px",
     height: "60px"

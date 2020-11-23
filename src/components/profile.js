@@ -5,19 +5,21 @@ import lv1 from '../level_tree/lv1.png';
 import lv2 from '../level_tree/lv2.png';
 import lv3 from '../level_tree/lv3.png';
 import {getLevel} from '../actions/authentication';
+import PropTypes from 'prop-types';
 
 class Profile extends React.Component{
 
     constructor(props){
         super(props);
 
-        this.state={
-            point: 0,
-        }
+        // this.state={
+        //     point: 0,
+        // }
     }
 
     render(){
-        var point=this.state.point;
+        // var point=this.state.point;
+        var point=this.props.point;
         const level=this.props.getLevel(point);
         let currentTree=null;
 
@@ -34,21 +36,27 @@ class Profile extends React.Component{
         }
 
         return(
-            <div>
+            <div style={{fontWeight: 'Roboto'}}>
                 <div>
                     {currentTree}
                 </div>
                 <div>
-                    PROFILE
+                    {this.props.writer}
                 </div>
             </div>
         );
     }
 }
 
-// Profile.propTypes={
+Profile.propTypes={
+    writer: PropTypes.string,
+    point: PropTypes.number,
+};
 
-// }
+Profile.defaultProps={
+    writer: 'Jisu',
+    point: 0,
+}
 
 const mapStateToProps=(state)=>{
     return{

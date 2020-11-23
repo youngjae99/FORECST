@@ -78,14 +78,13 @@ class CampPage extends React.Component {
   render() {
 
     return (
-      <Layout>
-        <Header className="campheader" theme="light">
+      <Layout style={{fontFamily: 'Roboto'}}>
+        <Header style={{background: '#fff', paddingTop: 15, paddingLeft: 130}}>
           <div>
             <Title level={3} id="camptitle" style={{ margin: 0, padding: 0 }}>
-              Make an application for the pandemic COVID 19 situation!
+              CAMP | Make an application for the pandemic COVID 19 situation!
             </Title>
-            <Divider />
-            <p>this is the camp about the </p>
+            {/* <p>this is the camp about the </p> */}
           </div>
         </Header>
 
