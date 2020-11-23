@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, Card } from 'antd';
+import { List, Card, Avatar } from 'antd';
 import '../ImageCrop.css'
 
 class MyFeed extends React.Component{
@@ -22,12 +22,11 @@ class MyFeed extends React.Component{
           renderItem={item => (
           <List.Item>
             <Card>
-              <ul class="thumblist">
-                <li>
-                <img src={item.data().photo}
-                style={{width: "100%", height: 250, margin: "auto", padding: 20}}></img>
-                </li>
-              </ul>
+                <Avatar 
+                shape="square" 
+                icon={<img src={item.data().photo}></img>}
+                style={{width: "100%", height: 250}}
+                ></Avatar>
             </Card>
 
               <div style={{fontWeight: "bold", marginTop: 10}}>
