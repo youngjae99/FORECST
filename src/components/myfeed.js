@@ -29,17 +29,14 @@ class MyFeed extends React.Component{
             grid={{
             column: 3,
             gutter: 16,
-            // xs: 1,
-            // sm: 2,
-            // md: 4,
-            // lg: 4,
-            // xl: 6,
-            // xxl: 3,
             }}
             dataSource={data}
             renderItem={item => (
             <List.Item>
-                <Card title={item.title}>Card content</Card>
+                <Card>
+                  <img style={{width: "100%", height: "100%"}}></img>
+                  {item.title}
+                  </Card>
             </List.Item>
             )}
         />

@@ -15,16 +15,17 @@ class CampHome extends Component {
           query: 'domains=techcrunch.com&language=en'
         }
       }
-
     }
+
     componentDidMount(){
       this.getMarker();
     }
+
     getMarker = async () => {
       const snapshot = await db.collection('Feeds').get()
       console.log(snapshot.docs)
           this.setState({feed:snapshot.docs})  
-      }
+    }
 
     render() {
 
