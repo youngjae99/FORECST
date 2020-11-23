@@ -9,3 +9,5 @@ export {default as MyPage} from './MyPage';
 export {default as Home} from './Home';
 export {default as CampJoin} from './CampJoin';
 export {default as UploadPost} from './UploadPost';
+export {default as QnAWrite} from './QnAWrite';
+export {default as CampRankResult} from './CampRankResult';

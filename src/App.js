@@ -1,6 +1,8 @@
 import React from 'react';
 // Pages
-import {Home, Login, Register, CampHome, CampQnA, CampRank, MainPage, MyPage, CampJoin, UploadPost, CampPage} from './pages';
+import {Home, Login, Register, CampHome, CampQnA, CampRank, MainPage, MyPage, CampJoin, UploadPost, CampPage, QnAWrite, CampRankResult} from './pages';
+// Components
+import QnAsingle from './components/QnAsingle';
 // Router
 import {Route, Router} from "react-router-dom";
 import 'antd/dist/antd.css';
@@ -30,7 +32,10 @@ class App extends React.Component{
           <Route component={MyPage} path="/mypage"/>
           <Route component={UploadPost} path="/uploadpost"/>
           <Route component={CampPage} path="/camp/"/>
-        </Router>
+          <Route component={QnAWrite} path="/qnawrite"/>
+          <Route component={CampRankResult} path="/camprankresult"/>
+          <Route component={QnAsingle} path="/campqnaview"/>
+        </Router> 
       </Provider>
     );
   }
