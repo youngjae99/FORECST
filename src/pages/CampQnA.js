@@ -41,7 +41,7 @@ class CampQnA extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-        data: []
+        data: [],
     };
   }
   componentDidMount(){
@@ -184,7 +184,7 @@ class CampQnA extends Component {
                 align: 'center',
                 ...this.getColumnSearchProps('title'),
                 render: text =>
-                  <Link to="/campqnaview/">
+                  <Link to={{pathname: `/campqnaview/${text}`}}>
                     <a>{text}</a>
                   </Link>
             },
@@ -233,7 +233,7 @@ class CampQnA extends Component {
                     <Button onClick={this.setViewsSort}>Sort by Views</Button>
                 </Space>
                 <Table columns={columns} dataSource={this.state.data} onChange={this.handleChange} pagination={{position: ["bottomCenter"]}}/>
-                <Link to="/qnawrite">
+                <Link to="/qnawrite" >
                     <Button type="primary">WRITE</Button>
                 </Link>
             </div>
