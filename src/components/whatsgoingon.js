@@ -49,7 +49,7 @@ class WGO extends Component {
                 size="large"
                 dataSource={this.state.wgo}
                 renderItem={item => (
-                    <div style={{marginTop:"30px"}}>
+                    <div style={{marginTop:"16px"}}>
                         <img src={logo(item.data().mode)} style = {typeimgStyle} />
                         {item.data().content}
                     </div>
