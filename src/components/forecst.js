@@ -75,8 +75,10 @@ class Forecst extends React.Component{
             <PageHeader
             ghost={false}
             extra={[
-                <Link to={"/mypage"}style={{color: '#000', fontSize: 18}}>{this.props.currentUser}</Link>,
-                <Avatar size={30} icon={currentTree}></Avatar>
+                <Link to={"/mypage"}style={{color: '#000', fontSize: 18}}>
+                    {this.props.currentUser}
+                    <Avatar size={30} icon={currentTree} style={{marginLeft: 10}}></Avatar>
+                </Link>,
             ]}
             />
         );
