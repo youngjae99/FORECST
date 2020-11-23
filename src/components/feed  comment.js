@@ -43,27 +43,30 @@ class FeedComment extends Component {
   constructor(props){
     super(props);
 
-  this.state = {
-    comments: [],
-    submitting: false,
-    value: '',
-    watered : 1
-  };    
-  console.log(this.props.status.currentUser)
-}
+    this.state = {
+      comments: [],
+      submitting: false,
+      value: '',
+      watered : 1
+    };    
+    console.log(this.props.status.currentUser)
+  }
+
   componentDidMount(){
     this.getComments()
   }
+
   getComments = async () => {
     const snapshot = await db.collection("Feeds/"+this.props.posting+"/Comments").get()
     console.log(snapshot.docs.map(doc=>doc.data()))
         this.setState({comments:snapshot.docs.map(doc=>doc.data())})  
-    }
+  }
 
   handleSubmit = () => {
     if (!this.state.value) {
       return;
     }
+    
     console.log(this.props.status.currentUser)
     this.setState({
       submitting: true,
@@ -94,6 +97,7 @@ class FeedComment extends Component {
       },100);
     }
   }
+
   handleChange = e => {
     this.setState({
       value: e.target.value,
@@ -161,16 +165,16 @@ class FeedComment extends Component {
             renderItem={item => (
                 <li>
                 <Comment
-                    // actions={item.actions}
-                    author={item.author}
-                    content={item.content}
-                    datetime={item.datetime}
-                    avatar={
-                      <Avatar
-                        src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                        alt="Han Solo"
-                      />
-                    }
+                  // actions={item.actions}
+                  author={item.author}
+                  content={item.content}
+                  datetime={item.datetime}
+                  avatar={
+                    <Avatar
+                      src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                      alt="Han Solo"
+                    />
+                  }
                 />
                 </li>
             )}
