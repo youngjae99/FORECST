@@ -8,6 +8,7 @@ import lv2 from '../level_tree/lv2.png';
 import lv3 from '../level_tree/lv3.png';
 import {getLevel} from '../actions/authentication';
 import {MyFeed} from '../components';
+import { db,storage } from "../firebase";
 
 const {TabPane}=Tabs;
 
@@ -20,7 +21,15 @@ class MyPage extends React.Component{
             point: 0,
         }
     }
-
+    componentDidMount(){
+        this.getMyPost();
+      }
+    getMyPost = async () => {
+        const snapshot = await db.collection('Feeds').where("id","==",this.props.status.currentUser).get()
+        console.log(snapshot.docs)
+            // this.setState({feed:snapshot.docs})  
+        }
+        //my view 보여주는 코드가 필요함
     render(){
         const MyView=(
             <div style={{width: 1000, margin: "auto", marginTop: 20}}>

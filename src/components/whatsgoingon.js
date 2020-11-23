@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { List } from 'antd';
+import { db,storage } from "../firebase";
+import postimg from '../post.png';
+import questionimg from '../question.png';
 
 class WGO extends Component {
     constructor(props) {
@@ -24,18 +27,31 @@ class WGO extends Component {
         //     })
         //     .catch((error) => console.log(error));
     //}
-
+    componentDidMount(){
+        this.getWGO();
+      }
+      getWGO = async () => {
+        const snapshot = await db.collection('WGO').get()  
+            this.setState({wgo:snapshot.docs})  
+        }
+  
     render() {
+        const logo =  (mode) =>{
+            if(mode=="post")
+                return postimg
+            else if(mode=="question")
+                return questionimg
+        }
+    
         return (
             <List
                 itemLayout="vertical"
                 size="large"
-                dataSource={this.props.wgo}
+                dataSource={this.state.wgo}
                 renderItem={item => (
                     <div>
-                        <img src={item.data().photo} style={typeimgStyle} alt="typeimg"/>
-                        <h3>{item.data().title}</h3>
-                        {item.data().writing}
+                        <img src={logo(item.data().mode)} style = {typeimgStyle} />
+                        <h3>{item.data().content}</h3>
                     </div>
                 )}
         />
