@@ -1,6 +1,6 @@
 # Forecst
-> KAIST CS473 Introduction to Social Computing Design Project
-> Online programming hackathons platform
+> KAIST CS473 Introduction to Social Computing Design Project 
+* Online programming hackathons platform
 
 ## Table of contents
 * [General info](#general-info)
@@ -21,12 +21,19 @@ Forecst helps users to get easily motivated to keep doing their work on their pr
 ![Example screenshot](./img/screenshot.png)
 
 ## Technologies
-* React - version 1.0
-* Ant Design - version 2.0
-* Firebase - version 3.0
+* React - version 17.0.1
+* Ant Design - version 4.8.3
+* Firebase - version 8.0.2
 
 ## Setup
 Describe how to install / setup your local environement / add link to demo version.
+```
+git init
+git add .
+git commit -m 'initial commit'
+git remote add origin https://github.com/username/repository-name.git
+git push origin master
+```
 
 ## Code Examples
 Show examples of usage:
@@ -43,10 +50,11 @@ To-do list:
 * Wow improvement to be done 2
 
 ## Status
-Project is: _in progress_, _finished_, _no longer continue_ and why?
+Project is: _in progress_
 
 ## Inspiration
 Programming alone and finishing a project at home due to COVID19 have a high rate of failure due to the lack of motivation and laziness and leads to no progress on one's programming ability.
+
 ### Present the identified tasks and explain why they matter.
 
 1. give **external motivation** to programmers finishing the project
