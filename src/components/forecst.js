@@ -34,8 +34,8 @@ class Forecst extends React.Component{
     }
   
     getMarker = async () => {
-        console.log(this.props.currentUser);
-        if(this.props.currentUser!=""){
+        console.log("current user: ", this.props.currentUser);
+        if(this.props.status.isLoggedIn){
             const snapshot = await db.collection('Users').doc(this.props.currentUser).get();
             console.log(snapshot);
             this.setState({point:snapshot.data().point});

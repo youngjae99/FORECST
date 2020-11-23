@@ -43,28 +43,32 @@ class FeedComment extends Component {
   constructor(props){
     super(props);
 
-  this.state = {
-    comments: [],
-    submitting: false,
-    value: '',
-    watered : 1
-  };    
-  console.log(this.props.status.currentUser)
-}
-  componentDidMount(){
-    this.getComments()
+    this.state = {
+      comments: [],
+      submitting: false,
+      value: '',
+      watered : 1,
+      point: 0,
+    };    
+    console.log(this.props.status.currentUser)
   }
+
+  componentDidMount(){
+    this.getComments();
+    // this.getMarker();
+  }
+
   getComments = async () => {
     const snapshot = await db.collection("Feeds/"+this.props.posting+"/Comments").get()
     console.log(snapshot.docs.map(doc=>doc.data()))
-        this.setState({comments:snapshot.docs.map(doc=>doc.data())})  
-    }
-    getPoints = async (id) => {
-      const snapshot = await db.collection("Users").doc(id).get()
-      console.log(snapshot.docs.map(doc=>doc.data()))
-      return snapshot.data().point
-    }
-  
+    this.setState({comments:snapshot.docs.map(doc=>doc.data())})  
+  }
+
+  getPoints = async (id) => {
+    const snapshot = await db.collection("Users").doc(id).get()
+    console.log(snapshot.docs.map(doc=>doc.data()))
+    return snapshot.data().point
+  }
 
   handleSubmit = () => {
     if (!this.state.value) {
@@ -100,11 +104,18 @@ class FeedComment extends Component {
       },100);
     }
   }
+
   handleChange = e => {
     this.setState({
       value: e.target.value,
     });
   };
+  
+//   getMarker = async () => {
+//     const snapshot = await db.collection('Users').doc(this.props.currentUser).get();
+//     console.log(snapshot);
+//     this.setState({point:snapshot.data().point});
+// }
 
   render() {
     const watering =() =>{
@@ -116,8 +127,7 @@ class FeedComment extends Component {
     }
     const { comments, submitting, value } = this.state;
 
-    // var point=this.state.point;
-    var point=0;
+    var point=this.state.point;
     const level=this.props.getLevel(point);
     let profileTree=null;
 

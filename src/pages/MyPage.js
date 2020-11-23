@@ -25,12 +25,20 @@ class MyPage extends React.Component{
 
     componentDidMount(){
         this.getMyPost();
+        this.getMarker();
     }
 
     getMyPost = async () => {
         const snapshot = await db.collection('Feeds').where("id","==",this.props.status.currentUser).get()
         console.log(snapshot.docs)
         this.setState({feed:snapshot.docs})  
+    }
+
+    getMarker = async () => {
+        console.log(this.props.writer);
+        const snapshot = await db.collection('Users').doc(this.props.status.currentUser).get()
+        console.log(snapshot)
+        this.setState({point:snapshot.data().point})  
     }
 
     //my view 보여주는 코드가 필요함
@@ -47,7 +55,7 @@ class MyPage extends React.Component{
             </div>
         )
 
-        var point=this.state.point;
+        var point=parseInt(this.state.point);
         const level=this.props.getLevel(point);
         var nextPoint=0;
         let profileTree=null;
@@ -100,7 +108,9 @@ class MyPage extends React.Component{
                                 </Col>
                                 <Col span={12}>
                                     <div style={{marginTop: 25, fontWeight: "bold"}}>{nextPoint} points left to grow up!</div>
-                                   <Slider max={nextPoint} defaultValue={this.state.point} tooltipVisible disabled={true} style={{marginTop: 50}}></Slider>
+                                    <Slider max={100} defaultValue={parseInt(point)} tooltipVisible disabled={true} style={{marginTop: 50}}></Slider>
+                                    {/* <Slider max={100} defaultValue={parseInt(36)} tooltipVisible disabled={true} style={{marginTop: 50}}></Slider> */}
+                                    {/* <div>{point}</div> */}
                                 </Col>
                                 <Col span={6}>
                                     {nextTree}
