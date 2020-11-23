@@ -43,7 +43,7 @@ class MyPage extends React.Component{
 
         const BookmarkView=(
             <div style={{width: 1000, margin: "auto", marginTop: 20}}>
-                    BOOKMARK VIEW
+                    {/* BOOKMARK VIEW */}
             </div>
         )
 

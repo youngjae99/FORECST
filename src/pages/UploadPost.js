@@ -52,40 +52,38 @@ function UploadPost(props){
         }
     
     return(
-        <div style={{fontFamily: "Roboto", width: 1200, margin: "auto", paddingTop: 20}}>
+        <div style={{fontFamily: "Roboto", width: 1000, margin: "auto", paddingTop: 20}}>
             <Row>
-                <Col span={3}>
-                    <div style={{fontSize: 24, fontWeight: "bold"}}>
+                <Col span={4}>
+                    <div style={{fontSize: 24, fontWeight: "bold", textAlign: "right"}}>
                         Write a Post.
                     </div>
                 </Col>
-                <Col span={21}>
-                    <div style={{fontSize: 24}}>
+                <Col span={20}>
+                    <div style={{fontSize: 24, marginLeft: 10}}>
                         freely share your thinking and what you did!
                     </div>
                 </Col>
             </Row>
 
             <Row>
-                <Col span={3}>
+                <Col span={4}>
                     <div style={{fontSize: 18, marginTop: 20, textAlign: "right", marginRight: 10}}>
                         Add a Picture:
-                        <input type="file" name="file" onChange={handleImage}/>
-                        {/* <img className='profile_preview' src={image}></img> */}
                     </div>
-
                 </Col>
-                <Col span={21} style={{marginTop: 20}}>
+                <Col span={20} style={{marginTop: 20}}>
+                    <input type="file" name="file" onChange={handleImage}/>
                 </Col>
             </Row>
 
             <Row>
-            <Col span={3}>
+            <Col span={4}>
                     <div style={{fontSize: 18, marginTop: 20, textAlign: "right", marginRight: 10}}>
                         Title:
                     </div>
                 </Col>
-                <Col span={21} style={{marginTop: 20}}>
+                <Col span={20} style={{marginTop: 20}}>
                     <Form.Item
                     // label="Username"
                     // name="username"
@@ -107,12 +105,12 @@ function UploadPost(props){
             </Row>
 
             <Row>
-            <Col span={3}>
+            <Col span={4}>
                     <div style={{fontSize: 18, marginTop: 20, textAlign: "right", marginRight: 10}}>
                         Content:
                     </div>
                 </Col>
-                <Col span={21} style={{marginTop: 20}}>
+                <Col span={20} style={{marginTop: 20}}>
                     <Form.Item
                     // label="Username"
                     // name="username"
@@ -127,7 +125,7 @@ function UploadPost(props){
                         placeholder="writing"
                         value={writing}
                         onChange={handleChange}                        
-                        style={{height: 300}}
+                        style={{height: 450}}
                         >
                         </Input>
                     </Form.Item>
