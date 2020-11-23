@@ -49,14 +49,16 @@ class Authentication extends React.Component{
     //             return;
     //     }
     // }
-    handleLogin(){
+    handleLogin= async ()=>{
         let id=this.state.username;
         console.log(id)
+        const wait = await db.collection('Users').doc(id).get()
+        console.log(wait.exists);
         if(id===""||this.state.password==="")
             return;
         else 
         {
-            if(backend_Login(id)){
+            if(wait.exists){
                 this.props.onLogin(id);
                 console.log("what")
             }
