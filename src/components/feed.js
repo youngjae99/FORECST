@@ -18,7 +18,7 @@ class Feed extends Component {
     render(){
         return(
             <List
-            style={{paddingBottom: 140}}
+            style={{paddingBottom: 140, fontFamily: "Roboto"}}
             itemLayout="vertical"
             size="large"
             dataSource={this.props.feed}
@@ -36,15 +36,20 @@ class Feed extends Component {
 
                     <Col span={10} style={{paddingRight: 60}}>
                         <img src={item.data().photo} 
-                        style={{width: "100%", padding: 30, 
+                        style={{width: "100%", 
+                        // padding: 30, 
                         // border: "solid", borderWidth: 0.5
                         }} alt="contentimage"/>
                     </Col>
 
                     <Col span={11}>
-                        {item.data().writing}
+                        <div style={{height: 100}}>
+                            {item.data().writing}
+                        </div>
                         {/* <Button type="link">See more</Button> */}
-                        <Button  onClick={backend_Feed_watering(item.id,item.data().id)}>watering</Button>
+                        <Button 
+                        style={{float: "right"}}
+                        onClick={backend_Feed_watering(item.id,item.data().id)}>watering</Button>
                         <FeedComment posting = {item.id} ></FeedComment>
                     </Col>
                 </Row>

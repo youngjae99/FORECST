@@ -1,14 +1,13 @@
 import React from 'react';
-import {Row, Col, Form, Input, Button} from 'antd';
+import {Row, Col, Form, Input, Button, Upload} from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
 import {Link, } from 'react-router-dom';
-import {useEffect,useState} from 'react';
+import {useState} from 'react';
 import {connect} from 'react-redux';
 import firebase from "firebase/app";
 
 import { db,storage } from "../firebase";
 import 'antd/dist/antd.css';
-import PropTypes from 'prop-types'
-import { render } from '@testing-library/react';
 import {backend_Point,backend_WGO} from "../backend";
 
 function UploadPost(props){
@@ -16,40 +15,48 @@ function UploadPost(props){
     const [inputs, setInputs] = useState({
         title: "",
         writing: "",
-      });
-      const [file, setFile] = useState(0);
-      const [image,setImage] = useState(0);
-      const { title,writing } = inputs;
-    
-      const handleChange = e => {
+    });
+
+    const [file, setFile] = useState(0);
+    const [image,setImage] = useState(0);
+    const { title,writing } = inputs;
+
+    const handleChange = e => {
         const { name, value } = e.target;
         setInputs({
-             ...inputs, [name]: value });
-      };
-      const handleImage = e => {
+                ...inputs, [name]: value });
+    };
+
+    const handleImage = e => {
         console.log(e.target.files[0])
-    
-          setFile(e.target.files[0]); 
-      let reader = new FileReader();
-      reader.onload=function(a){
-        setImage(a);
-    
-      };
-      reader.readAsDataURL(e.target.files[0]);
-    
-      }
-    
-      const handlePost = async() =>{
+        setFile(e.target.files[0]); 
+        let reader = new FileReader();
+        reader.onload=function(a){
+            setImage(a);
+        };
+        reader.readAsDataURL(e.target.files[0]);
+    }
+
+    const handlePost = async() =>{
         const storageRef = storage.ref();
         const fileRef = storageRef.child(file.name);
         await fileRef.put(file)
         const currentUser = await props.status.currentUser
         console.log(currentUser)
-            db.collection('Feeds').doc().set({id:currentUser,photo:await fileRef.getDownloadURL(),writing:writing,title:title,time: firebase.firestore.Timestamp.now()});
-            console.log('Uploaded a blob or file!');
-            backend_Point(currentUser,"post")
-            backend_WGO(currentUser,"post")
-        }
+        db.collection('Feeds').doc().set({id:currentUser,photo:await fileRef.getDownloadURL(),writing:writing,title:title,time: firebase.firestore.Timestamp.now()});
+        console.log('Uploaded a blob or file!');
+        backend_Point(currentUser,"post")
+        backend_WGO(currentUser,"post")
+    }
+
+    const upload = {
+        name: 'file',
+        action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+        headers: {
+            authorization: 'authorization-text',
+        },
+        onChange: {handleImage},
+    };
     
     return(
         <div style={{fontFamily: "Roboto", width: 1000, margin: "auto", paddingTop: 20}}>
@@ -73,7 +80,10 @@ function UploadPost(props){
                     </div>
                 </Col>
                 <Col span={20} style={{marginTop: 20}}>
-                    <input type="file" name="file" onChange={handleImage}/>
+                    {/* <input type="file" name="file" onChange={handleImage}/> */}
+                    <Upload {...upload}>
+                        <Button icon={<UploadOutlined/>}>Click to Upload</Button>
+                    </Upload>
                 </Col>
             </Row>
 
@@ -85,8 +95,6 @@ function UploadPost(props){
                 </Col>
                 <Col span={20} style={{marginTop: 20}}>
                     <Form.Item
-                    // label="Username"
-                    // name="username"
                     rules={[
                         {
                             required:true,
@@ -112,8 +120,6 @@ function UploadPost(props){
                 </Col>
                 <Col span={20} style={{marginTop: 20}}>
                     <Form.Item
-                    // label="Username"
-                    // name="username"
                     rules={[
                         {
                             required:true,
