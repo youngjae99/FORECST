@@ -160,6 +160,7 @@ class CampPage extends React.Component {
                 renderItem={item => (
                   <div>
                     <img src={getTree(item.point)} style={{width: "50px", height: "50px", margin: "5px"}}></img>
+                    
                   </div>
                 )}
               />

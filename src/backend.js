@@ -119,6 +119,9 @@ import 'antd/dist/antd.css';
         else if(mode == "comment"){
             db.collection("Users").doc(id).update('point',firebase.firestore.FieldValue.increment(2))
         }
+        else if(mode == "question"){
+            db.collection("Users").doc(id).update('point',firebase.firestore.FieldValue.increment(3))
+        }
     }
     export const backend_Feed_watering = (doc,id) => {
         console.log(id)
@@ -129,7 +132,7 @@ import 'antd/dist/antd.css';
         if(mode =="post")
             db.collection("WGO").doc().set({content : id + " uploaded a post",mode:mode })
         else if(mode == "question")
-            db.collection("WGO").doc().set({content : id + " wrote a post",mode:mode })
+            db.collection("WGO").doc().set({content : id + " wrote a question",mode:mode })
     }
     export const backend_QnAList = (key, no, title, content, id, date, likes, views) => {
         db.collection("QnAList").doc().set({

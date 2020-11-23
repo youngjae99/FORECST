@@ -45,22 +45,28 @@ class QnAsingle extends Component {
                     <div>
                         {/* <img src={item.data().photo} style={profileStyle} alt="profileimg"/> */}
                         <Space style={{marginLeft: '16px', marginRight: '16px'}}>
-                            `<Row>
+                            `<div style={{fontFamily: "Roboto", width: 1000, margin: "auto", paddingTop: 20}}>
                                 <Row>
-                                    <h3 style={{marginRight: '16px'}}>{item.data().writer}</h3>
-                                    <h2>{item.data().title}</h2>
+                                    <Col span={8}>
+                                        <h4>{item.data().writer}</h4>
+                                    </Col>
+                                    <Col span={20}>
+                                        <h3 style={{fontSize: 30}}>
+                                            {item.data().title}
+                                        </h3>
+                                    </Col>
                                 </Row>
                                 <Row>
                                     <Divider/>
-                                    <Row>
+                                    <div style={{float: "right"}}>
                                         <h6>Likes | {item.data().likes}</h6>
                                         <h6 style={{marginLeft: '16px'}}>Views | {item.data().views}</h6>
-                                    </Row>
-                                    <h6>{item.data().content}</h6>
-                                    <Button></Button>
-                                    <QnAComment posting = {item.writer} ></QnAComment>`
+                                    </div>
                                 </Row>
-                            </Row>
+                                    <div style={{fontSize: 20}}>{item.data().writing}</div>
+                                    <QnAComment posting = {item.id}  id ={item.data().id}></QnAComment>`
+                                {/* </Row> */}
+                            </div>
                         </Space>
                     </div>
                 )}
