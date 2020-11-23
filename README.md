@@ -45,12 +45,18 @@ To-do list:
 Project is: _in progress_, _finished_, _no longer continue_ and why?
 
 ## Inspiration
-Add here credits. Project inspired by..., based on...
+Programming alone and finishing a project at home due to COVID19 have a high rate of failure due to the lack of motivation and laziness and leads to no progress on one's programming ability.
+### Present the identified tasks and explain why they matter.
+
+1. give **external motivation** to programmers finishing the project
+    - Unlike camps, where we have to present our projects with each other on the due date,  in COVID 19 situation programmers have less motivation for finishing the project.
+2. motivate programmers to **freely share** their own coding experiences(success or failure) to each other to develop smoothly
+    - It is hard to share their programming ideas or knowledge through online. Being able to share ideas and collaborate with others helps you develop smoothly.
+3. make programmers to eagerly participate with **common goals** like a camp through online
+    - In this COVID 19 situation, there are rarely programming camps held for programmers, thus an online and remote service similar to those camps is needed.
 
 ## Contact
 * 20170773 Gunwoo Kim [@kakaloto85](https://github.com/kakaloto85)
 * 20180162 Jisu Kim [@ddiddu](https://github.com/ddiddu)
 * 20180555 Youngjae Jang [@youngjae99](https://github.com/youngjae99)
 * 20180697 Jeanne Choi [@jeannechoi99](https://github.com/jeannechoi99)
-
-Created by [@flynerdpl](https://www.flynerd.pl/) - feel free to contact me!
