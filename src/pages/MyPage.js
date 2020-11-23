@@ -37,22 +37,26 @@ class MyPage extends React.Component{
         var point=this.state.point;
         const level=this.props.getLevel(point);
         var nextPoint=0;
+        let profileTree=null;
         let currentTree=null;
         let nextTree=null;
 
         switch (level) {
             case 1:
                 nextPoint=20;
+                profileTree=<img src={lv1}></img>
                 currentTree=<img src={lv1} style={{width: 120}}></img>
                 nextTree=<img src={lv2} style={{width: 70, marginTop: 50}}></img>
                 break;
             case 2:
                 nextPoint=30;
+                profileTree=<img src={lv2}></img>
                 currentTree=<img src={lv2} style={{width: 120}}></img>
                 nextTree=<img src={lv3} style={{width: 70, marginTop: 50}}></img>
                 break;
             default:
                 nextPoint=10;
+                profileTree=<img src={lv0}></img>
                 currentTree=<img src={lv0} style={{width: 120}}></img>
                 nextTree=<img src={lv1} style={{width: 70, marginTop: 50}}></img>
                 break;
@@ -67,7 +71,7 @@ class MyPage extends React.Component{
                 <Card style={{width: 1000, hegith: 200, margin: "auto", marginTop: 10}}>                
                     <Row> {/* Sum=24 */}
                         <Col span={4}>
-                            <Avatar size={120} icon={<UserOutlined></UserOutlined>}></Avatar>
+                            <Avatar size={120} icon={profileTree}></Avatar>
                         </Col>
     
                         <Col span={8}>
