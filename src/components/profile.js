@@ -6,20 +6,31 @@ import lv2 from '../level_tree/lv2.png';
 import lv3 from '../level_tree/lv3.png';
 import {getLevel} from '../actions/authentication';
 import PropTypes from 'prop-types';
+import { db,storage } from "../firebase";
 
 class Profile extends React.Component{
 
     constructor(props){
         super(props);
 
-        // this.state={
-        //     point: 0,
-        // }
+        this.state={
+            point: 0,
+        }
     }
-
+    componentDidMount(){
+        this.getMarker();
+      }
+  
+      getMarker = async () => {
+        console.log(this.props.writer);
+        const snapshot = await db.collection('Users').doc(this.props.writer).get()
+        console.log(snapshot)
+        this.setState({point:snapshot.data().point})  
+        }
+  
     render(){
         // var point=this.state.point;
-        var point=this.props.point;
+        var point=this.state.point;
         const level=this.props.getLevel(point);
         let currentTree=null;
 
