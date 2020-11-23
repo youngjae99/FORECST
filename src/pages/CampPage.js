@@ -186,7 +186,7 @@ class CampPage extends React.Component {
               height: "100vh",
               position: "fixed",
               right: 0,
-              padding: 20,
+              padding: 15,
             }}
 
           >
