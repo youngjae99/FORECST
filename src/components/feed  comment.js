@@ -65,7 +65,7 @@ class FeedComment extends Component {
     });
 
     setTimeout(() => {
-      db.collection('Feeds').doc(this.props.posting).collection("Comments").doc().set({author:this.props.status.currentUser,content:this.state.value,datetime:moment()})
+      db.collection('Feeds').doc(this.props.posting).collection("Comments").doc().set({author:this.props.status.currentUser,content:this.state.value,datetime:moment().valueOf()})
       this.setState({
         submitting: false,
         value: '',
