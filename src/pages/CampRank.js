@@ -10,6 +10,9 @@ import {
 } from "antd";
 // import { Menu} from '../components';
 import { Link } from "react-router-dom";
+import CampRankVote from './CampRankVote';
+import CampRankResult from './CampRankResult';
+
 
 const { Title } = Typography;
 
@@ -53,6 +56,7 @@ function callback(key) {
 class CampRank extends Component {
   state = {
     value: 1,
+    showresult: 0,
   };
 
   onChange = (e) => {
@@ -69,95 +73,9 @@ class CampRank extends Component {
       lineHeight: "30px",
     };
     const { value } = this.state;
+
     return (
-      <div style={{padding:20}}>
-        <Row>
-          <Title>Poll for the Final Ranking!</Title>
-          <p>
-              Read the description for each project carefully, and choose the
-              one that you think is the best!
-          </p>
-        </Row>
-        <Row>
-          <Col style={{width:"65%", padding:20, marginRight:10, backgroundColor:"white"}}>
-            <Title level={3}>Project List</Title>
-            <Collapse onChange={callback}>
-              <Panel header="Project A" key="1">
-                <p>{text}</p>
-              </Panel>
-              <Panel header="Project B" key="2">
-                <p>{text}</p>
-              </Panel>
-              <Panel header="Project C" key="3">
-                <p>{text}</p>
-              </Panel>
-              <Panel header="Project D" key="4">
-                <p>{text}</p>
-              </Panel>
-              <Panel header="Project E" key="5">
-                <p>{text}</p>
-              </Panel>
-              <Panel header="Project F" key="6">
-                <p>{text}</p>
-              </Panel>
-              <Panel header="Project G" key="7">
-                <p>{text}</p>
-              </Panel>
-              <Panel header="Project H" key="8">
-                <p>{text}</p>
-              </Panel>
-              <Panel header="Project I" key="9">
-                <p>{text}</p>
-              </Panel>
-              <Panel header="Project J" key="10">
-                <p>{text}</p>
-              </Panel>
-            </Collapse>
-          </Col>
-          <Col style={{width:"30%", padding:20, backgroundColor:"white"}}>
-            <Title level={3}>Vote your pick</Title>
-            <Radio.Group onChange={this.onChange} value={value}>
-              <Radio style={radioStyle} value={1}>
-                Project A
-              </Radio>
-              <Radio style={radioStyle} value={2}>
-                Project B
-              </Radio>
-              <Radio style={radioStyle} value={3}>
-                Project C
-              </Radio>
-              <Radio style={radioStyle} value={4}>
-                Project D
-              </Radio>
-              <Radio style={radioStyle} value={5}>
-                Project E
-              </Radio>
-              <Radio style={radioStyle} value={6}>
-                Project F
-              </Radio>
-              <Radio style={radioStyle} value={7}>
-                Project G
-              </Radio>
-              <Radio style={radioStyle} value={8}>
-                Project H
-              </Radio>
-              <Radio style={radioStyle} value={9}>
-                Project I
-              </Radio>
-              <Radio style={radioStyle} value={10}>
-                Project J
-              </Radio>
-            </Radio.Group>
-            <Col>
-              <Link to="/camprankresult">
-                <Button type="primary" onClick={openNotification}>
-                  Submit
-                </Button>
-              </Link>
-            </Col>
-          </Col>
-        </Row>
-      </div>
+      
     );
   }
 }
