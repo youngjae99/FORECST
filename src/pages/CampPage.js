@@ -126,6 +126,7 @@ class CampPage extends React.Component {
               height: "100vh",
               position: "fixed",
               left: 0,
+              width: 300,
             }}
             theme="light"
           >
@@ -186,7 +187,8 @@ class CampPage extends React.Component {
               height: "100vh",
               position: "fixed",
               right: 0,
-              padding: 20,
+              padding: 15,
+              width: 300
             }}
 
           >
