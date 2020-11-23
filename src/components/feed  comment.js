@@ -177,7 +177,7 @@ class FeedComment extends Component {
             renderItem={item => (
                 <li>
                 <Comment
-                    actions={item.actions}
+                    // actions={item.actions}
                     author={item.author}
                     content={item.content}
                     datetime={item.datetime}
