@@ -104,6 +104,12 @@ class FeedComment extends Component {
     });
   };
 
+  getPoints = async (id) => {
+    const snapshot = await db.collection("Users").doc(id).get()
+    // console.log(snapshot.docs.map(doc=>doc.data()))
+    return snapshot.data().point
+  }
+
   render() {
     const watering =() =>{
       if (this.state.watered ==1){
@@ -169,13 +175,15 @@ class FeedComment extends Component {
                   author={item.author}
                   content={item.content}
                   datetime={item.datetime}
-                  avatar={
-                    <Avatar
-                      src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                      alt="Han Solo"
-                    />
-                  }
+                  // datetime={this.getPoint(item.auther)}
+                  // avatar={
+                  //   <Avatar
+                  //     src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                  //     alt="Han Solo"
+                  //   />
+                  // }
                 />
+                {this.getPoints(item.author)}
                 </li>
             )}
             />
