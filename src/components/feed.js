@@ -44,6 +44,7 @@ class Feed extends Component {
 
         return(
             <List
+            style={{paddingBottom: 120}}
             itemLayout="vertical"
             size="large"
             pagination={{
@@ -55,7 +56,7 @@ class Feed extends Component {
             dataSource={this.props.feed}
             renderItem={item => (
             <List.Item
-                style={{background: "#fff"}}
+                style={{background: "#fff", marginTop: 10}}
                 key={item.title}
                 extra={
                     <Avatar
