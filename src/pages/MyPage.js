@@ -57,6 +57,7 @@ class MyPage extends React.Component{
 
         var point=parseInt(this.state.point);
         const level=this.props.getLevel(point);
+        var prevPoint=0;
         var nextPoint=0;
         let profileTree=null;
         let currentTree=null;
@@ -64,18 +65,21 @@ class MyPage extends React.Component{
 
         switch (level) {
             case 1:
-                nextPoint=20;
+                prevPoint=10;
+                nextPoint=30;
                 profileTree=<img src={lv1}></img>
                 currentTree=<img src={lv1} style={{width: 120}}></img>
                 nextTree=<img src={lv2} style={{width: 70, marginTop: 50}}></img>
                 break;
             case 2:
-                nextPoint=30;
+                prevPoint=30;
+                nextPoint=60;
                 profileTree=<img src={lv2}></img>
                 currentTree=<img src={lv2} style={{width: 120}}></img>
                 nextTree=<img src={lv3} style={{width: 70, marginTop: 50}}></img>
                 break;
             default:
+                prevPoint=0;
                 nextPoint=10;
                 profileTree=<img src={lv0}></img>
                 currentTree=<img src={lv0} style={{width: 120}}></img>
@@ -107,10 +111,8 @@ class MyPage extends React.Component{
                                     {currentTree}
                                 </Col>
                                 <Col span={12}>
-                                    <div style={{marginTop: 25, fontWeight: "bold"}}>{nextPoint} points left to grow up!</div>
-                                    <Slider max={100} defaultValue={[0,this.state.point]} tooltipVisible disabled={true} style={{marginTop: 50}}></Slider>
-                                    {/* <Slider max={100} defaultValue={parseInt(36)} tooltipVisible disabled={true} style={{marginTop: 50}}></Slider> */}
-                                    {/* <div>{point}</div> */}
+                                    <div style={{marginTop: 25, fontWeight: "bold"}}>{nextPoint-point} points left to grow up!</div>
+                                    <Slider max={nextPoint-prevPoint} value={point-prevPoint} tooltipVisible disabled={true} style={{marginTop: 50}}></Slider>
                                 </Col>
                                 <Col span={6}>
                                     {nextTree}

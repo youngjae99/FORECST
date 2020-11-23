@@ -64,11 +64,6 @@ class FeedComment extends Component {
     this.setState({comments:snapshot.docs.map(doc=>doc.data())})  
   }
 
-  getPoints = async (id) => {
-    const snapshot = await db.collection("Users").doc(id).get()
-    console.log(snapshot.docs.map(doc=>doc.data()))
-    return snapshot.data().point
-  }
 
   handleSubmit = () => {
     if (!this.state.value) {
@@ -117,7 +112,32 @@ class FeedComment extends Component {
 //     this.setState({point:snapshot.data().point});
 // }
 
+  // getPoints = async (id) => {
+  //   const snapshot = await db.collection("Users").doc(id).get()
+  //   // console.log(snapshot.docs.map(doc=>doc.data()))
+  //   return snapshot.data().point
+  // }
+
   render() {
+    const getPoints = async (id) => {
+      const snapshot = await db.collection("Users").doc(id).get()
+      // console.log(snapshot.docs.map(doc=>doc.data()))
+      const level=this.props.getLevel(snapshot.data().point);
+      console.log(level)
+      switch (level) {
+          case 1:
+              return lv1
+              break;
+          case 2:
+              return lv2 
+              break;
+          default:
+              return lv0
+              break;
+      }
+  
+    }
+  
     const watering =() =>{
       if (this.state.watered ==1){
         return watering1
@@ -180,10 +200,10 @@ class FeedComment extends Component {
                     // actions={item.actions}
                     author={item.author}
                     content={item.content}
-                    datetime={item.datetime}
+                    datetime={item.datetime.fromNow}
                     avatar={
                       <Avatar
-                        src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                        src={getPoints(item.author)}
                         alt="Han Solo"
                       />
                     }
