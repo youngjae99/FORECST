@@ -8,6 +8,7 @@ import Profile from './profile'
 class Feed extends Component {
     constructor(props) {
         super(props);
+        
         this.state = {
             feed: []
         };
