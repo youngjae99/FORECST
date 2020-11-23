@@ -10,6 +10,12 @@ import {
 } from "antd";
 // import { Menu} from '../components';
 import { Link } from "react-router-dom";
+import CampRankVote from './CampRankVote';
+import CampRankResult from './CampRankResult';
+import {connect} from 'react-redux';
+import {voteRequest} from '../actions/authentication';
+
+
 
 const { Title } = Typography;
 
@@ -51,8 +57,14 @@ function callback(key) {
 }
 
 class CampRank extends Component {
+  constructor(props) {
+    super(props);
+    this.votebtnclick = this.votebtnclick.bind(this);
+  }
+
   state = {
     value: 1,
+    showresult: 0,
   };
 
   onChange = (e) => {
@@ -62,6 +74,15 @@ class CampRank extends Component {
     });
   };
 
+  votebtnclick = () => {
+    console.log("vote button clicked!");
+    this.props.voteRequest();
+    setTimeout(()=>{
+      this.setState({showresult:1});
+    },100);
+    console.log(this.showresult);
+  };
+
   render() {
     const radioStyle = {
       display: "block",
@@ -69,17 +90,42 @@ class CampRank extends Component {
       lineHeight: "30px",
     };
     const { value } = this.state;
-    return (
-      <div style={{padding:20}}>
+
+    const voted=(
+      <div>voted</div>
+    )
+    
+    const not=(
+      <div>not voted</div>
+    )
+
+    console.log("isVoted:",this.props.status.isVoted);
+    if(this.props.status.isVoted){
+      return (
+        <div>
+          <CampRankResult></CampRankResult>
+        </div>
+      );
+    }
+    else{
+      return (
+        <div style={{ padding: 20 }}>
         <Row>
           <Title>Poll for the Final Ranking!</Title>
-          <p>
-              Read the description for each project carefully, and choose the
-              one that you think is the best!
-          </p>
+          <Title level={4}>
+            Read the description for each project carefully, and choose the one
+            that you think is the best!
+          </Title>
         </Row>
         <Row>
-          <Col style={{width:"65%", padding:20, marginRight:10, backgroundColor:"white"}}>
+          <Col
+            style={{
+              width: "65%",
+              padding: 20,
+              marginRight: 10,
+              backgroundColor: "white",
+            }}
+          >
             <Title level={3}>Project List</Title>
             <Collapse onChange={callback}>
               <Panel header="Project A" key="1">
@@ -114,7 +160,7 @@ class CampRank extends Component {
               </Panel>
             </Collapse>
           </Col>
-          <Col style={{width:"30%", padding:20, backgroundColor:"white"}}>
+          <Col style={{ width: "30%", padding: 20, backgroundColor: "white" }}>
             <Title level={3}>Vote your pick</Title>
             <Radio.Group onChange={this.onChange} value={value}>
               <Radio style={radioStyle} value={1}>
@@ -149,17 +195,31 @@ class CampRank extends Component {
               </Radio>
             </Radio.Group>
             <Col>
-              <Link to="/camprankresult">
-                <Button type="primary" onClick={openNotification}>
-                  Submit
-                </Button>
-              </Link>
+              <Button type="primary" onClick={this.votebtnclick}>
+                Submit
+              </Button>
             </Col>
           </Col>
         </Row>
       </div>
-    );
+      );
+    }
+    
   }
 }
 
-export default CampRank;
+const mapStateToProps=(state)=>{
+  return{
+      status: state.authentication.status
+  };
+};
+
+const mapDispatchToProps=(dispatch)=>{    
+  return{
+      voteRequest: ()=>{
+          return dispatch(voteRequest());
+      }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CampRank);
