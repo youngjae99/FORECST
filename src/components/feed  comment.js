@@ -117,6 +117,12 @@ class FeedComment extends Component {
 //     this.setState({point:snapshot.data().point});
 // }
 
+  // getPoints = async (id) => {
+  //   const snapshot = await db.collection("Users").doc(id).get()
+  //   // console.log(snapshot.docs.map(doc=>doc.data()))
+  //   return snapshot.data().point
+  // }
+
   render() {
     const watering =() =>{
       if (this.state.watered ==1){
@@ -188,6 +194,7 @@ class FeedComment extends Component {
                       />
                     }
                 />
+                {/* {this.getPoints(item.author)} */}
                 </li>
             )}
             />

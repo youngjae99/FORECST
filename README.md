@@ -1,72 +1,71 @@
-# FORECST
+# Forecst
+> KAIST CS473 Introduction to Social Computing Design Project 
+* Online programming hackathons platform
 
-CS473 Social Computing Design Project
-Team Name: MadMax
-20170773 Gunwoo Kim / 20180162 Jisu Kim /20180555 Youngjae Jang / 20180697 Jeanne Choi
+## Table of contents
+* [General info](#general-info)
+* [Screenshots](#screenshots)
+* [Technologies](#technologies)
+* [Setup](#setup)
+* [Features](#features)
+* [Status](#status)
+* [Inspiration](#inspiration)
+* [Contact](#contact)
 
-## Available Scripts
+## General info
+Owing to COVID19, since it is not possible to conduct programming hackathons, which provide opportunities to meet other programmers directly and grow one's programming ability for novice programmers, we created a platform 'Forecst' that opens hackathons for them. 
 
-In the project directory, you can run:
+Forecst helps users to get easily motivated to keep doing their work on their project by seeing the freely, easily shared development processes and compete with others through the ranking made at the end of the hackathon. Users can also grow a 'forest' together, which is a collection of 'trees'(an object that the user gets to grow through earning points by doing some activities in the platform) of each user.
 
-### `yarn start`
+## Screenshots
+![Example screenshot](./img/screenshot.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Technologies
+* React - version 17.0.1
+* Ant Design - version 4.8.3
+* Firebase - version 8.0.2
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Setup
+Describe how to install / setup your local environement / add link to demo version.
+```
+git init
+git add .
+git commit -m 'initial commit'
+git remote add origin https://github.com/username/repository-name.git
+git push origin master
+```
 
-### `yarn test`
+## Code Examples
+Show examples of usage:
+`put-your-code-here`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
+List of features ready and TODOs for future development
+* Awesome feature 1
+* Awesome feature 2
+* Awesome feature 3
 
-### `yarn build`
+To-do list:
+* Wow improvement to be done 1
+* Wow improvement to be done 2
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Status
+Project is: _in progress_
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Inspiration
+Programming alone and finishing a project at home due to COVID19 have a high rate of failure due to the lack of motivation and laziness and leads to no progress on one's programming ability.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Present the identified tasks and explain why they matter.
 
-### `yarn eject`
+1. give **external motivation** to programmers finishing the project
+    - Unlike camps, where we have to present our projects with each other on the due date,  in COVID 19 situation programmers have less motivation for finishing the project.
+2. motivate programmers to **freely share** their own coding experiences(success or failure) to each other to develop smoothly
+    - It is hard to share their programming ideas or knowledge through online. Being able to share ideas and collaborate with others helps you develop smoothly.
+3. make programmers to eagerly participate with **common goals** like a camp through online
+    - In this COVID 19 situation, there are rarely programming camps held for programmers, thus an online and remote service similar to those camps is needed.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Contact
+* 20170773 Gunwoo Kim [@kakaloto85](https://github.com/kakaloto85)
+* 20180162 Jisu Kim [@ddiddu](https://github.com/ddiddu)
+* 20180555 Youngjae Jang [@youngjae99](https://github.com/youngjae99)
+* 20180697 Jeanne Choi [@jeannechoi99](https://github.com/jeannechoi99)
