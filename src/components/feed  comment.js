@@ -156,7 +156,9 @@ class FeedComment extends Component {
 
     return (
       <>
-        <Button onClick={this.handleWatering} style={{float: "right"}}><img src={watering()} alt ="wc" style={{width:"30px", height:"30px"}}/></Button>
+        <a onClick={this.handleWatering} style={{float: "right"}}>
+          <img src={watering()} alt ="wc" style={{width:"30px", height:"30px"}}/>
+        </a>
         <List
             className="comment-list"
             header={`${comments.length} replies`}

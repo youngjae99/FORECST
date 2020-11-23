@@ -3,6 +3,10 @@ import React, { useState } from "react";
 import "./CampHome.css";
 import CampTabView from "./CampTabView";
 import WGO from "../components/whatsgoingon";
+import l0_trans from '../level_tree/l0_trans.png';
+import l1_trans from '../level_tree/l1_trans.png';
+import l2_trans from '../level_tree/l2_trans.png';
+import {getLevel} from '../actions/authentication';
 
 import {
   Layout,
@@ -65,8 +69,17 @@ class CampPage extends React.Component {
     this.state = {
       tab:1,
       feed: [],
+      forest: [],
       whatsgoingon: []
     };
+  }
+  componentDidMount(){
+    this.getMarker();
+  }
+  getMarker = async () => {
+      const snapshot = await db.collection('Users').get()
+      console.log(snapshot.docs)
+      this.setState({forest: snapshot.docs.map(doc=>doc.data())})
   }
 
 
@@ -76,6 +89,24 @@ class CampPage extends React.Component {
   };
 
   render() {
+    const getTree = (point) => {
+      const level= getLevel(point);
+      console.log(point)
+      console.log(level)
+      let profileTree=null;
+  
+      switch (level) {
+          case 1:
+              return l1_trans
+              break;
+          case 2:
+              return l2_trans
+              break;
+          default:
+              return l0_trans
+              break;
+      }
+    }
 
     return (
       <Layout style={{fontFamily: 'Roboto'}}>
@@ -121,6 +152,17 @@ class CampPage extends React.Component {
                 Ranking
               </Menu.Item>
             </Menu>
+            <h4 style={{margin: "10px"}}>We are growing this beautiful forest together!</h4>
+              <List
+                style={{backgroundColor: '#beedb2', borderRadius: 10, margin: '9px'}}
+                grid={{gutter:16,}}
+                dataSource={this.state.forest}
+                renderItem={item => (
+                  <div>
+                    <img src={getTree(item.point)} style={{width: "50px", height: "50px", margin: "5px"}}></img>
+                  </div>
+                )}
+              />
           </Sider>
 
           <Layout
