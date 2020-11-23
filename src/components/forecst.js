@@ -2,7 +2,6 @@ import React from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { PageHeader, Button, Avatar, Row, Col } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
 import logo from '../logo.png';
 import { connect } from 'react-redux';
 import lv0 from '../level_tree/lv0.png';
@@ -10,7 +9,7 @@ import lv1 from '../level_tree/lv1.png';
 import lv2 from '../level_tree/lv2.png';
 import {getLevel} from '../actions/authentication';
 import { db } from "../firebase";
-
+import Profile from './profile';
 
 class Forecst extends React.Component{
 
@@ -77,7 +76,7 @@ class Forecst extends React.Component{
             extra={[
                 <Link to={"/mypage"}style={{color: '#000', fontSize: 18}}>
                     {this.props.currentUser}
-                    <Avatar size={30} icon={currentTree} style={{marginLeft: 10}}></Avatar>
+                    <Profile writer={this.props.currentUser}></Profile>
                 </Link>,
             ]}
             />
