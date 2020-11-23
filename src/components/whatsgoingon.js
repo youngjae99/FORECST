@@ -49,9 +49,9 @@ class WGO extends Component {
                 size="large"
                 dataSource={this.state.wgo}
                 renderItem={item => (
-                    <div>
+                    <div style={{marginTop:"16px"}}>
                         <img src={logo(item.data().mode)} style = {typeimgStyle} />
-                        <h3>{item.data().content}</h3>
+                        {item.data().content}
                     </div>
                 )}
         />
@@ -60,8 +60,9 @@ class WGO extends Component {
 }
 
 const typeimgStyle = {
-    width: "30px",
-    height: "30px"
+    width: "20px",
+    height: "20px",
+    marginRight: "6px"
 }
 
 export default WGO;
