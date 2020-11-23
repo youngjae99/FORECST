@@ -1,46 +1,71 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
-import {Button} from 'antd';
+import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { Button, Typography } from "antd";
+import "./MainPage.css";
+const { Title } = Typography;
 
+class MainPage extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-class MainPage extends React.Component{
-
-    constructor(props){
-        super(props)
-    }
-
-    render(){
-        const joinButton=(
-            <Button type='primary'>
-                <Link to={"/camp"} style={{fontSize: 18}}>Join Now</Link>
+  render() {
+    const joinPage = (
+      <div className="banner">
+        <div className="bannerTitle">
+          <Title>
+            FORECST is the online community where everyone codes and do their own project together
+          </Title>
+          <div>
+            <Title level={4}>
+            Get motivation to finish the project, and freely share your coding experiences.
+            </Title>
+            
+            <Button type="primary" size="large">
+              <Link to={"/register"} style={{ fontSize: 18 }}>
+                Join Now
+              </Link>
             </Button>
-        )
+          </div>
+        </div>
+        <div className="bannerImgWrap">
+          <div style={{ height: "450px", marginBottom: "-304px" }}>
+            <img
+              src="https://cdn.glitch.com/605e2a51-d45f-4d87-a285-9410ad350515%2Fhomepage-illo-editor.svg?v=1587129125983"
+              alt="Glitch code editor"
+            />
+          </div>
+        </div>
+      </div>
+    );
 
-        const goButton=(
-            <Button type='primary'>
-                <Link to={"/register"} style={{fontSize: 18}}>Go to Hackathon</Link>
-            </Button>
-        )
+    const goCampPage = (
+      <div className="banner">
+        <Button type="primary">
+          <Link to={"/camp"} style={{ fontSize: 18 }}>
+            Go to Hackathon
+          </Link>
+        </Button>
+      </div>
+    );
 
-        return(
-            <div style={{fontFamily: "Roboto"}}>
-                {this.props.status.isLoggedIn ? joinButton : goButton}
-            </div>
-        );
-    }
+    return (
+      <div style={{ fontFamily: "Roboto" }}>
+        {this.props.status.isLoggedIn ? goCampPage : joinPage}
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    status: state.authentication.status,
+  };
 };
 
-
-const mapStateToProps=(state)=>{
-    return{
-        status: state.authentication.status
-    };
-};
-
-const mapDispatchToProps=(dispatch)=>{
-    return{
-    };
+const mapDispatchToProps = (dispatch) => {
+  return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainPage);
