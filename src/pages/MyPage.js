@@ -8,6 +8,7 @@ import lv2 from '../level_tree/lv2.png';
 import lv3 from '../level_tree/lv3.png';
 import {getLevel} from '../actions/authentication';
 import {MyFeed} from '../components';
+import { db,storage } from "../firebase";
 
 const {TabPane}=Tabs;
 
@@ -18,13 +19,25 @@ class MyPage extends React.Component{
         
         this.state={
             point: 0,
+            feed: [],
         }
     }
 
+    componentDidMount(){
+        this.getMyPost();
+    }
+
+    getMyPost = async () => {
+        const snapshot = await db.collection('Feeds').where("id","==",this.props.status.currentUser).get()
+        console.log(snapshot.docs)
+        this.setState({feed:snapshot.docs})  
+    }
+
+    //my view 보여주는 코드가 필요함
     render(){
         const MyView=(
             <div style={{width: 1000, margin: "auto", marginTop: 20}}>
-                    <MyFeed></MyFeed>
+                    <MyFeed feed={this.state.feed}></MyFeed>
             </div>
         )
 
@@ -97,27 +110,20 @@ class MyPage extends React.Component{
                     </Row>
                 </Card>
 
-                <Row style={{width: 1000, margin: "auto"}}>
-                    {/* <Col span={20}> */}
-                        <Tabs defaultActiveKey="1" type="card" size={"large"} style={{margin: "auto", marginTop: 20}}>
-                        {/* <Button type='primary'>
-                            <Link to={"/uploadpost"} style={{fontSize: 18}}>New Post</Link>
-                        </Button> */}
-                            <TabPane tab="MY" key="1">
-                                {MyView}
-                            </TabPane>
-                            <TabPane tab="BOOKMARK" key="2">
-                                {BookmarkView}
-                            </TabPane>
-                        </Tabs>
-                    {/* </Col> */}
+                <div style={{width: 1000, margin: "auto"}}>
+                    <Tabs defaultActiveKey="1" type="card" size={"large"} style={{margin: "auto", marginTop: 20}}>
+                        <TabPane tab="MY" key="1">
+                            {MyView}
+                        </TabPane>
+                        <TabPane tab="BOOKMARK" key="2">
+                            {BookmarkView}
+                        </TabPane>
+                    </Tabs>
 
-                    {/* <Col span={4} style={{textAlign: "right", marginTop: 20}}> */}
-                        <Button type='primary' style={{float: "right"}}>
-                            <Link to={"/uploadpost"} style={{fontSize: 18}}>New Post</Link>
-                        </Button>
-                    {/* </Col> */}
-                </Row>
+                    <Button type='primary' style={{float: "right"}}>
+                        <Link to={"/uploadpost"} style={{fontSize: 18}}>New Post</Link>
+                    </Button>
+                </div>
 
             </div>
         );

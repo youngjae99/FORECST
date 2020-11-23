@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Comment, Form, Button, List, Input, Tooltip, Avatar, Collapse } from 'antd';
 import moment from 'moment';
+import { db,storage } from "../firebase";
 import {connect} from 'react-redux';
 import lv0 from '../level_tree/lv0.png';
 import lv1 from '../level_tree/lv1.png';
@@ -14,59 +15,7 @@ function callback(key) {
   console.log(key);
 }
 
-const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-`;
-
-
-const data = [
-    {
-      actions: [<span key="comment-list-reply-to-0">Reply to</span>],
-      author: 'Han Solo',
-      content: (
-        <p>
-          We supply a series of design principles, practical patterns and high quality design
-          resources (Sketch and Axure), to help people create their product prototypes beautifully and
-          efficiently.
-        </p>
-      ),
-      datetime: (
-        <Tooltip title={moment().subtract(1, 'days').format('YYYY-MM-DD HH:mm:ss')}>
-          <span>{moment().subtract(1, 'days').fromNow()}</span>
-        </Tooltip>
-      ),
-    },
-    {
-      actions: [<span key="comment-list-reply-to-0">Reply to</span>],
-      author: 'Han Solo',
-      content: (
-        <p>
-          We supply a series of design principles, practical patterns and high quality design
-          resources (Sketch and Axure), to help people create their product prototypes beautifully and
-          efficiently.
-        </p>
-      ),
-      datetime: (
-        <Tooltip title={moment().subtract(2, 'days').format('YYYY-MM-DD HH:mm:ss')}>
-          <span>{moment().subtract(2, 'days').fromNow()}</span>
-        </Tooltip>
-      ),
-    },
-  ];
-
 const { TextArea } = Input;
-
-const CommentList = ({ comments }) => (
-  <List
-    dataSource={comments}
-    header={`${comments.length} ${comments.length > 1 ? 'replies' : 'reply'}`}
-    itemLayout="horizontal"
-    renderItem={props => <Comment {...props} />}
-  />
-);
-
 const Editor = ({ onChange, onSubmit, submitting, value, username }) => (
   <>
     <div>{username}</div>
@@ -86,32 +35,43 @@ const Editor = ({ onChange, onSubmit, submitting, value, username }) => (
 );
 
 class FeedComment extends Component {
+  
   constructor(props){
     super(props);
-  }
 
-  state = {
+  this.state = {
     comments: [],
     submitting: false,
     value: '',
-  };
+  };    
+  console.log(this.props.status.currentUser)
+}
+  componentDidMount(){
+    this.getComments()
+  }
+  getComments = async () => {
+    const snapshot = await db.collection("Feeds/"+this.props.posting+"/Comments").get()
+    console.log(snapshot.docs.map(doc=>doc.data()))
+        this.setState({comments:snapshot.docs.map(doc=>doc.data())})  
+    }
 
   handleSubmit = () => {
     if (!this.state.value) {
       return;
     }
-
+    console.log(this.props.status.currentUser)
     this.setState({
       submitting: true,
     });
 
     setTimeout(() => {
+      db.collection('Feeds').doc(this.props.posting).collection("Comments").doc().set({author:this.props.status.currentUser,content:this.state.value,datetime:moment().valueOf()})
       this.setState({
         submitting: false,
         value: '',
         comments: [
           {
-            author: 'Han Solo',
+            author: this.props.status.currentUser,
             content: <p>{this.state.value}</p>,
             datetime: moment().fromNow(),
           },
@@ -168,12 +128,11 @@ class FeedComment extends Component {
 
     return (
       <>
-        {comments.length > 0 && <CommentList comments={comments} />}
         <List
             className="comment-list"
-            header={`${data.length} replies`}
+            header={`${comments.length} replies`}
             itemLayout="horizontal"
-            dataSource={data}
+            dataSource={comments}
             renderItem={item => (
                 <li>
                 <Comment

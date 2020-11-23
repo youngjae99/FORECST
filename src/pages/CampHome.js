@@ -24,16 +24,15 @@ class CampHome extends Component {
     getMarker = async () => {
       const snapshot = await db.collection('Feeds').get()
       console.log(snapshot.docs)
-          this.setState({feed:snapshot.docs})  
-    }
+      this.setState({feed:snapshot.docs})  
+      }
 
     render() {
-
       return (
-        <div className="CampHome">
+        <div className="CampHome" >
           <div className="container">
             <div className="row"> 
-              <Feed feed={this.state.feed} />
+              <Feed feed={this.state.feed}/>
             </div>
           </div>  
         </div>

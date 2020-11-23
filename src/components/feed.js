@@ -4,10 +4,12 @@ import { List, Button, Row, Col } from 'antd';
 // import { BsBookmark } from 'react-icons/bs';
 import FeedComment from './feed  comment';
 import Profile from './profile'
+import {backend_Feed_watering} from "../backend";
 
 class Feed extends Component {
     constructor(props) {
         super(props);
+        
         this.state = {
             feed: []
         };
@@ -41,6 +43,8 @@ class Feed extends Component {
 
                     <Col span={11}>
                         {item.data().writing}
+                        {/* <Button type="link">See more</Button> */}
+                        <Button  onClick={backend_Feed_watering(item.id,item.data().id)}>watering</Button>
                         <FeedComment posting = {item.id} ></FeedComment>
                     </Col>
                 </Row>
