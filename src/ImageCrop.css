@@ -1,0 +1,27 @@
+.thumblist {
+padding: 0;
+margin: 0;
+list-style: none;
+}
+
+.thumblist li {
+/* float: left; */
+margin: auto;
+/* height: 200px; */
+/* width: 200px; */
+/* margin: 5px; */
+width: 100%;
+overflow: hidden;
+}
+
+.thumblist img {
+display: inline-block;
+min-width: 100%;
+min-height: 100%;
+-ms-interpolation-mode: bicubic; /* Better image scaling in IE */
+}
+
+p {
+clear: both
+}
+    

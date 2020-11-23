@@ -14,7 +14,7 @@ class Login extends React.Component{
         this.props.loginRequest(id);
 
         if(this.props.status==="SUCCESS"){
-            // console.log(this.props.status, id);
+            console.log(this.props.isLoggedIn, id);
             this.props.history.push('/campjoin');
             return true;
         }
