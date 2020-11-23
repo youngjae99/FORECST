@@ -7,17 +7,33 @@ class QnAsingle extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            qna: [] 
+            sentTitle: '',
+            qna: [],
         };
     }
-    componentDidMount(){
-        this.getMarker();
-    }
+
+    
     getMarker = async () => {
         const snapshot = await db.collection('QnAList').get()
         console.log(snapshot.docs)
-        this.setState({qna:snapshot.docs})  
+        this.setState({qna: snapshot.docs})
     }
+    setTitle = async () => {
+        console.log(this.props.location.pathname.split("/")[2])
+        const piece = this.props.location.pathname.split("/")
+        console.log(piece[2])
+        const snapshot = await db.collection('QnAList').where("title","==",piece[2]).get()
+        console.log(snapshot.docs)
+        await this.setState({qna: snapshot.docs})
+
+        console.log(this.state.qna)
+    }
+
+    componentDidMount(){
+        this.getMarker();
+        this.setTitle();
+    }
+
 
     render(){
         return(
