@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { List, Button, Avatar, Space } from 'antd';
+import { List, Button, Row, Col } from 'antd';
 // import { GiWateringCan } from 'react-icons/gi';
 // import { BsBookmark } from 'react-icons/bs';
 import FeedComment from './feed  comment';
@@ -19,12 +19,26 @@ class Feed extends Component {
                 dataSource={this.props.feed}
                 renderItem={item => (
                 <div>
-                    <img src={item.data().photo} style={profileStyle} alt="profileimg"/>
+                    <Row>
+                        <Col span={4}>
+                            Profile
+                        </Col>
+                        <Col span={8}>
+                            Photo
+                        </Col>
+                        <Col span={12}>
+                            Explanation
+                            <FeedComment posting = {item.id} ></FeedComment>
+                        </Col>
+                    </Row>
+                    {/* <img src={item.data().photo} style={profileStyle} alt="profileimg"/>
                     <h3>{item.data().id}</h3>
+
                     <List.Item.Meta
                         title={item.data().title}
-                        content={item.data().writing}
+                        // content={item.data().writing}
                     />
+
                     <List.Item
                         key={item.data().title}
                         extra={
@@ -35,9 +49,10 @@ class Feed extends Component {
                         // <BsBookmark size="4%" color="6b6b6b"/>
                         ]}
                     />
+
                     {item.data().writing}
                     <Button type="link">See more</Button>
-                    <FeedComment posting = {item.id} ></FeedComment>
+                    <FeedComment posting = {item.id} ></FeedComment> */}
                 </div>
                 )}
         />
