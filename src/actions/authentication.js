@@ -43,3 +43,13 @@ export function loginSuccess(username) {
         username
     };
 }
+
+export function getLevel(point){
+    if(point<parseInt("10")){
+        return 0;
+    }else if(point<parseInt("30")){
+        return 1;
+    }else{
+        return 2;
+    }
+}

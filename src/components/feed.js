@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { List, Button, Avatar, Space } from 'antd';
+import { List, Button, Row, Col } from 'antd';
 // import { GiWateringCan } from 'react-icons/gi';
 // import { BsBookmark } from 'react-icons/bs';
 import FeedComment from './feed  comment';
+import Profile from './profile'
 
 class Feed extends Component {
     constructor(props) {
@@ -18,26 +19,28 @@ class Feed extends Component {
                 size="large"
                 dataSource={this.props.feed}
                 renderItem={item => (
-                <div>
-                    <img src={item.data().photo} style={profileStyle} alt="profileimg"/>
-                    <h3>{item.data().id}</h3>
-                    <List.Item.Meta
-                        title={item.data().title}
-                        content={item.data().writing}
-                    />
-                    <List.Item
-                        key={item.data().title}
-                        extra={
-                            <img src={item.data().photo} style={profileStyle} alt="contentimage"/>
-                        }
-                        actions={[
-                        // <GiWateringCan size="5%" color="1e71f7"/>,
-                        // <BsBookmark size="4%" color="6b6b6b"/>
-                        ]}
-                    />
-                    {item.data().writing}
-                    <Button type="link">See more</Button>
-                    <FeedComment posting = {item.id} ></FeedComment>
+                <div style={{margin: 20, background: "#fff", padding: 20}}>
+                    <Row>
+                        <Col span={3}>
+                            <Profile></Profile>
+                            <List.Item.Meta
+                            title={item.data().title}
+                            content={item.data().writing}
+                           />
+                        </Col>
+
+                        <Col span={10} style={{paddingRight: 60}}>
+                            <img src={item.data().photo} 
+                            style={{width: "100%", padding: 30, 
+                            // border: "solid", borderWidth: 0.5
+                            }} alt="contentimage"/>
+                        </Col>
+
+                        <Col span={11}>
+                            {item.data().writing}
+                            <FeedComment posting = {item.id} ></FeedComment>
+                        </Col>
+                    </Row>
                 </div>
                 )}
         />
@@ -52,4 +55,5 @@ const postimgStyle = {
     width: "300px",
     height: "300px"
 }
+
 export default Feed;
