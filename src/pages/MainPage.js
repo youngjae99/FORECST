@@ -15,13 +15,15 @@ class MainPage extends React.Component {
       <div className="banner">
         <div className="bannerTitle">
           <Title>
-            FORECST is the online community where everyone codes and do their own project together
+            FORECST is the online community where everyone codes and do their
+            own project together
           </Title>
           <div>
             <Title level={4}>
-            Get motivation to finish the project, and freely share your coding experiences.
+              Get motivation to finish the project, and freely share your coding
+              experiences.
             </Title>
-            
+
             <Button type="primary" size="large">
               <Link to={"/register"} style={{ fontSize: 18 }}>
                 Join Now
@@ -41,12 +43,33 @@ class MainPage extends React.Component {
     );
 
     const goCampPage = (
-      <div className="banner_camp">
-        <Button type="primary">
-          <Link to={"/camp"} style={{ fontSize: 18 }}>
-            Go to Hackathon
-          </Link>
-        </Button>
+      <div>
+        <Title>
+          FORECST is the online community where everyone codes and do their own
+          project together
+        </Title>
+        <div>
+          <Title level={4} style={{ display: "block" }}>
+            Enter the Current Hackathon
+          </Title>
+          <Button type="primary" size="large">
+            <Link to={"/camp"} style={{ fontSize: 18 }}>
+              Go to Hackathon
+            </Link>
+          </Button>
+
+          <ul style={{ itemCount: "3" }}>
+            <li className="campbox">
+              <p>page 1</p>
+            </li>
+            <li className="campbox">
+              <p>page 2</p>
+            </li>
+            <li className="campbox">
+              <p>page 2</p>
+            </li>
+          </ul>
+        </div>
       </div>
     );
 
