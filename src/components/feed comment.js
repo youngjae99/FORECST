@@ -1,25 +1,17 @@
 import React, {Component} from 'react';
-import { Comment, Form, Button, List, Input, Tooltip, Avatar, Collapse } from 'antd';
+import { Comment, Form, Button, List, Input, Space, Spin} from 'antd';
 import moment from 'moment';
-import { db,storage } from "../firebase";
+import { db } from "../firebase";
 import {connect} from 'react-redux';
-import lv0 from '../level_tree/lv0.png';
-import lv1 from '../level_tree/lv1.png';
-import lv2 from '../level_tree/lv2.png';
 import {getLevel} from '../actions/authentication';
-import PropTypes from 'prop-types';
 import {backend_Feed_watering} from "../backend";
 import watering1 from "../water1.png";
 import watering2 from "../water2.png";
+import { MessageOutlined } from '@ant-design/icons';
+import InfiniteScroll from 'react-infinite-scroller';
+import './feedcomment.css';
+import Profile from './profile';
 
-
-const { Panel } = Collapse;
-
-function callback(key) {
-  console.log(key);
-}
-
-const { TextArea } = Input;
 const Editor = ({ onChange, onSubmit, submitting, value, username }) => (
   <>
     <div>{username}</div>
@@ -55,7 +47,6 @@ class FeedComment extends Component {
 
   componentDidMount(){
     this.getComments();
-    // this.getMarker();
   }
 
   getComments = async () => {
@@ -105,39 +96,15 @@ class FeedComment extends Component {
       value: e.target.value,
     });
   };
-  
-//   getMarker = async () => {
-//     const snapshot = await db.collection('Users').doc(this.props.currentUser).get();
-//     console.log(snapshot);
-//     this.setState({point:snapshot.data().point});
-// }
-
-  // getPoints = async (id) => {
-  //   const snapshot = await db.collection("Users").doc(id).get()
-  //   // console.log(snapshot.docs.map(doc=>doc.data()))
-  //   return snapshot.data().point
-  // }
 
   render() {
-    const getPoints = async (id) => {
-      const snapshot = await db.collection("Users").doc(id).get()
-      // console.log(snapshot.docs.map(doc=>doc.data()))
-      const level=this.props.getLevel(snapshot.data().point);
-      console.log(level)
-      switch (level) {
-          case 1:
-              return lv1
-              break;
-          case 2:
-              return lv2 
-              break;
-          default:
-              return lv0
-              break;
-      }
-  
-    }
-  
+    const IconText = ({ icon, text }) => (
+      <Space>
+          {React.createElement(icon)}
+          {text}
+      </Space>
+      );
+
     const watering =() =>{
       if (this.state.watered ==1){
         return watering1
@@ -145,23 +112,8 @@ class FeedComment extends Component {
       else
         return watering2
     }
+
     const { comments, submitting, value } = this.state;
-
-    var point=this.state.point;
-    const level=this.props.getLevel(point);
-    let profileTree=null;
-
-    switch (level) {
-        case 1:
-            profileTree=<img src={lv1}></img>
-            break;
-        case 2:
-            profileTree=<img src={lv2}></img>
-            break;
-        default:
-            profileTree=<img src={lv0}></img>
-            break;
-    }
 
     const addComment=(
       <>
@@ -176,43 +128,61 @@ class FeedComment extends Component {
           />
         }
         avatar={
-          <Avatar
-          icon={profileTree}
-          />
+          <Profile
+            writer={this.props.status.currentUser}>
+          </Profile>
         }
       />
       </>
     )
 
     return (
-      <>
-        <a onClick={this.handleWatering} style={{float: "right"}}>
-          <img src={watering()} alt ="wc" style={{width:"30px", height:"30px"}}/>
-        </a>
-        <List
+      <div className="demo-infinite-container">
+        <InfiniteScroll
+          initialLoad={false}
+          pageStart={0}
+          loadMore={this.handleInfiniteOnLoad}
+          hasMore={!this.state.loading && this.state.hasMore}
+          useWindow={false}
+        >
+          <List
             className="comment-list"
-            header={`${comments.length} replies`}
+            header={
+              <div>
+                <a onClick={this.handleWatering} style={{float: "right"}}>
+                  <img src={watering()} alt ="wc" style={{width:"25px", height:"25px"}}/>
+                </a>
+                <IconText icon={MessageOutlined} text={comments.length} key="list-vertical-message" />
+              </div>
+            }
             itemLayout="horizontal"
             dataSource={comments}
             renderItem={item => (
                 <li>
                 <Comment
-                    // actions={item.actions}
                     author={item.author}
                     content={item.content}
                     datetime={item.datetime.fromNow}
                     avatar={
-                      <Avatar
-                        src={getPoints(item.author)}
-                        alt="Han Solo"
-                      />
+                    <Profile
+                      writer={item.author}>
+                    </Profile>
                     }
                 />
                 </li>
             )}
-            />
-        {this.props.status.isLoggedIn ? addComment : null}
-      </>
+          >
+
+          {this.state.loading && this.state.hasMore && (
+            <div className="demo-loading-container">
+              <Spin />
+            </div>
+          )}
+          </List>
+
+          {this.props.status.isLoggedIn ? addComment : null}
+        </InfiniteScroll>
+      </div>
     );
   }
 }

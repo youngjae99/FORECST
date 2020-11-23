@@ -7,6 +7,7 @@ import lv3 from '../level_tree/lv3.png';
 import {getLevel} from '../actions/authentication';
 import PropTypes from 'prop-types';
 import { db,storage } from "../firebase";
+import { List, Avatar } from 'antd';
 
 class Profile extends React.Component{
 
@@ -36,25 +37,18 @@ class Profile extends React.Component{
 
         switch (level) {
             case 1:
-                currentTree=<img src={lv1} style={{width: 90}}></img>
+                currentTree=<img src={lv1}></img>
                 break;
             case 2:
-                currentTree=<img src={lv2} style={{width: 90}}></img>
+                currentTree=<img src={lv2}></img>
                 break;
             default:
-                currentTree=<img src={lv0} style={{width: 90}}></img>
+                currentTree=<img src={lv0}></img>
                 break;
         }
 
         return(
-            <div style={{fontWeight: 'Roboto'}}>
-                <div>
-                    {currentTree}
-                </div>
-                <div>
-                    {this.props.writer}
-                </div>
-            </div>
+            <Avatar src={currentTree}></Avatar>
         );
     }
 }
