@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Comment, Form, Button, List, Input, Tooltip } from 'antd';
+import { Comment, Form, Button, List, Input, Tooltip, Avatar } from 'antd';
 import moment from 'moment';
 
 const data = [
@@ -8,9 +8,7 @@ const data = [
       author: 'Han Solo',
       content: (
         <p>
-          We supply a series of design principles, practical patterns and high quality design
-          resources (Sketch and Axure), to help people create their product prototypes beautifully and
-          efficiently.
+          AMAZING
         </p>
       ),
       datetime: (
@@ -24,9 +22,7 @@ const data = [
       author: 'Han Solo',
       content: (
         <p>
-          We supply a series of design principles, practical patterns and high quality design
-          resources (Sketch and Axure), to help people create their product prototypes beautifully and
-          efficiently.
+          GOOD
         </p>
       ),
       datetime: (
@@ -104,35 +100,63 @@ class FeedComment extends Component {
     const { comments, submitting, value } = this.state;
 
     return (
-      <>
+      <div> 
         {comments.length > 0 && <CommentList comments={comments} />}
+        {/* <div>
+          <PageHeader
+          className="site-page-header"
+          title="Title"
+          subTitle="This is a subtitle">
+          </PageHeader>
+        </div> */}
+
         <List
-            className="comment-list"
-            header={`${data.length} replies`}
-            itemLayout="horizontal"
-            dataSource={data}
-            renderItem={item => (
-                <li>
-                <Comment
-                    actions={item.actions}
-                    author={item.author}
-                    content={item.content}
-                    datetime={item.datetime}
-                />
-                </li>
-            )}
+        className="comment-list"
+        header={`Comments (${data.length})`}
+        itemLayout="horizontal"
+        dataSource={data}
+        renderItem={item => (
+            <li>
+            <Comment
+                // actions={item.actions}
+                author={item.author}
+                content={item.content}
+                datetime={item.datetime}
+                avatar={
+                  <Avatar
+                    src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                    alt="Han Solo"
+                  />
+                }
             />
-        <Comment
-          content={
-            <Editor
-              onChange={this.handleChange}
-              onSubmit={this.handleSubmit}
-              submitting={submitting}
-              value={value}
-            />
-          }
+            </li>
+        )}
         />
-      </>
+
+        <Comment
+        avatar={
+          <Avatar
+            src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+            alt="Han Solo"
+          />
+        }
+        content={
+          // <Editor
+          //   onChange={this.handleChange}
+          //   onSubmit={this.handleSubmit}
+          //   submitting={submitting}
+          //   value={value}
+          // />
+          <Input
+          // name='username'
+          type='text'
+          onChange={this.handleChange}
+          value={value}
+          style={{height: 50}}>
+          </Input>
+        }
+        />
+      </div>
     );
   }
 }
