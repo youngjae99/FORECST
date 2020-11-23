@@ -1,6 +1,6 @@
 .demo-infinite-container {
     overflow: auto;
-    height: 100px;
+    height: 130px;
   }
   .demo-loading-container {
     position: absolute;
