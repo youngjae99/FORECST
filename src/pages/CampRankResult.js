@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
 // import { Menu} from '../components';
-import { Progress, Row, Col } from 'antd';
+import { Progress, Row, Col, Typography } from 'antd';
+const { Title } = Typography;
+
 
 class CampRankResult extends React.Component {
     render(){
         return (
-            <div>
+            <div style={{padding:20}}>
                 {/* <Menu></Menu> */}
-                <h1>Results for the Final Ranking</h1>
-                <h4>'Project D' is the winner. Congratulations!</h4>
+                <Title>Results for the Final Ranking</Title>
+                <Title level={3}>'Project D' is the winner. Congratulations!</Title>
                 <Progress percent={2} strokeColor={'#99ceff'} strokeWidth={'15px'}></Progress>
                 <Progress percent={8} strokeColor={'#99ceff'} strokeWidth={'15px'}></Progress>
                 <Progress percent={15} strokeColor={'#99ceff'} strokeWidth={'15px'}></Progress>

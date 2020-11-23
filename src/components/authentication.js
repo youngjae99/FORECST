@@ -12,7 +12,7 @@ class Authentication extends React.Component{
 
         this.state={
             username: "",
-            password: ""
+            password: "",
         };
 
         this.handleChange=this.handleChange.bind(this);
