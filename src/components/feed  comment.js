@@ -3,7 +3,6 @@ import { Comment, Form, Button, List, Input, Tooltip, Avatar, Collapse } from 'a
 import moment from 'moment';
 import { db,storage } from "../firebase";
 import {connect} from 'react-redux';
-import {connect} from 'react-redux';
 import lv0 from '../level_tree/lv0.png';
 import lv1 from '../level_tree/lv1.png';
 import lv2 from '../level_tree/lv2.png';
