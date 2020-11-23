@@ -1,68 +1,96 @@
 import React, { Component } from 'react';
-import { List, Button, Row, Col } from 'antd';
-// import { GiWateringCan } from 'react-icons/gi';
-// import { BsBookmark } from 'react-icons/bs';
-import FeedComment from './feed  comment';
-import Profile from './profile'
+import { List, Avatar } from 'antd';
+import FeedComment from './feed comment';
+import Profile from './profile';
+import { connect } from 'react-redux';
+import lv0 from '../level_tree/lv0.png';
+import lv1 from '../level_tree/lv1.png';
+import lv2 from '../level_tree/lv2.png';
+import {getLevel} from '../actions/authentication';
+import { db } from "../firebase";
 
 class Feed extends Component {
     constructor(props) {
         super(props);
         
         this.state = {
-            feed: []
+            feed: [],
+            point: 0,
         };
+    }
+
+    getPoints = async (id) => {
+        const snapshot = await db.collection("Users").doc(id).get();
+        console.log(snapshot.docs.map(doc=>doc.data()));
+        return snapshot.data().point;
     }
     
     render(){
+        var point=this.state.point;
+        const level=this.props.getLevel(point);
+        let currentTree=null;
+
+        switch (level) {
+            case 1:
+                currentTree=<img src={lv1}></img>
+                break;
+            case 2:
+                currentTree=<img src={lv2}></img>
+                break;
+            default:
+                currentTree=<img src={lv0}></img>
+                break;
+        }
+
         return(
             <List
-            style={{paddingBottom: 140}}
             itemLayout="vertical"
             size="large"
+            pagination={{
+            onChange: page => {
+                console.log(page);
+            },
+            pageSize: 3,
+            }}
             dataSource={this.props.feed}
             renderItem={item => (
-            <div style={{margin: 20, background: "#fff", padding: 20}}>
-                <Row>
-                    <Col span={3}>
-                        <Profile
-                        writer={item.data().id}></Profile>
-                        <List.Item.Meta
-                        title={item.data().title}
-                        content={item.data().writing}
-                        />
-                    </Col>
-
-                    <Col span={10} 
-                    style={{paddingRight: 40}}
-                    >
-                        <img src={item.data().photo} 
-                        style={{width: "100%", 
-                        padding: 10
-                        // border: "solid", borderWidth: 0.5
-                        }} alt="contentimage"/>
-                    </Col>
-
-                    <Col span={11}>
-                        {item.data().writing}
-                        {/* <Button type="link">See more</Button> */}
-                        <FeedComment posting = {item.id} id ={item.data().id} ></FeedComment>
-                    </Col>
-                </Row>
-            </div>
+            <List.Item
+                style={{background: "#fff"}}
+                key={item.title}
+                extra={
+                    <Avatar
+                    shape="square"
+                    icon={<img src={item.data().photo}></img>}
+                    style={{width: 272, height: 250}}>
+                    </Avatar>
+                }
+            >
+                <List.Item.Meta
+                avatar={<Profile
+                writer={item.data().id}></Profile>}
+                title={<a href={item.href}>{item.data().id}</a>}
+                description={item.data().title}
+                />
+                {item.data().writing}
+                <FeedComment posting = {item.id} id ={item.data().id}></FeedComment>
+            </List.Item>
             )}
-            />
+        />
         )}
 }
 
-const profileStyle = {
-    width: "60px",
-    height: "60px"
-}
+const mapStateToProps=(state)=>{
+    return{
+        status: state.authentication.status
+    };
+};
 
-const postimgStyle = {
-    width: "300px",
-    height: "300px"
-}
+const mapDispatchToProps=(dispatch)=>{
+    return{
+        getLevel: (point)=>{
+            return getLevel(point);
+        }
+    };
+};
 
-export default Feed;
+export default connect(mapStateToProps, mapDispatchToProps)(Feed);
