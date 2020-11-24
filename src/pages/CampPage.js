@@ -201,11 +201,6 @@ class CampPage extends React.Component {
                 value={deadline}
                 format="D 일 H 시 m 분 s 초"
               />
-              <Countdown
-                title="Countdown"
-                value={deadline}
-                onFinish={onFinish}
-              />
             </div>
 
             <WGO wgo={this.state.whatsgoingon} />
