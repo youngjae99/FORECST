@@ -1,7 +1,7 @@
 <img src="https://raw.githubusercontent.com/youngjae99/CS473DesignProject-FORECST/master/src/logo.png" height="60" />
+
 # Forecst
 > KAIST CS473 Introduction to Social Computing Design Project 
-* Online programming hackathons platform
 
 
 ## Table of contents
