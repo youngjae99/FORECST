@@ -52,6 +52,7 @@ class WGO extends Component {
                     <div style={{marginTop:"16px"}}>
                         <img src={logo(item.data().mode)} style = {typeimgStyle} />
                         {item.data().content}
+                        <div style={{fontSize: 11, float: 'right'}}>(2 min ago)</div>
                     </div>
                 )}
         />

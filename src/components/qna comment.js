@@ -8,6 +8,7 @@ import lv1 from '../level_tree/lv1.png';
 import lv2 from '../level_tree/lv2.png';
 import {getLevel} from '../actions/authentication';
 import PropTypes from 'prop-types';
+import Profile from './profile';
 
 
 const { Panel } = Collapse;
@@ -142,9 +143,9 @@ class QnAComment extends Component {
           />
         }
         avatar={
-          <Avatar
-          icon={profileTree}
-          />
+          <Profile
+            writer={this.props.status.currentUser}>
+          </Profile>
         }
       />
       </>
@@ -155,24 +156,23 @@ class QnAComment extends Component {
         <List
             className="comment-list"
             header={`${comments.length} answers`}
-            itemLayout="horizontal"
+            itemLayout="vertical"
             dataSource={comments}
             renderItem={item => (
-                <li>
+                // <li>
                 <Comment
                     // actions={item.actions}
                     author={item.author}
                     content={item.content}
-                    datetime={item.datetime}
+                    datetime={item.datetime.fromNow}
                     avatar={
-                      <Avatar
-                        src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                        alt="Han Solo"
-                      />
+                      <Profile
+                        writer={item.author}>
+                      </Profile>
                     }
                 />
-                {/* {this.getPoints(item.author)} */}
-                </li>
+                // {/* {this.getPoints(item.author)} */}
+                // </li>
             )}
             />
         {this.props.status.isLoggedIn ? addComment : null}

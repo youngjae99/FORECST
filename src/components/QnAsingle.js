@@ -46,25 +46,29 @@ class QnAsingle extends Component {
                         {/* <img src={item.data().photo} style={profileStyle} alt="profileimg"/> */}
                         <Space style={{marginLeft: '16px', marginRight: '16px'}}>
                             `<div style={{fontFamily: "Roboto", width: 1000, margin: "auto", paddingTop: 20}}>
-                                <Row>
-                                    <Col span={8}>
-                                        <h4>{item.data().writer}</h4>
-                                    </Col>
-                                    <Col span={20}>
+                                    <Row>
                                         <h3 style={{fontSize: 30}}>
                                             {item.data().title}
                                         </h3>
-                                    </Col>
-                                </Row>
-                                <Row>
+                                    </Row>
+                                    <Row style={{float: 'right'}}>
+                                        <h4 style={{fontSize: 16, marginRight: '6px'}}>Asked by </h4>
+                                        <h4 style={{fontSize: 20}}>{item.data().writer}</h4>
+                                        
+                                    </Row>
                                     <Divider/>
-                                    <div style={{float: "right"}}>
-                                        <h6>Likes | {item.data().likes}</h6>
-                                        <h6 style={{marginLeft: '16px'}}>Views | {item.data().views}</h6>
-                                    </div>
-                                </Row>
-                                    <div style={{fontSize: 20}}>{item.data().writing}</div>
-                                    <QnAComment posting = {item.id}  id ={item.data().id}></QnAComment>`
+                            
+                                    <Row>
+                                        <Row style={{marginBottom: '20px'}}>
+                                            <h6>Likes | {item.data().likes}</h6>
+                                            <h6 style={{marginLeft: '16px'}}>Views | {item.data().views}</h6>
+                                        </Row>
+                                        <Row>
+                                            <text style={{fontSize: 20}}>{item.data().writing}</text>
+                                            `
+                                        </Row>
+                                        <QnAComment posting = {item.id}  id ={item.data().id}></QnAComment>
+                                    </Row>
                                 {/* </Row> */}
                             </div>
                         </Space>
