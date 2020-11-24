@@ -169,7 +169,7 @@ class CampPage extends React.Component {
           <Layout
             style={{
               marginLeft: 200,
-              marginRight: 200,
+              marginRight: 300,
               overflow: "auto",
               height: "100vh",
               width: "match-parent"
@@ -189,7 +189,7 @@ class CampPage extends React.Component {
               right: 0,
               padding: 15,
             }}
-
+            width="300"
           >
             <div
               style={{
