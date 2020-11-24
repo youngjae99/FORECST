@@ -6,7 +6,6 @@
 
 ## Table of contents
 * [General info](#general-info)
-* [Screenshots](#screenshots)
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [Features](#features)
@@ -18,9 +17,6 @@
 Owing to COVID19, since it is not possible to conduct programming hackathons, which provide opportunities to meet other programmers directly and grow one's programming ability for novice programmers, we created a platform 'Forecst' that opens hackathons for them. 
 
 Forecst helps users to get easily motivated to keep doing their work on their project by seeing the freely, easily shared development processes and compete with others through the ranking made at the end of the hackathon. Users can also grow a 'forest' together, which is a collection of 'trees'(an object that the user gets to grow through earning points by doing some activities in the platform) of each user.
-
-## Screenshots
-![Example screenshot](./img/screenshot.png)
 
 ## Technologies
 * React - version 17.0.1
@@ -36,20 +32,48 @@ git commit -m 'initial commit'
 git remote add origin https://github.com/username/repository-name.git
 git push origin master
 ```
+you need these yarn modules
 
-## Code Examples
-Show examples of usage:
-`put-your-code-here`
+```
+ "dependencies": {
+    "@ant-design/icons": "4.3.0",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "antd": "^4.8.3",
+    "antd-mobile": "^2.3.4",
+    "firebase": "^8.0.2",
+    "firebase-tools": "^8.16.2",
+    "gh-pages": "^3.1.0",
+    "react": "^17.0.1",
+    "react-addons-update": "^15.6.2",
+    "react-dom": "^17.0.1",
+    "react-highlight-words": "^0.16.0",
+    "react-infinite-scroller": "^1.2.4",
+    "react-redux": "^7.2.2",
+    "react-router": "^3.2.6",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.0",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
+    "reqwest": "^2.0.5",
+    "typeface-roboto": "^1.1.13",
+    "web-vitals": "^0.2.4"
+}
+```
 
 ## Features
-List of features ready and TODOs for future development
-* Awesome feature 1
-* Awesome feature 2
-* Awesome feature 3
+List of features we support
+* Login Join Hackathon
+* Hackathon Feed
+* Hackathon QnA Board
+* Growing Tree
+* Vote for the Projects
 
-To-do list:
-* Wow improvement to be done 1
-* Wow improvement to be done 2
+To-do list: (improvement to be done)
+* fix profile page design
+* project list element add
+* watering(like) undo
 
 ## Status
 Project is: _in progress_
