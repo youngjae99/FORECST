@@ -110,7 +110,7 @@ class CampPage extends React.Component {
 
     return (
       <Layout style={{fontFamily: 'Roboto', position: "fixed", overflow: "hidden"}}>
-        <Header style={{ background: '#fff', paddingTop: 15, paddingLeft:30}}>
+        <Header style={{ background: '#fff', paddingTop: 15, paddingLeft:30, borderBottom: "1px solid var(--colors-border)"}}>
           <div>
             <Title level={3} id="camptitle" style={{ margin: 0, padding: 0 }}>
               CAMP | Make an application for the pandemic COVID 19 situation!
@@ -127,6 +127,7 @@ class CampPage extends React.Component {
               position: "fixed",
               left: 0,
             }}
+            width="300"
             theme="light"
           >
             <Menu theme="light" mode="inline" defaultSelectedKeys={["1"]}>
@@ -158,10 +159,9 @@ class CampPage extends React.Component {
                 grid={{gutter:16,}}
                 dataSource={this.state.forest}
                 renderItem={item => (
-                  <div>
+                  <div style ={{margin:"5px"}}>
                     <img src={getTree(item.data().point)} style={{width: "50px", height: "50px", margin: "5px"}}></img>
-                    <div style ={{margin:"5px",fontSize:"2px"}}>{item.id}</div>
-                    
+                    <div style ={{marginBotton:"5px",fontSize:"13px", textAlign:"center"}}>{item.id}</div>
                   </div>
                 )}
               />
@@ -169,7 +169,7 @@ class CampPage extends React.Component {
 
           <Layout
             style={{
-              marginLeft: 200,
+              marginLeft: 300,
               marginRight: 300,
               overflow: "auto",
               height: "100vh",

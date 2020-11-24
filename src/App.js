@@ -24,7 +24,7 @@ class App extends React.Component {
       <Provider store={store}>
         <Router history={browserHistory}>
           <Route path ="/" component={Home}></Route>
-          <Route path ="/CS473_DesignProject" component={MainPage}></Route>
+          <Route path ="/CS473DesignProject-FORECST" component={MainPage}></Route>
           <Route component={Login} path="/login"/>
           <Route component={Register} path="/register"/>
           <Route component={CampJoin} path="/campjoin"/>

@@ -15,7 +15,7 @@ class CampJoin extends React.Component{
                     <img src={campjoin} style={{width: 500}}></img>
                 </div>
                 <Button type='primary' style={{marginTop: 10}}>
-                    <Link to={"/CS473_DesignProject"} style={{fontSize: 18}}>Go to Main Page</Link>
+                    <Link to={"/CS473DesignProject-FORECST"} style={{fontSize: 18}}>Go to Main Page</Link>
                 </Button>
             </div>
         )

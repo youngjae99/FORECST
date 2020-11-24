@@ -25,7 +25,7 @@ class Forecst extends React.Component{
     }
 
     handleHome(){
-        this.props.history.push('/CS473_DesignProject');
+        this.props.history.push('/CS473DesignProject-FORECST');
     }
 
     componentDidMount(){
