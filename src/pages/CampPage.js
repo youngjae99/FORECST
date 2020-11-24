@@ -79,7 +79,7 @@ class CampPage extends React.Component {
   getMarker = async () => {
       const snapshot = await db.collection('Users').get()
       console.log(snapshot.docs)
-      this.setState({forest: snapshot.docs.map(doc=>doc.data())})
+      this.setState({forest: snapshot.docs})
   }
 
 
@@ -159,7 +159,8 @@ class CampPage extends React.Component {
                 dataSource={this.state.forest}
                 renderItem={item => (
                   <div>
-                    <img src={getTree(item.point)} style={{width: "50px", height: "50px", margin: "5px"}}></img>
+                    <img src={getTree(item.data().point)} style={{width: "50px", height: "50px", margin: "5px"}}></img>
+                    <div style ={{margin:"5px",fontSize:"2px"}}>{item.id}</div>
                     
                   </div>
                 )}
