@@ -56,7 +56,7 @@ class Feed extends Component {
             dataSource={this.props.feed}
             renderItem={item => (
             <List.Item
-                style={{background: "#fff", marginTop: 10}}
+                style={{background: "#fff", marginTop: 10, borderRadius: "12px"}}
                 key={item.title}
                 extra={
                     <Avatar
