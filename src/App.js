@@ -1,6 +1,6 @@
 import React from "react";
 // Pages
-import {Home, Login, Register, CampHome, CampQnA, CampRank, MainPage, MyPage, CampJoin, UploadPost, CampPage, UploadQnA, CampRankResult} from './pages';
+import {Home, Login, Register, CampHome, CampQnA, CampRank, MainPage, MyPage, CampJoin, UploadPost, CampPage, UploadQnA, CampRankResult, Explore} from './pages';
 // Components
 import QnAsingle from "./components/QnAsingle";
 // Router
@@ -25,6 +25,7 @@ class App extends React.Component {
         <Router history={browserHistory}>
           <Route path ="/" component={Home}></Route>
           <Route path ="/CS473DesignProject-FORECST" component={MainPage}></Route>
+          <Route component={Explore} path="/explore"/>
           <Route component={Login} path="/login"/>
           <Route component={Register} path="/register"/>
           <Route component={CampJoin} path="/campjoin"/>

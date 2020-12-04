@@ -5,6 +5,7 @@ export {default as CampHome} from './CampQnA';
 export {default as CampQnA} from './CampQnA';
 export {default as CampRank} from './CampRank';
 export {default as MainPage} from './MainPage';
+export {default as Explore} from './Explore';
 export {default as MyPage} from './MyPage';
 export {default as Home} from './Home';
 export {default as CampJoin} from './CampJoin';
