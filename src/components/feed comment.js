@@ -1,18 +1,38 @@
 import React, { Component } from "react";
-import { Comment, Form, Button, List, Input, Space, Spin } from "antd";
+import {
+  Comment,
+  Form,
+  Button,
+  List,
+  Input,
+  Space,
+  Spin,
+  Popconfirm,
+  message,
+} from "antd";
 import moment from "moment";
 import { db } from "../firebase";
 import { connect } from "react-redux";
 import { getLevel } from "../actions/authentication";
 import { backend_Feed_watering } from "../backend";
-import watering1 from "../water1.png";
-import watering2 from "../water2.png";
+import watering0 from "../watericon0.png";
+import watering1 from "../watericon1.png";
 import { MessageOutlined } from "@ant-design/icons";
 import InfiniteScroll from "react-infinite-scroller";
 import "./feedcomment.css";
 import Profile from "./profile";
 
 const count = 1;
+
+function confirm(e) {
+  console.log(e);
+  message.success("Click on Yes");
+}
+
+function cancel(e) {
+  console.log(e);
+  message.error("Click on No");
+}
 
 const Editor = ({ onChange, onSubmit, submitting, value, username }) => (
   <>
@@ -44,7 +64,7 @@ class FeedComment extends Component {
     this.state = {
       submitting: false,
       value: "",
-      watered: 1,
+      watered: 0,
       point: 0,
       initLoading: true,
       loading: false,
@@ -72,9 +92,9 @@ class FeedComment extends Component {
       initLoading: false,
     });
 
-    if(this.state.comments.length>0 && this.state.list.length<1){
+    if (this.state.comments.length > 0 && this.state.list.length < 1) {
       this.setState({
-          list: this.state.comments.slice(0,1)
+        list: this.state.comments.slice(0, 1),
       });
     }
 
@@ -114,14 +134,13 @@ class FeedComment extends Component {
       });
       this.getComments();
     }, 1000);
-    
   };
 
   handleWatering = (e) => {
-    if (this.state.watered == 1) {
+    if (this.state.watered == 0) {
       backend_Feed_watering(this.props.posting, this.props.id);
       setTimeout(() => {
-        this.setState({ watered: 2 });
+        this.setState({ watered: 1 });
       }, 100);
     }
   };
@@ -135,11 +154,13 @@ class FeedComment extends Component {
   onLoadMore = () => {
     const data = this.state.list;
     const cur_len = this.state.list.length;
-    
+
     console.log("data", data);
     this.setState(
       {
-        list: this.state.list.concat(JSON.parse(JSON.stringify(this.state.comments))),
+        list: this.state.list.concat(
+          JSON.parse(JSON.stringify(this.state.comments))
+        ),
         loading: false,
       },
       () => {
@@ -163,12 +184,19 @@ class FeedComment extends Component {
     );
 
     const watering = () => {
-      if (this.state.watered == 1) {
-        return watering1;
-      } else return watering2;
+      if (this.state.watered == 0) {
+        return watering0;
+      } else return watering1;
     };
 
-    const { list, submitting, value, initLoading, loading, comments } = this.state;
+    const {
+      list,
+      submitting,
+      value,
+      initLoading,
+      loading,
+      comments,
+    } = this.state;
 
     const addComment = (
       <>
@@ -253,13 +281,29 @@ class FeedComment extends Component {
           className="comment-list"
           header={
             <div>
-              <a onClick={this.handleWatering} style={{ float: "right" }}>
-                <img
-                  src={watering()}
-                  alt="wc"
-                  style={{ width: "25px", height: "25px" }}
-                />
-              </a>
+              {this.state.watered==0?<Popconfirm
+                title="Are you sure to water this post?"
+                onConfirm={this.handleWatering}
+                onCancel={null}
+                okText="Yes"
+                cancelText="No"
+              >
+                <a onClick={null} style={{ float: "right" }}>
+                  <img
+                    src={watering()}
+                    alt="wc"
+                    style={{ width: "25px", height: "25px" }}
+                  />
+                </a>
+              </Popconfirm>:<a onClick={null} style={{ float: "right" }}>
+                  <img
+                    src={watering()}
+                    alt="wc"
+                    style={{ width: "25px", height: "25px" }}
+                  />
+                </a>}
+              
+
               <IconText
                 icon={MessageOutlined}
                 text={comments.length}
@@ -269,7 +313,7 @@ class FeedComment extends Component {
           }
           loading={initLoading}
           itemLayout="horizontal"
-          loadMore = {comments.length>list.length?loadMore : null}
+          loadMore={comments.length > list.length ? loadMore : null}
           dataSource={list}
           renderItem={(item) => (
             <li>
