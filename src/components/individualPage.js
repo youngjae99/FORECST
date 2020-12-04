@@ -10,8 +10,8 @@ import {getLevel} from '../actions/authentication';
 import {MyFeed} from '../components';
 import { db } from "../firebase";
 import PropTypes from "prop-types";
-import { Progress } from 'antd';
 import {backend_makeToDo, backend_getToDo} from '../backend';
+import { Progress } from 'antd';
 
 const {TabPane}=Tabs;
 
@@ -31,8 +31,8 @@ const Editor = ({ onChange, value}) => (
             </div>
         </Col>
     </Row>
-  );
-
+);
+  
 class IndividualPage extends React.Component{
 
     constructor(props){
@@ -40,6 +40,8 @@ class IndividualPage extends React.Component{
         
         this.state={
             point: 0,
+            todo: [],
+            completed: [],
             feed: [],
             userName: "",
         }
@@ -47,6 +49,7 @@ class IndividualPage extends React.Component{
 
     componentWillMount(){
         this.getMyPost();
+        this.getMyToDo();
         this.getMarker();
     }
 
@@ -55,7 +58,14 @@ class IndividualPage extends React.Component{
         console.log(snapshot.docs)
         this.setState({feed:snapshot.docs})
     }
+    getMyToDo = async () =>{
+        const todo = await db.collection("Users").doc(this.props.userName).collection("todo").where('check','==',false).get();
+        const completed = await db.collection("Users").doc(this.props.userName).collection("todo").where('check','==',true).get();
 
+        this.setState({todo:todo.docs.map(doc=>doc.data())});
+        this.setState({completed:completed.docs.map(doc=>doc.data())});
+
+    }
     getMarker = async () => {
         const snapshot = await db.collection('Users').doc(this.props.userName).get()
         console.log(snapshot.data().point)
@@ -65,12 +75,8 @@ class IndividualPage extends React.Component{
     //my view 보여주는 코드가 필요함
     render(){
         const MyView=(
-            <div style={{width: 1000, margin: "auto", marginTop: 20, marginBottom: 50}}>
+            <div style={{width: 1000, margin: "auto", marginTop: 20}}>
                     <MyFeed feed={this.state.feed}></MyFeed>
-
-                    <Button type='primary' style={{float: "right"}}>
-                        <Link to={"/uploadpost"} style={{fontSize: 18}}>New Post</Link>
-                    </Button>
             </div>
         )
 
@@ -84,7 +90,7 @@ class IndividualPage extends React.Component{
                 percent={99.9}
                 style={{marginBottom: 20}}
                 />
-
+                
                 <Col span={12}>
                     <h5>To-do List</h5>
                     <List
@@ -92,21 +98,22 @@ class IndividualPage extends React.Component{
                         dataSource={this.state.todo}
                         renderItem={item => (
                             <List.Item>
-                                {item}
+                                {item.todo}
                             </List.Item>
                         )}
                     />
+                    <Editor>
 
-                    <Editor></Editor>
+                    </Editor>
                 </Col>
                 <Col span={12}>
                     <h5>Completed!</h5>
                     <List
                         bordered
-                        dataSource={this.state.todo}
+                        dataSource={this.state.completed}
                         renderItem={item => (
                             <List.Item>
-                                {item}
+                                {item.todo}
                             </List.Item>
                         )}
                     />
@@ -190,6 +197,10 @@ class IndividualPage extends React.Component{
                             {MyView}
                         </TabPane>
                     </Tabs>
+
+                    <Button type='primary' style={{float: "right"}}>
+                        <Link to={"/uploadpost"} style={{fontSize: 18}}>New Post</Link>
+                    </Button>
                 </div>
 
             </div>
