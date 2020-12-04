@@ -133,14 +133,23 @@ class IndividualPage extends React.Component{
                 style={{marginBottom: 20}}
                 />
 
-                <Col span={12}>
+                <Col span={12} style={{paddingRight: 5}}>
                     <Row>
                         <Col span={20}>
                             <h5>To-do List</h5>
                         </Col>
                         <Col span={4}>
                             <div style={{float: "right"}}>
-                                <Popover >Popover</Popover>
+                                <Popover
+                                title="What should we write in to-do list?"
+                                content={(
+                                    <div>
+                                        <p>Make tab structure</p>
+                                        <p>Implement authentication</p>
+                                    </div>
+                                )}>
+                                TODO
+                                </Popover>
                             </div>
                         </Col>
                     </Row>
@@ -163,7 +172,8 @@ class IndividualPage extends React.Component{
                     /> :
                     null}
                 </Col>
-                <Col span={12}>
+
+                <Col span={12} style={{paddingLeft: 5}}>
                     <h5>Completed!</h5>
                     <List
                         bordered
