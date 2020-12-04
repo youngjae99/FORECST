@@ -11,6 +11,7 @@ import {MyFeed} from '../components';
 import { db } from "../firebase";
 import PropTypes from "prop-types";
 import { Progress } from 'antd';
+import {backend_makeToDo, backend_getToDo} from '../backend';
 
 const {TabPane}=Tabs;
 
@@ -39,6 +40,8 @@ class IndividualPage extends React.Component{
         
         this.state={
             point: 0,
+            todo: [],
+            completed: [],
             feed: [],
             userName: "",
         }
@@ -46,6 +49,7 @@ class IndividualPage extends React.Component{
 
     componentWillMount(){
         this.getMyPost();
+        this.getMyToDo();
         this.getMarker();
     }
 
@@ -54,7 +58,14 @@ class IndividualPage extends React.Component{
         console.log(snapshot.docs)
         this.setState({feed:snapshot.docs})
     }
+    getMyToDo = async () =>{
+        const todo = await db.collection("Users").doc(this.props.userName).collection("todo").where('check','==',false).get();
+        const completed = await db.collection("Users").doc(this.props.userName).collection("todo").where('check','==',true).get();
 
+        this.setState({todo:todo.docs.map(doc=>doc.data())});
+        this.setState({completed:completed.docs.map(doc=>doc.data())});
+
+    }
     getMarker = async () => {
         const snapshot = await db.collection('Users').doc(this.props.userName).get()
         console.log(snapshot.data().point)
@@ -91,7 +102,7 @@ class IndividualPage extends React.Component{
                         dataSource={this.state.todo}
                         renderItem={item => (
                             <List.Item>
-                                {item}
+                                {item.todo}
                             </List.Item>
                         )}
                     />
@@ -102,10 +113,10 @@ class IndividualPage extends React.Component{
                     <h5>Completed!</h5>
                     <List
                         bordered
-                        dataSource={this.state.todo}
+                        dataSource={this.state.completed}
                         renderItem={item => (
                             <List.Item>
-                                {item}
+                                {item.todo}
                             </List.Item>
                         )}
                     />
