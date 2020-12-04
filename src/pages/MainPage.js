@@ -30,15 +30,15 @@ class MainPage extends React.Component {
                 <div className="col-lg-6">
                   <div className="text-container">
                     <h1>
-                      <span className="turquoise">Online Hackathon </span> 
-                       Everyone codes their own project together
+                      <span className="turquoise"> Idea into Reality </span> 
+                       Code and Learn, <br></br>Do your own project with others.
                     </h1>
                     <p className="p-large">
-                    Get motivation to finish the project, and freely share your coding
+                    Online Hackathon platform that makes you get motivation to finish the project, and freely share your coding
                     experiences.
                     </p>
-                    <a className="btn-solid-lg page-scroll" href="/camp">
-                      DISCOVER
+                    <a className="btn-solid-lg page-scroll" href="/explore">
+                      EXPLORE
                     </a>
                   </div>
                 </div>

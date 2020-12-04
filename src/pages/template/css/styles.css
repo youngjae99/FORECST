@@ -135,6 +135,10 @@ a.white {
 	color: #00bfd8;
 }
 
+.primecolor {
+	color: #5BB462;
+}
+
 .btn-solid-reg {
 	display: inline-block;
 	padding: 1.1875rem 2.125rem 1.1875rem 2.125rem;
@@ -660,6 +664,7 @@ input[type='checkbox'] {
 	color: #393939;
 	text-decoration: none;
 	transition: all 0.2s ease;
+	font: 800 1.2rem/0.875rem "Raleway", sans-serif;
 }
 
 .navbar-custom .nav-item .nav-link:hover,
@@ -1753,13 +1758,13 @@ a:hover.back-to-top {
 
 	.navbar-custom .nav-item .nav-link {
 		padding: 0.25rem 0.75rem 0.25rem 0.75rem;
-		color: #fff;
+		color: #5BB462;
 		opacity: 0.8;
 	}
 	
 	.navbar-custom .nav-item .nav-link:hover,
 	.navbar-custom .nav-item .nav-link.active {
-		color: #fff;
+		color: #5BB462;
 		opacity: 1;
 	}
 
@@ -1776,7 +1781,7 @@ a:hover.back-to-top {
 	
 	.navbar-custom.top-nav-collapse .nav-item .nav-link:hover,
 	.navbar-custom.top-nav-collapse .nav-item .nav-link.active {
-		color: #00bfd8;
+		color:#5BB462;
 	}
 
 	.navbar-custom .dropdown-menu {
@@ -1784,6 +1789,7 @@ a:hover.back-to-top {
 		padding-bottom: 1rem;
 		border-top: 0.75rem solid rgba(0, 0, 0, 0);
 		border-radius: 0.25rem;
+		font: 600 0.875rem/0.875rem "Raleway", sans-serif;
 	}
 
 	.navbar-custom.top-nav-collapse .dropdown-menu {
@@ -2032,7 +2038,7 @@ a:hover.back-to-top {
 
 	/* Header */
 	.header .header-content {
-		padding-top: 12.5rem;
+		padding-top: 8rem;
 	}
 
 	.header .text-container {

@@ -59,7 +59,7 @@ Profile.propTypes={
 };
 
 Profile.defaultProps={
-    writer: 'Jisu',
+    writer: 'User',
     point: 0,
 }
 
