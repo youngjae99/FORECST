@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import { PageHeader, Button, Avatar, Row, Col } from "antd";
 import logo from "../logo.png";
 import { connect } from "react-redux";
 import lv0 from "../level_tree/lv0.png";

@@ -8,7 +8,9 @@ import lv2 from '../level_tree/lv2.png';
 import lv3 from '../level_tree/lv3.png';
 import {getLevel} from '../actions/authentication';
 import {MyFeed} from '../components';
-import { db,storage } from "../firebase";
+import { db } from "../firebase";
+import PropTypes from "prop-types";
+
 
 const {TabPane}=Tabs;
 
@@ -20,6 +22,7 @@ class MyPage extends React.Component{
         this.state={
             point: 0,
             feed: [],
+            userName: "",
         }
     }
 
@@ -125,10 +128,10 @@ class MyPage extends React.Component{
 
                 <div style={{width: 1000, margin: "auto"}}>
                     <Tabs defaultActiveKey="1" type="card" size={"large"} style={{margin: "auto", marginTop: 20}}>
-                        <TabPane tab="MY" key="1">
+                        <TabPane tab="TO DO" key="1">
                             {MyView}
                         </TabPane>
-                        <TabPane tab="BOOKMARK" key="2">
+                        <TabPane tab="MY" key="2">
                             {BookmarkView}
                         </TabPane>
                     </Tabs>
@@ -141,6 +144,14 @@ class MyPage extends React.Component{
             </div>
         );
     }
+};
+
+MyPage.propTypes={
+    userName: PropTypes.string,
+};
+
+MyPage.defaultProps={
+    userName: "Youngjae",
 };
 
 const mapStateToProps=(state)=>{
