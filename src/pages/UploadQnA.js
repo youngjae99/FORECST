@@ -29,7 +29,7 @@ function UploadQnA(props){
       const handlePost = async() =>{
         const currentUser = await props.status.currentUser
         console.log(currentUser)
-            db.collection('QnAList').doc().set({key: 1, likes: 23, views: 45, no: 1, writer:currentUser, writing:writing, title:title, date: firebase.firestore.Timestamp.now()});
+            db.collection('QnAList').doc().set({key: 1, likes: 0, writer:currentUser, writing:writing, title:title, date: firebase.firestore.Timestamp.now()});
             console.log('Uploaded a blob or file!');
             backend_Point(currentUser,"question")
             backend_WGO(currentUser,"question")
@@ -100,7 +100,7 @@ function UploadQnA(props){
 
                     <div style={{textAlign: "right"}}>
                         <Button type='primary' style={{marginLeft: 100}} onClick={handlePost}>
-                            <Link to={"/mypage"} style={{fontSize: 18}}>UPLOAD</Link>
+                            <Link to={"/camp"} style={{fontSize: 18}}>UPLOAD</Link>
                         </Button>
                     </div>
                 </Col>

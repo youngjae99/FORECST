@@ -9,6 +9,7 @@ import lv2 from '../level_tree/lv2.png';
 import {getLevel} from '../actions/authentication';
 import PropTypes from 'prop-types';
 import Profile from './profile';
+import {backend_QnA_Likes} from "../backend";
 
 
 const { Panel } = Collapse;
@@ -45,6 +46,7 @@ class QnAComment extends Component {
       comments: [],
       submitting: false,
       value: '',
+      liked : 1,
       point: 0,
     };    
     console.log(this.props.status.currentUser)
@@ -76,8 +78,9 @@ class QnAComment extends Component {
       submitting: true,
     });
 
-    setTimeout(() => {
-      db.collection('QnAList').doc(this.props.posting).collection("Comments").doc().set({author:this.props.status.currentUser, content:this.state.value, datetime:moment().valueOf()})
+
+  setTimeout(() => {
+    db.collection('QnAList').doc(this.props.posting).collection("Comments").doc().set({author:this.props.status.currentUser, content:this.state.value, datetime:moment().valueOf()})
       this.setState({
         submitting: false,
         value: '',
@@ -92,6 +95,13 @@ class QnAComment extends Component {
       });
     }, 1000);
   };
+
+  handleLikes = (id) => {
+    if(this.state.liked == 1){
+      backend_QnA_Likes(id)
+      this.setState({liked:2})
+    }
+  }
 
   handleChange = e => {
     this.setState({
@@ -160,17 +170,20 @@ class QnAComment extends Component {
             dataSource={comments}
             renderItem={item => (
                 // <li>
-                <Comment
-                    // actions={item.actions}
-                    author={item.author}
-                    content={item.content}
-                    datetime={item.datetime.fromNow}
-                    avatar={
-                      <Profile
-                        writer={item.author}>
-                      </Profile>
-                    }
-                />
+                <div>
+                  <Comment
+                      // actions={item.actions}
+                      author={item.author}
+                      content={item.content}
+                      datetime={item.datetime.fromNow}
+                      avatar={
+                        <Profile
+                          writer={item.author}>
+                        </Profile>
+                      }
+                  />
+                  <Button onClick={this.handleLikes(item.id)}>Likes</Button>
+                </div>
                 // {/* {this.getPoints(item.author)} */}
                 // </li>
             )}

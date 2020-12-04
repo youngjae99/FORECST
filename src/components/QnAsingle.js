@@ -29,6 +29,7 @@ class QnAsingle extends Component {
         console.log(this.state.qna)
     }
 
+
     componentDidMount(){
         this.getMarker();
         this.setTitle();
@@ -67,7 +68,9 @@ class QnAsingle extends Component {
                                             <text style={{fontSize: 20}}>{item.data().writing}</text>
                                             `
                                         </Row>
-                                        <QnAComment posting = {item.id}  id ={item.data().id}></QnAComment>
+                                        <QnAComment posting = {item.id}  id ={item.data().id}>
+                                        </QnAComment>
+                
                                     </Row>
                                 {/* </Row> */}
                             </div>
