@@ -139,6 +139,16 @@ import 'antd/dist/antd.css';
             key:key, no: no, title: title, content : content, writer: id, date: date, likes: likes, views: views
         }) 
     }
+    export const backend_makeToDo =(id,todo)=>{
+        db.collection("Users").doc(id).collection("todo").doc(todo).set({check:false,todo:todo})
+    }
+    export const backend_getToDo =async (id)=>{
+        console.log(id);
+        const todo = await db.collection("Users").doc(id).collection("todo").get();
+        const todo2 = todo.docs.map(doc=>doc.data());
+        console.log(todo2)
+        return todo2;
+    }
 
 
 
