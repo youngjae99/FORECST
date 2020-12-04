@@ -79,9 +79,9 @@ class Forecst extends React.Component {
         ]}
       />
       */
-      <a className="nav-link page-scroll" href="/login">
+      <Link className="nav-link page-scroll" to="/login">
         Sign in
-      </a>
+      </Link>
     );
 
     const mypageButton = (
@@ -107,7 +107,6 @@ class Forecst extends React.Component {
           aria-haspopup="true"
           aria-expanded="false"
         >
-          
           <Profile writer={this.props.currentUser}></Profile>
           {this.props.currentUser}
         </a>
@@ -148,12 +147,12 @@ class Forecst extends React.Component {
           padding: "2.125rem 5rem 2.125rem 5rem",
         }}
       >
-        <a
+        <Link
           className="navbar-brand logo-image"
-          href="/CS473DesignProject-FORECST"
+          to="/CS473DesignProject-FORECST"
         >
           <img src={logo} alt="alternative" />
-        </a>
+        </Link>
 
         <button
           className="navbar-toggler"
@@ -178,9 +177,9 @@ class Forecst extends React.Component {
                 flexDirection: "column",
               }}
             >
-              <a className="nav-link page-scroll" href="/explore">
+              <Link className="nav-link page-scroll" to="/explore">
                 Explore Hackathons
-              </a>
+              </Link>
             </li>
             <li
               className="nav-item"
