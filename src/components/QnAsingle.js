@@ -38,42 +38,38 @@ class QnAsingle extends Component {
     render(){
         return(
             <List
-                itemLayout="vertical"
-                size="large"
-                dataSource={this.state.qna}
-                renderItem={item => (
-                    <div>
-                        {/* <img src={item.data().photo} style={profileStyle} alt="profileimg"/> */}
-                        <Space style={{marginLeft: '16px', marginRight: '16px'}}>
-                            `<div style={{fontFamily: "Roboto", width: 1000, margin: "auto", paddingTop: 20}}>
-                                    <Row>
-                                        <h3 style={{fontSize: 30}}>
-                                            {item.data().title}
-                                        </h3>
-                                    </Row>
-                                    <Row style={{float: 'right'}}>
-                                        <h4 style={{fontSize: 16, marginRight: '6px'}}>Asked by </h4>
-                                        <h4 style={{fontSize: 20}}>{item.data().writer}</h4>
-                                        
-                                    </Row>
-                                    <Divider/>
+            itemLayout="vertical"
+            size="large"
+            dataSource={this.state.qna}
+            renderItem={item => (
+                <div style={{width: 1000, margin: "auto", fontFamily: "Roboto", marginTop: 20}}>
+                    <Space> 
+                        `<div style={{width: 1000, margin: "auto"}}>
+                            <Row>
+                                <Col span={20} style={{fontSize: 25, fontWeight: "bold"}}>{item.data().title}</Col>
+                                <Col span={4} style={{fontSize: 15, paddingTop: 10}}>
+                                    <div style={{float: 'right'}}>
+                                      Asked by {item.data().writer}
+                                    </div>
+                                </Col>
+                            </Row>
+
+                            <Divider/>
                             
-                                    <Row>
-                                        <Row style={{marginBottom: '20px'}}>
-                                            <h6>Likes | {item.data().likes}</h6>
-                                            <h6 style={{marginLeft: '16px'}}>Views | {item.data().views}</h6>
-                                        </Row>
-                                        <Row>
-                                            <text style={{fontSize: 20}}>{item.data().writing}</text>
-                                            `
-                                        </Row>
-                                        <QnAComment posting = {item.id}  id ={item.data().id}></QnAComment>
-                                    </Row>
-                                {/* </Row> */}
+                            <Row style={{marginBottom: '20px'}}>
+                                <h6>Likes | {item.data().likes}</h6>
+                                <h6 style={{marginLeft: '16px'}}>Views | {item.data().views}</h6>
+                            </Row>
+
+                            <text style={{fontSize: 20}}>{item.data().writing}</text>
+
+                            <div style={{paddingTop: 20}}>
+                                <QnAComment posting = {item.id} id ={item.data().id}></QnAComment>
                             </div>
-                        </Space>
-                    </div>
-                )}
+                        </div>
+                    </Space>
+                </div>
+            )}
             />
         )
     }
