@@ -14,22 +14,36 @@ import {backend_makeToDo, backend_getToDo} from '../backend';
 
 const {TabPane}=Tabs;
 
-const Editor = ({ onChange, value}) => (
-    <Row style={{marginTop: 10}}>
-        <Col span={18}>
-            <Input
+// const Editor = ({ onChange, value}) => (
+//     <Row style={{marginTop: 10}}>
+//         <Col span={18}>
+//             <Input
+//             type='text'
+//             onChange={onChange}
+//             value={value}>
+//             </Input>
+//         </Col>
+
+const Editor = ({ onChange, value, submitting, onSubmit}) => (
+    <>
+      <Form.Item>
+        <Input
+            name = 'makeToDo'
             type='text'
             onChange={onChange}
             value={value}>
-            </Input>
-        </Col>
+        </Input>
+      </Form.Item>
+      <Button loading={submitting} onClick={onSubmit}>Add to-do</Button>
+    </>
+// );
 
-        <Col span={6}>
-            <div style={{float: "right"}}>
-                <Button type="primary" style={{fontSize: 18}}>Add to-do</Button>
-            </div>
-        </Col>
-    </Row>
+//         <Col span={6}>
+//             <div style={{float: "right"}}>
+//                 <Button type="primary" style={{fontSize: 18}}>Add to-do</Button>
+//             </div>
+//         </Col>
+//     </Row>
 );
   
 class IndividualPage extends React.Component{
@@ -39,19 +53,52 @@ class IndividualPage extends React.Component{
         
         this.state={
             point: 0,
+            submitting: false,
             todo: [],
             completed: [],
             feed: [],
             userName: "",
+            makeToDo:""
+            
         }
-    }
+        this.handleChange=this.handleChange.bind(this);
 
+    }
+    handleChange = (e) => {
+        let nextState={};
+        nextState[e.target.name]=e.target.value;
+        this.setState(nextState);
+    }
+    handleSubmit = () => {
+        if (!this.state.makeToDo) {
+          return;
+        }
+        this.setState({
+          submitting: true,
+        });
+    
+        setTimeout(() => {
+        backend_makeToDo(this.props.userName, this.state.makeToDo)
+          this.setState({
+            submitting: false,
+            todo: [
+              ...this.state.todo,
+              {
+                check: false,
+                todo:this.state.makeToDo
+              },
+            ],
+            makeToDo:""
+          });
+        }, 1000);
+      };
+    
     componentWillMount(){
         this.getMyPost();
         this.getMyToDo();
         this.getMarker();
     }
-
+    
     getMyPost = async () => {
         const snapshot = await db.collection('Feeds').where("id","==",this.props.userName).get()
         console.log(snapshot.docs)
@@ -116,8 +163,14 @@ class IndividualPage extends React.Component{
                             </List.Item>
                         )}
                     />
-                    {this.props.status.currentUser===this.props.userName ? 
-                    <Editor></Editor> : null}
+                    {/* {this.props.status.currentUser===this.props.userName ? 
+                    <Editor></Editor> : null} */}
+                    <Editor 
+                        onChange ={this.handleChange} 
+                        onSubmit={this.handleSubmit}
+                        submitting={this.state.submitting}
+                        value={this.state.makeToDo}
+                    />
                 </Col>
 
                 <Col span={12}>
