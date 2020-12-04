@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 import { Button, Typography } from "antd";
 import "./MainPage.css";
 
-import "./template/css/style.css";
+import "./template/css/styles.css";
 import "./template/css/swiper.css";
-import "./template/css/maginific-popup.css";
-import "./template/css/boostrap.css";
+import "./template/css/magnific-popup.css";
+import "./template/css/bootstrap.css";
 import "./template/css/fontawesome-all.css";
-
+import mainimage from './template/images/Programming-pana.svg';
 
 
 const { Title } = Typography;
@@ -22,31 +22,31 @@ class MainPage extends React.Component {
   render() {
     const joinPage = (
       <div className="banner">
-        <header id="header" class="header">
-          <div class="header-content">
-            <div class="container">
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="text-container">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,600,700,700i&amp;subset=latin-ext" rel="stylesheet"></link>
+        <header id="header" className="header">
+          <div className="header-content">
+            <div className="container">
+              <div className="row">
+                <div className="col-lg-6">
+                  <div className="text-container">
                     <h1>
-                      <span class="turquoise">StartUp Landing</span> Page
-                      Template Free
+                      <span className="turquoise">Online Hackathon </span> 
+                       Everyone codes their own project together
                     </h1>
-                    <p class="p-large">
-                      Use Evolo free landing page template to promote your
-                      business startup and generate leads for the offered
-                      services
+                    <p className="p-large">
+                    Get motivation to finish the project, and freely share your coding
+                    experiences.
                     </p>
-                    <a class="btn-solid-lg page-scroll" href="#services">
+                    <a className="btn-solid-lg page-scroll" href="/camp">
                       DISCOVER
                     </a>
                   </div>
                 </div>
-                <div class="col-lg-6">
-                  <div class="image-container">
+                <div className="col-lg-6">
+                  <div className="image-container">
                     <img
-                      class="img-fluid"
-                      src="images/header-teamwork.svg"
+                      className="img-fluid"
+                      src={mainimage}
                       alt="alternative"
                     />
                   </div>

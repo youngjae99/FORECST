@@ -54,7 +54,7 @@ body, p {
 	color: #626262; 
 	font: 400 0.875rem/1.375rem "Raleway", sans-serif;
 }
-
+ 
 .p-large {
 	font: 400 1rem/1.5rem "Raleway", sans-serif;
 }
@@ -1264,7 +1264,7 @@ input[type='checkbox'] {
 .slider-2 {
 	padding-top: 7.5rem;
 	padding-bottom: 7rem;
-	background: url('../images/testimonials-background.jpg') center center no-repeat;
+	
 	background-size: cover; 
 }
 
@@ -1410,7 +1410,7 @@ input[type='checkbox'] {
 .form-2 {
 	padding-top: 7rem;
 	padding-bottom: 6.25rem;
-	background: url('../images/contact-background.jpg') center center no-repeat;
+	
 	background-size: cover; 
 }
 
@@ -1856,7 +1856,6 @@ a:hover.back-to-top {
 
 	/* Header */
 	.header {
-		background: url('../images/header-background.jpg') center center no-repeat;
 		background-size: cover; 
 	}
 
