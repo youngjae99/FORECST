@@ -29,9 +29,10 @@ class MyPage extends React.Component{
     }
 
     getMyPost = async () => {
+        console.log("request data for ",this.props.status.currentUser);
         const snapshot = await db.collection('Feeds').where("id","==",this.props.status.currentUser).get()
         console.log(snapshot.docs)
-        this.setState({feed:snapshot.docs})  
+        this.setState({feed:snapshot.docs})
     }
 
     getMarker = async () => {

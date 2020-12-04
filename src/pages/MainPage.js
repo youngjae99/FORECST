@@ -120,16 +120,10 @@ class MainPage extends React.Component {
             </div>
           </div>
         </div>
-        <div className="bannerImgWrap">
-          <div style={{ height: "450px", marginBottom: "-304px" }}>
-            <img
-              src="https://cdn.glitch.com/605e2a51-d45f-4d87-a285-9410ad350515%2Fhomepage-illo-editor.svg?v=1587129125983"
-              alt="Glitch code editor"
-            />
-          </div>
-        </div>
       </div>
     );
+
+    console.log(this.props.status);
 
     return (
       <div style={{ fontFamily: "Roboto" }}>

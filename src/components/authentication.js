@@ -58,7 +58,7 @@ class Authentication extends React.Component{
         else 
         {
             const wait = await db.collection('Users').doc(id).get()
-            console.log(wait.exists);    
+            console.log(wait.exists);
             if(wait.exists){
                 this.props.onLogin(id);
                 console.log("what")

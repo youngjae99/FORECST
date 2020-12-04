@@ -112,9 +112,9 @@ class Forecst extends React.Component {
           {this.props.currentUser}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/mypage">
+          <Link class="dropdown-item" to={"/mypage"}>
             <span class="item-text">MyPage</span>
-          </a>
+          </Link>
           <div class="dropdown-items-divide-hr"></div>
           <a class="dropdown-item" href="privacy-policy.html">
             <span class="item-text">Sign out</span>
