@@ -14,36 +14,22 @@ import {backend_makeToDo, backend_getToDo} from '../backend';
 
 const {TabPane}=Tabs;
 
-// const Editor = ({ onChange, value}) => (
-//     <Row style={{marginTop: 10}}>
-//         <Col span={18}>
-//             <Input
-//             type='text'
-//             onChange={onChange}
-//             value={value}>
-//             </Input>
-//         </Col>
-
-const Editor = ({ onChange, value, submitting, onSubmit}) => (
-    <>
-      <Form.Item>
-        <Input
-            name = 'makeToDo'
+const Editor = ({ onChange, value}) => (
+    <Row style={{marginTop: 10}}>
+        <Col span={18}>
+            <Input
             type='text'
             onChange={onChange}
             value={value}>
-        </Input>
-      </Form.Item>
-      <Button loading={submitting} onClick={onSubmit}>Add to-do</Button>
-    </>
-// );
+            </Input>
+        </Col>
 
-//         <Col span={6}>
-//             <div style={{float: "right"}}>
-//                 <Button type="primary" style={{fontSize: 18}}>Add to-do</Button>
-//             </div>
-//         </Col>
-//     </Row>
+        <Col span={6}>
+            <div style={{float: "right"}}>
+                <Button type="primary" style={{fontSize: 18}}>Add to-do</Button>
+            </div>
+        </Col>
+    </Row>
 );
   
 class IndividualPage extends React.Component{
@@ -163,14 +149,8 @@ class IndividualPage extends React.Component{
                             </List.Item>
                         )}
                     />
-                    {/* {this.props.status.currentUser===this.props.userName ? 
-                    <Editor></Editor> : null} */}
-                    <Editor 
-                        onChange ={this.handleChange} 
-                        onSubmit={this.handleSubmit}
-                        submitting={this.state.submitting}
-                        value={this.state.makeToDo}
-                    />
+                    {this.props.status.currentUser===this.props.userName ? 
+                    <Editor></Editor> : null}
                 </Col>
 
                 <Col span={12}>
