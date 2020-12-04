@@ -59,8 +59,8 @@ class MainPage extends React.Component {
     );
 
     const goCampPage = (
-      <div className="banner">
-        <div className="bannerTitle">
+      <div className="banner" style={{padding:"30px"}}>
+        <div className="bannerTitle" style={{maxWidth:"1230px", paddingRight:"auto", paddingLeft:"auto"}}>
           <Title>
             FORECST is the online community where everyone codes and do their
             own project together

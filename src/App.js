@@ -4,7 +4,7 @@ import {Home, Login, Register, CampHome, CampQnA, CampRank, MainPage, MyPage, Ca
 // Components
 import QnAsingle from "./components/QnAsingle";
 // Router
-import { Route, Router } from "react-router-dom";
+import { Route, Router, Redirect } from "react-router-dom";
 import "antd/dist/antd.css";
 // Redux
 import { Provider } from "react-redux";
@@ -38,7 +38,8 @@ class App extends React.Component {
           <Route component={UploadQnA} path="/qnawrite"/>
           <Route component={CampRankResult} path="/camprankresult"/>
           <Route component={QnAsingle} path="/campqnaview"/>
-        </Router> 
+          <Redirect path="/*" to="/CS473DesignProject-FORECST" />
+        </Router>
       </Provider>
     );
   }
