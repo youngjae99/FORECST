@@ -10,6 +10,7 @@ import 'antd/dist/antd.css';
 import PropTypes from 'prop-types'
 import { render } from '@testing-library/react';
 import {backend_Point,backend_WGO} from "../backend";
+import { message} from 'antd';
 
 function UploadPost(props){
     console.log("upload post: ", props.status.currentUser);
@@ -38,8 +39,17 @@ function UploadPost(props){
       reader.readAsDataURL(e.target.files[0]);
     
       }
+      const error = () => {
+        message.error('You should upload PICTURE!!');
+      };
+      
+      
     
       const handlePost = async() =>{
+        if(file == 0){
+            error();
+          }
+        else{
         const storageRef = storage.ref();
         const fileRef = storageRef.child(file.name);
         await fileRef.put(file)
@@ -50,6 +60,7 @@ function UploadPost(props){
             backend_Point(currentUser,"post")
             backend_WGO(currentUser,"post")
         }
+    }
     
     return(
         <div style={{fontFamily: "Roboto", width: 1000, margin: "auto", paddingTop: 20}}>
@@ -132,7 +143,9 @@ function UploadPost(props){
 
                     <div style={{textAlign: "right"}}>
                         <Button type='primary' style={{marginLeft: 100}} onClick={handlePost}>
-                            <Link to={"/mypage"} style={{fontSize: 18}}>UPLOAD</Link>
+                             {file==0?
+                             <div style={{fontSize: 18}}>UPLOAD</div> :
+                             <Link to={"/mypage"} style={{fontSize: 18}}>UPLOAD</Link>}
                         </Button>
                     </div>
                 </Col>

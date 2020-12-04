@@ -50,7 +50,7 @@ class FeedComment extends Component {
   }
 
   getComments = async () => {
-    const snapshot = await db.collection("Feeds/"+this.props.posting+"/Comments").get()
+    const snapshot = await db.collection("Feeds/"+this.props.posting+"/Comments").orderBy('datetime').get();
     console.log(snapshot.docs.map(doc=>doc.data()))
     this.setState({comments:snapshot.docs.map(doc=>doc.data())})  
   }
@@ -71,12 +71,12 @@ class FeedComment extends Component {
         submitting: false,
         value: '',
         comments: [
+          ...this.state.comments,
           {
             author: this.props.status.currentUser,
             content: <p>{this.state.value}</p>,
             datetime: moment().fromNow(),
           },
-          ...this.state.comments,
         ],
       });
     }, 1000);

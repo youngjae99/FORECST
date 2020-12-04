@@ -4,8 +4,6 @@ import { db,storage } from "../firebase";
 import 'antd/dist/antd.css';
 import PropTypes from 'prop-types'
 import { render } from '@testing-library/react';
-import { message} from 'antd';
-
 
 // function handleClick (id){
 //     db.collection('users')
@@ -95,17 +93,10 @@ function Post() {
       setFile(e.target.files[0]); 
 
   };
-  const error = () => {
-    message.error('You should upload PICTURE!!');
-  };
-  
+
   
 
   const handlePost = () =>{
-    if(file == 0){
-      error;
-    }
-    else{
     const storageRef = storage.ref();
     const fileRef = storageRef.child(file.name);
     fileRef.put(file).then(function(snapshot) { 
@@ -116,7 +107,7 @@ function Post() {
         db.collection('Feeds').doc().set({photo:filepath,writing:writing,title:title});
         console.log('Uploaded a blob or file!');
       });
-    }
+
     }
 
   return (

@@ -2,6 +2,7 @@ import React from 'react';
 import {Authentication} from '../components'
 import {loginRequest} from '../actions/authentication';
 import {connect} from 'react-redux';
+import { message} from 'antd';
 
 class Login extends React.Component{
     
@@ -19,11 +20,10 @@ class Login extends React.Component{
             return true;
         }
         else{
-            // console.log(this.props.status, id);
-            return false;
+            // message.error('You should upload PICTURE!!');
         }
     }
-    
+
     render(){
         return(
             <div>

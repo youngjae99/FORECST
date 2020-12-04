@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 import {browserHistory} from 'react-router';
 import {backend_Login,backend_Join} from "../backend";
 import { db,storage } from "../firebase";
+import { message} from 'antd';
 
 class Authentication extends React.Component{
 
@@ -14,7 +15,7 @@ class Authentication extends React.Component{
 
         this.state={
             username: "",
-            password: "",
+            password: ""
         };
 
         this.handleChange=this.handleChange.bind(this);
@@ -52,18 +53,19 @@ class Authentication extends React.Component{
     handleLogin= async ()=>{
         let id=this.state.username;
         console.log(id)
-        const wait = await db.collection('Users').doc(id).get()
-        console.log(wait.exists);
         if(id===""||this.state.password==="")
             return;
         else 
         {
+            const wait = await db.collection('Users').doc(id).get()
+            console.log(wait.exists);    
             if(wait.exists){
                 this.props.onLogin(id);
                 console.log("what")
+                {<Link to={"/campjoin"} style={{fontSize: 18}}></Link>}
             }
             else
-                return;
+                message.error('User not exists!');
         }
     }
 
@@ -141,9 +143,7 @@ class Authentication extends React.Component{
         const loginView=(
             <Form.Item {...tailLayout}>
                 <Button type='primary' htmlType='submit' onClick={this.handleLogin} style={{marginTop: 10, marginLeft: 145}}>
-                {this.state.password==='' ? 
-                <div style={{fontSize: 18}}>Login</div> :
-                <Link to={"/campjoin"} style={{fontSize: 18}}>Login</Link>}
+                <div style={{fontSize: 18}}>Login</div> 
                 {/* <div style={{fontSize: 18}}>Login</div> */}
                 </Button>
             </Form.Item>
