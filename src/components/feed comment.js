@@ -225,7 +225,7 @@ class FeedComment extends Component {
             lineHeight: "32px",
           }}
         >
-          <Button onClick={this.onLoadMore}>see all comments</Button>
+          <a onClick={this.onLoadMore} style={{color:"#007bff"}}>see all comments</a>
         </div>
       ) : null;
 

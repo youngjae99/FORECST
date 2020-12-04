@@ -144,7 +144,7 @@ class Forecst extends React.Component {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          padding: "2.125rem 5rem 2.125rem 5rem",
+          padding: "0.5rem 1.5rem 0.5rem 2rem",
         }}
       >
         <Link
