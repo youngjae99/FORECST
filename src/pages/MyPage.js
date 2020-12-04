@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, Avatar, Row, Col, Tabs, Slider, Button} from 'antd';
+import {Card, Avatar, Row, Col, Tabs, Slider, Button, List, Input, Form} from 'antd';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import lv0 from '../level_tree/lv0.png';
@@ -14,6 +14,19 @@ import PropTypes from "prop-types";
 
 const {TabPane}=Tabs;
 
+const Editor = ({ onChange, value}) => (
+    <>
+      <Form.Item>
+        <Input
+            type='text'
+            onChange={onChange}
+            value={value}>
+        </Input>
+      </Form.Item>
+      <Button>Add to-do</Button>
+    </>
+  );
+
 class MyPage extends React.Component{
 
     constructor(props){
@@ -22,14 +35,15 @@ class MyPage extends React.Component{
         this.state={
             point: 0,
             feed: [],
+            todo: [],
             userName: "",
         }
     }
 
-    componentWillMount(){
-        this.getMyPost();
-        this.getMarker();
-    }
+    // componentWillMount(){
+    //     this.getMyPost();
+    //     this.getMarker();
+    // }
 
     getMyPost = async () => {
         console.log("request data for ",this.props.status.currentUser);
@@ -38,12 +52,12 @@ class MyPage extends React.Component{
         this.setState({feed:snapshot.docs})
     }
 
-    getMarker = async () => {
-        console.log(this.props.writer);
-        const snapshot = await db.collection('Users').doc(this.props.status.currentUser).get()
-        console.log(snapshot.data().point)
-        this.setState({point:snapshot.data().point})  
-    }
+    // getMarker = async () => {
+    //     console.log(this.props.writer);
+    //     const snapshot = await db.collection('Users').doc(this.props.status.currentUser).get()
+    //     console.log(snapshot.data().point)
+    //     this.setState({point:snapshot.data().point})  
+    // }
 
     //my view 보여주는 코드가 필요함
     render(){
@@ -54,9 +68,36 @@ class MyPage extends React.Component{
         )
 
         const BookmarkView=(
-            <div style={{width: 1000, margin: "auto", marginTop: 20}}>
-                    {/* BOOKMARK VIEW */}
-            </div>
+            <Row>
+                <Col span={12}>
+                    <h5>To-do List</h5>
+                    <List
+                        bordered
+                        dataSource={this.state.todo}
+                        renderItem={item => (
+                            <List.Item>
+                                {item}
+                            </List.Item>
+                        )}
+                    />
+                    <Editor
+                    >
+
+                    </Editor>
+                </Col>
+                <Col span={12}>
+                    <h5>Completed!</h5>
+                    <List
+                        bordered
+                        dataSource={this.state.todo}
+                        renderItem={item => (
+                            <List.Item>
+                                {item}
+                            </List.Item>
+                        )}
+                    />
+                </Col>
+            </Row>
         )
 
         var point=parseInt(this.state.point);
@@ -129,10 +170,10 @@ class MyPage extends React.Component{
                 <div style={{width: 1000, margin: "auto"}}>
                     <Tabs defaultActiveKey="1" type="card" size={"large"} style={{margin: "auto", marginTop: 20}}>
                         <TabPane tab="TO DO" key="1">
-                            {MyView}
+                            {BookmarkView}
                         </TabPane>
                         <TabPane tab="MY" key="2">
-                            {BookmarkView}
+                            {MyView}
                         </TabPane>
                     </Tabs>
 
@@ -151,7 +192,7 @@ MyPage.propTypes={
 };
 
 MyPage.defaultProps={
-    userName: "Youngjae",
+    userName: "ddiddu",
 };
 
 const mapStateToProps=(state)=>{
