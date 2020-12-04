@@ -70,7 +70,6 @@ class Feed extends Component {
                 <List.Item.Meta
                 avatar={<Profile
                 writer={item.data().id}></Profile>}
-                // title={<a href={item.href}>{item.data().id}</a>}
                 title={<Link to={{pathname: `/mypage/${item.data().id}`}}>{item.data().id}</Link>}
                 description={item.data().title}
                 />

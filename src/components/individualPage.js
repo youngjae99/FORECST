@@ -10,21 +10,26 @@ import {getLevel} from '../actions/authentication';
 import {MyFeed} from '../components';
 import { db } from "../firebase";
 import PropTypes from "prop-types";
-
+import { Progress } from 'antd';
 
 const {TabPane}=Tabs;
 
 const Editor = ({ onChange, value}) => (
-    <>
-      <Form.Item>
-        <Input
+    <Row style={{marginTop: 10}}>
+        <Col span={19}>
+            <Input
             type='text'
             onChange={onChange}
             value={value}>
-        </Input>
-      </Form.Item>
-      <Button>Add to-do</Button>
-    </>
+            </Input>
+        </Col>
+
+        <Col span={5}>
+            <div style={{float: "right"}}>
+                <Button type="primary">Add to-do</Button>
+            </div>
+        </Col>
+    </Row>
   );
 
 class IndividualPage extends React.Component{
@@ -59,13 +64,26 @@ class IndividualPage extends React.Component{
     //my view 보여주는 코드가 필요함
     render(){
         const MyView=(
-            <div style={{width: 1000, margin: "auto", marginTop: 20}}>
+            <div style={{width: 1000, margin: "auto", marginTop: 20, marginBottom: 50}}>
                     <MyFeed feed={this.state.feed}></MyFeed>
+
+                    <Button type='primary' style={{float: "right"}}>
+                        <Link to={"/uploadpost"} style={{fontSize: 18}}>New Post</Link>
+                    </Button>
             </div>
         )
 
         const BookmarkView=(
             <Row>
+                <Progress
+                strokeColor={{
+                    '0%': '#108ee9',
+                    '100%': '#87d068',
+                }}
+                percent={99.9}
+                style={{marginBottom: 20}}
+                />
+
                 <Col span={12}>
                     <h5>To-do List</h5>
                     <List
@@ -77,10 +95,8 @@ class IndividualPage extends React.Component{
                             </List.Item>
                         )}
                     />
-                    <Editor
-                    >
 
-                    </Editor>
+                    <Editor></Editor>
                 </Col>
                 <Col span={12}>
                     <h5>Completed!</h5>
@@ -173,10 +189,6 @@ class IndividualPage extends React.Component{
                             {MyView}
                         </TabPane>
                     </Tabs>
-
-                    <Button type='primary' style={{float: "right"}}>
-                        <Link to={"/uploadpost"} style={{fontSize: 18}}>New Post</Link>
-                    </Button>
                 </div>
 
             </div>

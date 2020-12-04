@@ -60,43 +60,12 @@ class Forecst extends React.Component {
     }
 
     const joinButton = (
-      /*
-      <PageHeader
-        ghost={false}
-        extra={[
-          <Link
-            to={"/login"}
-            style={{ color: "#000", marginRight: 20, fontSize: 18 }}
-          >
-            Login
-          </Link>,
-          <Button type="primary">
-            <Link to={"/register"} style={{ fontSize: 18 }}>
-              JOIN
-            </Link>
-          </Button>,
-        ]}
-      />
-      */
       <Link className="nav-link page-scroll" to="/login">
         Sign in
       </Link>
     );
 
     const mypageButton = (
-      /*
-      <PageHeader
-        ghost={false}
-        style={{ padding: 0, backgroundColor: "#fff", borderRadius: "10px",  marginLeft:"10px" }}
-        extra={[
-          <Link to={"/mypage"} style={{ color: "#000", fontSize: 18, marginLeft:"15px" }}>
-            {this.props.currentUser}
-            <Profile writer={this.props.currentUser}></Profile>
-          </Link>,
-        ]}
-      />
-      */
-
       <li class="nav-item dropdown">
         <a
           class="nav-link dropdown-toggle page-scroll"
@@ -110,7 +79,7 @@ class Forecst extends React.Component {
           {this.props.currentUser}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <Link class="dropdown-item" to={"/mypage"}>
+          <Link class="dropdown-item" to={{pathname: `/mypage/${this.props.currentUser}`}}>
             <span class="item-text">MyPage</span>
           </Link>
           <div class="dropdown-items-divide-hr"></div>
@@ -122,21 +91,6 @@ class Forecst extends React.Component {
     );
 
     return (
-      /*
-            <div style={{fontFamily: "Roboto"}}>
-                
-                <Row>
-                    <Col span={3}>
-                        <a>
-                            <img src={logo} style={{width: 100, marginTop: 20, marginLeft: 10}} onClick={this.handleHome}></img>
-                        </a>
-                    </Col>
-                    <Col span={21}>
-                        {this.props.isLoggedIn ? mypageButton : joinButton}              
-                    </Col>
-                </Row>
-            </div>
-             */
       <nav
         className="navbar navbar-expand-lg navbar-dark navbar-custom top-nav-collapse"
         style={{
