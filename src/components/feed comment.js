@@ -219,13 +219,10 @@ class FeedComment extends Component {
       !initLoading && !loading ? (
         <div
           style={{
-            textAlign: "center",
-            marginTop: 12,
-            height: 32,
-            lineHeight: "32px",
+            textAlign: "right",
           }}
         >
-          <a onClick={this.onLoadMore} style={{color:"#007bff"}}>see all comments</a>
+          <a onClick={this.onLoadMore} style={{color:"#007bff"}}>see {this.state.comments.length-1} more comments</a>
         </div>
       ) : null;
 

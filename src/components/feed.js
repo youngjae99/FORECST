@@ -68,8 +68,8 @@ class Feed extends Component {
           >
           <List.Item.Meta
               avatar={<Profile writer={item.data().id}></Profile>}
-              title={<a href={item.href}>{item.data().id}</a>}
-              description={item.data().title}
+              title={<a href={item.href}>{item.data().title}</a>}
+              description={item.data().id}
             />
             {item.data().writing}
             <FeedComment posting={item.id} id={item.data().id}></FeedComment>
