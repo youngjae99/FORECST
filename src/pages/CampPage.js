@@ -127,7 +127,7 @@ class CampPage extends React.Component {
         >
           <div
             style={{
-              height: "100px",
+              height: "70px",
               paddingTop: 15,
               paddingLeft: 30,
               borderBottom: "1px solid var(--colors-border)",

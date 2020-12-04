@@ -30,7 +30,7 @@ class MainPage extends React.Component {
                 <div className="col-lg-6">
                   <div className="text-container">
                     <h1>
-                      <span className="turquoise"> Idea into Reality </span> 
+                      <span className="primaryColor"> Idea into Reality </span> 
                        Code and Learn, <br></br>Do your own project with others.
                     </h1>
                     <p className="p-large">
