@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, Avatar, Row, Col, Tabs, Slider, Button, Input, List, Progress, Popover} from 'antd';
+import {Card, Avatar, Row, Col, Tabs, Slider, Button, Form, Input, List, Progress, Popover} from 'antd';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import lv0 from '../level_tree/lv0.png';
@@ -14,24 +14,29 @@ import {backend_makeToDo, backend_getToDo} from '../backend';
 
 const {TabPane}=Tabs;
 
-const Editor = ({ onChange, value}) => (
+
+const Editor = ({ onChange, value, submitting, onSubmit}) => (
     <Row style={{marginTop: 10}}>
         <Col span={18}>
-            <Input
-            type='text'
-            onChange={onChange}
-            value={value}>
-            </Input>
+            <Form.Item>
+                <Input
+                    name = 'makeToDo'
+                    type='text'
+                    onChange={onChange}
+                    value={value}>
+                </Input>
+        </Form.Item>
         </Col>
 
         <Col span={6}>
             <div style={{float: "right"}}>
-                <Button type="primary" style={{fontSize: 18}}>Add to-do</Button>
+                <Button loading={submitting} onClick={onSubmit}
+                type="primary" style={{fontSize: 18}}>Add to-do</Button>
             </div>
         </Col>
     </Row>
 );
-  
+
 class IndividualPage extends React.Component{
 
     constructor(props){
@@ -55,6 +60,7 @@ class IndividualPage extends React.Component{
         nextState[e.target.name]=e.target.value;
         this.setState(nextState);
     }
+
     handleSubmit = () => {
         if (!this.state.makeToDo) {
           return;
@@ -90,7 +96,6 @@ class IndividualPage extends React.Component{
         console.log(snapshot.docs)
         this.setState({feed:snapshot.docs})
     }
-
     getMyToDo = async () =>{
         const todo = await db.collection("Users").doc(this.props.userName).collection("todo").where('check','==',false).get();
         const completed = await db.collection("Users").doc(this.props.userName).collection("todo").where('check','==',true).get();
@@ -99,7 +104,6 @@ class IndividualPage extends React.Component{
         this.setState({completed:completed.docs.map(doc=>doc.data())});
 
     }
-
     getMarker = async () => {
         const snapshot = await db.collection('Users').doc(this.props.userName).get()
         console.log(snapshot.data().point)
@@ -140,6 +144,7 @@ class IndividualPage extends React.Component{
                             </div>
                         </Col>
                     </Row>
+
                     <List
                         bordered
                         dataSource={this.state.todo}
@@ -150,9 +155,14 @@ class IndividualPage extends React.Component{
                         )}
                     />
                     {this.props.status.currentUser===this.props.userName ? 
-                    <Editor></Editor> : null}
+                    <Editor 
+                    onChange ={this.handleChange} 
+                    onSubmit={this.handleSubmit}
+                    submitting={this.state.submitting}
+                    value={this.state.makeToDo}
+                    /> :
+                    null}
                 </Col>
-
                 <Col span={12}>
                     <h5>Completed!</h5>
                     <List
