@@ -65,7 +65,7 @@ class MyPage extends React.Component{
             <div style={{width: 1000, margin: "auto", marginTop: 20}}>
                     <MyFeed feed={this.state.feed}></MyFeed>
             </div>
-        )
+        ) 
 
         const BookmarkView=(
             <Row>
