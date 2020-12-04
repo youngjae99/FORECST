@@ -669,7 +669,7 @@ input[type='checkbox'] {
 
 .navbar-custom .nav-item .nav-link:hover,
 .navbar-custom .nav-item .nav-link.active {
-	color: #00bfd8;
+	color: #5BB462;
 }
 
 /* Dropdown Menu */
@@ -714,7 +714,7 @@ input[type='checkbox'] {
 }
 
 .navbar-custom .dropdown-item:hover .item-text {
-	color: #00bfd8;
+	color: #5BB462;
 }
 
 .navbar-custom .dropdown-items-divide-hr {

@@ -3,10 +3,10 @@ import React, { useState } from "react";
 import "./CampHome.css";
 import CampTabView from "./CampTabView";
 import WGO from "../components/whatsgoingon";
-import l0_trans from '../level_tree/l0_trans.png';
-import l1_trans from '../level_tree/l1_trans.png';
-import l2_trans from '../level_tree/l2_trans.png';
-import {getLevel} from '../actions/authentication';
+import l0_trans from "../level_tree/l0_trans.png";
+import l1_trans from "../level_tree/l1_trans.png";
+import l2_trans from "../level_tree/l2_trans.png";
+import { getLevel } from "../actions/authentication";
 
 import {
   Layout,
@@ -67,21 +67,20 @@ class CampPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tab:1,
+      tab: 1,
       feed: [],
       forest: [],
-      whatsgoingon: []
+      whatsgoingon: [],
     };
   }
-  componentDidMount(){
+  componentDidMount() {
     this.getMarker();
   }
   getMarker = async () => {
-      const snapshot = await db.collection('Users').get()
-      console.log(snapshot.docs)
-      this.setState({forest: snapshot.docs})
-  }
-
+    const snapshot = await db.collection("Users").get();
+    console.log(snapshot.docs);
+    this.setState({ forest: snapshot.docs });
+  };
 
   handleClick = (e) => {
     console.log("clicked tab", e.key);
@@ -90,123 +89,164 @@ class CampPage extends React.Component {
 
   render() {
     const getTree = (point) => {
-      const level= getLevel(point);
-      console.log(point)
-      console.log(level)
-      let profileTree=null;
-  
+      const level = getLevel(point);
+      console.log(point);
+      console.log(level);
+      let profileTree = null;
+
       switch (level) {
-          case 1:
-              return l1_trans
-              break;
-          case 2:
-              return l2_trans
-              break;
-          default:
-              return l0_trans
-              break;
+        case 1:
+          return l1_trans;
+          break;
+        case 2:
+          return l2_trans;
+          break;
+        default:
+          return l0_trans;
+          break;
       }
-    }
+    };
 
     return (
-      <Layout style={{fontFamily: 'Roboto', position: "fixed", overflow: "hidden"}}>
-        <Header style={{ background: '#fff', paddingTop: 15, paddingLeft:30, borderBottom: "1px solid var(--colors-border)"}}>
-          <div>
-            <Title level={3} id="camptitle" style={{ margin: 0, padding: 0 }}>
-              CAMP | Make an application for the pandemic COVID 19 situation!
-            </Title>
-            {/* <p>this is the camp about the </p> */}
-          </div>
-        </Header>
-
-        <Layout>
-          <Sider
+      <Layout
+        style={{
+          fontFamily: "Roboto",
+          position: "fixed",
+          overflow: "hidden",
+          display: "block",
+        }}
+      >
+        <div
+          style={{
+            width:"100%",
+            paddingRight: "15px",
+            paddingLeft: "15px",
+            marginRight: "auto",
+            marginLeft: "auto",
+          }}
+        >
+          <div
             style={{
-              overflow: "auto",
-              height: "100vh",
-              position: "fixed",
-              left: 0,
+              height: "100px",
+              paddingTop: 15,
+              paddingLeft: 30,
+              borderBottom: "1px solid var(--colors-border)",
             }}
-            width="300"
-            theme="light"
           >
-            <Menu theme="light" mode="inline" defaultSelectedKeys={["1"]}>
-              <Menu.Item
-                key="1"
-                icon={<HomeOutlined />}
-                onClick={this.handleClick}
-              >
-                Home
-              </Menu.Item>
-              <Menu.Item
-                key="2"
-                icon={<QuestionCircleOutlined />}
-                onClick={this.handleClick}
-              >
-                QnA Board
-              </Menu.Item>
-              <Menu.Item
-                key="3"
-                icon={<BarChartOutlined />}
-                onClick={this.handleClick}
-              >
-                Ranking
-              </Menu.Item>
-            </Menu>
-            <h4 style={{margin: "10px"}}>We are growing this beautiful forest together!</h4>
+            <div>
+              <Title level={3} id="camptitle" style={{ margin: 0, padding: 0 }}>
+                CAMP | Make an application for the pandemic COVID 19 situation!
+              </Title>
+              {/* <p>this is the camp about the </p> */}
+            </div>
+          </div>
+
+          <Layout>
+            <Sider
+              style={{
+                overflow: "auto",
+                height: "100vh",
+                position: "fixed",
+                left: 0,
+              }}
+              width="300"
+              theme="light"
+            >
+              <Menu theme="light" mode="inline" defaultSelectedKeys={["1"]}>
+                <Menu.Item
+                  key="1"
+                  icon={<HomeOutlined />}
+                  onClick={this.handleClick}
+                >
+                  Home
+                </Menu.Item>
+                <Menu.Item
+                  key="2"
+                  icon={<QuestionCircleOutlined />}
+                  onClick={this.handleClick}
+                >
+                  QnA Board
+                </Menu.Item>
+                <Menu.Item
+                  key="3"
+                  icon={<BarChartOutlined />}
+                  onClick={this.handleClick}
+                >
+                  Ranking
+                </Menu.Item>
+              </Menu>
+              <h4 style={{ margin: "10px" }}>
+                We are growing this beautiful forest together!
+              </h4>
               <List
-                style={{backgroundColor: '#beedb2', borderRadius: 10, margin: '9px'}}
-                grid={{gutter:16,}}
+                style={{
+                  backgroundColor: "#beedb2",
+                  borderRadius: 10,
+                  margin: "9px",
+                }}
+                grid={{ gutter: 16 }}
                 dataSource={this.state.forest}
-                renderItem={item => (
-                  <div style ={{margin:"5px"}}>
-                    <img src={getTree(item.data().point)} style={{width: "50px", height: "50px", margin: "5px"}}></img>
-                    <div style ={{marginBotton:"5px",fontSize:"13px", textAlign:"center"}}>{item.id}</div>
+                renderItem={(item) => (
+                  <div style={{ margin: "5px" }}>
+                    <img
+                      src={getTree(item.data().point)}
+                      style={{ width: "50px", height: "50px", margin: "5px" }}
+                    />
+                    <div
+                      style={{
+                        marginBotton: "5px",
+                        fontSize: "13px",
+                        textAlign: "center",
+                      }}
+                    >
+                      {item.id}
+                    </div>
                   </div>
                 )}
               />
-          </Sider>
+            </Sider>
 
-          <Layout
-            style={{
-              marginLeft: 300,
-              marginRight: 300,
-              overflow: "auto",
-              height: "100vh",
-              width: "match-parent"
-            }}
-          >
-            <CampTabView tabnum={this.state.tab}></CampTabView>
-          </Layout>
-
-          <div></div>
-
-          <Sider
-            theme="light"
-            style={{
-              overflow: "auto",
-              height: "100vh",
-              position: "fixed",
-              right: 0,
-              padding: 15,
-            }}
-            width="300"
-          >
-            <div
+            <Layout
               style={{
-                color: "000",
+                marginLeft: 300,
+                marginRight: 300,
+                overflow: "auto",
+                height: "100vh",
+                width: "match-parent",
               }}
             >
-              <Countdown
-                title="Time Left"
-                value={deadline}
-                format="D 일 H 시 m 분 s 초"
-              />
-            </div>
+              <CampTabView tabnum={this.state.tab}></CampTabView>
+            </Layout>
 
-            <WGO wgo={this.state.whatsgoingon} />
-          </Sider>
-        </Layout>
+            <div></div>
+
+            <Sider
+              theme="light"
+              style={{
+                overflow: "auto",
+                height: "100vh",
+                position: "fixed",
+                right: 0,
+                padding: 15,
+              }}
+              width="300"
+            >
+              <div
+                style={{
+                  color: "000",
+                }}
+              >
+                <Countdown
+                  title="Time Left"
+                  value={deadline}
+                  format="D 일 H 시 m 분 s 초"
+                />
+              </div>
+
+              <WGO wgo={this.state.whatsgoingon} />
+            </Sider>
+          </Layout>
+        </div>
       </Layout>
     );
   }

@@ -48,7 +48,7 @@ class Profile extends React.Component{
         }
 
         return(
-            <Avatar src={currentTree}></Avatar>
+            <Avatar src={currentTree} ></Avatar>
         );
     }
 }

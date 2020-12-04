@@ -146,6 +146,11 @@ class Authentication extends React.Component{
                 <Link to={"/campjoin"} style={{fontSize: 18}}>Login</Link>}
                 {/* <div style={{fontSize: 18}}>Login</div> */}
                 </Button>
+                <br></br>
+                <br></br>
+                <p>Don't have an account yet? &nbsp;
+                <Link to={"/register"}>Sign up</Link>
+                </p>
             </Form.Item>
         );
 
@@ -171,7 +176,7 @@ class Authentication extends React.Component{
 
         return(
             <Card style={{padding: 20, width: 600, height: 500, margin: "auto", marginTop: 50, fontFamily: 'Roboto'}}>
-                <div style={{fontSize: 40, textAlign: "center", marginBottom: 60, paddingTop: 40}}>{this.props.mode ? "LOGIN FORECST" : "JOIN FORECST"}</div>
+                <div style={{fontSize: 40, textAlign: "center", marginBottom: 60, paddingTop: 40}}>{this.props.mode ? "Sign in FORECST" : "Join FORECST"}</div>
                 <Form
                     {...layout}
                     name="basic"

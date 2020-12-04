@@ -85,16 +85,42 @@ class Forecst extends React.Component {
     );
 
     const mypageButton = (
+      /*
       <PageHeader
         ghost={false}
-        style={{ padding: 0 }}
+        style={{ padding: 0, backgroundColor: "#fff", borderRadius: "10px",  marginLeft:"10px" }}
         extra={[
-          <Link to={"/mypage"} style={{ color: "#000", fontSize: 18 }}>
+          <Link to={"/mypage"} style={{ color: "#000", fontSize: 18, marginLeft:"15px" }}>
             {this.props.currentUser}
             <Profile writer={this.props.currentUser}></Profile>
           </Link>,
         ]}
       />
+      */
+
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle page-scroll"
+          href="#about"
+          id="navbarDropdown"
+          role="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          
+          <Profile writer={this.props.currentUser}></Profile>
+          {this.props.currentUser}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/mypage">
+            <span class="item-text">MyPage</span>
+          </a>
+          <div class="dropdown-items-divide-hr"></div>
+          <a class="dropdown-item" href="privacy-policy.html">
+            <span class="item-text">Sign out</span>
+          </a>
+        </div>
+      </li>
     );
 
     return (
@@ -156,11 +182,14 @@ class Forecst extends React.Component {
                 Explore Hackathons
               </a>
             </li>
-            <li className="nav-item" style={{
+            <li
+              className="nav-item"
+              style={{
                 display: "flex",
                 justifyContent: "center",
                 flexDirection: "column",
-              }}>
+              }}
+            >
               <a
                 className="nav-link page-scroll"
                 href="https://github.com/youngjae99/CS473DesignProject-FORECST"
