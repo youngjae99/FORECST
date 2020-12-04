@@ -21,7 +21,7 @@ class MainPage extends React.Component {
 
   render() {
     const joinPage = (
-      <div className="banner">
+      <div className="banner" style={{fontFamily: "Roboto"}}>
         <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,600,700,700i&amp;subset=latin-ext" rel="stylesheet"></link>
         <header id="header" className="header">
           <div className="header-content">
