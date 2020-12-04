@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row, Col, Form, Input, Button} from 'antd';
+import {Row, Col, Form, Input, Button, Select, List} from 'antd';
 import {Link, } from 'react-router-dom';
 import {useEffect,useState} from 'react';
 import {connect} from 'react-redux';
@@ -23,6 +23,11 @@ function UploadPost(props){
       const { title,writing } = inputs;
     
       const handleChange = e => {
+        const { name, value } = e.target;
+        setInputs({
+             ...inputs, [name]: value });
+      };
+      const handleTodo = e => {
         const { name, value } = e.target;
         setInputs({
              ...inputs, [name]: value });
@@ -61,6 +66,16 @@ function UploadPost(props){
             backend_WGO(currentUser,"post")
         }
     }
+
+    const { Option } = Select;
+    const data = [
+        'crowd.',
+        'commoner.',
+        'crash.',
+        'girl.',
+        'wildfires.',
+    ];
+    const map = data.map((word)=><Option>{word}</Option>)
     
     return(
         <div style={{fontFamily: "Roboto", width: 1000, margin: "auto", paddingTop: 20}}>
@@ -75,6 +90,14 @@ function UploadPost(props){
                         freely share your thinking and what you did!
                     </div>
                 </Col>
+            </Row>
+            <Row>
+                <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleTodo}>
+                    {/* <Option value="jack">Jack</Option>
+                    <Option value="lucy">Lucy</Option>
+                    <Option value="Yiminghe">yiminghe</Option> */}
+                    {map}
+                </Select>
             </Row>
 
             <Row>
