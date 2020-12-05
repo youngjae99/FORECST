@@ -51,7 +51,7 @@ class CampHome extends Component {
       );
     } else {
       return (
-        <div className="CampHome" style={{ padding: 20 }}>
+        <div className="CampHome" style={{ padding:"5px 20px 20px 20px" }}>
           <div
             className="TopBar"
             style={{
