@@ -7,6 +7,8 @@ import l0_trans from "../level_tree/l0_trans.png";
 import l1_trans from "../level_tree/l1_trans.png";
 import l2_trans from "../level_tree/l2_trans.png";
 import { getLevel } from "../actions/authentication";
+import {Popover} from "antd";
+
 
 import {
   Layout,
@@ -39,6 +41,18 @@ const { Title } = Typography;
 const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30; // Moment is also OK
 
 const listData = [];
+
+const content = (
+  <div>
+    <p>Tree Level</p>
+    <p>l0</p>
+    <p>l1</p>
+    <p>l2</p>
+    <p>l3</p>
+  </div>
+);
+
+
 for (let i = 0; i < 23; i++) {
   listData.push({
     href: "https://ant.design",
@@ -177,6 +191,9 @@ class CampPage extends React.Component {
               </Menu>
               <h4 style={{ margin: "10px" }}>
                 We are growing this beautiful forest together!
+                <Popover content={content} title="About Tree">
+                  <QuestionCircleOutlined />
+                </Popover>
               </h4>
               <List
                 style={{
