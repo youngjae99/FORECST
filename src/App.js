@@ -45,7 +45,7 @@ class App extends React.Component {
 
   // Login Func
   onLogin = id => {
-    console.log("onLogin");
+    console.log("onLogin", id);
     this.setState({
       logged: true,
       isLoggedIn: true,

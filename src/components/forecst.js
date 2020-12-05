@@ -16,7 +16,7 @@ class Forecst extends React.Component {
     super(props);
 
     this.state = {
-      currentUser: "",
+      currentUser: window.sessionStorage.getItem("id"),
       point: 0,
       isLoggedIn: this.isLoggedIn
     };
@@ -36,11 +36,13 @@ class Forecst extends React.Component {
   };
   // Logout Func
   onLogout = () => {
+    console.log("logout!");
     this.setState({
       isLoggedIn: false,
     });
     //SessionStorage Clear
     window.sessionStorage.clear();
+    this.props.history.push("/CS473DesignProject-FORECST");
   };
 
   componentWillMount() {
@@ -62,7 +64,10 @@ class Forecst extends React.Component {
         .collection("Users")
         .doc(this.props.currentUser)
         .get();
-      this.setState({ point: snapshot.data().point });
+      this.setState({ 
+        point: snapshot.data().point,
+        currentUser: this.props.currentUser
+      });
     }
   };
 
@@ -84,9 +89,9 @@ class Forecst extends React.Component {
     }
 
     const joinButton = (
-      <a className="nav-link page-scroll" href="/login">
+      <Link className="nav-link page-scroll" to="/login">
         Sign in
-      </a>
+      </Link>
     );
 
     const mypageButton = (
@@ -99,16 +104,15 @@ class Forecst extends React.Component {
           aria-haspopup="true"
           aria-expanded="false"
         >
-          
-          <Profile writer={this.props.currentUser}></Profile>
-          {this.props.currentUser}
+          <Profile writer={window.sessionStorage.getItem("id")}></Profile>
+          {window.sessionStorage.getItem("id")}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <Link class="dropdown-item" to={"/mypage"}>
             <span class="item-text">MyPage</span>
           </Link>
           <div class="dropdown-items-divide-hr"></div>
-          <a class="dropdown-item" href="privacy-policy.html">
+          <a class="dropdown-item" onClick={this.onLogout}>
             <span class="item-text">Sign out</span>
           </a>
         </div>
@@ -175,7 +179,7 @@ class Forecst extends React.Component {
               </a>
             </li>
             <li className="nav-item">
-              {this.props.isLoggedIn ? mypageButton : joinButton}
+              {window.sessionStorage.getItem("id") ? mypageButton : joinButton}
             </li>
           </ul>
         </div>

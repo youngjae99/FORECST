@@ -30,7 +30,6 @@ class MainPage extends React.Component {
         currentUser: id
       });
     }
-    
   }
 
 
@@ -142,7 +141,7 @@ class MainPage extends React.Component {
 
     return (
       <div style={{ fontFamily: "Roboto" }}>
-        {this.props.status.isLoggedIn ? goCampPage : joinPage}
+        {window.sessionStorage.getItem("id") ? goCampPage : joinPage}
       </div>
     );
   }
