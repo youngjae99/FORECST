@@ -1,7 +1,6 @@
-import React, {useState} from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { Button, Typography, Modal } from "antd";
+import { Button, Modal } from "antd";
 import "./MainPage.css";
 
 import "./template/css/styles.css";
@@ -9,25 +8,6 @@ import "./template/css/swiper.css";
 import "./template/css/magnific-popup.css";
 import "./template/css/bootstrap.css";
 import "./template/css/fontawesome-all.css";
-import mainimage from "./template/images/camp1.png";
-
-const { Title } = Typography;
-
-const ReachableContext = React.createContext();
-const UnreachableContext = React.createContext();
-
-const config = {
-  title: 'Use Hook!',
-  content: (
-    <>
-      <ReachableContext.Consumer>{name => `Reachable: ${name}!`}</ReachableContext.Consumer>
-      <br />
-      <UnreachableContext.Consumer>{name => `Unreachable: ${name}!`}</UnreachableContext.Consumer>
-    </>
-  ),
-};
-
-// const [modal, contextHolder] = Modal.useModal();
 
 class Tutorial extends React.Component {
   constructor(props) {
@@ -48,7 +28,6 @@ class Tutorial extends React.Component {
                 Your first to-do list must be 'Making a project name'
                 <div style={{float: "right", marginTop: 20}}>
                     <Button type="primary" onClick={this.handleOk}>
-                        {/* <Link to={{pathname: `/mypage/${this.props.currentUser}`}} style={{fontSize: 18}}>START</Link>} */}
                         START
                     </Button>
                 </div>

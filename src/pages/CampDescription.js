@@ -1,7 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { Button, Typography } from "antd";
 import "./MainPage.css";
 
 import "./template/css/styles.css";
@@ -10,8 +8,6 @@ import "./template/css/magnific-popup.css";
 import "./template/css/bootstrap.css";
 import "./template/css/fontawesome-all.css";
 import mainimage from "./template/images/camp1.png";
-
-const { Title } = Typography;
 
 class CampDescription extends React.Component {
   constructor(props) {
