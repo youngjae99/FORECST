@@ -19,7 +19,7 @@ class Tutorial extends React.Component {
   handleOk=()=>{
     console.log(this.props.history);
 
-    this.props.history.push(`/mypage/${this.props.currentUser}`);
+    this.props.history.push(`/mypage/${window.sessionStorage.getItem("id")}`);
     Modal.destroyAll();
   }
 
