@@ -72,10 +72,12 @@ import 'antd/dist/antd.css';
         db.collection("Users").doc(id).set({
             level:0,
             point:0,
-            active:true});
+            active:true,
+            newbie:1
+        });
     }
-    export const backend_Handle_login= async(id,password) =>{
 
+    export const backend_Handle_login= async(id,password) =>{
         if(id===""||password==="")
             return;
         else 
@@ -123,10 +125,11 @@ import 'antd/dist/antd.css';
             db.collection("Users").doc(id).update('point',firebase.firestore.FieldValue.increment(3))
         }
     }
-    export const backend_Feed_watering = (doc,id) => {
+    export const backend_Feed_watering = (doc,id,cur) => {
         console.log(id)
         db.collection("Users").doc(id).update('point',firebase.firestore.FieldValue.increment(2))
         db.collection("Feeds").doc(doc).update('watering',firebase.firestore.FieldValue.increment(1))
+        db.collection("Users").doc(cur).collection("watering").doc(doc).set({watering:true})
     }
     export const backend_WGO = (id,mode)=>{
         if(mode =="post")

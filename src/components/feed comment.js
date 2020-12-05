@@ -76,6 +76,7 @@ class FeedComment extends Component {
 
   componentDidMount() {
     this.getComments();
+    this.getwatering();
   }
 
   getComments = async () => {
@@ -138,12 +139,20 @@ class FeedComment extends Component {
 
   handleWatering = (e) => {
     if (this.state.watered == 0) {
-      backend_Feed_watering(this.props.posting, this.props.id);
+      backend_Feed_watering(this.props.posting, this.props.id,this.props.status.currentUser);
       setTimeout(() => {
         this.setState({ watered: 1 });
       }, 100);
     }
   };
+    getwatering =async()=>{
+      const water=await db.collection("Users").doc(this.props.status.currentUser).collection("watering").doc(this.props.posting).get()
+      const exist = await water.exists;
+      if(exist){
+        console.log(water.data().watering);
+        this.setState({watered:1})
+      }
+    }
 
   handleChange = (e) => {
     this.setState({
@@ -182,8 +191,13 @@ class FeedComment extends Component {
         {text}
       </Space>
     );
-
-    const watering = () => {
+    // const getwatering =async()=>{
+    //   const water=await db.collection("Users").doc(this.props.status.currentUser).collection("watering").doc(this.props.posting).get()
+    //   const exist = await water.exists;
+    //   if(exist)
+    //     console.log(water.data().watering);
+    // }
+    const watering = ()=> {
       if (this.state.watered == 0) {
         return watering0;
       } else return watering1;
