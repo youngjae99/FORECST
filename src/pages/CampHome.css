@@ -24,6 +24,45 @@
   background: #141414;
 }
 
-.BtnClass{
+.BtnClass {
   margin: 3px;
+}
+
+.sidebar {
+  overflow: "auto";
+  height: "100vh";
+  position: "fixed";
+  padding: 15;
+  width: "300";
+}
+
+.sidenav {
+  height: 100vh;
+  width: 300px;
+  position: fixed;
+  z-index: 1;
+  background-color: #ffffff00;
+  overflow-x: hidden;
+}
+
+.white_sidenav{
+  background: #fff;
+  margin-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 0 10px 10px 0;
+  box-shadow: 0px 2px 5px 2px rgba(0,0,0,0.07);
+}
+
+.shadowbox{
+  box-shadow: 0px 2px 5px 2px rgba(0,0,0,0.07);
+}
+
+.right{
+  right: 0;
+}
+
+.left{
+  left: 0;
+  
 }

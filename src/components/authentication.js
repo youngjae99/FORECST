@@ -52,16 +52,19 @@ class Authentication extends React.Component{
     // }
     handleLogin= async ()=>{
         let id=this.state.username;
-        console.log(id)
-        if(id===""||this.state.password==="")
+        console.log("user input id:", id);
+        if(id===""||this.state.password===""){
+            console.log("empty box");
             return;
+        }
         else 
         {
             const wait = await db.collection('Users').doc(id).get()
-            console.log(wait.exists);
+            console.log("user exist: ", wait.exists);
             if(wait.exists){
                 this.props.onLogin(id);
-                console.log("what")
+                window.sessionStorage.setItem('login', true); // Login 유지
+                window.sessionStorage.setItem('id', id); // Login 유지 - id 저장
                 {<Link to={"/campjoin"} style={{fontSize: 18}}></Link>}
             }
             else

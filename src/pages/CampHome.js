@@ -27,7 +27,7 @@ class CampHome extends Component {
   }
 
   getMarker = async () => {
-    const snapshot = await db.collection("Feeds").get(); // Server data 가져오기
+    const snapshot = await db.collection("Feeds").orderBy("time","desc").get(); // Server data 가져오기
     console.log(snapshot.docs); // feed 정보 불러옴
     this.setState({ feed: snapshot.docs });
     console.log("loaded");
@@ -51,7 +51,7 @@ class CampHome extends Component {
       );
     } else {
       return (
-        <div className="CampHome" style={{ padding: 20 }}>
+        <div className="CampHome" style={{ padding:"5px 20px 20px 20px" }}>
           <div
             className="TopBar"
             style={{

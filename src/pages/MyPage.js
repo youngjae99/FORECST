@@ -1,5 +1,4 @@
 import React from 'react';
-import {Tabs} from 'antd';
 import { IndividualPage } from '../components/index';
 
 class MyPage extends React.Component{

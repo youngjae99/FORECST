@@ -109,13 +109,15 @@ class CampRank extends Component {
     }
     else{
       return (
-        <div style={{ padding: 20 }}>
+        <div style={{ padding: 20, fontStyle: "Roboto", paddingTop: 10, paddingBottom: 140}}>
         <Row>
-          <Title>Poll for the Final Ranking!</Title>
-          <Title level={4}>
+          <div style={{fontSize: 30, fontWeight: "bold"}}>
+            Poll for the Final Ranking!
+          </div>
+          <div style={{fontSize: 16, paddingBottom: 10}}>
             Read the description for each project carefully, and choose the one
             that you think is the best!
-          </Title>
+          </div>
         </Row>
         <Row>
           <Col

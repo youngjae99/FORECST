@@ -74,7 +74,7 @@ function UploadPost(props){
             db.collection("Users").doc(currentUser).collection("todo").doc(todolist[0]).set({check:true, todo: todolist[0]});
             console.log('Uploaded a blob or file!');
             backend_Point(currentUser,"post")
-            backend_WGO(currentUser,"post")
+            backend_WGO(currentUser,Date.now(),"post")
         }
     }
 

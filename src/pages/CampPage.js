@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-//import {Header} from '../components';
+import React from "react";
 import "./CampHome.css";
 import CampTabView from "./CampTabView";
 import WGO from "../components/whatsgoingon";
@@ -7,32 +6,14 @@ import l0_trans from "../level_tree/l0_trans.png";
 import l1_trans from "../level_tree/l1_trans.png";
 import l2_trans from "../level_tree/l2_trans.png";
 import { getLevel } from "../actions/authentication";
-
-import {
-  Layout,
-  Menu,
-  Timeline,
-  Statistic,
-  Typography,
-  List,
-  Avatar,
-  Space,
-  Button,
-  Row,
-  Col,
-  Divider,
-} from "antd";
+import { Layout, Menu, Statistic, Typography, List } from "antd";
 import {
   HomeOutlined,
   QuestionCircleOutlined,
   BarChartOutlined,
-  MessageOutlined,
-  LikeOutlined,
-  StarOutlined,
-  SearchOutlined,
-  PlusOutlined,
 } from "@ant-design/icons";
-import { db, storage } from "../firebase";
+import { db } from "../firebase";
+import { Link } from "react-router-dom";
 
 const { Countdown } = Statistic;
 const { Title } = Typography;
@@ -50,18 +31,8 @@ for (let i = 0; i < 23; i++) {
       "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.",
   });
 }
-const IconText = ({ icon, text }) => (
-  <Space>
-    {React.createElement(icon)}
-    {text}
-  </Space>
-);
 
-function onFinish() {
-  console.log("finished!");
-}
-
-const { Header, Content, Footer, Sider } = Layout;
+const { Sider } = Layout;
 
 class CampPage extends React.Component {
   constructor(props) {
@@ -110,6 +81,7 @@ class CampPage extends React.Component {
     return (
       <Layout
         style={{
+          width: "100%",
           fontFamily: "Roboto",
           position: "fixed",
           overflow: "hidden",
@@ -118,7 +90,7 @@ class CampPage extends React.Component {
       >
         <div
           style={{
-            width:"100%",
+            width: "100%",
             paddingRight: "15px",
             paddingLeft: "15px",
             marginRight: "auto",
@@ -142,69 +114,67 @@ class CampPage extends React.Component {
           </div>
 
           <Layout>
-            <Sider
-              style={{
-                overflow: "auto",
-                height: "100vh",
-                position: "fixed",
-                left: 0,
-              }}
-              width="300"
-              theme="light"
-            >
-              <Menu theme="light" mode="inline" defaultSelectedKeys={["1"]}>
-                <Menu.Item
-                  key="1"
-                  icon={<HomeOutlined />}
-                  onClick={this.handleClick}
-                >
-                  Home
-                </Menu.Item>
-                <Menu.Item
-                  key="2"
-                  icon={<QuestionCircleOutlined />}
-                  onClick={this.handleClick}
-                >
-                  QnA Board
-                </Menu.Item>
-                <Menu.Item
-                  key="3"
-                  icon={<BarChartOutlined />}
-                  onClick={this.handleClick}
-                >
-                  Ranking
-                </Menu.Item>
-              </Menu>
-              <h4 style={{ margin: "10px" }}>
-                We are growing this beautiful forest together!
-              </h4>
-              <List
-                style={{
-                  backgroundColor: "#beedb2",
-                  borderRadius: 10,
-                  margin: "9px",
-                }}
-                grid={{ gutter: 16 }}
-                dataSource={this.state.forest}
-                renderItem={(item) => (
-                  <div style={{ margin: "5px" }}>
-                    <img
-                      src={getTree(item.data().point)}
-                      style={{ width: "50px", height: "50px", margin: "5px" }}
-                    />
-                    <div
-                      style={{
-                        marginBotton: "5px",
-                        fontSize: "13px",
-                        textAlign: "center",
-                      }}
-                    >
-                      {item.id}
-                    </div>
-                  </div>
-                )}
-              />
-            </Sider>
+            <div className="sidenav left">
+              <div className="white_sidenav">
+                <Menu theme="light" mode="inline" defaultSelectedKeys={["1"]}>
+                  <Menu.Item
+                    key="1"
+                    icon={<HomeOutlined />}
+                    onClick={this.handleClick}
+                  >
+                    Home
+                  </Menu.Item>
+                  <Menu.Item
+                    key="2"
+                    icon={<QuestionCircleOutlined />}
+                    onClick={this.handleClick}
+                  >
+                    QnA Board
+                  </Menu.Item>
+                  <Menu.Item
+                    key="3"
+                    icon={<BarChartOutlined />}
+                    onClick={this.handleClick}
+                  >
+                    Ranking
+                  </Menu.Item>
+                </Menu>
+
+                <div className="forestBox" style={{margin:"10px"}}>
+                  <h6 style={{ margin: "10px" }}>Hackathon Forest</h6>
+                  <List
+                    style={{
+                      backgroundColor: "#beedb2",
+                      borderRadius: 10,
+                      margin: "9px",
+                    }}
+                    grid={{ gutter: 16 }}
+                    dataSource={this.state.forest}
+                    renderItem={(item) => (
+                      <div style={{ margin: "5px" }}>
+                        <img
+                          src={getTree(item.data().point)}
+                          style={{
+                            width: "50px",
+                            height: "50px",
+                            margin: "5px",
+                          }}
+                        />
+                        <div
+                          style={{
+                            marginBotton: "5px",
+                            fontSize: "13px",
+                            textAlign: "center",
+                          }}
+                        >
+                          {item.id}
+                        </div>
+                      </div>
+                    )}
+                  />
+                </div>
+              </div>
+            </div>
 
             <Layout
               style={{
@@ -220,31 +190,29 @@ class CampPage extends React.Component {
 
             <div></div>
 
-            <Sider
-              theme="light"
-              style={{
-                overflow: "auto",
-                height: "100vh",
-                position: "fixed",
-                right: 0,
-                padding: 15,
-              }}
-              width="300"
-            >
+            <div className="sidenav right">
               <div
+                className="timeleftbox shadowbox"
                 style={{
-                  color: "000",
+                  background: "#fff",
+                  borderRadius: "10px",
+                  margin: "10px",
+                  paddingTop: "10px",
+                  paddingLeft: "10px",
+                  paddingRight: "10px",
+                  paddingBottom: "10px",
                 }}
               >
+                <h6>Time left</h6>
                 <Countdown
-                  title="Time Left"
+                  style={{ margin: "10px" }}
                   value={deadline}
                   format="D 일 H 시 m 분 s 초"
                 />
               </div>
 
               <WGO wgo={this.state.whatsgoingon} />
-            </Sider>
+            </div>
           </Layout>
         </div>
       </Layout>

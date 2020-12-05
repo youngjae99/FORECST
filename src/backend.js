@@ -72,10 +72,12 @@ import 'antd/dist/antd.css';
         db.collection("Users").doc(id).set({
             level:0,
             point:0,
-            active:true});
+            active:true,
+            newbie:1
+        });
     }
-    export const backend_Handle_login= async(id,password) =>{
 
+    export const backend_Handle_login= async(id,password) =>{
         if(id===""||password==="")
             return;
         else 
@@ -123,31 +125,22 @@ import 'antd/dist/antd.css';
             db.collection("Users").doc(id).update('point',firebase.firestore.FieldValue.increment(3))
         }
     }
-    export const backend_Feed_watering = (doc,id) => {
+    export const backend_Feed_watering = (doc,id,cur) => {
         console.log(id)
         db.collection("Users").doc(id).update('point',firebase.firestore.FieldValue.increment(2))
         db.collection("Feeds").doc(doc).update('watering',firebase.firestore.FieldValue.increment(1))
+        db.collection("Users").doc(cur).collection("watering").doc(doc).set({watering:true})
     }
-    export const backend_WGO = (id,mode)=>{
+    export const backend_WGO = (id,time,mode)=>{
         if(mode =="post")
-            db.collection("WGO").doc().set({content : id + " uploaded a post",mode:mode })
+            db.collection("WGO").doc().set({content : id + " uploaded a post",mode:mode,time:time})
         else if(mode == "question")
-            db.collection("WGO").doc().set({content : id + " wrote a question",mode:mode })
+            db.collection("WGO").doc().set({content : id + " wrote a question",mode:mode,time:time })
     }
     export const backend_QnAList = (key, no, title, content, id, date, likes, views) => {
         db.collection("QnAList").doc().set({
             key:key, no: no, title: title, content : content, writer: id, date: date, likes: likes, views: views
         }) 
-    }
-    export const backend_makeToDo =(id,todo)=>{
-        db.collection("Users").doc(id).collection("todo").doc(todo).set({check:false,todo:todo})
-    }
-    export const backend_getToDo =async (id)=>{
-        console.log(id);
-        const todo = await db.collection("Users").doc(id).collection("todo").get();
-        const todo2 = todo.docs.map(doc=>doc.data());
-        console.log(todo2)
-        return todo2;
     }
 
 
@@ -220,5 +213,15 @@ import 'antd/dist/antd.css';
 //         <Link to={"/mypage"} style={{color: '#000', marginRight: 20}}>Join}</Link>
 //     </div>
 // );
+export const backend_makeToDo =(id,todo)=>{
+    db.collection("Users").doc(id).collection("todo").doc(todo).set({check:false,todo:todo})
+}
+export const backend_getToDo =async (id)=>{
+    console.log(id);
+    const todo = await db.collection("Users").doc(id).collection("todo").get();
+    const todo2 = todo.docs.map(doc=>doc.data());
+    console.log(todo2)
+    return todo2;
+}
 
 

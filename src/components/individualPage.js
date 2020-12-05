@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, Avatar, Row, Col, Tabs, Slider, Button, Form, Input, List} from 'antd';
+import {Card, Avatar, Row, Col, Tabs, Slider, Button, Form, Input, List, Progress, Popover} from 'antd';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import lv0 from '../level_tree/lv0.png';
@@ -11,22 +11,31 @@ import {MyFeed} from '../components';
 import { db } from "../firebase";
 import PropTypes from "prop-types";
 import {backend_makeToDo, backend_getToDo} from '../backend';
+import {QuestionCircleOutlined} from '@ant-design/icons';
 
 const {TabPane}=Tabs;
 
 
 const Editor = ({ onChange, value, submitting, onSubmit}) => (
-    <>
-      <Form.Item>
-        <Input
-            name = 'makeToDo'
-            type='text'
-            onChange={onChange}
-            value={value}>
-        </Input>
-      </Form.Item>
-      <Button loading={submitting} onClick={onSubmit}>Add to-do</Button>
-    </>
+    <Row style={{marginTop: 10}}>
+        <Col span={18}>
+            <Form.Item>
+                <Input
+                    name = 'makeToDo'
+                    type='text'
+                    onChange={onChange}
+                    value={value}>
+                </Input>
+        </Form.Item>
+        </Col>
+
+        <Col span={6}>
+            <div style={{float: "right"}}>
+                <Button loading={submitting} onClick={onSubmit}
+                type="primary" style={{fontSize: 18}}>Add to-do</Button>
+            </div>
+        </Col>
+    </Row>
 );
 
 class IndividualPage extends React.Component{
@@ -42,20 +51,22 @@ class IndividualPage extends React.Component{
             feed: [],
             userName: "",
             makeToDo:""
-            
         }
-        this.handleChange=this.handleChange.bind(this);
 
+        this.handleChange=this.handleChange.bind(this);
     }
+
     handleChange = (e) => {
         let nextState={};
         nextState[e.target.name]=e.target.value;
         this.setState(nextState);
     }
+
     handleSubmit = () => {
         if (!this.state.makeToDo) {
           return;
         }
+
         this.setState({
           submitting: true,
         });
@@ -87,6 +98,7 @@ class IndividualPage extends React.Component{
         console.log(snapshot.docs)
         this.setState({feed:snapshot.docs})
     }
+
     getMyToDo = async () =>{
         const todo = await db.collection("Users").doc(this.props.userName).collection("todo").where('check','==',false).get();
         const completed = await db.collection("Users").doc(this.props.userName).collection("todo").where('check','==',true).get();
@@ -95,25 +107,57 @@ class IndividualPage extends React.Component{
         this.setState({completed:completed.docs.map(doc=>doc.data())});
 
     }
+
     getMarker = async () => {
         const snapshot = await db.collection('Users').doc(this.props.userName).get()
         console.log(snapshot.data().point)
         this.setState({point:snapshot.data().point})  
     }
 
-
-    //my view 보여주는 코드가 필요함
     render(){
         const MyView=(
             <div style={{width: 1000, margin: "auto", marginTop: 20}}>
-                    <MyFeed feed={this.state.feed}></MyFeed>
+                <MyFeed feed={this.state.feed}></MyFeed>
+                {this.props.status.currentUser===this.props.userName ? 
+                <Button type='primary' style={{float: "right"}}>
+                    <Link to={"/uploadpost"} style={{fontSize: 18}}>New Post</Link>
+                </Button> : null
+                }
             </div>
         )
 
         const BookmarkView=(
             <Row>
-                <Col span={12}>
-                    <h5>To-do List</h5>
+                <Progress
+                strokeColor={{
+                    '0%': '#108ee9',
+                    '100%': '#87d068',
+                }}
+                percent={this.state.completed.length/this.state.todo.length*100}
+                style={{marginBottom: 20}}
+                />
+
+                <Col span={12} style={{paddingRight: 5}}>
+                    <Row>
+                        <Col span={20}>
+                            <h5>To-do List</h5>
+                        </Col>
+                        <Col span={4}>
+                            <div style={{float: "right"}}>
+                                <Popover
+                                title="What should we write in to-do list?"
+                                content={(
+                                    <div>
+                                        <p>Make tab structure</p>
+                                        <p>Implement authentication</p>
+                                    </div>
+                                )}>
+                                <QuestionCircleOutlined style={{fontSize: 20}}/>
+                                </Popover>
+                            </div>
+                        </Col>
+                    </Row>
+
                     <List
                         bordered
                         dataSource={this.state.todo}
@@ -123,14 +167,17 @@ class IndividualPage extends React.Component{
                             </List.Item>
                         )}
                     />
+                    {this.props.status.currentUser===this.props.userName ? 
                     <Editor 
-                        onChange ={this.handleChange} 
-                        onSubmit={this.handleSubmit}
-                        submitting={this.state.submitting}
-                        value={this.state.makeToDo}
-                    />
+                    onChange ={this.handleChange} 
+                    onSubmit={this.handleSubmit}
+                    submitting={this.state.submitting}
+                    value={this.state.makeToDo}
+                    /> :
+                    null}
                 </Col>
-                <Col span={12}>
+
+                <Col span={12} style={{paddingLeft: 5}}>
                     <h5>Completed!</h5>
                     <List
                         bordered
@@ -178,7 +225,7 @@ class IndividualPage extends React.Component{
         }
 
         return (
-            <div style={{fontFamily: 'Roboto'}}>
+            <div style={{fontFamily: 'Roboto', paddingBottom: 30}}>
                 <div style={{width: 1000, margin: "auto", fontSize: 25, marginTop: 20, fontWeight: "bold"}}>
                     Welcome to {this.props.userName} Page
                 </div>
@@ -221,10 +268,6 @@ class IndividualPage extends React.Component{
                             {MyView}
                         </TabPane>
                     </Tabs>
-
-                    <Button type='primary' style={{float: "right"}}>
-                        <Link to={"/uploadpost"} style={{fontSize: 18}}>New Post</Link>
-                    </Button>
                 </div>
 
             </div>
