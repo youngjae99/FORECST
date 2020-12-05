@@ -20,8 +20,7 @@ function UploadProject(props){
       });
       const [file, setFile] = useState(0);
       const [image,setImage] = useState(0);
-      const [todolist, setTodolist] = useState([]);
-      const [selectTodo, setSelectTodo] = useState("");
+      const [projects, setProjects] = useState([]);
       const { title, description, githuburl } = inputs;
     
       const handleChange = e => {
@@ -45,8 +44,17 @@ function UploadProject(props){
       const error = () => {
         message.error('You should upload PICTURE!!');
       };
+
+      useEffect(() => {
+        getProjects();
+      },[])
+
+      const getProjects = async () =>{
+        const project = await db.collection("Projects").get();
+        setProjects(project.docs.map(doc=>doc.data().todo));
+    }
       
-      
+    
       const handlePost = async() =>{
         if(file == 0){
             error();
@@ -57,8 +65,7 @@ function UploadProject(props){
         await fileRef.put(file)
         const currentUser = window.sessionStorage.getItem("id")
         console.log(currentUser)
-            db.collection("Projects").doc().set({id:currentUser,photo:await fileRef.getDownloadURL(),description:description, projectTitle:title, githuburl: githuburl, time: firebase.firestore.Timestamp.now()});
-            db.collection("Users").doc(currentUser).collection("todo").doc(todolist[0]).set({check:true, todo: todolist[0]});
+            db.collection("Projects").doc().set({id:currentUser,photo:await fileRef.getDownloadURL(),description:description, projectTitle:title, num: (projects.length + 1), githuburl: githuburl, time: Date.now()});
             console.log('Uploaded a blob or file!');
         }
     }

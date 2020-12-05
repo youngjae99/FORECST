@@ -14,6 +14,8 @@ import CampRankVote from './CampRankVote';
 import CampRankResult from './CampRankResult';
 import {connect} from 'react-redux';
 import {voteRequest} from '../actions/authentication';
+import PropTypes from "prop-types";
+import { db,storage } from "../firebase";
 
 
 
@@ -60,10 +62,14 @@ class CampRank extends Component {
   constructor(props) {
     super(props);
     this.votebtnclick = this.votebtnclick.bind(this);
+    this.state={
+      projects: [],
+      userName: "",
+    }
   }
 
   state = {
-    value: 1,
+    value: 0,
     showresult: 0,
   };
 
@@ -74,6 +80,24 @@ class CampRank extends Component {
     });
   };
 
+  onValue = () => {
+    this.setState({
+      value: this.value + 1,
+    })
+  }
+
+  componentWillMount(){
+    this.getProject();
+  }
+
+  getProject = async () => {
+    const snapshot = await db.collection("Projects").get();
+    console.log(snapshot.docs.map((doc)=>(doc.data())));
+    setTimeout(()=>{
+      this.setState({projects: snapshot.docs.map((doc)=>(doc.data()))})
+    },100);
+}
+
   votebtnclick = () => {
     console.log("vote button clicked!");
     this.props.voteRequest();
@@ -83,6 +107,7 @@ class CampRank extends Component {
     console.log(this.showresult);
   };
 
+
   render() {
     const radioStyle = {
       display: "block",
@@ -90,6 +115,22 @@ class CampRank extends Component {
       lineHeight: "30px",
     };
     const { value } = this.state;
+
+    const map1 = this.state.projects.map((word) => <Panel header={word.projectTitle+ ' By '+ word.id}>
+                                                      <div style={{marginBottom: 6}}> 
+                                                        - Github URL: {word.githuburl}
+                                                      </div>
+                                                      <div style={{marginBottom: 6}}>
+                                                        - Representative Screenshot: 
+                                                      </div>
+                                                      <div style={{marginBottom: 6}}>
+                                                        <img src={word.photo} style={{height:380, width:380}}></img>
+                                                      </div>
+                                                      <div> 
+                                                        - About the Project: {word.description}
+                                                      </div>
+                                                    </Panel>)
+    const map2 = this.state.projects.map((word) => <Radio style={radioStyle} value={word.num}>{word.projectTitle}</Radio>)
 
     const voted=(
       <div>voted</div>
@@ -130,71 +171,13 @@ class CampRank extends Component {
           >
             <Title level={3}>Project List</Title>
             <Collapse onChange={callback}>
-              <Panel header="Project A" key="1">
-                <p>{text}</p>
-              </Panel>
-              <Panel header="Project B" key="2">
-                <p>{text}</p>
-              </Panel>
-              <Panel header="Project C" key="3">
-                <p>{text}</p>
-              </Panel>
-              <Panel header="Project D" key="4">
-                <p>{text}</p>
-              </Panel>
-              <Panel header="Project E" key="5">
-                <p>{text}</p>
-              </Panel>
-              <Panel header="Project F" key="6">
-                <p>{text}</p>
-              </Panel>
-              <Panel header="Project G" key="7">
-                <p>{text}</p>
-              </Panel>
-              <Panel header="Project H" key="8">
-                <p>{text}</p>
-              </Panel>
-              <Panel header="Project I" key="9">
-                <p>{text}</p>
-              </Panel>
-              <Panel header="Project J" key="10">
-                <p>{text}</p>
-              </Panel>
+              {map1}
             </Collapse>
           </Col>
           <Col style={{ width: "30%", padding: 20, backgroundColor: "white" }}>
             <Title level={3}>Vote your pick</Title>
             <Radio.Group onChange={this.onChange} value={value}>
-              <Radio style={radioStyle} value={1}>
-                Project A
-              </Radio>
-              <Radio style={radioStyle} value={2}>
-                Project B
-              </Radio>
-              <Radio style={radioStyle} value={3}>
-                Project C
-              </Radio>
-              <Radio style={radioStyle} value={4}>
-                Project D
-              </Radio>
-              <Radio style={radioStyle} value={5}>
-                Project E
-              </Radio>
-              <Radio style={radioStyle} value={6}>
-                Project F
-              </Radio>
-              <Radio style={radioStyle} value={7}>
-                Project G
-              </Radio>
-              <Radio style={radioStyle} value={8}>
-                Project H
-              </Radio>
-              <Radio style={radioStyle} value={9}>
-                Project I
-              </Radio>
-              <Radio style={radioStyle} value={10}>
-                Project J
-              </Radio>
+              {map2}
             </Radio.Group>
             <Col>
               <Button type="primary" onClick={this.votebtnclick}>
@@ -209,6 +192,10 @@ class CampRank extends Component {
     
   }
 }
+
+CampRank.propTypes={
+  userName: PropTypes.string,
+};
 
 const mapStateToProps=(state)=>{
   return{
