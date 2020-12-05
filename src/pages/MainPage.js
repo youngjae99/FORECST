@@ -189,7 +189,7 @@ class MainPage extends React.Component {
                     <p className="p-large">
                       There are many hackathons waiting for you here.
                     </p>
-                    <Link className="btn-solid-lg page-scroll" to="/explore">
+                    <Link className="btn-solid-lg page-scroll" to="/camp">
                       Enter Hackathon
                     </Link>
                   </div>
