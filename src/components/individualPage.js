@@ -147,7 +147,8 @@ class IndividualPage extends React.Component{
                                         <p>Make tab structure</p>
                                         <p>Implement authentication</p>
                                     </div>
-                                )}>
+                                )}
+                                style={{fontSize: 20}}>
                                 TODO
                                 </Popover>
                             </div>
