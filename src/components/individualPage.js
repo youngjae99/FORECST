@@ -12,6 +12,7 @@ import { db } from "../firebase";
 import PropTypes from "prop-types";
 import {backend_makeToDo, backend_getToDo} from '../backend';
 import {QuestionCircleOutlined} from '@ant-design/icons';
+import firebase from "firebase/app";
 
 const {TabPane}=Tabs;
 
@@ -74,7 +75,7 @@ class IndividualPage extends React.Component{
           return;
         }
 
-        if(this.state.todo.length==0){
+        if((this.state.todo.length+this.state.completed.length)==0){
             Modal.info({
                 title: "Now, let's write your first post.",
                 content: (
@@ -100,6 +101,7 @@ class IndividualPage extends React.Component{
         });
     
         setTimeout(() => {
+       db.collection("Users").doc(this.props.userName).update("newbie",firebase.firestore.FieldValue.increment(-1))
         backend_makeToDo(this.props.userName, this.state.makeToDo)
           this.setState({
             submitting: false,
