@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import { PageHeader, Button, Avatar, Row, Col } from "antd";
 import logo from "../logo.png";
 import { connect } from "react-redux";
 import lv0 from "../level_tree/lv0.png";
@@ -106,7 +105,7 @@ class Forecst extends React.Component {
           {window.sessionStorage.getItem("id")}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <Link class="dropdown-item" to={"/mypage"}>
+          <Link class="dropdown-item" to={{pathname: `/mypage/${this.props.currentUser}`}}>
             <span class="item-text">MyPage</span>
           </Link>
           <div class="dropdown-items-divide-hr"></div>
