@@ -174,6 +174,7 @@ class CampPage extends React.Component {
                             marginBotton: "5px",
                             fontSize: "13px",
                             textAlign: "center",
+                            color: "#000"
                           }}
                         >
                           {item.id}
