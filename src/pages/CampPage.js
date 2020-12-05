@@ -146,7 +146,9 @@ class CampPage extends React.Component {
                     style={{
                       backgroundColor: "#beedb2",
                       borderRadius: 10,
-                      margin: "9px",
+                      margin: "10px",
+                      overflowY: "scroll",
+                      height:"300px"
                     }}
                     grid={{ gutter: 16 }}
                     dataSource={this.state.forest}
@@ -207,7 +209,7 @@ class CampPage extends React.Component {
                 <Countdown
                   style={{ margin: "10px" }}
                   value={deadline}
-                  format="D 일 H 시 m 분 s 초"
+                  format="Dday H:m:s"
                 />
               </div>
 

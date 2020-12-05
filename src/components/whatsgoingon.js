@@ -3,6 +3,8 @@ import { List, Typography} from "antd";
 import { db, storage } from "../firebase";
 import postimg from "../post.png";
 import questionimg from "../question.png";
+import "./componentsCSS.css";
+
 
 const { Title } = Typography;
 
@@ -68,24 +70,15 @@ class WGO extends Component {
     console.log()
 
     return (
-      <div className="shadowbox"
-      style={{
-        background: "#fff",
-        borderRadius:"10px",
-        margin: "10px",        
-        paddingTop: "10px",
-        paddingLeft: "10px",
-        paddingRight: "10px",
-        paddingBottom: "10px"
-      }}>
-        <h6>What's going on</h6>
+      <div className="WGObox shadowbox">
+        <h6 style={{marginLeft:"10px"}}>What's going on</h6>
         <List
           itemLayout="vertical"
           size="large"
           dataSource={this.state.wgo}
           style={{ marginTop: "20px" }}
           renderItem={(item) => (
-            <div style={{ margin: "10px" }}>
+            <div className="WGOitem" style={{ margin: "10px" }}>
               <img src={logo(item.data().mode)} style={typeimgStyle} />
               {item.data().content}
               <div style={{ fontSize: 9, float: "right", verticalAlign: "bottom", lineHeight:"25px"}}>
