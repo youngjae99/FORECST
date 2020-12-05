@@ -34,6 +34,7 @@ class WGO extends Component {
   componentDidMount() {
     this.getWGO();
   }
+
   getWGO = async () => {
     const snapshot = await db.collection("WGO").orderBy("time","desc").get();
     this.setState({ wgo: snapshot.docs });
@@ -62,13 +63,13 @@ class WGO extends Component {
   }
 
   render() {
+    this.getWGO();
     const logo = (mode) => {
       if (mode == "post") return postimg;
       else if (mode == "question") return questionimg;
     };
 
     console.log()
-
     return (
       <div className="WGObox shadowbox">
         <h6 style={{marginLeft:"10px"}}>What's going on</h6>
@@ -78,7 +79,7 @@ class WGO extends Component {
           dataSource={this.state.wgo}
           style={{ marginTop: "20px" }}
           renderItem={(item) => (
-            <div className="WGOitem" style={{ margin: "10px" }}>
+            <div className="WGOitem" style={{ margin: "10px", fontSize: 11}}>
               <img src={logo(item.data().mode)} style={typeimgStyle} />
               {item.data().content}
               <div style={{ fontSize: 9, float: "right", verticalAlign: "bottom", lineHeight:"25px"}}>

@@ -73,6 +73,12 @@ class CampQnA extends Component {
       });
   };
 
+  parseTime = timestamp => {
+    var date = new Date(timestamp);
+    console.log('year is ' + date.getFullYear());
+    return date.getMonth() + "." + date.getDate()+"  "+date.getHours()+":"+date.getMinutes();
+  }
+
   getColumnSearchProps = dataIndex => ({
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
       <div style={{ padding: 8 }}>

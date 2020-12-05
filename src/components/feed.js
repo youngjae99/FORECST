@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { List, Avatar } from "antd";
+import { List, Avatar, Typography} from "antd";
 import FeedComment from "./feed comment";
 import Profile from "./profile";
 import { connect } from "react-redux";
@@ -9,6 +9,8 @@ import lv2 from "../level_tree/lv2.png";
 import { getLevel } from "../actions/authentication";
 import { db } from "../firebase";
 import {Link} from 'react-router-dom';
+const { Title } = Typography;
+
 
 class Feed extends Component {
   constructor(props) {
@@ -58,7 +60,7 @@ class Feed extends Component {
         renderItem={(item) => (
           <List.Item
             className="feeditem"
-            key={item.title}
+        key={<h2>{item.title}</h2>}
             extra={
               <Avatar
                 shape="square"
