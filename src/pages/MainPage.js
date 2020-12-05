@@ -10,17 +10,21 @@ import "./template/css/magnific-popup.css";
 import "./template/css/bootstrap.css";
 import "./template/css/fontawesome-all.css";
 import mainimage from "./template/images/Programming-pana.svg";
+import { db } from "../firebase";
 
 const { Title } = Typography;
 
 class MainPage extends React.Component {
   constructor(props) {
     super(props);
+    this.state={new:0}
   }
 
   componentWillMount() {
     const id = window.sessionStorage.getItem("id");
     console.log("mount id", id);
+    this.getNewbie()
+
     if (id) {
       console.log("true");
       this.setState({
@@ -30,6 +34,13 @@ class MainPage extends React.Component {
       });
     }
   }
+  getNewbie = async()=>{
+    if(window.sessionStorage.getItem("id")){
+      const newbie = await db.collection("Users").doc(window.sessionStorage.getItem("id")).get()
+      this.setState({new:newbie.data().newbie})
+    }
+  }
+
 
   render() {
     const joinPage = (
@@ -189,9 +200,7 @@ class MainPage extends React.Component {
                     <p className="p-large">
                       There are many hackathons waiting for you here.
                     </p>
-                    <Link className="btn-solid-lg page-scroll" to="/camp">
-                      Enter Hackathon
-                    </Link>
+                    
                   </div>
                   
                 </div>
@@ -201,7 +210,7 @@ class MainPage extends React.Component {
               <div className="site-card-wrapper" style={{marginTop:"40px"}}>
                 <Row className="camp-row" gutter={16}>
                   <Col span={8}>
-                  <Card title="12/3 ~ 12/10" extra={<Button danger><Link to={"/camp"} className="nowOn">ENTER NOW</Link></Button>} style={{ width: 300 }}>
+                    <Card title="12/3 ~ 12/10" extra={<Button danger>{this.state.new?<Link to={"/campdescription"} className="nowOn">JOIN NOW</Link>:<Link to={"/camp"} className="nowOn">ENTER NOW</Link>}</Button>} style={{ width: 300 }}>
                     <h6>Make an application for the pandemic COVID 19 situation!
                     (12/3 ~ 12/10)</h6>
                     <p style={{color:"red", fontWeight:"bold"}}>Now on going!</p>
