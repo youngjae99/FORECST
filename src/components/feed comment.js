@@ -221,10 +221,10 @@ class FeedComment extends Component {
               onSubmit={this.handleSubmit}
               submitting={submitting}
               value={value}
-              username={this.props.status.currentUser}
+              username={window.sessionStorage.getItem("id")}
             />
           }
-          avatar={<Profile writer={this.props.status.currentUser}></Profile>}
+          avatar={<Profile writer={window.sessionStorage.getItem("id")}></Profile>}
         />
       </>
     );

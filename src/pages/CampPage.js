@@ -6,11 +6,14 @@ import l0_trans from "../level_tree/l0_trans.png";
 import l1_trans from "../level_tree/l1_trans.png";
 import l2_trans from "../level_tree/l2_trans.png";
 import { getLevel } from "../actions/authentication";
-import { Layout, Menu, Statistic, Typography, List} from "antd";
-import { HomeOutlined, QuestionCircleOutlined, BarChartOutlined } from "@ant-design/icons";
+import { Layout, Menu, Statistic, Typography, List } from "antd";
+import {
+  HomeOutlined,
+  QuestionCircleOutlined,
+  BarChartOutlined,
+} from "@ant-design/icons";
 import { db } from "../firebase";
-import {Link} from 'react-router-dom';
-
+import { Link } from "react-router-dom";
 
 const { Countdown } = Statistic;
 const { Title } = Typography;
@@ -136,33 +139,40 @@ class CampPage extends React.Component {
                     Ranking
                   </Menu.Item>
                 </Menu>
-                <h5 style={{ margin: "10px" }}>Hackathon Forest</h5>
-                <List
-                  style={{
-                    backgroundColor: "#beedb2",
-                    borderRadius: 10,
-                    margin: "9px",
-                  }}
-                  grid={{ gutter: 16 }}
-                  dataSource={this.state.forest}
-                  renderItem={(item) => (
-                    <div style={{ margin: "5px" }}>
-                      <img
-                        src={getTree(item.data().point)}
-                        style={{ width: "50px", height: "50px", margin: "5px" }}
-                      />
-                      <div
-                        style={{
-                          marginBotton: "5px",
-                          fontSize: "13px",
-                          textAlign: "center",
-                        }}
-                      >
-                        {item.id}
+
+                <div className="forestBox" style={{margin:"10px"}}>
+                  <h6 style={{ margin: "10px" }}>Hackathon Forest</h6>
+                  <List
+                    style={{
+                      backgroundColor: "#beedb2",
+                      borderRadius: 10,
+                      margin: "9px",
+                    }}
+                    grid={{ gutter: 16 }}
+                    dataSource={this.state.forest}
+                    renderItem={(item) => (
+                      <div style={{ margin: "5px" }}>
+                        <img
+                          src={getTree(item.data().point)}
+                          style={{
+                            width: "50px",
+                            height: "50px",
+                            margin: "5px",
+                          }}
+                        />
+                        <div
+                          style={{
+                            marginBotton: "5px",
+                            fontSize: "13px",
+                            textAlign: "center",
+                          }}
+                        >
+                          {item.id}
+                        </div>
                       </div>
-                    </div>
-                  )}
-                />
+                    )}
+                  />
+                </div>
               </div>
             </div>
 
@@ -190,10 +200,10 @@ class CampPage extends React.Component {
                   paddingTop: "10px",
                   paddingLeft: "10px",
                   paddingRight: "10px",
-                  paddingBottom: "10px"
+                  paddingBottom: "10px",
                 }}
               >
-                <h6 >Time left</h6>
+                <h6>Time left</h6>
                 <Countdown
                   style={{ margin: "10px" }}
                   value={deadline}
