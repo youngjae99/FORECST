@@ -171,13 +171,18 @@ class FeedComment extends Component {
   };
 
   modal_water = ()=>{
-    Modal.info({
+    const modal = Modal.info({
     title: 'You watered 2 points to '+this.props.id+"!",
     content: (
       <img src={popup_water} alt="wc" style={{ width: "300px", height: "300px" }}/>
     ),
-    onOk() {},
-  });}
+    okButtonProps: {style: {display: "none"}}
+    
+  });
+  setTimeout(() => {
+    modal.destroy();
+  },  2000);
+}
 
   toTime = orgtime => {    
     var s = Date.now() - orgtime;

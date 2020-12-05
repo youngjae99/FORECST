@@ -49,13 +49,17 @@ function UploadPost(props){
       const error = () => {
         message.error('You should upload PICTURE!!');
       };
+      const error2 = () => {
+        message.error('You should select TODO!!');
+      };
       
+
       useEffect(() => {
         getMyToDo();
       },[])
 
     const getMyToDo = async () =>{
-        const todo = await db.collection("Users").doc(props.status.currentUser).collection("todo").where('check','==',false).get();
+        const todo = await db.collection("Users").doc(window.sessionStorage.getItem("id")).collection("todo").where('check','==',false).get();
         setTodolist(todo.docs.map(doc=>doc.data().todo));
         console.log(todolist);
     }
@@ -64,14 +68,18 @@ function UploadPost(props){
         if(file == 0){
             error();
         }
+        else if(todolist.length==0){
+            error2();
+        }
         else{
         const storageRef = storage.ref();
         const fileRef = storageRef.child(file.name);
         await fileRef.put(file)
         const currentUser = window.sessionStorage.getItem("id")
         console.log(currentUser)
-            db.collection('Feeds').doc().set({id:currentUser,photo:await fileRef.getDownloadURL(),writing:writing,title:todolist[0],time: firebase.firestore.Timestamp.now()});
+            db.collection('Feeds').doc().set({id:currentUser,photo:await fileRef.getDownloadURL(),writing:writing,title:todolist[0],time: Date.now()});
             db.collection("Users").doc(currentUser).collection("todo").doc(todolist[0]).set({check:true, todo: todolist[0]});
+            db.collection("Users").doc(currentUser).update("newbie",firebase.firestore.FieldValue.increment(-1))
             console.log('Uploaded a blob or file!');
             backend_Point(currentUser,"post")
             backend_WGO(currentUser,Date.now(),"post")
@@ -176,9 +184,9 @@ function UploadPost(props){
 
                     <div style={{textAlign: "right"}}>
                         <Button type='primary' style={{marginLeft: 100}} onClick={handlePost}>
-                             {file==0?
+                             {file==0||todolist.length==0?
                              <div style={{fontSize: 18}}>UPLOAD</div> :
-                             <Link to={"/mypage"} style={{fontSize: 18}}>UPLOAD</Link>}
+                             <Link to={"/camp"} style={{fontSize: 18}}>UPLOAD</Link>}
                         </Button>
                     </div>
                 </Col>
