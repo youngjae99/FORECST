@@ -10,12 +10,15 @@ import "./template/css/bootstrap.css";
 import "./template/css/fontawesome-all.css";
 
 class Tutorial extends React.Component {
+
   constructor(props) {
     super(props);
     this.state={};
   }
 
   handleOk=()=>{
+    console.log(this.props.history);
+
     this.props.history.push(`/mypage/${this.props.currentUser}`);
     Modal.destroyAll();
   }
