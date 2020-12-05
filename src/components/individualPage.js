@@ -145,7 +145,7 @@ class IndividualPage extends React.Component{
                         <Col span={4}>
                             <div style={{float: "right"}}>
                                 <Popover
-                                title="What should we write in to-do list?"
+                                title="What are the examples of to-do list?"
                                 content={(
                                     <div>
                                         <p>Make tab structure</p>
