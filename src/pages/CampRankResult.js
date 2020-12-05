@@ -15,8 +15,12 @@ class CampRankResult extends React.Component {
                     closable
                     banner
                 />
-                <Title>Results for the Final Ranking</Title>
-                <Title level={3}>'Project D' is the winner. Congratulations!</Title>
+                <div style={{fontSize: 30, fontWeight: "bold"}}>
+                Results for the Final Ranking
+                </div>
+                <div style={{fontSize: 16, paddingBottom: 10}}>
+                'Project D' is the winner. Congratulations!
+                </div>
                 Project A
                 <Progress percent={8} strokeColor={'#99ceff'} strokeWidth={'15px'}></Progress>
                 Project B
