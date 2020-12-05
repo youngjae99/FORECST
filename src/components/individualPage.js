@@ -11,6 +11,7 @@ import {MyFeed} from '../components';
 import { db } from "../firebase";
 import PropTypes from "prop-types";
 import {backend_makeToDo, backend_getToDo} from '../backend';
+import {QuestionCircleOutlined} from '@ant-design/icons';
 
 const {TabPane}=Tabs;
 
@@ -50,11 +51,11 @@ class IndividualPage extends React.Component{
             feed: [],
             userName: "",
             makeToDo:""
-            
         }
-        this.handleChange=this.handleChange.bind(this);
 
+        this.handleChange=this.handleChange.bind(this);
     }
+
     handleChange = (e) => {
         let nextState={};
         nextState[e.target.name]=e.target.value;
@@ -65,6 +66,7 @@ class IndividualPage extends React.Component{
         if (!this.state.makeToDo) {
           return;
         }
+
         this.setState({
           submitting: true,
         });
@@ -96,6 +98,7 @@ class IndividualPage extends React.Component{
         console.log(snapshot.docs)
         this.setState({feed:snapshot.docs})
     }
+
     getMyToDo = async () =>{
         const todo = await db.collection("Users").doc(this.props.userName).collection("todo").where('check','==',false).get();
         const completed = await db.collection("Users").doc(this.props.userName).collection("todo").where('check','==',true).get();
@@ -104,6 +107,7 @@ class IndividualPage extends React.Component{
         this.setState({completed:completed.docs.map(doc=>doc.data())});
 
     }
+
     getMarker = async () => {
         const snapshot = await db.collection('Users').doc(this.props.userName).get()
         console.log(snapshot.data().point)
@@ -147,9 +151,8 @@ class IndividualPage extends React.Component{
                                         <p>Make tab structure</p>
                                         <p>Implement authentication</p>
                                     </div>
-                                )}
-                                style={{fontSize: 20}}>
-                                TODO
+                                )}>
+                                <QuestionCircleOutlined style={{fontSize: 20}}/>
                                 </Popover>
                             </div>
                         </Col>
