@@ -13,7 +13,7 @@ import {backend_Point,backend_WGO} from "../backend";
 import { message} from 'antd';
 
 function UploadPost(props){
-    console.log("upload post: ", props.status.currentUser);
+    console.log("upload post: ", window.sessionStorage.getItem("id"));
     const [inputs, setInputs] = useState({
         title: "",
         writing: "",
@@ -53,7 +53,7 @@ function UploadPost(props){
         const storageRef = storage.ref();
         const fileRef = storageRef.child(file.name);
         await fileRef.put(file)
-        const currentUser = await props.status.currentUser
+        const currentUser = window.sessionStorage.getItem("id")
         console.log(currentUser)
             db.collection('Feeds').doc().set({id:currentUser,photo:await fileRef.getDownloadURL(),writing:writing,title:title,time: Date.now()});
             console.log('Uploaded a blob or file!');

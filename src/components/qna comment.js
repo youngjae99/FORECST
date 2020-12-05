@@ -47,7 +47,7 @@ class QnAComment extends Component {
       value: '',
       point: 0,
     };    
-    console.log(this.props.status.currentUser)
+    console.log(window.sessionStorage.getItem("id"))
   }
 
   componentDidMount(){
@@ -71,19 +71,19 @@ class QnAComment extends Component {
     if (!this.state.value) {
       return;
     }
-    console.log(this.props.status.currentUser)
+    console.log(window.sessionStorage.getItem("id"))
     this.setState({
       submitting: true,
     });
 
     setTimeout(() => {
-      db.collection('QnAList').doc(this.props.posting).collection("Comments").doc().set({author:this.props.status.currentUser, content:this.state.value, datetime:moment().valueOf()})
+      db.collection('QnAList').doc(this.props.posting).collection("Comments").doc().set({author:window.sessionStorage.getItem("id"), content:this.state.value, datetime:moment().valueOf()})
       this.setState({
         submitting: false,
         value: '',
         comments: [
           {
-            author: this.props.status.currentUser,
+            author: window.sessionStorage.getItem("id"),
             content: <p>{this.state.value}</p>,
             datetime: moment().fromNow(),
           },
@@ -139,12 +139,12 @@ class QnAComment extends Component {
             onSubmit={this.handleSubmit}
             submitting={submitting}
             value={value}
-            username={this.props.status.currentUser}
+            username={window.sessionStorage.getItem("id")}
           />
         }
         avatar={
           <Profile
-            writer={this.props.status.currentUser}>
+            writer={window.sessionStorage.getItem("id")}>
           </Profile>
         }
       />

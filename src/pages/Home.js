@@ -14,7 +14,7 @@ class Home extends React.Component{
             <div>
                 <Forecst 
                 isLoggedIn={this.props.status.isLoggedIn}
-                currentUser={this.props.status.currentUser}>
+                currentUser={window.sessionStorage.getItem("id")}>
                 </Forecst>
             </div>
         );

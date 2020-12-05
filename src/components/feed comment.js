@@ -71,7 +71,7 @@ class FeedComment extends Component {
       comments: [],
       list: [],
     };
-    console.log(this.props.status.currentUser);
+    console.log(window.sessionStorage.getItem("id"));
   }
 
   componentDidMount() {
@@ -106,7 +106,7 @@ class FeedComment extends Component {
     if (!this.state.value) {
       return;
     }
-    console.log(this.props.status.currentUser);
+    console.log(window.sessionStorage.getItem("id"));
     this.setState({
       submitting: true,
     });
@@ -117,7 +117,7 @@ class FeedComment extends Component {
         .collection("Comments")
         .doc()
         .set({
-          author: this.props.status.currentUser,
+          author: window.sessionStorage.getItem("id"),
           content: this.state.value,
           datetime: moment().valueOf(),
         });
@@ -127,7 +127,7 @@ class FeedComment extends Component {
         comments: [
           ...this.state.comments,
           {
-            author: this.props.status.currentUser,
+            author: window.sessionStorage.getItem("id"),
             content: <p>{this.state.value}</p>,
             datetime: moment().fromNow(),
           },
@@ -139,14 +139,14 @@ class FeedComment extends Component {
 
   handleWatering = (e) => {
     if (this.state.watered == 0) {
-      backend_Feed_watering(this.props.posting, this.props.id,this.props.status.currentUser);
+      backend_Feed_watering(this.props.posting, this.props.id,window.sessionStorage.getItem("id"));
       setTimeout(() => {
         this.setState({ watered: 1 });
       }, 100);
     }
   };
     getwatering =async()=>{
-      const water=await db.collection("Users").doc(this.props.status.currentUser).collection("watering").doc(this.props.posting).get()
+      const water=await db.collection("Users").doc(window.sessionStorage.getItem("id")).collection("watering").doc(this.props.posting).get()
       const exist = await water.exists;
       if(exist){
         console.log(water.data().watering);
