@@ -72,6 +72,7 @@ class Feed extends Component {
               title={<Link to={{pathname: `/mypage/${item.data().id}`}}>{item.data().id}</Link>}
               description={item.data().title}
             />
+            {/* {item.data().time} */}
             {item.data().writing}
             <FeedComment posting={item.id} id={item.data().id}></FeedComment>
           </List.Item>

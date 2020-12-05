@@ -9,6 +9,7 @@ import {
   Spin,
   Popconfirm,
   message,
+  Modal
 } from "antd";
 import moment from "moment";
 import { db } from "../firebase";
@@ -17,6 +18,8 @@ import { getLevel } from "../actions/authentication";
 import { backend_Feed_watering } from "../backend";
 import watering0 from "../watericon0.png";
 import watering1 from "../watericon1.png";
+import popup_water from "../popup_water.jpg";
+
 import { MessageOutlined } from "@ant-design/icons";
 import InfiniteScroll from "react-infinite-scroller";
 import "./feedcomment.css";
@@ -70,6 +73,7 @@ class FeedComment extends Component {
       loading: false,
       comments: [],
       list: [],
+      modal_visible:false,
     };
     console.log(window.sessionStorage.getItem("id"));
   }
@@ -140,8 +144,9 @@ class FeedComment extends Component {
   handleWatering = (e) => {
     if (this.state.watered == 0) {
       backend_Feed_watering(this.props.posting, this.props.id,window.sessionStorage.getItem("id"));
+      this.modal_water()
       setTimeout(() => {
-        this.setState({ watered: 1 });
+        this.setState({ watered: 1,modal_visible:true });
       }, 100);
     }
   };
@@ -159,6 +164,20 @@ class FeedComment extends Component {
       value: e.target.value,
     });
   };
+  handleOk = () => {
+    setTimeout(() => {
+      this.setState({ modal_visible:false });
+    }, 100);
+  };
+
+  modal_water = ()=>{
+    Modal.info({
+    title: 'You watered 2 points to '+this.props.id+"!",
+    content: (
+      <img src={popup_water} alt="wc" style={{ width: "300px", height: "300px" }}/>
+    ),
+    onOk() {},
+  });}
 
   onLoadMore = () => {
     const data = this.state.list;

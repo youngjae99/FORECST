@@ -33,7 +33,7 @@ class WGO extends Component {
     this.getWGO();
   }
   getWGO = async () => {
-    const snapshot = await db.collection("WGO").get();
+    const snapshot = await db.collection("WGO").orderBy("time","desc").get();
     this.setState({ wgo: snapshot.docs });
   };
 
