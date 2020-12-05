@@ -32,7 +32,7 @@ function UploadQnA(props){
             db.collection('QnAList').doc().set({key: 1, likes: 23, views: 45, no: 1, writer:currentUser, writing:writing, title:title, date: firebase.firestore.Timestamp.now()});
             console.log('Uploaded a blob or file!');
             backend_Point(currentUser,"question")
-            backend_WGO(currentUser,"question")
+            backend_WGO(currentUser,firebase.firestore.Timestamp.now(),"question")
         }
     
     return(

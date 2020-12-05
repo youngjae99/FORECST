@@ -131,11 +131,11 @@ import 'antd/dist/antd.css';
         db.collection("Feeds").doc(doc).update('watering',firebase.firestore.FieldValue.increment(1))
         db.collection("Users").doc(cur).collection("watering").doc(doc).set({watering:true})
     }
-    export const backend_WGO = (id,mode)=>{
+    export const backend_WGO = (id,time,mode)=>{
         if(mode =="post")
-            db.collection("WGO").doc().set({content : id + " uploaded a post",mode:mode })
+            db.collection("WGO").doc().set({content : id + " uploaded a post",mode:mode,time:time})
         else if(mode == "question")
-            db.collection("WGO").doc().set({content : id + " wrote a question",mode:mode })
+            db.collection("WGO").doc().set({content : id + " wrote a question",mode:mode,time:time })
     }
     export const backend_QnAList = (key, no, title, content, id, date, likes, views) => {
         db.collection("QnAList").doc().set({

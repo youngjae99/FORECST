@@ -58,7 +58,7 @@ function UploadPost(props){
             db.collection('Feeds').doc().set({id:currentUser,photo:await fileRef.getDownloadURL(),writing:writing,title:title,time: firebase.firestore.Timestamp.now()});
             console.log('Uploaded a blob or file!');
             backend_Point(currentUser,"post")
-            backend_WGO(currentUser,"post")
+            backend_WGO(currentUser,firebase.firestore.Timestamp.now(),"post")
         }
     }
     
