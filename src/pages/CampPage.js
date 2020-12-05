@@ -78,6 +78,7 @@ class CampPage extends React.Component {
     return (
       <Layout
         style={{
+          width: "100%",
           fontFamily: "Roboto",
           position: "fixed",
           overflow: "hidden",
@@ -86,7 +87,7 @@ class CampPage extends React.Component {
       >
         <div
           style={{
-            width:"100%",
+            width: "100%",
             paddingRight: "15px",
             paddingLeft: "15px",
             marginRight: "auto",
@@ -110,75 +111,60 @@ class CampPage extends React.Component {
           </div>
 
           <Layout>
-            <Sider
-              style={{
-                overflow: "auto",
-                height: "100vh",
-                position: "fixed",
-                left: 0
-              }}
-              width="300"
-              theme="light"
-            >
-              <Menu theme="light" mode="inline" defaultSelectedKeys={["1"]}>
-                <Menu.Item
-                  key="1"
-                  icon={<HomeOutlined />}
-                  onClick={this.handleClick}
-                >
-                  Home
-                </Menu.Item>
-                <Menu.Item
-                  key="2"
-                  icon={<QuestionCircleOutlined />}
-                  onClick={this.handleClick}
-                >
-                  QnA Board
-                </Menu.Item>
-                <Menu.Item
-                  key="3"
-                  icon={<BarChartOutlined />}
-                  onClick={this.handleClick}
-                >
-                  Ranking
-                </Menu.Item>
-              </Menu>
-
-              <h4 style={{ margin: "10px" }}>
-                We are growing this beautiful forest together!
-              </h4>
-
-              <List
-                style={{
-                  backgroundColor: "#beedb2",
-                  borderRadius: 10,
-                  margin: "9px",
-                  paddingLeft: 5
-                }}
-                grid={{ gutter: 16 }}
-                dataSource={this.state.forest}
-                renderItem={(item) => (
-                  <div style={{ margin: "5px" }}>
-                    <img
-                      src={getTree(item.data().point)}
-                      style={{ width: "50px", height: "50px", margin: "5px" }}
-                    />
-                    <div
-                      style={{
-                        marginBotton: "5px",
-                        fontSize: "13px",
-                        textAlign: "center",
-                      }}
-                    >
-                      <div>
-                        <Link to={{pathname: `/mypage/${item.id}`}}>{item.id}</Link>
+            <div className="sidenav left">
+              <div className="white_sidenav">
+                <Menu theme="light" mode="inline" defaultSelectedKeys={["1"]}>
+                  <Menu.Item
+                    key="1"
+                    icon={<HomeOutlined />}
+                    onClick={this.handleClick}
+                  >
+                    Home
+                  </Menu.Item>
+                  <Menu.Item
+                    key="2"
+                    icon={<QuestionCircleOutlined />}
+                    onClick={this.handleClick}
+                  >
+                    QnA Board
+                  </Menu.Item>
+                  <Menu.Item
+                    key="3"
+                    icon={<BarChartOutlined />}
+                    onClick={this.handleClick}
+                  >
+                    Ranking
+                  </Menu.Item>
+                </Menu>
+                <h5 style={{ margin: "10px" }}>Hackathon Forest</h5>
+                <List
+                  style={{
+                    backgroundColor: "#beedb2",
+                    borderRadius: 10,
+                    margin: "9px",
+                  }}
+                  grid={{ gutter: 16 }}
+                  dataSource={this.state.forest}
+                  renderItem={(item) => (
+                    <div style={{ margin: "5px" }}>
+                      <img
+                        src={getTree(item.data().point)}
+                        style={{ width: "50px", height: "50px", margin: "5px" }}
+                      />
+                      <div
+                        style={{
+                          marginBotton: "5px",
+                          fontSize: "13px",
+                          textAlign: "center",
+                        }}
+                      >
+                        {item.id}
                       </div>
                     </div>
-                  </div>
-                )}
-              />
-
-            </Sider>
+                  )}
+                />
+              </div>
+            </div>
 
             <Layout
               style={{
@@ -194,31 +180,29 @@ class CampPage extends React.Component {
 
             <div></div>
 
-            <Sider
-              theme="light"
-              style={{
-                overflow: "auto",
-                height: "100vh",
-                position: "fixed",
-                right: 0,
-                padding: 15,
-              }}
-              width="300"
-            >
+            <div className="sidenav right">
               <div
+                className="timeleftbox shadowbox"
                 style={{
-                  color: "000",
+                  background: "#fff",
+                  borderRadius: "10px",
+                  margin: "10px",
+                  paddingTop: "10px",
+                  paddingLeft: "10px",
+                  paddingRight: "10px",
+                  paddingBottom: "10px"
                 }}
               >
+                <h6 >Time left</h6>
                 <Countdown
-                  title="Time Left"
+                  style={{ margin: "10px" }}
                   value={deadline}
                   format="D 일 H 시 m 분 s 초"
                 />
               </div>
 
               <WGO wgo={this.state.whatsgoingon} />
-            </Sider>
+            </div>
           </Layout>
         </div>
       </Layout>
