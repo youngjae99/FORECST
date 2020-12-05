@@ -45,7 +45,7 @@ class Feed extends Component {
 
     return (
       <List
-        style={{ paddingBottom: 120 }}
+        style={{ paddingBottom: 120}}
         itemLayout="vertical"
         size="large"
         pagination={{
@@ -70,7 +70,7 @@ class Feed extends Component {
           <List.Item.Meta
               avatar={<Profile writer={item.data().id}></Profile>}
               title={<Link to={{pathname: `/mypage/${item.data().id}`}}>{item.data().id}</Link>}
-              description={item.data().id}
+              description={item.data().title}
             />
             {item.data().writing}
             <FeedComment posting={item.id} id={item.data().id}></FeedComment>

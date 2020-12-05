@@ -3,7 +3,6 @@ import { List, Typography} from "antd";
 import { db, storage } from "../firebase";
 import postimg from "../post.png";
 import questionimg from "../question.png";
-import { isFlow } from "../../../../../../../../../Caches/typescript/4.0/node_modules/@babel/types/lib/index";
 
 const { Title } = Typography;
 
