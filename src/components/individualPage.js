@@ -118,7 +118,7 @@ class IndividualPage extends React.Component{
         const MyView=(
             <div style={{width: 1000, margin: "auto", marginTop: 20}}>
                 <MyFeed feed={this.state.feed}></MyFeed>
-                {this.props.status.currentUser===this.props.userName ? 
+                {window.sessionStorage.getItem("id")===this.props.userName ? 
                 <Button type='primary' style={{float: "right"}}>
                     <Link to={"/uploadpost"} style={{fontSize: 18}}>New Post</Link>
                 </Button> : null
@@ -167,7 +167,7 @@ class IndividualPage extends React.Component{
                             </List.Item>
                         )}
                     />
-                    {this.props.status.currentUser===this.props.userName ? 
+                    {window.sessionStorage.getItem("id")===this.props.userName ? 
                     <Editor 
                     onChange ={this.handleChange} 
                     onSubmit={this.handleSubmit}
