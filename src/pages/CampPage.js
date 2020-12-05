@@ -145,7 +145,7 @@ class CampPage extends React.Component {
 
                 <div className="forestBox" style={{margin:"10px"}}>
                   <h6 style={{ margin: "10px" }}>Hackathon Forest</h6>
-                  <p className="peoplenum">{this.state.num_p} participants now</p>
+                  <p className="peoplenum">{this.state.num_p} participants are growing forest together!</p>
                   <List
                     style={{
                       backgroundColor: "#beedb2",
