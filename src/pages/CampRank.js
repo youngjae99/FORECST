@@ -16,17 +16,11 @@ import {connect} from 'react-redux';
 import {voteRequest} from '../actions/authentication';
 import PropTypes from "prop-types";
 import { db,storage } from "../firebase";
+import {backend_Voting} from "../backend";
 
 
 
 const { Title } = Typography;
-
-const text = `
-I had made an application that shows the number of people in a cafe. 
-Due to COVID 19, people are finding places where there are less people, 
-for there safety. To help these people, I thought that letting people 
-know how much people there are would be very helpful for people these days.
-`;
 
 const close = () => {
   console.log(
@@ -65,11 +59,11 @@ class CampRank extends Component {
     this.state={
       projects: [],
       userName: "",
+      value: 0,
     }
   }
 
   state = {
-    value: 0,
     showresult: 0,
   };
 
@@ -78,11 +72,12 @@ class CampRank extends Component {
     this.setState({
       value: e.target.value,
     });
+    console.log(this.state.value);
   };
 
   onValue = () => {
     this.setState({
-      value: this.value + 1,
+      value: 1,
     })
   }
 
@@ -96,10 +91,12 @@ class CampRank extends Component {
     setTimeout(()=>{
       this.setState({projects: snapshot.docs.map((doc)=>(doc.data()))})
     },100);
-}
+  }
 
   votebtnclick = () => {
     console.log("vote button clicked!");
+    console.log(this.state.value)
+    // backend_Voting(this.state.value);
     this.props.voteRequest();
     setTimeout(()=>{
       this.setState({showresult:1});

@@ -65,7 +65,10 @@ function UploadProject(props){
         await fileRef.put(file)
         const currentUser = window.sessionStorage.getItem("id")
         console.log(currentUser)
-            db.collection("Projects").doc().set({id:currentUser,photo:await fileRef.getDownloadURL(),description:description, projectTitle:title, num: (projects.length + 1), githuburl: githuburl, time: Date.now()});
+        var min = 3;
+        var max = 32;
+        var rand = min + (Math.random() * (max-min))
+            db.collection("Projects").doc().set({id:currentUser,photo:await fileRef.getDownloadURL(),description:description, projectTitle:title, num: (projects.length + 1), votes: rand, githuburl: githuburl, time: Date.now()});
             console.log('Uploaded a blob or file!');
         }
     }
@@ -180,8 +183,8 @@ function UploadProject(props){
                     <div style={{textAlign: "right"}}>
                         <Button type='primary' style={{marginLeft: 100}} onClick={handlePost}>
                              {file==0?
-                             <div style={{fontSize: 18}}>UPLOAD</div> :
-                             <Link to={"/mypage"} style={{fontSize: 18}}>UPLOAD</Link>}
+                             <div style={{fontSize: 18}}>SUBMIT</div> :
+                             <Link to={"/camp"} style={{fontSize: 18}}>SUBMIT</Link>}
                         </Button>
                     </div>
                 </Col>
