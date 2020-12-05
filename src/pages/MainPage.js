@@ -123,7 +123,7 @@ class MainPage extends React.Component {
                     1. Make an application for the pandemic COVID 19 situation!
                     (11/24~12/1)
                     <Button type="primary" style={{ marginLeft: "16px" }}>
-                      <Link to={"/camp"} style={{ fontSize: 18 }}>
+                      <Link to={"/campdescription"} style={{ fontSize: 18 }}>
                         Enter Hackathon
                       </Link>
                     </Button>
