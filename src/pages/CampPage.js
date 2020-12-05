@@ -6,7 +6,7 @@ import l0_trans from "../level_tree/l0_trans.png";
 import l1_trans from "../level_tree/l1_trans.png";
 import l2_trans from "../level_tree/l2_trans.png";
 import { getLevel } from "../actions/authentication";
-import { Layout, Menu, Statistic, Typography, List } from "antd";
+import { Layout, Menu, Statistic, Typography, List, Button } from "antd";
 import {
   HomeOutlined,
   QuestionCircleOutlined,
@@ -14,6 +14,7 @@ import {
 } from "@ant-design/icons";
 import { db } from "../firebase";
 import { Link } from "react-router-dom";
+import { Col, Row } from "../../node_modules/antd/lib/index";
 
 const { Countdown } = Statistic;
 const { Title } = Typography;
@@ -105,12 +106,19 @@ class CampPage extends React.Component {
               borderBottom: "1px solid var(--colors-border)",
             }}
           >
-            <div>
+          <Row>
+            <Col>
               <Title level={3} id="camptitle" style={{ margin: 0, padding: 0 }}>
                 CAMP | Make an application for the pandemic COVID 19 situation!
               </Title>
               {/* <p>this is the camp about the </p> */}
-            </div>
+            </Col>
+            <Col>
+              <Button type="primary" style={{float: "right", marginLeft: 10}}>
+              <Link to={"/uploadproject"} style={{fontSize: 18}}>SUBMIT your project!</Link>
+              </Button>
+            </Col>
+          </Row>
           </div>
 
           <Layout>
