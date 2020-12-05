@@ -8,6 +8,7 @@ import lv1 from "../level_tree/lv1.png";
 import lv2 from "../level_tree/lv2.png";
 import { getLevel } from "../actions/authentication";
 import { db } from "../firebase";
+import {Link} from 'react-router-dom';
 
 class Feed extends Component {
   constructor(props) {

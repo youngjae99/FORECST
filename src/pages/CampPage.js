@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-//import {Header} from '../components';
+import React from "react";
 import "./CampHome.css";
 import CampTabView from "./CampTabView";
 import WGO from "../components/whatsgoingon";
@@ -7,32 +6,11 @@ import l0_trans from "../level_tree/l0_trans.png";
 import l1_trans from "../level_tree/l1_trans.png";
 import l2_trans from "../level_tree/l2_trans.png";
 import { getLevel } from "../actions/authentication";
+import { Layout, Menu, Statistic, Typography, List} from "antd";
+import { HomeOutlined, QuestionCircleOutlined, BarChartOutlined } from "@ant-design/icons";
+import { db } from "../firebase";
+import {Link} from 'react-router-dom';
 
-import {
-  Layout,
-  Menu,
-  Timeline,
-  Statistic,
-  Typography,
-  List,
-  Avatar,
-  Space,
-  Button,
-  Row,
-  Col,
-  Divider,
-} from "antd";
-import {
-  HomeOutlined,
-  QuestionCircleOutlined,
-  BarChartOutlined,
-  MessageOutlined,
-  LikeOutlined,
-  StarOutlined,
-  SearchOutlined,
-  PlusOutlined,
-} from "@ant-design/icons";
-import { db, storage } from "../firebase";
 
 const { Countdown } = Statistic;
 const { Title } = Typography;
@@ -50,18 +28,8 @@ for (let i = 0; i < 23; i++) {
       "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.",
   });
 }
-const IconText = ({ icon, text }) => (
-  <Space>
-    {React.createElement(icon)}
-    {text}
-  </Space>
-);
 
-function onFinish() {
-  console.log("finished!");
-}
-
-const { Header, Content, Footer, Sider } = Layout;
+const { Sider } = Layout;
 
 class CampPage extends React.Component {
   constructor(props) {
@@ -147,7 +115,7 @@ class CampPage extends React.Component {
                 overflow: "auto",
                 height: "100vh",
                 position: "fixed",
-                left: 0,
+                left: 0
               }}
               width="300"
               theme="light"
@@ -175,14 +143,17 @@ class CampPage extends React.Component {
                   Ranking
                 </Menu.Item>
               </Menu>
+
               <h4 style={{ margin: "10px" }}>
                 We are growing this beautiful forest together!
               </h4>
+
               <List
                 style={{
                   backgroundColor: "#beedb2",
                   borderRadius: 10,
                   margin: "9px",
+                  paddingLeft: 5
                 }}
                 grid={{ gutter: 16 }}
                 dataSource={this.state.forest}
@@ -199,11 +170,14 @@ class CampPage extends React.Component {
                         textAlign: "center",
                       }}
                     >
-                      {item.id}
+                      <div>
+                        <Link to={{pathname: `/mypage/${item.id}`}}>{item.id}</Link>
+                      </div>
                     </div>
                   </div>
                 )}
               />
+
             </Sider>
 
             <Layout
