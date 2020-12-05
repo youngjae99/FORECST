@@ -83,7 +83,7 @@ class IndividualPage extends React.Component{
                         <br></br>'Making a project name'.
                         <div style={{float: "right", marginTop: 20}}>
                             <Button type="primary" onClick={this.handleOk}>
-                                <a href="/uploadpost">GO</a>
+                                <a href="/uploadpost/true">GO</a>
                             </Button>
                         </div>
                     </div>  
@@ -148,7 +148,7 @@ class IndividualPage extends React.Component{
                 <MyFeed feed={this.state.feed}></MyFeed>
                 {window.sessionStorage.getItem("id")===this.props.userName ? 
                 <Button type='primary' style={{float: "right"}}>
-                    <Link to={"/uploadpost"} style={{fontSize: 18}}>New Post</Link>
+                    <Link to={"/uploadpost/false"} style={{fontSize: 18}}>New Post</Link>
                 </Button> : null
                 }
             </div>
