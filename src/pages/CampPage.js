@@ -145,56 +145,56 @@ class CampPage extends React.Component {
           <Layout>
             <div className="sidenav left">
               <div className="white_sidenav">
-              <Menu theme="light" mode="inline" defaultSelectedKeys={["1"]}>
-                <Menu.Item
-                  key="1"
-                  icon={<HomeOutlined />}
-                  onClick={this.handleClick}
-                >
-                  Home
-                </Menu.Item>
-                <Menu.Item
-                  key="2"
-                  icon={<QuestionCircleOutlined />}
-                  onClick={this.handleClick}
-                >
-                  QnA Board
-                </Menu.Item>
-                <Menu.Item
-                  key="3"
-                  icon={<BarChartOutlined />}
-                  onClick={this.handleClick}
-                >
-                  Ranking
-                </Menu.Item>
-              </Menu>
-              <h5 style={{ margin: "10px" }}>Hackathon Forest</h5>
-              <List
-                style={{
-                  backgroundColor: "#beedb2",
-                  borderRadius: 10,
-                  margin: "9px",
-                }}
-                grid={{ gutter: 16 }}
-                dataSource={this.state.forest}
-                renderItem={(item) => (
-                  <div style={{ margin: "5px" }}>
-                    <img
-                      src={getTree(item.data().point)}
-                      style={{ width: "50px", height: "50px", margin: "5px" }}
-                    />
-                    <div
-                      style={{
-                        marginBotton: "5px",
-                        fontSize: "13px",
-                        textAlign: "center",
-                      }}
-                    >
-                      {item.id}
+                <Menu theme="light" mode="inline" defaultSelectedKeys={["1"]}>
+                  <Menu.Item
+                    key="1"
+                    icon={<HomeOutlined />}
+                    onClick={this.handleClick}
+                  >
+                    Home
+                  </Menu.Item>
+                  <Menu.Item
+                    key="2"
+                    icon={<QuestionCircleOutlined />}
+                    onClick={this.handleClick}
+                  >
+                    QnA Board
+                  </Menu.Item>
+                  <Menu.Item
+                    key="3"
+                    icon={<BarChartOutlined />}
+                    onClick={this.handleClick}
+                  >
+                    Ranking
+                  </Menu.Item>
+                </Menu>
+                <h5 style={{ margin: "10px" }}>Hackathon Forest</h5>
+                <List
+                  style={{
+                    backgroundColor: "#beedb2",
+                    borderRadius: 10,
+                    margin: "9px",
+                  }}
+                  grid={{ gutter: 16 }}
+                  dataSource={this.state.forest}
+                  renderItem={(item) => (
+                    <div style={{ margin: "5px" }}>
+                      <img
+                        src={getTree(item.data().point)}
+                        style={{ width: "50px", height: "50px", margin: "5px" }}
+                      />
+                      <div
+                        style={{
+                          marginBotton: "5px",
+                          fontSize: "13px",
+                          textAlign: "center",
+                        }}
+                      >
+                        {item.id}
+                      </div>
                     </div>
-                  </div>
-                )}
-              />
+                  )}
+                />
               </div>
             </div>
 
@@ -214,21 +214,25 @@ class CampPage extends React.Component {
 
             <div className="sidenav right">
               <div
-                className="timeleftbox"
+                className="timeleftbox shadowbox"
                 style={{
                   background: "#fff",
-                  borderRadius:"10px",
-                  margin: "10px"
+                  borderRadius: "10px",
+                  margin: "10px",
+                  paddingTop: "10px",
+                  paddingLeft: "10px",
+                  paddingRight: "10px",
+                  paddingBottom: "10px"
                 }}
               >
-                <h5 style={{ margin: "10px" }}>Time left</h5>
+                <h6 >Time left</h6>
                 <Countdown
                   style={{ margin: "10px" }}
                   value={deadline}
                   format="D 일 H 시 m 분 s 초"
                 />
               </div>
-              
+
               <WGO wgo={this.state.whatsgoingon} />
             </div>
           </Layout>
