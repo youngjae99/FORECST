@@ -14,7 +14,7 @@ class QnAsingle extends Component {
 
     
     getMarker = async () => {
-        const snapshot = await db.collection('QnAList').get()
+        const snapshot = await db.collection('QnAList').orderBy("date","desc").get()
         console.log(snapshot.docs)
         this.setState({qna: snapshot.docs})
     }

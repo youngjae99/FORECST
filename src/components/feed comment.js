@@ -9,6 +9,7 @@ import {
   Spin,
   Popconfirm,
   message,
+  Modal
 } from "antd";
 import moment from "moment";
 import { db } from "../firebase";
@@ -17,6 +18,8 @@ import { getLevel } from "../actions/authentication";
 import { backend_Feed_watering } from "../backend";
 import watering0 from "../watericon0.png";
 import watering1 from "../watericon1.png";
+import popup_water from "../popup_water.jpg";
+
 import { MessageOutlined } from "@ant-design/icons";
 import InfiniteScroll from "react-infinite-scroller";
 import "./feedcomment.css";
@@ -70,12 +73,14 @@ class FeedComment extends Component {
       loading: false,
       comments: [],
       list: [],
+      modal_visible:false,
     };
-    console.log(this.props.status.currentUser);
+    console.log(window.sessionStorage.getItem("id"));
   }
 
   componentDidMount() {
     this.getComments();
+    this.getwatering();
   }
 
   getComments = async () => {
@@ -105,7 +110,7 @@ class FeedComment extends Component {
     if (!this.state.value) {
       return;
     }
-    console.log(this.props.status.currentUser);
+    console.log(window.sessionStorage.getItem("id"));
     this.setState({
       submitting: true,
     });
@@ -116,7 +121,7 @@ class FeedComment extends Component {
         .collection("Comments")
         .doc()
         .set({
-          author: this.props.status.currentUser,
+          author: window.sessionStorage.getItem("id"),
           content: this.state.value,
           datetime: moment().valueOf(),
         });
@@ -126,7 +131,7 @@ class FeedComment extends Component {
         comments: [
           ...this.state.comments,
           {
-            author: this.props.status.currentUser,
+            author: window.sessionStorage.getItem("id"),
             content: <p>{this.state.value}</p>,
             datetime: moment().fromNow(),
           },
@@ -138,18 +143,62 @@ class FeedComment extends Component {
 
   handleWatering = (e) => {
     if (this.state.watered == 0) {
-      backend_Feed_watering(this.props.posting, this.props.id);
+      backend_Feed_watering(this.props.posting, this.props.id,window.sessionStorage.getItem("id"));
+      this.modal_water()
       setTimeout(() => {
-        this.setState({ watered: 1 });
+        this.setState({ watered: 1,modal_visible:true });
       }, 100);
     }
   };
+    getwatering =async()=>{
+      const water=await db.collection("Users").doc(window.sessionStorage.getItem("id")).collection("watering").doc(this.props.posting).get()
+      const exist = await water.exists;
+      if(exist){
+        console.log(water.data().watering);
+        this.setState({watered:1})
+      }
+    }
 
   handleChange = (e) => {
     this.setState({
       value: e.target.value,
     });
   };
+  handleOk = () => {
+    setTimeout(() => {
+      this.setState({ modal_visible:false });
+    }, 100);
+  };
+
+  modal_water = ()=>{
+    Modal.info({
+    title: 'You watered 2 points to '+this.props.id+"!",
+    content: (
+      <img src={popup_water} alt="wc" style={{ width: "300px", height: "300px" }}/>
+    ),
+    onOk() {},
+  });}
+
+  toTime = orgtime => {    
+    var s = Date.now() - orgtime;
+    var ms = s % 1000;
+    s = (s - ms) / 1000;
+    var secs = s % 60;
+    s = (s - secs) / 60;
+    var mins = s % 60;
+    var hrs = (s - mins) / 60;
+    var day = hrs/24;
+
+    if(hrs<1){
+        return mins + ' minutes ago';
+    }
+    else if(hrs<24){
+        return hrs + ' hour ago';
+    }
+    else{
+        return "long time ago";
+    }
+  }
 
   onLoadMore = () => {
     const data = this.state.list;
@@ -158,7 +207,7 @@ class FeedComment extends Component {
     console.log("data", data);
     this.setState(
       {
-        list: this.state.list.concat(
+        list: (
           JSON.parse(JSON.stringify(this.state.comments))
         ),
         loading: false,
@@ -176,14 +225,21 @@ class FeedComment extends Component {
   };
 
   render() {
+    
+
     const IconText = ({ icon, text }) => (
       <Space>
         {React.createElement(icon)}
         {text}
       </Space>
     );
-
-    const watering = () => {
+    // const getwatering =async()=>{
+    //   const water=await db.collection("Users").doc(this.props.status.currentUser).collection("watering").doc(this.props.posting).get()
+    //   const exist = await water.exists;
+    //   if(exist)
+    //     console.log(water.data().watering);
+    // }
+    const watering = ()=> {
       if (this.state.watered == 0) {
         return watering0;
       } else return watering1;
@@ -207,10 +263,10 @@ class FeedComment extends Component {
               onSubmit={this.handleSubmit}
               submitting={submitting}
               value={value}
-              username={this.props.status.currentUser}
+              username={window.sessionStorage.getItem("id")}
             />
           }
-          avatar={<Profile writer={this.props.status.currentUser}></Profile>}
+          avatar={<Profile writer={window.sessionStorage.getItem("id")}></Profile>}
         />
       </>
     );
@@ -226,53 +282,8 @@ class FeedComment extends Component {
         </div>
       ) : null;
 
+    
     return (
-      /*
-      <div className="demo-infinite-container">
-        <InfiniteScroll
-          initialLoad={false}
-          pageStart={0}
-          loadMore={this.handleInfiniteOnLoad}
-          hasMore={!this.state.loading && this.state.hasMore}
-          useWindow={false}
-        >
-          <List
-            className="comment-list"
-            header={
-              <div>
-                <a onClick={this.handleWatering} style={{float: "right"}}>
-                  <img src={watering()} alt ="wc" style={{width:"25px", height:"25px"}}/>
-                </a>
-                <IconText icon={MessageOutlined} text={comments.length} key="list-vertical-message" />
-              </div>
-            }
-            itemLayout="horizontal"
-            dataSource={comments}
-            renderItem={item => (
-                <li>
-                <Comment
-                    author={item.author}
-                    content={item.content}
-                    datetime={item.datetime.fromNow}
-                    avatar={
-                    <Profile
-                      writer={item.author}>
-                    </Profile>
-                    }
-                />
-                </li>
-            )}
-          >
-          {this.state.loading && this.state.hasMore && (
-            <div className="demo-loading-container">
-              <Spin />
-            </div>
-          )}
-          </List>
-          {this.props.status.isLoggedIn ? addComment : null}
-        </InfiniteScroll>
-      </div>
-      */
       <div>
         <List
           className="comment-list"
@@ -317,7 +328,7 @@ class FeedComment extends Component {
               <Comment
                 author={item.author}
                 content={item.content}
-                datetime={item.datetime.fromNow}
+                datetime={parseInt(item.datetime).getDate()+item.datetime.getMonth()+item.datetime.getYear()}
                 avatar={<Profile writer={item.author}></Profile>}
               />
             </li>
@@ -330,7 +341,7 @@ class FeedComment extends Component {
           )}
         </List>
 
-        {this.props.status.isLoggedIn ? addComment : null}
+        {window.sessionStorage.getItem("id") ? addComment : null}
       </div>
     );
   }

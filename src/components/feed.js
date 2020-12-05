@@ -8,6 +8,7 @@ import lv1 from "../level_tree/lv1.png";
 import lv2 from "../level_tree/lv2.png";
 import { getLevel } from "../actions/authentication";
 import { db } from "../firebase";
+import {Link} from 'react-router-dom';
 
 class Feed extends Component {
   constructor(props) {
@@ -44,7 +45,7 @@ class Feed extends Component {
 
     return (
       <List
-        style={{ paddingBottom: 120 }}
+        style={{ paddingBottom: 120, width:"100%"}}
         itemLayout="vertical"
         size="large"
         pagination={{
@@ -56,7 +57,7 @@ class Feed extends Component {
         dataSource={this.props.feed}
         renderItem={(item) => (
           <List.Item
-            style={{ background: "#fff", marginTop: 10, borderRadius: "12px", boxShadow: "0px 2px 4px 1px rgba(0,0,0,0.05)" }}
+            className="feeditem"
             key={item.title}
             extra={
               <Avatar
@@ -68,9 +69,10 @@ class Feed extends Component {
           >
           <List.Item.Meta
               avatar={<Profile writer={item.data().id}></Profile>}
-              title={<a href={item.href}>{item.data().title}</a>}
-              description={item.data().id}
+              title={<Link to={{pathname: `/mypage/${item.data().id}`}}>{item.data().id}</Link>}
+              description={item.data().title}
             />
+            {/* {item.data().time} */}
             {item.data().writing}
             <FeedComment posting={item.id} id={item.data().id}></FeedComment>
           </List.Item>

@@ -12,7 +12,7 @@ import { render } from '@testing-library/react';
 import {backend_Point,backend_WGO} from "../backend";
 
 function UploadQnA(props){
-    console.log("upload post: ", props.status.currentUser);
+    console.log("upload post: ", window.sessionStorage.getItem("id"));
     const [inputs, setInputs] = useState({
         title: "",
         writing: "",
@@ -27,12 +27,12 @@ function UploadQnA(props){
              ...inputs, [name]: value });
       };
       const handlePost = async() =>{
-        const currentUser = await props.status.currentUser
+        const currentUser = await window.sessionStorage.getItem("id")
         console.log(currentUser)
-            db.collection('QnAList').doc().set({key: 1, likes: 23, views: 45, no: 1, writer:currentUser, writing:writing, title:title, date: firebase.firestore.Timestamp.now()});
+            db.collection('QnAList').doc().set({key: 1, likes: 23, views: 45, no: 1, writer:currentUser, writing:writing, title:title, date: Date.now()});
             console.log('Uploaded a blob or file!');
-            backend_Point(currentUser,"question")
-            backend_WGO(currentUser,"question")
+            backend_Point(currentUser,"question");
+            backend_WGO(currentUser,Date.now(),"question")
         }
     
     return(

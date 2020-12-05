@@ -1,0 +1,44 @@
+.WGOitem{
+    background: rgba(227, 227, 227, 0.3);
+    border-radius: 10px;
+    padding:5px;
+}
+
+.WGObox{
+    background: #fff;
+    border-radius: 10px;
+    margin: 10px; 
+    padding-top: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 10px;
+}
+
+.peoplenum{
+    font-size: medium;
+    margin-left: 10px;
+    margin-bottom: 0px;
+}
+
+.treeicon{
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.treeicon:hover{
+    background: rgba(255, 255, 255, 0.552);
+}
+
+.treelink:link {
+    color: rgb(38, 38, 38);
+    text-decoration: none;
+    
+}
+
+
+.feeditem{
+    background: #fff;
+    margin-top: 10px;
+    border-radius: 12px;
+    box-shadow: 0px 2px 4px 1px rgba(0,0,0,0.05);
+}
