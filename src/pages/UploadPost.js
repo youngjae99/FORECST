@@ -20,6 +20,8 @@ function UploadPost(props){
       });
       const [file, setFile] = useState(0);
       const [image,setImage] = useState(0);
+      const [todolist, setTodolist] = useState([]);
+      const [selectTodo, setSelectTodo] = useState("");
       const { title,writing } = inputs;
     
       const handleChange = e => {
@@ -28,9 +30,9 @@ function UploadPost(props){
              ...inputs, [name]: value });
       };
       const handleTodo = e => {
-        const { name, value } = e.target;
-        setInputs({
-             ...inputs, [name]: value });
+        console.log(e);
+        console.log(e.label);
+        setSelectTodo(e.label);
       };
       const handleImage = e => {
         console.log(e.target.files[0])
@@ -39,8 +41,8 @@ function UploadPost(props){
       let reader = new FileReader();
       reader.onload=function(a){
         setImage(a);
-    
       };
+
       reader.readAsDataURL(e.target.files[0]);
     
       }
@@ -48,19 +50,28 @@ function UploadPost(props){
         message.error('You should upload PICTURE!!');
       };
       
+      useEffect(() => {
+        getMyToDo();
+      },[])
+
+    const getMyToDo = async () =>{
+        const todo = await db.collection("Users").doc(props.status.currentUser).collection("todo").where('check','==',false).get();
+        setTodolist(todo.docs.map(doc=>doc.data().todo));
+        console.log(todolist);
+    }
       
-    
       const handlePost = async() =>{
         if(file == 0){
             error();
-          }
+        }
         else{
         const storageRef = storage.ref();
         const fileRef = storageRef.child(file.name);
         await fileRef.put(file)
         const currentUser = await props.status.currentUser
         console.log(currentUser)
-            db.collection('Feeds').doc().set({id:currentUser,photo:await fileRef.getDownloadURL(),writing:writing,title:title,time: firebase.firestore.Timestamp.now()});
+            db.collection('Feeds').doc().set({id:currentUser,photo:await fileRef.getDownloadURL(),writing:writing,title:todolist,time: firebase.firestore.Timestamp.now()});
+            db.collection("Users").doc(currentUser).collection("todo").doc(todolist[0]).set({check:true, todo: todolist[0]});
             console.log('Uploaded a blob or file!');
             backend_Point(currentUser,"post")
             backend_WGO(currentUser,"post")
@@ -68,14 +79,8 @@ function UploadPost(props){
     }
 
     const { Option } = Select;
-    const data = [
-        'crowd.',
-        'commoner.',
-        'crash.',
-        'girl.',
-        'wildfires.',
-    ];
-    const map = data.map((word)=><Option>{word}</Option>)
+    
+    const map = todolist.map((word)=><Option>{word}</Option>)
     
     return(
         <div style={{fontFamily: "Roboto", width: 1000, margin: "auto", paddingTop: 20}}>
@@ -92,12 +97,17 @@ function UploadPost(props){
                 </Col>
             </Row>
             <Row>
-                <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleTodo}>
-                    {/* <Option value="jack">Jack</Option>
-                    <Option value="lucy">Lucy</Option>
-                    <Option value="Yiminghe">yiminghe</Option> */}
-                    {map}
-                </Select>
+                <Col span={4}>
+                    <div style={{fontSize: 18, marginTop: 20, textAlign: 'right', marginRight: 10}}>Choose a To-Do : </div>
+                </Col>
+                <Col>
+                    <Select labelInValue placeholder="Please Select your To-Do :D" style={{ width: 300, marginTop: 20 }} onChange={handleTodo}>
+                        {/* <Option value="jack">Jack</Option>
+                        <Option value="lucy">Lucy</Option>
+                        <Option value="Yiminghe">yiminghe</Option> */}
+                        {map}
+                    </Select>
+                </Col>
             </Row>
 
             <Row>
@@ -111,7 +121,7 @@ function UploadPost(props){
                 </Col>
             </Row>
 
-            <Row>
+            {/* <Row>
             <Col span={4}>
                     <div style={{fontSize: 18, marginTop: 20, textAlign: "right", marginRight: 10}}>
                         Title:
@@ -136,7 +146,7 @@ function UploadPost(props){
                         </Input>
                     </Form.Item>
                 </Col>
-            </Row>
+            </Row> */}
 
             <Row>
             <Col span={4}>
