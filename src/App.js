@@ -1,6 +1,21 @@
 import React from "react";
 // Pages
-import {Home, Login, Register, CampHome, CampQnA, CampRank, MainPage, MyPage, CampJoin, UploadPost, CampPage, UploadQnA, CampRankResult, Explore} from './pages';
+import {
+  Home,
+  Login,
+  Register,
+  CampHome,
+  CampQnA,
+  CampRank,
+  MainPage,
+  MyPage,
+  CampJoin,
+  UploadPost,
+  CampPage,
+  UploadQnA,
+  CampRankResult,
+  Explore,
+} from "./pages";
 // Components
 import QnAsingle from "./components/QnAsingle";
 // Router
@@ -12,33 +27,88 @@ import { createStore, applyMiddleware } from "redux";
 import reducers from "./reducers";
 import thunk from "redux-thunk";
 import { createBrowserHistory } from "history";
+import { identity } from "../node_modules/rxjs/index";
+
 
 const store = createStore(reducers, applyMiddleware(thunk));
 const browserHistory = createBrowserHistory();
 
 class App extends React.Component {
-  
+  constructor(props) {
+    super(props);
+    this.state = {
+      logged: false,
+      onLogin: this.onLogin,
+      onLogout: this.onLogout,
+    };
+  }
+
+  // Login Func
+  onLogin = id => {
+    console.log("onLogin");
+    this.setState({
+      logged: true,
+      isLoggedIn: true,
+      currentUser: id
+    });
+  };
+  // Logout Func
+  onLogout = id => {
+    this.setState({
+      logged: false,
+      isLoggedIn: false
+    });
+    const provider = window.sessionStorage.getItem("provider");
+    //Google AccessToken Remove
+    if (provider === "google") {
+      const auth2 = window.gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        console.log("Goolge Logout.");
+      });
+    }
+    // Kakao AccessToken Remove
+    else if (provider === "kakao") {
+      window.Kakao.Auth.logout(function () {
+        console.log("Kakao logout");
+      });
+    }
+    //SessionStorage Clear
+    window.sessionStorage.clear();
+  };
+  componentDidMount() {
+    const id = window.sessionStorage.getItem("id");
+    console.log("mount id", id);
+    if (id) {
+      this.onLogin(id);
+    } else {
+      this.onLogout(id);
+    }
+  }
 
   render() {
+    const { logged, onLogout } = this.state;
     return (
       <Provider store={store}>
         <Router history={browserHistory}>
-          <Route path ="/" component={Home}></Route>
-          <Route path ="/CS473DesignProject-FORECST" component={MainPage}></Route>
-          <Route component={Explore} path="/explore"/>
-          <Route component={Login} path="/login"/>
-          <Route component={Register} path="/register"/>
-          <Route component={CampJoin} path="/campjoin"/>
-          <Route component={CampHome} path="/camphome"/>
-          <Route component={CampQnA} path="/campqna"/>
-          <Route component={CampRank} path="/camprank"/>
-          <Route component={MyPage} path="/mypage"/>
-          <Route component={UploadPost} path="/uploadpost"/>
-          <Route component={CampPage} path="/camp/"/>
-          <Route component={UploadQnA} path="/qnawrite"/>
-          <Route component={CampRankResult} path="/camprankresult"/>
-          <Route component={QnAsingle} path="/campqnaview"/>
-        </Router> 
+          <Route path="/" component={Home}></Route>
+          <Route
+            path="/CS473DesignProject-FORECST"
+            component={MainPage}
+          ></Route>
+          <Route component={Explore} path="/explore" />
+          <Route component={Login} path="/login" />
+          <Route component={Register} path="/register" />
+          <Route component={CampJoin} path="/campjoin" />
+          <Route component={CampHome} path="/camphome" />
+          <Route component={CampQnA} path="/campqna" />
+          <Route component={CampRank} path="/camprank" />
+          <Route component={MyPage} path="/mypage" />
+          <Route component={UploadPost} path="/uploadpost" />
+          <Route component={CampPage} path="/camp/" />
+          <Route component={UploadQnA} path="/qnawrite" />
+          <Route component={CampRankResult} path="/camprankresult" />
+          <Route component={QnAsingle} path="/campqnaview" />
+        </Router>
       </Provider>
     );
   }

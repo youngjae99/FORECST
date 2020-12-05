@@ -18,6 +18,7 @@ class Forecst extends React.Component {
     this.state = {
       currentUser: "",
       point: 0,
+      isLoggedIn: this.isLoggedIn
     };
 
     this.handleHome = this.handleHome.bind(this);
@@ -27,8 +28,31 @@ class Forecst extends React.Component {
     this.props.history.push("/CS473DesignProject-FORECST");
   }
 
-  componentDidMount() {
-    this.getMarker();
+  // Login Func
+  onLogin = () => {
+    this.setState({
+      isLoggedIn: true,
+    });
+  };
+  // Logout Func
+  onLogout = () => {
+    this.setState({
+      isLoggedIn: false,
+    });
+    //SessionStorage Clear
+    window.sessionStorage.clear();
+  };
+
+  componentWillMount() {
+    const id = window.sessionStorage.getItem("id");
+    console.log("setting compoent did moun in forecst", id);
+    if (id) {
+      this.onLogin();
+    } else {
+      this.onLogout();
+    }
+
+    //this.getMarker();
   }
 
   getMarker = async () => {
@@ -38,7 +62,6 @@ class Forecst extends React.Component {
         .collection("Users")
         .doc(this.props.currentUser)
         .get();
-      console.log(snapshot);
       this.setState({ point: snapshot.data().point });
     }
   };
@@ -61,43 +84,12 @@ class Forecst extends React.Component {
     }
 
     const joinButton = (
-      /*
-      <PageHeader
-        ghost={false}
-        extra={[
-          <Link
-            to={"/login"}
-            style={{ color: "#000", marginRight: 20, fontSize: 18 }}
-          >
-            Login
-          </Link>,
-          <Button type="primary">
-            <Link to={"/register"} style={{ fontSize: 18 }}>
-              JOIN
-            </Link>
-          </Button>,
-        ]}
-      />
-      */
       <a className="nav-link page-scroll" href="/login">
         Sign in
       </a>
     );
 
     const mypageButton = (
-      /*
-      <PageHeader
-        ghost={false}
-        style={{ padding: 0, backgroundColor: "#fff", borderRadius: "10px",  marginLeft:"10px" }}
-        extra={[
-          <Link to={"/mypage"} style={{ color: "#000", fontSize: 18, marginLeft:"15px" }}>
-            {this.props.currentUser}
-            <Profile writer={this.props.currentUser}></Profile>
-          </Link>,
-        ]}
-      />
-      */
-
       <li class="nav-item dropdown">
         <a
           class="nav-link dropdown-toggle page-scroll"
@@ -124,28 +116,13 @@ class Forecst extends React.Component {
     );
 
     return (
-      /*
-            <div style={{fontFamily: "Roboto"}}>
-                
-                <Row>
-                    <Col span={3}>
-                        <a>
-                            <img src={logo} style={{width: 100, marginTop: 20, marginLeft: 10}} onClick={this.handleHome}></img>
-                        </a>
-                    </Col>
-                    <Col span={21}>
-                        {this.props.isLoggedIn ? mypageButton : joinButton}              
-                    </Col>
-                </Row>
-            </div>
-             */
       <nav
         className="navbar navbar-expand-lg navbar-dark navbar-custom top-nav-collapse"
         style={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          padding: "2.125rem 5rem 2.125rem 5rem",
+          padding: "0.5rem 5rem 0.5rem 5rem"
         }}
       >
         <a

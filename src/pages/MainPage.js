@@ -19,6 +19,21 @@ class MainPage extends React.Component {
     super(props);
   }
 
+  componentWillMount() {
+    const id = window.sessionStorage.getItem("id");
+    console.log("mount id", id);
+    if (id) {
+      console.log("true");
+      this.setState({
+        logged: true,
+        isLoggedIn: true,
+        currentUser: id
+      });
+    }
+    
+  }
+
+
   render() {
     const joinPage = (
       <div className="banner">
@@ -122,7 +137,7 @@ class MainPage extends React.Component {
         </div>
       </div>
     );
-
+    
     console.log(this.props.status);
 
     return (

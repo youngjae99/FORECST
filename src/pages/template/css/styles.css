@@ -664,7 +664,7 @@ input[type='checkbox'] {
 	color: #393939;
 	text-decoration: none;
 	transition: all 0.2s ease;
-	font: 800 1.2rem/0.875rem "Raleway", sans-serif;
+	font: 800 1rem/0.875rem "Raleway", sans-serif;
 }
 
 .navbar-custom .nav-item .nav-link:hover,
