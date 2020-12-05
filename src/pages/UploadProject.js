@@ -67,7 +67,7 @@ function UploadProject(props){
         console.log(currentUser)
         var min = 3;
         var max = 32;
-        var rand = min + (Math.random() * (max-min))
+        var rand = min + (Math.floor(Math.random()) * (max-min))
             db.collection("Projects").doc().set({id:currentUser,photo:await fileRef.getDownloadURL(),description:description, projectTitle:title, num: (projects.length + 1), votes: rand, githuburl: githuburl, time: Date.now()});
             console.log('Uploaded a blob or file!');
         }
