@@ -330,7 +330,7 @@ class FeedComment extends Component {
           )}
         </List>
 
-        {this.props.status.isLoggedIn ? addComment : null}
+        {window.sessionStorage.getItem("id") ? addComment : null}
       </div>
     );
   }
