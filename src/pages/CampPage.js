@@ -42,6 +42,7 @@ class CampPage extends React.Component {
       feed: [],
       forest: [],
       whatsgoingon: [],
+      num_p: 0
     };
   }
   componentDidMount() {
@@ -50,7 +51,9 @@ class CampPage extends React.Component {
   getMarker = async () => {
     const snapshot = await db.collection("Users").get();
     console.log(snapshot.docs);
-    this.setState({ forest: snapshot.docs });
+    this.setState({ forest: snapshot.docs,
+      num_p: snapshot.docs.length
+    });
   };
 
   handleClick = (e) => {
@@ -142,18 +145,22 @@ class CampPage extends React.Component {
 
                 <div className="forestBox" style={{margin:"10px"}}>
                   <h6 style={{ margin: "10px" }}>Hackathon Forest</h6>
+                  <p className="peoplenum">{this.state.num_p} participants now</p>
                   <List
                     style={{
                       backgroundColor: "#beedb2",
                       borderRadius: 10,
-                      margin: "10px",
                       overflowY: "scroll",
                       height:"300px"
                     }}
                     grid={{ gutter: 16 }}
                     dataSource={this.state.forest}
                     renderItem={(item) => (
-                      <div style={{ margin: "5px" }}>
+                      <div className="treeicon" style={{ 
+                        margin: "5px",
+                      }}
+                      >
+                        <Link className="treelink" to={"/mypage/"+item.id}>
                         <img
                           src={getTree(item.data().point)}
                           style={{
@@ -171,6 +178,7 @@ class CampPage extends React.Component {
                         >
                           {item.id}
                         </div>
+                        </Link>
                       </div>
                     )}
                   />
