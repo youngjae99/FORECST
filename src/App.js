@@ -61,13 +61,7 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    const id = window.sessionStorage.getItem("id");
-    console.log("mount id", id);
-    if (id) {
-      this.onLogin(id);
-    } else {
-      this.onLogout(id);
-    }
+
   }
 
   render() {
