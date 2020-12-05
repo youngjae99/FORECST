@@ -133,7 +133,7 @@ class IndividualPage extends React.Component{
                     '0%': '#108ee9',
                     '100%': '#87d068',
                 }}
-                percent={this.state.completed.length/this.state.todo.length*100}
+                percent={this.state.completed.length/(this.state.todo.length+this.state.completed.length)*100}
                 style={{marginBottom: 20}}
                 />
 
@@ -145,7 +145,7 @@ class IndividualPage extends React.Component{
                         <Col span={4}>
                             <div style={{float: "right"}}>
                                 <Popover
-                                title="What should we write in to-do list?"
+                                title="What are the examples of to-do list?"
                                 content={(
                                     <div>
                                         <p>Make tab structure</p>
