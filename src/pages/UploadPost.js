@@ -77,8 +77,8 @@ function UploadPost(props){
         await fileRef.put(file)
         const currentUser = window.sessionStorage.getItem("id")
         console.log(currentUser)
-        db.collection('Feeds').doc().set({id:currentUser,photo:await fileRef.getDownloadURL(),writing:writing,title:todolist[0],time: Date.now()});
-        db.collection("Users").doc(currentUser).collection("todo").doc(todolist[0]).set({check:true, todo: todolist[0]});
+        db.collection('Feeds').doc().set({id:currentUser,photo:await fileRef.getDownloadURL(),writing:writing,title:selectTodo,time: Date.now()});
+        db.collection("Users").doc(currentUser).collection("todo").doc(selectTodo).set({check:true, todo: selectTodo});
         db.collection("Users").doc(currentUser).update("newbie",firebase.firestore.FieldValue.increment(-1))
         console.log('Uploaded a blob or file!');
         backend_Point(currentUser,"post")
@@ -88,7 +88,7 @@ function UploadPost(props){
 
     const { Option } = Select;
     
-    const map = todolist.map((word)=><Option>{word}</Option>)
+    const map = todolist.map((word)=><Option value={word}>{word}</Option>)
     
     return(
         <div style={{fontFamily: "Roboto", width: 1000, margin: "auto", paddingTop: 20}}>
