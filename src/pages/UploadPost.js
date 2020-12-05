@@ -55,10 +55,10 @@ function UploadPost(props){
         await fileRef.put(file)
         const currentUser = await props.status.currentUser
         console.log(currentUser)
-            db.collection('Feeds').doc().set({id:currentUser,photo:await fileRef.getDownloadURL(),writing:writing,title:title,time: firebase.firestore.Timestamp.now()});
+            db.collection('Feeds').doc().set({id:currentUser,photo:await fileRef.getDownloadURL(),writing:writing,title:title,time: Date.now()});
             console.log('Uploaded a blob or file!');
             backend_Point(currentUser,"post")
-            backend_WGO(currentUser,firebase.firestore.Timestamp.now(),"post")
+            backend_WGO(currentUser,Date.now(),"post")
         }
     }
     
