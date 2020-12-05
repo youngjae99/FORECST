@@ -9,7 +9,9 @@ import "./template/css/swiper.css";
 import "./template/css/magnific-popup.css";
 import "./template/css/bootstrap.css";
 import "./template/css/fontawesome-all.css";
-import mainimage from './template/images/Programming-pana.svg';
+import icon1 from "./template/images/services-icon-1.svg";
+import icon2 from "./template/images/services-icon-2.svg";
+import icon3 from "./template/images/services-icon-3.svg";
 
 
 const { Title } = Typography;
@@ -24,7 +26,7 @@ class Explore extends React.Component {
         <div id="services" class="cards-1">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-12" style={{ padding: "85px 0 125px"}}>
+                    <div class="col-lg-12" style={{ padding: "85px 0 20px"}}>
                         <h2>Explore Live Online Hackathons</h2>
                         <p class="p-heading p-large">Learn live with the world's programmers
                         all without leaving home</p>
@@ -33,26 +35,26 @@ class Explore extends React.Component {
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
-                            <img class="card-image" src="images/services-icon-1.svg" alt="alternative"/>
+                            <img class="card-image" src={icon1} alt="alternative"/>
                             <div class="card-body">
-                                <h4 class="card-title">Market Analysis</h4>
-                                <p>Our team of enthusiastic marketers will analyse and evaluate how your company stacks against the closest competitors</p>
+                                <h4 class="card-title">Discussion</h4>
+                                <p>Share what's happening with other participants at the Hackathon, answer questions, solve problems you couldn't solve alone, and achieve your goals</p>
                             </div>
                         </div>
     
                         <div class="card">
-                            <img class="card-image" src="images/services-icon-2.svg" alt="alternative"/>
+                            <img class="card-image" src={icon2} alt="alternative"/>
                             <div class="card-body">
-                                <h4 class="card-title">Opportunity Scan</h4>
-                                <p>Once the market analysis process is completed our staff will search for opportunities that are in reach</p>
+                                <h4 class="card-title">Acheivement</h4>
+                                <p>By participating in the hackathon, you will create specific apps and web services in a short period of time, and your skills will improve a lot in the process</p>
                             </div>
                         </div>
     
                         <div class="card">
-                            <img class="card-image" src="images/services-icon-3.svg" alt="alternative"/>
+                            <img class="card-image" src={icon3} alt="alternative"/>
                             <div class="card-body">
-                                <h4 class="card-title">Action Plan</h4>
-                                <p>With all the information in place you will be presented with an action plan that your company needs to follow</p>
+                                <h4 class="card-title">Competition</h4>
+                                <p>Compete against others and keep running without losing your goals! At the end of the hackathon, the best works are selected and awarded through voting</p>
                             </div>
                         </div>
                     </div>
