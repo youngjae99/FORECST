@@ -51,7 +51,7 @@ class IndividualPage extends React.Component{
             feed: [],
             userName: "",
             makeToDo:"",
-            newUser: true
+            // newUser: true
         }
 
         this.handleChange=this.handleChange.bind(this);
@@ -74,7 +74,7 @@ class IndividualPage extends React.Component{
           return;
         }
 
-        if(this.state.newUser){
+        if(this.state.todo.length==0){
             Modal.info({
                 title: "Now, let's write your first post.",
                 content: (
