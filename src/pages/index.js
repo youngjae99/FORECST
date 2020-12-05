@@ -12,3 +12,5 @@ export {default as CampJoin} from './CampJoin';
 export {default as UploadPost} from './UploadPost';
 export {default as UploadQnA} from './UploadQnA';
 export {default as CampRankResult} from './CampRankResult';
+export {default as CampDescription} from './CampDescription';
+export {default as Tutorial} from './Tutorial';
