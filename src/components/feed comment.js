@@ -106,6 +106,12 @@ class FeedComment extends Component {
     console.log("loaded comment: ", this.comments);
   };
 
+  parseTime = timestamp => {
+    var date = new Date(timestamp);
+    console.log('year is ' + date.getFullYear());
+    return date.getMonth() + date.getDate();
+  }
+
   handleSubmit = () => {
     if (!this.state.value) {
       return;
@@ -183,27 +189,11 @@ class FeedComment extends Component {
     modal.destroy();
   },  2000);
 }
-
-  toTime = orgtime => {    
-    var s = Date.now() - orgtime;
-    var ms = s % 1000;
-    s = (s - ms) / 1000;
-    var secs = s % 60;
-    s = (s - secs) / 60;
-    var mins = s % 60;
-    var hrs = (s - mins) / 60;
-    var day = hrs/24;
-
-    if(hrs<1){
-        return mins + ' minutes ago';
-    }
-    else if(hrs<24){
-        return hrs + ' hour ago';
-    }
-    else{
-        return "long time ago";
-    }
-  }
+parseTime = timestamp => {
+  var date = new Date(timestamp);
+  console.log('year is ' + date.getFullYear());
+  return date.getMonth() + "." + date.getDate()+"  "+date.getHours()+":"+date.getMinutes();
+}
 
   onLoadMore = () => {
     const data = this.state.list;
@@ -212,7 +202,7 @@ class FeedComment extends Component {
     console.log("data", data);
     this.setState(
       {
-        list: (
+        list: this.state.list.concat(
           JSON.parse(JSON.stringify(this.state.comments))
         ),
         loading: false,
@@ -230,8 +220,6 @@ class FeedComment extends Component {
   };
 
   render() {
-    
-
     const IconText = ({ icon, text }) => (
       <Space>
         {React.createElement(icon)}
@@ -288,7 +276,54 @@ class FeedComment extends Component {
       ) : null;
 
     
+
     return (
+      /*
+      <div className="demo-infinite-container">
+        <InfiniteScroll
+          initialLoad={false}
+          pageStart={0}
+          loadMore={this.handleInfiniteOnLoad}
+          hasMore={!this.state.loading && this.state.hasMore}
+          useWindow={false}
+        >
+          <List
+            className="comment-list"
+            header={
+              <div>
+                <a onClick={this.handleWatering} style={{float: "right"}}>
+                  <img src={watering()} alt ="wc" style={{width:"25px", height:"25px"}}/>
+                </a>
+                <IconText icon={MessageOutlined} text={comments.length} key="list-vertical-message" />
+              </div>
+            }
+            itemLayout="horizontal"
+            dataSource={comments}
+            renderItem={item => (
+                <li>
+                <Comment
+                    author={item.author}
+                    content={item.content}
+                    datetime={item.datetime.fromNow}
+                    avatar={
+                    <Profile
+                      writer={item.author}>
+                    </Profile>
+                    }
+                />
+                </li>
+            )}
+          >
+          {this.state.loading && this.state.hasMore && (
+            <div className="demo-loading-container">
+              <Spin />
+            </div>
+          )}
+          </List>
+          {this.props.status.isLoggedIn ? addComment : null}
+        </InfiniteScroll>
+      </div>
+      */
       <div>
         <List
           className="comment-list"
@@ -333,7 +368,7 @@ class FeedComment extends Component {
               <Comment
                 author={item.author}
                 content={item.content}
-                datetime={parseInt(item.datetime).getDate()+item.datetime.getMonth()+item.datetime.getYear()}
+                datetime={this.parseTime(item.datetime)}
                 avatar={<Profile writer={item.author}></Profile>}
               />
             </li>
