@@ -70,7 +70,7 @@ function UploadPost(props){
         await fileRef.put(file)
         const currentUser = await props.status.currentUser
         console.log(currentUser)
-            db.collection('Feeds').doc().set({id:currentUser,photo:await fileRef.getDownloadURL(),writing:writing,title:todolist,time: firebase.firestore.Timestamp.now()});
+            db.collection('Feeds').doc().set({id:currentUser,photo:await fileRef.getDownloadURL(),writing:writing,title:todolist[0],time: firebase.firestore.Timestamp.now()});
             db.collection("Users").doc(currentUser).collection("todo").doc(todolist[0]).set({check:true, todo: todolist[0]});
             console.log('Uploaded a blob or file!');
             backend_Point(currentUser,"post")
