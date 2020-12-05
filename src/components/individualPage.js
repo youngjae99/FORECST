@@ -133,7 +133,7 @@ class IndividualPage extends React.Component{
                     '0%': '#108ee9',
                     '100%': '#87d068',
                 }}
-                percent={this.state.completed.length/this.state.todo.length*100}
+                percent={this.state.completed.length/(this.state.todo.length+this.state.completed.length)*100}
                 style={{marginBottom: 20}}
                 />
 
