@@ -36,7 +36,10 @@ class MainPage extends React.Component {
   }
   getNewbie = async()=>{
     if(window.sessionStorage.getItem("id")){
+      console.log(window.sessionStorage.getItem("id"))
       const newbie = await db.collection("Users").doc(window.sessionStorage.getItem("id")).get()
+      console.log(newbie.data().newbie)
+
       this.setState({new:newbie.data().newbie})
     }
   }

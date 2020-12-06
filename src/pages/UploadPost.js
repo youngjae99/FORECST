@@ -65,11 +65,11 @@ function UploadPost(props){
     }
       
       const handlePost = async() =>{
-        if(file == 0){
-            error();
-        }
-        else if(todolist.length==0){
+        if(selectTodo==""){
             error2();
+        }
+        else if(file == 0){
+            error();
         }
         else{
         const storageRef = storage.ref();
@@ -184,7 +184,7 @@ function UploadPost(props){
 
                     <div style={{textAlign: "right"}}>
                         <Button type='primary' style={{marginLeft: 100}} onClick={handlePost}>
-                             {file==0||todolist.length==0?
+                             {file==0||selectTodo==""?
                              <div style={{fontSize: 18}}>UPLOAD</div> :
                              <Link to={"/camp"} style={{fontSize: 18}}>UPLOAD</Link>}
                         </Button>

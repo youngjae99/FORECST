@@ -73,7 +73,7 @@ import 'antd/dist/antd.css';
             level:0,
             point:0,
             active:true,
-            newbie:1
+            newbie:true
         });
     }
 
