@@ -35,9 +35,9 @@ class CampDescription extends React.Component {
                       On 11/24~12/1, you are going to make an application for the pandemic COVID 19 situation, 
                       using any tools you want.
                     </p>
-                    <a className="btn-solid-lg page-scroll" href="/tutorial" style={{backgroundColor: "#482482", borderColor: "#482482"}}>
+                    <Link className="btn-solid-lg page-scroll" to="/tutorial" style={{backgroundColor: "#482482", borderColor: "#482482"}}>
                       NEXT
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div className="col-lg-6">
