@@ -17,7 +17,7 @@ const { Title } = Typography;
 class MainPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state={new:0}
+    this.state={new:false}
   }
 
   componentWillMount() {
@@ -46,6 +46,7 @@ class MainPage extends React.Component {
 
 
   render() {
+
     const joinPage = (
       <div className="banner" style={{ fontFamily: "Roboto" }}>
         <link

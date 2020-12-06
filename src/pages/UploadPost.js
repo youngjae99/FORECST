@@ -77,9 +77,11 @@ function UploadPost(props){
         await fileRef.put(file)
         const currentUser = window.sessionStorage.getItem("id")
         console.log(currentUser)
+        console.log(selectTodo)
+
         db.collection('Feeds').doc().set({id:currentUser,photo:await fileRef.getDownloadURL(),writing:writing,title:selectTodo,time: Date.now()});
         db.collection("Users").doc(currentUser).collection("todo").doc(selectTodo).set({check:true, todo: selectTodo});
-        db.collection("Users").doc(currentUser).update("newbie",firebase.firestore.FieldValue.increment(-1))
+        db.collection("Users").doc(currentUser).update("newbie",false)
         console.log('Uploaded a blob or file!');
         backend_Point(currentUser,"post")
         backend_WGO(currentUser,Date.now(),"post")
