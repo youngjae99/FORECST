@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, Avatar, Row, Col, Tabs, Slider, Button, Form, Input, List, Progress, Popover} from 'antd';
+import {Card, Avatar, Row, Col, Tabs, Slider, Button, Form, Input, List, Progress, Popover, Modal} from 'antd';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import lv0 from '../level_tree/lv0.png';
@@ -12,6 +12,7 @@ import { db } from "../firebase";
 import PropTypes from "prop-types";
 import {backend_makeToDo, backend_getToDo} from '../backend';
 import {QuestionCircleOutlined} from '@ant-design/icons';
+import firebase from "firebase/app";
 
 const {TabPane}=Tabs;
 
@@ -50,7 +51,8 @@ class IndividualPage extends React.Component{
             completed: [],
             feed: [],
             userName: "",
-            makeToDo:""
+            makeToDo:"",
+            // newUser: true
         }
 
         this.handleChange=this.handleChange.bind(this);
@@ -62,9 +64,36 @@ class IndividualPage extends React.Component{
         this.setState(nextState);
     }
 
+    handleOk=()=>{
+        console.log(this.props.history);
+        // this.props.history.push('/uploadpost');
+        Modal.destroyAll();
+    }
+
     handleSubmit = () => {
         if (!this.state.makeToDo) {
           return;
+        }
+
+        if((this.state.todo.length+this.state.completed.length)==0){
+            Modal.info({
+                title: "Now, let's write your first post.",
+                content: (
+                    <div>
+                        Let's write first post on your first to-do list, 
+                        <br></br>'Making a project name'.
+                        <div style={{float: "right", marginTop: 20}}>
+                            <Button type="primary" onClick={this.handleOk}>
+                                <a href="/uploadpost">GO</a>
+                            </Button>
+                        </div>
+                    </div>  
+                ),
+                width: 500,
+                centered: true,
+                okButtonProps: {style: {display: "none"}},
+                onCancel(){}
+              });   
         }
 
         this.setState({
@@ -72,6 +101,7 @@ class IndividualPage extends React.Component{
         });
     
         setTimeout(() => {
+       db.collection("Users").doc(this.props.userName).update("newbie",false)
         backend_makeToDo(this.props.userName, this.state.makeToDo)
           this.setState({
             submitting: false,

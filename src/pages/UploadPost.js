@@ -49,19 +49,26 @@ function UploadPost(props){
       const error = () => {
         message.error('You should upload PICTURE!!');
       };
+      const error2 = () => {
+        message.error('You should select TODO!!');
+      };
       
+
       useEffect(() => {
         getMyToDo();
       },[])
 
     const getMyToDo = async () =>{
-        const todo = await db.collection("Users").doc(props.status.currentUser).collection("todo").where('check','==',false).get();
+        const todo = await db.collection("Users").doc(window.sessionStorage.getItem("id")).collection("todo").where('check','==',false).get();
         setTodolist(todo.docs.map(doc=>doc.data().todo));
         console.log(todolist);
     }
       
       const handlePost = async() =>{
-        if(file == 0){
+        if(selectTodo==""){
+            error2();
+        }
+        else if(file == 0){
             error();
         }
         else{
@@ -70,17 +77,20 @@ function UploadPost(props){
         await fileRef.put(file)
         const currentUser = window.sessionStorage.getItem("id")
         console.log(currentUser)
-            db.collection('Feeds').doc().set({id:currentUser,photo:await fileRef.getDownloadURL(),writing:writing,title:todolist[0],time: firebase.firestore.Timestamp.now()});
-            db.collection("Users").doc(currentUser).collection("todo").doc(todolist[0]).set({check:true, todo: todolist[0]});
-            console.log('Uploaded a blob or file!');
-            backend_Point(currentUser,"post")
-            backend_WGO(currentUser,Date.now(),"post")
+        console.log(selectTodo)
+
+        db.collection('Feeds').doc().set({id:currentUser,photo:await fileRef.getDownloadURL(),writing:writing,title:selectTodo,time: Date.now()});
+        db.collection("Users").doc(currentUser).collection("todo").doc(selectTodo).set({check:true, todo: selectTodo});
+        db.collection("Users").doc(currentUser).update("newbie",false)
+        console.log('Uploaded a blob or file!');
+        backend_Point(currentUser,"post")
+        backend_WGO(currentUser,Date.now(),"post")
         }
     }
 
     const { Option } = Select;
     
-    const map = todolist.map((word)=><Option>{word}</Option>)
+    const map = todolist.map((word)=><Option value={word}>{word}</Option>)
     
     return(
         <div style={{fontFamily: "Roboto", width: 1000, margin: "auto", paddingTop: 20}}>
@@ -176,9 +186,9 @@ function UploadPost(props){
 
                     <div style={{textAlign: "right"}}>
                         <Button type='primary' style={{marginLeft: 100}} onClick={handlePost}>
-                             {file==0?
+                             {file==0||selectTodo==""?
                              <div style={{fontSize: 18}}>UPLOAD</div> :
-                             <Link to={"/mypage"} style={{fontSize: 18}}>UPLOAD</Link>}
+                             <Link to={"/camp"} style={{fontSize: 18}}>UPLOAD</Link>}
                         </Button>
                     </div>
                 </Col>
