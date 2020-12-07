@@ -55,7 +55,7 @@ class CampPage extends React.Component {
   getMarker = async () => {
     const snapshot = await db.collection("Users").get();
     const timer = await db.collection("Timer").doc("time").get();
-
+    
     console.log(snapshot.docs);
     this.setState({ forest: snapshot.docs,
       num_p: snapshot.docs.length,
