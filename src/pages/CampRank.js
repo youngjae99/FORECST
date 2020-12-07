@@ -18,6 +18,7 @@ import PropTypes from "prop-types";
 import { db,storage } from "../firebase";
 import {backend_Voting} from "../backend";
 import { GithubOutlined } from "@ant-design/icons";
+import "./CampHome.css";
 
 
 const { Title } = Typography;
@@ -204,6 +205,7 @@ class CampRank extends Component {
     
   }
   else{
+<<<<<<< HEAD
     return(
       <div style={{padding:20, paddingTop:10, paddingBottom: 140, fontFamily: "Roboto"}}>
         <div style={{fontSize: 30, fontWeight: "bold"}}>
@@ -212,6 +214,14 @@ class CampRank extends Component {
         </div>
       </div>
       );
+=======
+    return( // 아직 투표기간이 아닐 때 뜨는 표시
+      <div className="unavail_vote">
+        <h2>The vote is not available now.</h2>
+        Please wait until the hackathon ends!
+      </div>
+    );
+>>>>>>> design_update
   }
 }
 }

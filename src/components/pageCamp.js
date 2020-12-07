@@ -121,8 +121,6 @@ class PageCamp extends React.Component {
         <div
           style={{
             width: "100%",
-            paddingRight: "15px",
-            paddingLeft: "15px",
             marginRight: "auto",
             marginLeft: "auto",
           }}
@@ -130,8 +128,9 @@ class PageCamp extends React.Component {
           <div
             style={{
               height: "70px",
-              paddingTop: 15,
-              paddingLeft: 30,
+              paddingTop: 10,
+              marginBottom: "10px",
+              background:"#fff",
               borderBottom: "1px solid var(--colors-border)",
             }}
           >
@@ -145,20 +144,19 @@ class PageCamp extends React.Component {
                 textAlign: "center",
                 width: "100%",
                 paddingLeft: 200,
+                color: "black",
               }}
             >
               Hackathon | Make an application for the pandemic COVID 19
               situation!
+              <Link to={"/uploadproject"}>
               <Button
-                type="primary"
-                shape="round"
-                className="BtnClass"
-                style={{ float: "right", marginLeft: 10, marginRight: 40}}
+              size="large"
+                style={{ float: "right", marginRight: "10px"}}
               >
-                <Link to={"/uploadproject"} style={{ fontSize: 18 }}>
-                  SUBMIT your project!
-                </Link>
+                  Submit My Project
               </Button>
+              </Link>
             </Title>
           </div>
 
