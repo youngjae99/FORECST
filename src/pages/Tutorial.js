@@ -57,6 +57,7 @@ class Tutorial extends React.Component {
                   <div className="text-container">
                     <h1 style={{fontSize: 35}}>
                       <span className="primaryColor" style={{fontSize: 50, color: "#482482", fontWeight: "bold"}}> In this Hackathon, </span>
+                      <br></br> You are each going to make a project of your own.
                       <br></br> You can write a to-do list and post a feed if you complete it,
                       <br></br> Ask questions freely,
                       <br></br> And submit your project and vote for the final ranking.

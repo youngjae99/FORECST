@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Input, Space, Card, Button, Form, Checkbox } from 'antd';
-import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
+import { Input, Modal, Card, Button, Form, Checkbox, Progress, Avatar } from 'antd';
 import {Link} from 'react-router-dom';
 import {browserHistory} from 'react-router';
-import {backend_Login,backend_Join} from "../backend";
-import { db,storage } from "../firebase";
+import {backend_Join} from "../backend";
+import { db } from "../firebase";
 import { message} from 'antd';
+import welcome from '../pages/template/images/welcome.png';
 
 class Authentication extends React.Component{
 
@@ -15,7 +15,9 @@ class Authentication extends React.Component{
 
         this.state={
             username: "",
-            password: ""
+            password: "",
+            // Point Alert
+            point: ""
         };
 
         this.handleChange=this.handleChange.bind(this);
@@ -24,32 +26,29 @@ class Authentication extends React.Component{
 
         this.handleKeyPress = this.handleKeyPress.bind(this);
     }
-
+    
     handleChange(e){
         let nextState={};
         nextState[e.target.name]=e.target.value;
         this.setState(nextState);
     }
 
-    // handleLogin=async ()=>{
-    //     let id=this.state.username;
-    //     console.log(id)
-    //     if(id===""||this.state.password==="")
-    //         return;
-    //     else 
-    //     {
-    //         console.log(id)
+    handleModal=()=>{
+        const modal=Modal.info({
+            title: "Welcome! Your tree grow 1 point!",
+            content: (
+                <img src={welcome} alt="wc" style={{ width: 400}}/>
+            ),
+            width: 500,
+            centered: true,
+            onCancel(){},
+            okButtonProps: {style: {display: "none"}},
+        });
+        setTimeout(() => {
+            modal.destroy();
+        }, 2000);  
+    }
 
-    //         const registered = await db.collection('Users').doc(id)
-    //         console.log(registered)
-    //         if(registered.exist){
-    //             this.props.onLogin(id);
-    //             console.log("what")
-    //         }
-    //         else
-    //             return;
-    //     }
-    // }
     handleLogin= async ()=>{
         let id=this.state.username;
         console.log("user input id:", id);
@@ -65,8 +64,9 @@ class Authentication extends React.Component{
                 this.props.onLogin(id,wait.data().newbie);
                 window.sessionStorage.setItem('login', true); // Login 유지
                 window.sessionStorage.setItem('id', id); // Login 유지 - id 저장
-                console.log("newbie: ", wait.data().newbie);
+                {<Link to={"/campjoin"} style={{fontSize: 18}}></Link>}
 
+                this.handleModal();
             }
             else
                 message.error('User not exists!');
@@ -204,6 +204,18 @@ Authentication.propTypes={
 Authentication.defaultProps={
     mode: true,
     onLogin:(id, pw)=>{console.error("onLogin not defined");},
+};
+
+// Point Alert
+const mapStateToProps=(state)=>{
+    return{
+        status: state.authentication.status
+    };
+};
+
+const mapDispatchToProps=(dispatch)=>{
+    return{
+    };
 };
 
 export default Authentication;

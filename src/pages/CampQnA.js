@@ -129,7 +129,7 @@ class CampQnA extends Component {
       ]
 
       return(
-        <div style={{padding:20, paddingTop:10, paddingBottom: 140}}>
+        <div style={{padding:20, paddingTop:10, paddingBottom: 140, fontFamily: "Roboto"}}>
           <div style={{fontSize: 30, fontWeight: "bold"}}>
             QNA Board
           </div>

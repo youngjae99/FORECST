@@ -205,7 +205,13 @@ class CampRank extends Component {
   }
   else{
     return(
-<h2>The vote is not available now. Please wait until the hackathon ends!</h2>    );
+      <div style={{padding:20, paddingTop:10, paddingBottom: 140, fontFamily: "Roboto"}}>
+        <div style={{fontSize: 30, fontWeight: "bold"}}>
+          The vote is not available now. 
+          <br></br> Please wait until the hackathon ends!
+        </div>
+      </div>
+      );
   }
 }
 }

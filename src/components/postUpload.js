@@ -1,14 +1,17 @@
 import React from 'react';
-import {Row, Col, Form, Input, Button, Select, Modal} from 'antd';
+import {Row, Col, Form, Input, Button, Select, Modal, Avatar, Progress} from 'antd';
 import {Link, } from 'react-router-dom';
 import {useEffect,useState} from 'react';
 import {connect} from 'react-redux';
-import firebase from "firebase/app";
 import { db,storage } from "../firebase";
 import 'antd/dist/antd.css';
 import {backend_Point,backend_WGO} from "../backend";
 import { message} from 'antd';
-import grow_tree from '../pages/template/images/growtree.jpg';
+import lv0 from '../level_tree/lv0.png';
+import lv1 from '../level_tree/lv1.png';
+import lv2 from '../level_tree/lv2.png';
+import lv3 from '../level_tree/lv3.png';
+import {getLevel, getPrevPoint, getNextPoint} from '../actions/authentication';
 
 function PostUpload(props){
     console.log("upload post: ", window.sessionStorage.getItem("id"));
@@ -54,6 +57,7 @@ function PostUpload(props){
 
       useEffect(() => {
         getMyToDo();
+        getMarker();
       },[])
 
     const getMyToDo = async () =>{
@@ -66,22 +70,64 @@ function PostUpload(props){
         window.location.replace(`/mypage/${window.sessionStorage.getItem("id")}`);
         Modal.destroyAll();
     }
-    const handleModal = ()=>{
-        const modal = Modal.info({
-            title: "Your Posting grow your tree 2 point!",
+
+    //Point Alert
+    const[point, setPoint]=useState(0);
+
+    const getMarker = async () => {
+        const snapshot = await db.collection('Users').doc(window.sessionStorage.getItem("id")).get()
+        console.log("getmarker", snapshot.data().point)
+        setPoint(snapshot.data().point); 
+    }
+
+   const handleModal=()=>{
+        const level=props.getLevel(parseInt(point));
+        const prevPoint=props.getPrevPoint(level);
+        const nextPoint=props.getNextPoint(level);
+        let profileTree=null;
+
+        switch (level) {
+            case 1:
+                profileTree=<img src={lv1}></img>
+                break;
+            case 2:
+                profileTree=<img src={lv2}></img>
+                break;
+            default:
+                profileTree=<img src={lv0}></img>
+                break;
+        }
+        
+        console.log("point: ", point-prevPoint+5);
+        console.log("nextpoint: ", nextPoint-prevPoint);
+
+        const modal=Modal.info({
+            title: "Your Posting grow your tree 5 point!",
             content: (
-                <img src={grow_tree} alt="wc" style={{ width: 400}}/>
+                <div style={{textAlign: "center"}}>
+                    <Avatar size={120} icon={profileTree}></Avatar>
+                    <Progress
+                    strokeColor={{
+                        '0%': '#108ee9',
+                        '100%': '#87d068',
+                    }}
+                    percent={(point-prevPoint+5)/(nextPoint-prevPoint)*100}
+                    style={{marginTop: 10}}
+                    />
+                    {nextPoint-point} points left to level up!
+                </div>
+
             ),
             width: 500,
             centered: true,
+            onCancel(){},
             okButtonProps: {style: {display: "none"}},
-            onCancel(){}
-        });  
+        });
         setTimeout(() => {
             modal.destroy();
-          },  2000);
-
+        }, 3000);  
     }
+
     const handlePost = async() =>{
         if(file == 0){
             error();
@@ -152,12 +198,14 @@ function PostUpload(props){
                     <div style={{fontSize: 18, marginTop: 20, textAlign: 'right', marginRight: 10}}>Choose a To-Do : </div>
                 </Col>
                 <Col>
-                    <Select labelInValue placeholder="Please Select your To-Do :D" style={{ width: 300, marginTop: 20 }} onChange={handleTodo}>
-                        {/* <Option value="jack">Jack</Option>
-                        <Option value="lucy">Lucy</Option>
-                        <Option value="Yiminghe">yiminghe</Option> */}
+                    <Select labelInValue placeholder="Please Select your To-Do :D" style={{ width: 300, marginTop: 20}} onChange={handleTodo}>
                         {map}
                     </Select>
+                    <Button type="primary" style={{fontSize: 14, marginLeft: 10}}>
+                        <Link to={{pathname: `/mypage/${window.sessionStorage.getItem("id")}`}}>
+                            Add to-do list
+                        </Link>
+                    </Button>
                 </Col>
             </Row>
 
@@ -172,33 +220,6 @@ function PostUpload(props){
                 </Col>
             </Row>
 
-            {/* <Row>
-            <Col span={4}>
-                    <div style={{fontSize: 18, marginTop: 20, textAlign: "right", marginRight: 10}}>
-                        Title:
-                    </div>
-                </Col>
-                <Col span={20} style={{marginTop: 20}}>
-                    <Form.Item
-                    // label="Username"
-                    // name="username"
-                    rules={[
-                        {
-                            required:true,
-                            message: 'Please input your username.',
-                        }
-                    ]}>
-                        <Input
-                        name='title'
-                        placeholder="title"
-                        value={title}
-                        onChange={handleChange}                        
-                        >
-                        </Input>
-                    </Form.Item>
-                </Col>
-            </Row> */}
-
             <Row>
             <Col span={4}>
                     <div style={{fontSize: 18, marginTop: 20, textAlign: "right", marginRight: 10}}>
@@ -207,8 +228,6 @@ function PostUpload(props){
                 </Col>
                 <Col span={20} style={{marginTop: 20}}>
                     <Form.Item
-                    // label="Username"
-                    // name="username"
                     rules={[
                         {
                             required:true,
@@ -246,6 +265,15 @@ const mapStateToProps=(state)=>{
 
 const mapDispatchToProps=(dispatch)=>{
     return{
+        getLevel: (point)=>{
+            return getLevel(point);
+        },
+        getPrevPoint: (level)=>{
+            return getPrevPoint(level);
+        },
+        getNextPoint: (level)=>{
+            return getNextPoint(level);
+        }    
     };
 };
 

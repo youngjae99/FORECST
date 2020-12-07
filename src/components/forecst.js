@@ -19,12 +19,6 @@ class Forecst extends React.Component {
       point: 0,
       isLoggedIn: this.isLoggedIn
     };
-
-    this.handleHome = this.handleHome.bind(this);
-  }
-
-  handleHome() {
-    this.props.history.push("/FORECST");
   }
 
   // Login Func
@@ -52,8 +46,6 @@ class Forecst extends React.Component {
     } else {
       this.onLogout();
     }
-
-    //this.getMarker();
   }
 
   getMarker = async () => {
@@ -126,12 +118,19 @@ class Forecst extends React.Component {
           padding: "0.5rem 5rem 0.5rem 5rem"
         }}
       >
+        {this.state.isLoggedIn? 
+        <Link
+          className="navbar-brand logo-image"
+          to="/camp"
+        >
+          <img src={logo} alt="alternative" />
+        </Link> :
         <Link
           className="navbar-brand logo-image"
           to="/FORECST"
         >
           <img src={logo} alt="alternative" />
-        </Link>
+        </Link>}
 
         <button
           className="navbar-toggler"

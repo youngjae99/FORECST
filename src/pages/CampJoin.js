@@ -12,9 +12,9 @@ class CampJoin extends React.Component{
                 <div style={{fontSize: 20, marginTop: 10}}>
                     Let’s start the hackathon in FORECST<br></br>Good luck!</div>
                 <div>
-                    <img src={campjoin} style={{width: 350, margin:"20px"}}></img>
+                    <img src={campjoin} style={{width: 430, margin:"20px"}}></img>
                 </div>
-                <Link className="btn-solid-lg page-scroll" to="/FORECST">
+                <Link className="btn-solid-lg page-scroll" to="/FORECST" style={{marginTop: 40}}>
                       Go to Main page
                 </Link>
             </div>
