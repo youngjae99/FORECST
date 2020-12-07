@@ -164,15 +164,16 @@ class IndividualPage extends React.Component{
 
                 <Col span={12} style={{paddingRight: 5}}>
                     <Row>
-                        <Col span={20}>
+                        <Col span={5}>
                             <h5>To-do List</h5>
                         </Col>
-                        <Col span={4}>
-                            <div style={{float: "right"}}>
+                        <Col span={19}>
+                            <div style={{float: "left"}}>
                                 <Popover
                                 title="What are the examples of to-do list?"
                                 content={(
                                     <div>
+                                        <p>[Your first to-do list] Making a project name</p>
                                         <p>Make tab structure</p>
                                         <p>Implement authentication</p>
                                     </div>

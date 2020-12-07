@@ -149,7 +149,7 @@ class CampRank extends Component {
       return (
         <div style={{ padding: 20, fontStyle: "Roboto", paddingTop: 10, paddingBottom: 140}}>
         <Row>
-          <div style={{fontSize: 30, fontWeight: "bold"}}>
+          <div style={{fontSize: 30, fontWeight: "bold", width: "100%"}}>
             Poll for the Final Ranking!
           </div>
           <div style={{fontSize: 16, paddingBottom: 10}}>
