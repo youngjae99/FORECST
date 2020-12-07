@@ -1,39 +1,54 @@
 import React from 'react';
-import {Row, Col, Form, Input, Button} from 'antd';
+import {Row, Col, Form, Input, Button, Modal} from 'antd';
 import {Link, } from 'react-router-dom';
 import {useEffect,useState} from 'react';
 import {connect} from 'react-redux';
 import firebase from "firebase/app";
-
 import { db,storage } from "../firebase";
 import 'antd/dist/antd.css';
 import PropTypes from 'prop-types'
 import { render } from '@testing-library/react';
 import {backend_Point,backend_WGO} from "../backend";
+import grow_tree from '../pages/template/images/growtree.jpg';
 
 function UploadQnA(props){
     console.log("upload post: ", window.sessionStorage.getItem("id"));
     const [inputs, setInputs] = useState({
         title: "",
         writing: "",
-      });
-      const [file, setFile] = useState(0);
-      const [image,setImage] = useState(0);
-      const { title,writing } = inputs;
-    
-      const handleChange = e => {
+    });
+    const [file, setFile] = useState(0);
+    const [image,setImage] = useState(0);
+    const { title,writing } = inputs;
+
+    const handleChange = e => {
         const { name, value } = e.target;
         setInputs({
-             ...inputs, [name]: value });
-      };
-      const handlePost = async() =>{
+                ...inputs, [name]: value });
+    };
+
+    const handleOk=()=>{
+        Modal.destroyAll();
+    }
+
+    const handlePost = async() =>{
         const currentUser = await window.sessionStorage.getItem("id")
         console.log(currentUser)
-            db.collection('QnAList').doc().set({key: 1, likes: 23, views: 45, no: 1, writer:currentUser, writing:writing, title:title, date: Date.now()});
-            console.log('Uploaded a blob or file!');
-            backend_Point(currentUser,"question");
-            backend_WGO(currentUser,Date.now(),"question")
-        }
+        db.collection('QnAList').doc().set({key: 1, likes: 23, views: 45, no: 1, writer:currentUser, writing:writing, title:title, date: Date.now()});
+        console.log('Uploaded a blob or file!');
+        backend_Point(currentUser,"question");
+        backend_WGO(currentUser,Date.now(),"question")
+
+        Modal.info({
+            title: "Your Question grow your tree 2 point!",
+            content: (
+                <img src={grow_tree} alt="wc" style={{ width: 400}}/>
+            ),
+            width: 500,
+            centered: true,
+            onCancel(){}
+        });  
+    }  
     
     return(
         <div style={{fontFamily: "Roboto", width: 1000, margin: "auto", paddingTop: 20}}>

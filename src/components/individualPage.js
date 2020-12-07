@@ -84,7 +84,7 @@ class IndividualPage extends React.Component{
                         <br></br>'Making a project name'.
                         <div style={{float: "right", marginTop: 20}}>
                             <Button type="primary" onClick={this.handleOk}>
-                                <a href="/uploadpost">GO</a>
+                                <a href="/uploadpost/true">GO</a>
                             </Button>
                         </div>
                     </div>  
@@ -148,11 +148,6 @@ class IndividualPage extends React.Component{
         const MyView=(
             <div style={{width: 1000, margin: "auto", marginTop: 20}}>
                 <MyFeed feed={this.state.feed}></MyFeed>
-                {window.sessionStorage.getItem("id")===this.props.userName ? 
-                <Button type='primary' style={{float: "right"}}>
-                    <Link to={"/uploadpost"} style={{fontSize: 18}}>New Post</Link>
-                </Button> : null
-                }
             </div>
         )
 
@@ -218,6 +213,11 @@ class IndividualPage extends React.Component{
                             </List.Item>
                         )}
                     />
+                    {window.sessionStorage.getItem("id")===this.props.userName ? 
+                    <Button type='primary' style={{float: "right", marginTop: 10}}>
+                        <Link to={"/uploadpost/false"} style={{fontSize: 18}}>Add Completed</Link>
+                    </Button> : null
+                    }
                 </Col>
             </Row>
         )
@@ -267,9 +267,9 @@ class IndividualPage extends React.Component{
                         </Col>
     
                         <Col span={8}>
-                            <div style={{marginTop: 5, fontWeight: "bold", fontSize: 20}}>{this.props.userName}</div>
-                            <div style={{marginTop: 10, fontSize: 18}}>Joined Today.</div>
-                            <div style={{marginTop: 10, fontSize: 18}}>KAIST School of Computing</div>
+                            <div style={{marginTop: 5, fontWeight: "bold", fontSize: 25}}>{this.props.userName}</div>
+                            <div style={{marginTop: 5, fontSize: 18, fontWeight: "bold"}}>Currently in:</div>
+                            <div style={{fontSize: 16}}>Make an application for the pandemic COVID 19 situation!</div>
                         </Col>
     
                         <Col span={12}>
