@@ -18,7 +18,8 @@ import { Col, Row } from "../../node_modules/antd/lib/index";
 
 const { Countdown } = Statistic;
 const { Title } = Typography;
-const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30; // Moment is also OK
+// const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30; // Moment is also OK
+// const deadline = new Date('12/10/2020 23:08:10').getTime()
 
 const listData = [];
 for (let i = 0; i < 23; i++) {
@@ -43,17 +44,22 @@ class CampPage extends React.Component {
       feed: [],
       forest: [],
       whatsgoingon: [],
-      num_p: 0
+      num_p: 0,
+      timer:0
     };
   }
   componentDidMount() {
+    console.log(new Date('12/10/2020 23:08:10').getTime())
     this.getMarker();
   }
   getMarker = async () => {
     const snapshot = await db.collection("Users").get();
+    const timer = await db.collection("Timer").doc("time").get();
+
     console.log(snapshot.docs);
     this.setState({ forest: snapshot.docs,
-      num_p: snapshot.docs.length
+      num_p: snapshot.docs.length,
+      timer: timer.data().timer
     });
   };
 
@@ -225,7 +231,7 @@ class CampPage extends React.Component {
                 <h6>Time left</h6>
                 <Countdown
                   style={{ margin: "10px" }}
-                  value={deadline}
+                  value={this.state.timer}
                   format="Dday H:m:s"
                 />
               </div>
