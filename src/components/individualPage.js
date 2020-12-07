@@ -173,6 +173,7 @@ class IndividualPage extends React.Component{
                                 title="What are the examples of to-do list?"
                                 content={(
                                     <div>
+                                        <p>[Your first to-do list] Making a project name</p>
                                         <p>Make tab structure</p>
                                         <p>Implement authentication</p>
                                     </div>
