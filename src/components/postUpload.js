@@ -4,13 +4,11 @@ import {Link, } from 'react-router-dom';
 import {useEffect,useState} from 'react';
 import {connect} from 'react-redux';
 import firebase from "firebase/app";
-
 import { db,storage } from "../firebase";
 import 'antd/dist/antd.css';
-import PropTypes from 'prop-types'
-import { render } from '@testing-library/react';
 import {backend_Point,backend_WGO} from "../backend";
 import { message} from 'antd';
+import grow_tree from '../pages/template/images/growtree.jpg';
 
 function PostUpload(props){
     console.log("upload post: ", window.sessionStorage.getItem("id"));
@@ -65,11 +63,11 @@ function PostUpload(props){
     }
 
     const handleOk=()=>{
-        props.history.push(`/mypage/${window.sessionStorage.getItem("id")}`);
+        // props.history.push(`/mypage/${window.sessionStorage.getItem("id")}`);
         Modal.destroyAll();
     }
       
-      const handlePost = async() =>{
+    const handlePost = async() =>{
         if(file == 0){
             error();
         }
@@ -89,7 +87,8 @@ function PostUpload(props){
             backend_Point(currentUser,"post")
             backend_WGO(currentUser,Date.now(),"post")
         }
-        // if(props.newUser){
+
+        if(props.newUser){
             Modal.info({
                 title: "Now, your first post is uploaded!",
                 content: (
@@ -98,7 +97,6 @@ function PostUpload(props){
                         <br></br> Also, you can check your tree point increased!
                         <div style={{float: "right", marginTop: 20}}>
                             <Button type="primary" onClick={handleOk}>
-                                {/* <a href="/uploadpost/true">OKAY</a> */}
                                 OKAY
                             </Button>
                         </div>
@@ -108,8 +106,21 @@ function PostUpload(props){
                 centered: true,
                 okButtonProps: {style: {display: "none"}},
                 onCancel(){}
-              });  
-        // }
+                });  
+        }
+
+        else{
+            Modal.info({
+                title: "Your Posting grow your tree 2 point!",
+                content: (
+                    <img src={grow_tree} alt="wc" style={{ width: 400}}/>
+                ),
+                width: 500,
+                centered: true,
+                okButtonProps: {style: {display: "none"}},
+                onCancel(){}
+            });  
+        }
     }
 
     const { Option } = Select;

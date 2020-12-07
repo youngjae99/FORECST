@@ -146,11 +146,6 @@ class IndividualPage extends React.Component{
         const MyView=(
             <div style={{width: 1000, margin: "auto", marginTop: 20}}>
                 <MyFeed feed={this.state.feed}></MyFeed>
-                {window.sessionStorage.getItem("id")===this.props.userName ? 
-                <Button type='primary' style={{float: "right"}}>
-                    <Link to={"/uploadpost/false"} style={{fontSize: 18}}>New Post</Link>
-                </Button> : null
-                }
             </div>
         )
 
@@ -216,6 +211,11 @@ class IndividualPage extends React.Component{
                             </List.Item>
                         )}
                     />
+                    {window.sessionStorage.getItem("id")===this.props.userName ? 
+                    <Button type='primary' style={{float: "right", marginTop: 10}}>
+                        <Link to={"/uploadpost/false"} style={{fontSize: 18}}>Add Completed</Link>
+                    </Button> : null
+                    }
                 </Col>
             </Row>
         )

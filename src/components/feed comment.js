@@ -174,11 +174,11 @@ class FeedComment extends Component {
     const modal = Modal.info({
     title: 'Your watering grow '+this.props.id+"'s tree 2 point!",
     content: (
-      <img src={popup_water} alt="wc" style={{ width: "300px"}}/>
+      <img src={popup_water} alt="wc" style={{ width: 400}}/>
     ),
     okButtonProps: {style: {display: "none"}},
-    centered: true
-    
+    centered: true,
+    width: 500
   });
   setTimeout(() => {
     modal.destroy();
