@@ -79,7 +79,7 @@ function PostUpload(props){
         });  
         setTimeout(() => {
             modal.destroy();
-          },  3000);
+          },  2000);
 
     }
     const handlePost = async() =>{
