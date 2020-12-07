@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {List, Divider, Button, Row, Col, Space} from 'antd';
 import {db} from '../firebase';
 import QnAComment from './qna comment';
+import {Link} from 'react-router-dom';
 
 class QnAsingle extends Component {
     constructor(props) {
@@ -49,7 +50,8 @@ class QnAsingle extends Component {
                                 <Col span={20} style={{fontSize: 25, fontWeight: "bold"}}>{item.data().title}</Col>
                                 <Col span={4} style={{fontSize: 15, paddingTop: 10}}>
                                     <div style={{float: 'right'}}>
-                                      Asked by {item.data().writer}
+                                      Asked by 
+                                      <Link to={{pathname: `/mypage/${item.data().writer}`}}> {item.data().writer}</Link>
                                     </div>
                                 </Col>
                             </Row>

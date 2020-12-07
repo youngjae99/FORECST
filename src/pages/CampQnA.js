@@ -117,6 +117,10 @@ class CampQnA extends Component {
               key: 'writer',
               align: 'center',
               ...this.getColumnSearchProps('writer'),
+              render: text=>
+              <Link to={{pathname: `/mypage/${text}`}}>
+                <a>{text}</a>
+              </Link>
           },
           {
               title: 'Date',
