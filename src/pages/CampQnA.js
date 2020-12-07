@@ -19,7 +19,7 @@ class CampQnA extends Component {
   }
 
   getMarker = async () => {
-      const snapshot = await db.collection('QnAList').get()
+      const snapshot = await db.collection('QnAList').orderBy("date","desc").get()
       console.log(snapshot.docs)
       this.setState({data:snapshot.docs.map(doc=>doc.data())})  
   }
@@ -171,6 +171,7 @@ class CampQnA extends Component {
               key: 'date',
               align: 'center',
               ...this.getColumnSearchProps('date'),
+              render: now => new Date(now).getFullYear() + "-" + (new Date(now).getMonth() + 1) + "-" + new Date(now).getDate() + " " + new Date(now).getHours() + ":" + new Date(now).getMinutes() + ":" + new Date(now).getSeconds() + " "
               // sorter: (a, b) => a.date - b.date,
               // sortOrder: sortedInfo.columnKey === 'date' && sortedInfo.order,
               // ellipsis: true,
@@ -208,7 +209,7 @@ class CampQnA extends Component {
             <Link to="/qnawrite">WRITE</Link>
           </Button>
 
-          <Table columns={columns} dataSource={this.state.data} onChange={this.handleChange} pagination={{position: ["bottomCenter"]}}/>
+          <Table columns={columns} dataSource={this.state.data} onChange={this.handleChange} pagination={{position: ["bottomCenter"],pageSize: 10}}/>
         </div>
       )
     }

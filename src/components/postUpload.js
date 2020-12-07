@@ -66,7 +66,22 @@ function PostUpload(props){
         // props.history.push(`/mypage/${window.sessionStorage.getItem("id")}`);
         Modal.destroyAll();
     }
-      
+    const handleModal = ()=>{
+        const modal = Modal.info({
+            title: "Your Posting grow your tree 2 point!",
+            content: (
+                <img src={grow_tree} alt="wc" style={{ width: 400}}/>
+            ),
+            width: 500,
+            centered: true,
+            okButtonProps: {style: {display: "none"}},
+            onCancel(){}
+        });  
+        setTimeout(() => {
+            modal.destroy();
+          },  3000);
+
+    }
     const handlePost = async() =>{
         if(file == 0){
             error();
@@ -75,6 +90,10 @@ function PostUpload(props){
             error2();
         }
         else{
+            if(props.newUser!="true"){
+                handleModal();
+            }
+
         const storageRef = storage.ref();
         const fileRef = storageRef.child(file.name);
         await fileRef.put(file)
@@ -106,19 +125,6 @@ function PostUpload(props){
                 centered: true,
                 onCancel(){}
                 });  
-        }
-
-        else{
-            Modal.info({
-                title: "Your Posting grow your tree 2 point!",
-                content: (
-                    <img src={grow_tree} alt="wc" style={{ width: 400}}/>
-                ),
-                width: 500,
-                centered: true,
-                okButtonProps: {style: {display: "none"}},
-                onCancel(){}
-            });  
         }
     }
 

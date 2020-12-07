@@ -34,7 +34,7 @@ function UploadQnA(props){
     const handlePost = async() =>{
         const currentUser = await window.sessionStorage.getItem("id")
         console.log(currentUser)
-        db.collection('QnAList').doc().set({key: 1, likes: 23, views: 45, no: 1, writer:currentUser, writing:writing, title:title, date: Date.now()});
+        db.collection('QnAList').doc().set({key: 1, likes: 23, views: 45, no: 1, writer:currentUser, writing:writing, title:title, date: new Date.now()});
         console.log('Uploaded a blob or file!');
         backend_Point(currentUser,"question");
         backend_WGO(currentUser,Date.now(),"question")
