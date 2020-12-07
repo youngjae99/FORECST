@@ -51,6 +51,8 @@ export function getPrevPoint(level){
         return 10;
     }else if(parseInt(level)==2){
         return 30;
+    }else if(parseInt(level)==3){
+        return 70;
     }else{
         return 0;
     }
@@ -61,6 +63,8 @@ export function getNextPoint(level){
         return 30;
     }else if(parseInt(level)==2){
         return 70;
+    }else if(parseInt(level)==3){
+        return 170;
     }else{
         return 10;
     }
