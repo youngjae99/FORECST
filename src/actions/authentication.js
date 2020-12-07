@@ -66,7 +66,7 @@ export function getNextPoint(level){
     }else if(parseInt(level)==2){
         return 70;
     }else if(parseInt(level)==3){
-        return 170;
+        return 270;
     }else{
         return 10;
     }
