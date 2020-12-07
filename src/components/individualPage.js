@@ -6,13 +6,12 @@ import lv0 from '../level_tree/lv0.png';
 import lv1 from '../level_tree/lv1.png';
 import lv2 from '../level_tree/lv2.png';
 import lv3 from '../level_tree/lv3.png';
-import {getLevel} from '../actions/authentication';
+import {getLevel, getPrevPoint, getNextPoint} from '../actions/authentication';
 import {MyFeed} from '../components';
 import { db } from "../firebase";
 import PropTypes from "prop-types";
 import {backend_makeToDo, backend_getToDo} from '../backend';
 import {QuestionCircleOutlined} from '@ant-design/icons';
-import firebase from "firebase/app";
 
 const {TabPane}=Tabs;
 
@@ -65,7 +64,6 @@ class IndividualPage extends React.Component{
 
     handleOk=()=>{
         console.log(this.props.history);
-        // this.props.history.push('/uploadpost');
         Modal.destroyAll();
     }
 
@@ -140,7 +138,7 @@ class IndividualPage extends React.Component{
     getMarker = async () => {
         const snapshot = await db.collection('Users').doc(this.props.userName).get()
         console.log(snapshot.data().point)
-        this.setState({point:snapshot.data().point})  
+        this.setState({point:snapshot.data().point}) 
     }
 
     render(){
@@ -182,7 +180,7 @@ class IndividualPage extends React.Component{
                                 title="What are the examples of to-do list?"
                                 content={(
                                     <div>
-                                        <p>[Your first to-do list] Making a project name</p>
+                                        <p>Setting development environment</p>
                                         <p>Make tab structure</p>
                                         <p>Implement authentication</p>
                                     </div>
@@ -236,30 +234,24 @@ class IndividualPage extends React.Component{
 
         var point=parseInt(this.state.point);
         const level=this.props.getLevel(point);
-        var prevPoint=0;
-        var nextPoint=0;
+        const prevPoint=this.props.getPrevPoint(level);
+        const nextPoint=this.props.getNextPoint(level);
         let profileTree=null;
         let currentTree=null;
         let nextTree=null;
 
         switch (level) {
             case 1:
-                prevPoint=10;
-                nextPoint=30;
                 profileTree=<img src={lv1}></img>
                 currentTree=<img src={lv1} style={{width: 120}}></img>
                 nextTree=<img src={lv2} style={{width: 70, marginTop: 50}}></img>
                 break;
             case 2:
-                prevPoint=30;
-                nextPoint=60;
                 profileTree=<img src={lv2}></img>
                 currentTree=<img src={lv2} style={{width: 120}}></img>
                 nextTree=<img src={lv3} style={{width: 70, marginTop: 50}}></img>
                 break;
             default:
-                prevPoint=0;
-                nextPoint=10;
                 profileTree=<img src={lv0}></img>
                 currentTree=<img src={lv0} style={{width: 120}}></img>
                 nextTree=<img src={lv1} style={{width: 70, marginTop: 50}}></img>
@@ -281,7 +273,11 @@ class IndividualPage extends React.Component{
                         <Col span={8}>
                             <div style={{marginTop: 5, fontWeight: "bold", fontSize: 25}}>{this.props.userName}</div>
                             <div style={{marginTop: 5, fontSize: 18, fontWeight: "bold"}}>Currently in:</div>
-                            <div style={{fontSize: 16}}>Make an application for the pandemic COVID 19 situation!</div>
+                            <div style={{fontSize: 16}}>
+                                <Link to="/camp" style={{}}>
+                                    Make an application for the pandemic COVID 19 situation!
+                                </Link>
+                                </div>
                         </Col>
     
                         <Col span={12}>
@@ -290,7 +286,7 @@ class IndividualPage extends React.Component{
                                     {currentTree}
                                 </Col>
                                 <Col span={12}>
-                                    <div style={{marginTop: 25, fontWeight: "bold"}}>{nextPoint-point} points left to grow up!</div>
+                                    <div style={{marginTop: 25, fontWeight: "bold"}}>{nextPoint-point} points left to level up!</div>
                                     <Slider max={nextPoint-prevPoint} value={point-prevPoint} tooltipVisible disabled={true} style={{marginTop: 50}}></Slider>
                                 </Col>
                                 <Col span={6}>
@@ -335,7 +331,13 @@ const mapDispatchToProps=(dispatch)=>{
     return{
         getLevel: (point)=>{
             return getLevel(point);
-        }
+        },
+        getPrevPoint: (level)=>{
+            return getPrevPoint(level);
+        },
+        getNextPoint: (level)=>{
+            return getNextPoint(level);
+        }    
     };
 };
 
