@@ -135,7 +135,6 @@ class IndividualPage extends React.Component{
 
         this.setState({todo:todo.docs.map(doc=>doc.data())});
         this.setState({completed:completed.docs.map(doc=>doc.data())});
-
     }
 
     getMarker = async () => {

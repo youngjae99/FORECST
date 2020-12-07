@@ -60,6 +60,7 @@ class CampRank extends Component {
       projects: [],
       userName: "",
       value: 0,
+      visible: false
     }
   }
 
@@ -73,6 +74,15 @@ class CampRank extends Component {
       value: e.target.value,
     });
     console.log(this.state.value);
+  };
+  getTime = async () => {
+    await db.collection("Timer").doc("time")
+    .onSnapshot({
+      includeMetadataChanges: true
+    },(snapshot) => {
+      if (snapshot.data().timer==1607509290000)    
+        this.setState({ visible: true });
+    });
   };
 
   onValue = () => {
@@ -106,6 +116,7 @@ class CampRank extends Component {
 
 
   render() {
+    if(this.state.visible){
     const radioStyle = {
       display: "block",
       height: "30px",
@@ -190,6 +201,12 @@ class CampRank extends Component {
     }
     
   }
+  else{
+    return(
+      <div></div>
+    );
+  }
+}
 }
 
 CampRank.propTypes={

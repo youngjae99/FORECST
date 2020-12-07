@@ -176,7 +176,7 @@ class QnAComment extends Component {
                 // </li>
             )}
             />
-        {this.props.status.isLoggedIn ? addComment : null}
+        {window.sessionStorage.getItem("id")? addComment : null}
       </>
     );
   }
