@@ -17,7 +17,7 @@ import {voteRequest} from '../actions/authentication';
 import PropTypes from "prop-types";
 import { db,storage } from "../firebase";
 import {backend_Voting} from "../backend";
-
+import { GithubOutlined } from "@ant-design/icons";
 
 
 const { Title } = Typography;
@@ -115,7 +115,7 @@ class CampRank extends Component {
 
     const map1 = this.state.projects.map((word) => <Panel header={word.projectTitle+ ' By '+ word.id}>
                                                       <div style={{marginBottom: 6}}> 
-                                                        - Github URL: {word.githuburl}
+                                                        - <GithubOutlined /> Github URL: <a href={word.githuburl} target="_blank">{word.githuburl}</a>
                                                       </div>
                                                       <div style={{marginBottom: 6}}>
                                                         - Representative Screenshot: 
