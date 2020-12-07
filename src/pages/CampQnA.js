@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import {Table, Button, Space, Input} from 'antd';
+import {Table, Button, Row, Col, Input} from 'antd';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
 import {Link} from 'react-router-dom';
 import {db} from '../firebase';
-import {backend_QnAList} from '../backend'; 
 
 class CampQnA extends Component {
   constructor(props) {
@@ -197,18 +196,31 @@ class CampQnA extends Component {
       ]
 
       return(
-        <div style={{padding:20, paddingBottom: 140}}>
+        <div style={{padding:20, paddingTop:10, paddingBottom: 140}}>
           {/* <Space style={{marginBottom: 16}}>
             <Button onClick={this.setNoSort}>Sort by No.</Button>
             <Button onClick={this.setNoSort}>Sort by Date</Button>
             <Button onClick={this.setLikesSort}>Sort by Likes</Button>
             <Button onClick={this.setViewsSort}>Sort by Views</Button>
           </Space> */}
-          
-          <Button type="primary" style={{float: "right", marginBottom: 10}}>
-            <Link to="/qnawrite">WRITE</Link>
-          </Button>
 
+          <div style={{fontSize: 30, fontWeight: "bold"}}>
+            QNA Board
+          </div>
+
+          <Row>
+            <Col span={20}>
+              <div style={{fontSize: 16, paddingBottom: 10}}>
+                Ask Questions Freely!
+              </div>
+            </Col>
+            <Col span={4}>
+              <Button type="primary" style={{float: "right", marginBottom: 10}}>
+                <Link to="/qnawrite">WRITE</Link>
+              </Button>
+            </Col>
+          </Row>
+          
           <Table columns={columns} dataSource={this.state.data} onChange={this.handleChange} pagination={{position: ["bottomCenter"],pageSize: 10}}/>
         </div>
       )
