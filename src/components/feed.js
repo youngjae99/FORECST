@@ -48,12 +48,6 @@ class Feed extends Component {
         style={{ paddingBottom: 120, width: "100%"}}
         itemLayout="vertical"
         size="large"
-        pagination={{
-          onChange: (page) => {
-            console.log(page);
-          },
-          pageSize: 3,
-        }}
         dataSource={this.props.feed}
         renderItem={(item) => (
           <List.Item
