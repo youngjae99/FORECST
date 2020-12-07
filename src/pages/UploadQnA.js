@@ -72,7 +72,7 @@ function UploadQnA(props){
                         '0%': '#108ee9',
                         '100%': '#87d068',
                     }}
-                    percent={(point-prevPoint+5)/(nextPoint-prevPoint)*100}
+                    percent={(point-prevPoint+3)/(nextPoint-prevPoint)*100}
                     style={{marginTop: 10}}
                     />
                     {nextPoint-point} points left to level up!
