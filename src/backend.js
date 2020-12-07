@@ -119,7 +119,7 @@ import 'antd/dist/antd.css';
             db.collection("Users").doc(id).update('point',firebase.firestore.FieldValue.increment(1))
         }
         else if(mode == "comment"){
-            // db.collection("Users").doc(id).update('point',firebase.firestore.FieldValue.increment(2))
+            db.collection("Users").doc(id).update('point',firebase.firestore.FieldValue.increment(2))
         }
         else if(mode == "question"){
             db.collection("Users").doc(id).update('point',firebase.firestore.FieldValue.increment(3))
