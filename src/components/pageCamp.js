@@ -237,7 +237,7 @@ class PageCamp extends React.Component {
                                 }}
                               />
                               <p className="point_d"> lv2</p>
-                              <p className="point_d">30~60 points </p>
+                              <p className="point_d">30~70 points </p>
                             </td>
                             <td>
                               <img
@@ -248,7 +248,7 @@ class PageCamp extends React.Component {
                                 }}
                               />
                               <p className="point_d"> lv3</p>
-                              <p className="point_d">60~points </p>
+                              <p className="point_d">70~points </p>
                             </td>
                           </tr>
                           <br></br>
