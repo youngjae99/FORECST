@@ -4,7 +4,7 @@ import Feed from "../components/feed";
 import { db, storage } from "../firebase";
 import { Spin, Button, Input, Typography } from "antd";
 import { Link } from "react-router-dom";
-import { SmileOutlined ,FlagOutlined, ShareAltOutlined } from "@ant-design/icons";
+import { SmileOutlined ,FlagOutlined, ShareAltOutlined, PlusOutlined } from "@ant-design/icons";
 const { Title } = Typography;
 const { TextArea } = Input;
 
@@ -66,33 +66,18 @@ class CampHome extends Component {
             }}
           >
             <Title level={4}>Share what you have done freely!</Title>
-            <Button
-              className="BtnClass"
-              type="primary"
-              shape="round"
-              icon={<SmileOutlined />}
-              size={"large"}
-            >
-              Feeling
-            </Button>
-            <Button
-            className="BtnClass"
-              type="primary"
-              shape="round"
-              icon={<FlagOutlined />}
-              size={"large"}
-            >
-              Achievements
-            </Button>
+            <Link to="/UploadPost">
             <Button
             className="BtnClass"  
               type="primary"
               shape="round"
-              icon={<ShareAltOutlined />}
+              icon={<PlusOutlined />}
               size={"large"}
+              style={{float: "right"}}
             >
-              Share
+              New Post
             </Button>
+            </Link>
           </div>
           <div className="container">
             <div className="row">
