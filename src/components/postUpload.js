@@ -104,7 +104,8 @@ function PostUpload(props){
                 ),
                 width: 500,
                 centered: true,
-                onCancel(){}
+                onCancel(){},
+                okButtonProps: {style: {display: "none"}},
                 });  
         }
 
@@ -116,7 +117,6 @@ function PostUpload(props){
                 ),
                 width: 500,
                 centered: true,
-                okButtonProps: {style: {display: "none"}},
                 onCancel(){}
             });  
         }
