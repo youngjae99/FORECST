@@ -5,8 +5,18 @@ import WGO from "../components/whatsgoingon";
 import l0_trans from "../level_tree/l0_trans.png";
 import l1_trans from "../level_tree/l1_trans.png";
 import l2_trans from "../level_tree/l2_trans.png";
+import l3_trans from "../level_tree/l3_trans.png";
+
 import { getLevel } from "../actions/authentication";
-import { Layout, Menu, Statistic, Typography, List, Button } from "antd";
+import {
+  Layout,
+  Menu,
+  Statistic,
+  Typography,
+  List,
+  Button,
+  Popover,
+} from "antd";
 import {
   HomeOutlined,
   QuestionCircleOutlined,
@@ -41,7 +51,7 @@ class PageCamp extends React.Component {
       forest: [],
       whatsgoingon: [],
       num_p: 0,
-      timer:0
+      timer: 0,
     };
   }
 
@@ -55,7 +65,8 @@ class PageCamp extends React.Component {
     const timer = await db.collection("Timer").doc("time").get();
 
     console.log(snapshot.docs);
-    this.setState({ forest: snapshot.docs,
+    this.setState({
+      forest: snapshot.docs,
       num_p: snapshot.docs.length,
       timer: timer.data().timer,
     });
@@ -114,80 +125,173 @@ class PageCamp extends React.Component {
               borderBottom: "1px solid var(--colors-border)",
             }}
           >
-
-          <Title level={3} id="camptitle" style={{ margin: 0, padding: 0, paddingTop: 10, textAlign: "center", width: "100%", paddingLeft: 200}}>
-            Hackathon | Make an application for the pandemic COVID 19 situation!
-            <Button type="primary" style={{float: "right", marginLeft: 10, marginRight: 40}}>
-              <Link to={"/uploadproject"} style={{fontSize: 18}}>SUBMIT your project!</Link>
-            </Button>
-          </Title> 
+            <Title
+              level={3}
+              id="camptitle"
+              style={{
+                margin: 0,
+                padding: 0,
+                paddingTop: 10,
+                textAlign: "center",
+                width: "100%",
+                paddingLeft: 200,
+              }}
+            >
+              Hackathon | Make an application for the pandemic COVID 19
+              situation!
+              <Button
+                type="primary"
+                style={{ float: "right", marginLeft: 10, marginRight: 40 }}
+              >
+                <Link to={"/uploadproject"} style={{ fontSize: 18 }}>
+                  SUBMIT your project!
+                </Link>
+              </Button>
+            </Title>
           </div>
 
           <Layout>
             <div className="sidenav left">
               <div className="white_sidenav">
-                <Menu theme="light" mode="inline" defaultSelectedKeys={[this.state.tab]}>
+                <Menu
+                  theme="light"
+                  mode="inline"
+                  defaultSelectedKeys={[this.state.tab]}
+                >
                   <Menu.Item
                     key="1"
                     icon={<HomeOutlined />}
                     onClick={this.handleClick}
                   >
-                    <Link to={"/camp/1"} style={{textDecoration: "none"}}>Home</Link>
-
+                    <Link to={"/camp/1"} style={{ textDecoration: "none" }}>
+                      Home
+                    </Link>
                   </Menu.Item>
                   <Menu.Item
                     key="2"
                     icon={<QuestionCircleOutlined />}
                     onClick={this.handleClick}
                   >
-                      <Link to={"/camp/2"} style={{textDecoration: "none"}}>QnA Board</Link>
+                    <Link to={"/camp/2"} style={{ textDecoration: "none" }}>
+                      QnA Board
+                    </Link>
                   </Menu.Item>
                   <Menu.Item
                     key="3"
                     icon={<BarChartOutlined />}
                     onClick={this.handleClick}
                   >
-                      <Link to={"/camp/3"} style={{textDecoration: "none"}}>Ranking</Link>
+                    <Link to={"/camp/3"} style={{ textDecoration: "none" }}>
+                      Ranking
+                    </Link>
                   </Menu.Item>
                 </Menu>
 
-                <div className="forestBox" style={{margin:"10px"}}>
-                  <h6 style={{ margin: "10px" }}>Hackathon Forest</h6>
-                  <p className="peoplenum">{this.state.num_p} participants are growing forest together!</p>
+                <div className="forestBox" style={{ margin: "10px" }}>
+                  <h6 style={{ margin: "10px" }}>
+                    Hackathon Forest &nbsp;
+                    <Popover
+                      title="What is tree level?"
+                      content={
+                        <div>
+                          <p> Tree level : lv0 ~ lv3 </p>
+                          <tr style={{textAlign:"center"}}>
+                            <td>
+                              <img
+                                src={l0_trans}
+                                style={{
+                                  width: "80px",
+                                  height: "80px",
+                                }}
+                              />
+                              <p className="point_d">lv0</p><p className="point_d">0~10 points </p>
+                            </td>
+                            <td>
+                              <img
+                                src={l1_trans}
+                                style={{
+                                  width: "80px",
+                                  height: "80px",
+                                }}
+                              />
+                              <p className="point_d"> lv1</p><p className="point_d">10~30 points </p>
+                            </td>
+                            <td>
+                              <img
+                                src={l2_trans}
+                                style={{
+                                  width: "80px",
+                                  height: "80px",
+                                }}
+                              />
+                              <p className="point_d"> lv2</p><p className="point_d">30~60 points </p>
+                            </td>
+                            <td>
+                              <img
+                                src={l3_trans}
+                                style={{
+                                  width: "80px",
+                                  height: "80px",
+                                }}
+                              />
+                              <p className="point_d"> lv3</p><p className="point_d">60~points </p>
+                            </td>
+                          </tr>
+                          <br></br>
+                          <p className="point_d"> Upload post : 5 points</p>
+                          <p className="point_d"> Comment : 2 points</p>
+                          <p className="point_d"> Login : 1 points</p>
+                          <p className="point_d"> QnA post : 3 points</p>
+                          <p className="point_d"> Watering : 2 points</p>
+                          
+                        </div>
+                      }
+                    >
+                      <QuestionCircleOutlined
+                        fontSize="4px"
+                        style={{ fontSize: 15 }}
+                      />
+                    </Popover>
+                  </h6>
+                  <p className="peoplenum">
+                    {this.state.num_p} participants are growing forest together!
+                  </p>
                   <List
-                    locale={{emptyText: 'No participants yet!'}}
+                    locale={{ emptyText: "No participants yet!" }}
                     style={{
                       backgroundColor: "#beedb2",
                       borderRadius: 10,
                       overflowY: "scroll",
-                      height:"300px"
+                      height: "300px",
                     }}
                     grid={{ gutter: 16 }}
                     dataSource={this.state.forest}
                     renderItem={(item) => (
-                      <div className="treeicon" style={{ 
-                        margin: "5px",
-                      }}
+                      <div
+                        className="treeicon"
+                        style={{
+                          margin: "5px",
+                        }}
                       >
-                        <Link className="treelink" to={"/mypage/"+item.id}>
-                        <img
-                          src={getTree(item.data().point)}
-                          style={{
-                            width: "50px",
-                            height: "50px",
-                            margin: "5px",
-                          }}
-                        />
-                        <div
-                          style={{
-                            marginBotton: "5px",
-                            fontSize: "13px",
-                            textAlign: "center",
-                            color: "#000"
-                          }}
-                        >
-                          {item.id}
-                        </div>
+                        <Link className="treelink" to={"/mypage/" + item.id}>
+                          <img
+                            src={getTree(item.data().point)}
+                            style={{
+                              width: "50px",
+                              height: "50px",
+                              margin: "5px",
+                            }}
+                          />
+                          <div
+                            style={{
+                              marginBotton: "5px",
+                              fontSize: "13px",
+                              textAlign: "center",
+                              color: "#000",
+                            }}
+                          >
+                            {item.id}
+                          </div>
                         </Link>
                       </div>
                     )}
@@ -240,12 +344,12 @@ class PageCamp extends React.Component {
   }
 }
 
-PageCamp.propTypes={
-    tab: PropTypes.string,
+PageCamp.propTypes = {
+  tab: PropTypes.string,
 };
 
-PageCamp.defaultProps={
-    tab: "1"
+PageCamp.defaultProps = {
+  tab: "1",
 };
 
 export default PageCamp;
