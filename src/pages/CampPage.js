@@ -236,7 +236,6 @@ class CampPage extends React.Component {
                   format="Dday H:m:s"
                 />
               </div>
-
               <WGO wgo={this.state.whatsgoingon} />
             </div>
           </Layout>

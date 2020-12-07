@@ -56,14 +56,14 @@ class WGO extends Component {
     console.log()
 
     return (
-      <div className="WGObox shadowbox">
+      <div className="WGObox shadowbox" style={{height:"100vh"}}>
         <h6 style={{marginLeft:"10px"}}>What's going on</h6>
         <List
           itemLayout="vertical"
           locale={{emptyText: 'Nothing is going on!'}}
           size="large"
-          dataSource={this.state.wgo}
-          style={{ marginTop: "20px" }}
+          dataSource={this.state.wgo.slice(0,15)}
+          style={{ marginTop: "20px", overflowY: "scroll",}}
           renderItem={(item) => (
             <div className="WGOitem" style={{ margin: "10px"}}>
               <img src={logo(item.data().mode)} style={typeimgStyle} />
