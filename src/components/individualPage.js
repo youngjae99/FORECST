@@ -24,7 +24,7 @@ import l0_trans from "../level_tree/l0_trans.png";
 import l1_trans from "../level_tree/l1_trans.png";
 import l2_trans from "../level_tree/l2_trans.png";
 import l3_trans from "../level_tree/l3_trans.png";
-import { getLevel } from "../actions/authentication";
+import {getLevel, getPrevPoint, getNextPoint} from '../actions/authentication';
 import { MyFeed } from "../components";
 import { db } from "../firebase";
 import PropTypes from "prop-types";
