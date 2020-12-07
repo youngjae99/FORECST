@@ -2,16 +2,24 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/storage";
 
+// const firebaseConfig = {
+//     apiKey: "AIzaSyAU2_U6G0BKBzCYynhexUV4hIBSi1BsUzY",
+//     authDomain: "forecst-8f7e6.firebaseapp.com",
+//     databaseURL: "https://forecst-8f7e6.firebaseio.com",
+//     projectId: "forecst-8f7e6",
+//     storageBucket: "forecst-8f7e6.appspot.com",
+//     messagingSenderId: "725342916991",
+//     appId: "1:725342916991:web:79de263520bd57777a8a4a",
+//     measurementId: "G-VX7G1B7C53"
+// };
 const firebaseConfig = {
-    apiKey: "AIzaSyAU2_U6G0BKBzCYynhexUV4hIBSi1BsUzY",
-    authDomain: "forecst-8f7e6.firebaseapp.com",
-    databaseURL: "https://forecst-8f7e6.firebaseio.com",
-    projectId: "forecst-8f7e6",
-    storageBucket: "forecst-8f7e6.appspot.com",
-    messagingSenderId: "725342916991",
-    appId: "1:725342916991:web:79de263520bd57777a8a4a",
-    measurementId: "G-VX7G1B7C53"
-};
+    apiKey: "AIzaSyDmbek5EF2OFwDAuhL5-tw0sXKY9xBrBW8",
+    authDomain: "forecst2.firebaseapp.com",
+    projectId: "forecst2",
+    storageBucket: "forecst2.appspot.com",
+    messagingSenderId: "561282508535",
+    appId: "1:561282508535:web:97da2e497779e90ac655f2"
+  };
 
 // firebaseConfig 정보로 firebase 시작
 firebase.initializeApp(firebaseConfig);

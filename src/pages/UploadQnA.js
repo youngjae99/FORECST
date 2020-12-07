@@ -31,23 +31,30 @@ function UploadQnA(props){
         Modal.destroyAll();
     }
 
-    const handlePost = async() =>{
-        const currentUser = await window.sessionStorage.getItem("id")
-        console.log(currentUser)
-        db.collection('QnAList').doc().set({key: 1, likes: 23, views: 45, no: 1, writer:currentUser, writing:writing, title:title, date: new Date.now()});
-        console.log('Uploaded a blob or file!');
-        backend_Point(currentUser,"question");
-        backend_WGO(currentUser,Date.now(),"question")
-
-        Modal.info({
+    const handleModal=()=>{
+        const modal=Modal.info({
             title: "Your Question grow your tree 2 point!",
             content: (
                 <img src={grow_tree} alt="wc" style={{ width: 400}}/>
             ),
             width: 500,
             centered: true,
-            onCancel(){}
-        });  
+            onCancel(){},
+            okButtonProps: {style: {display: "none"}},
+        });
+        setTimeout(() => {
+            modal.destroy();
+        }, 2000);  
+    }
+
+    const handlePost = async() =>{
+        const currentUser = await window.sessionStorage.getItem("id")
+        console.log(currentUser)
+        db.collection('QnAList').doc().set({key: 1, likes: 23, views: 45, no: 1, writer:currentUser, writing:writing, title:title, date: Date.now()});
+        console.log('Uploaded a blob or file!');
+        backend_Point(currentUser,"question");
+        backend_WGO(currentUser,Date.now(),"question")
+        handleModal();
     }  
     
     return(
@@ -115,7 +122,7 @@ function UploadQnA(props){
 
                     <div style={{textAlign: "right"}}>
                         <Button type='primary' style={{marginLeft: 100}} onClick={handlePost}>
-                            <Link to={"/mypage"} style={{fontSize: 18}}>UPLOAD</Link>
+                            <Link to={"/camp"} style={{fontSize: 18}}>UPLOAD</Link>
                         </Button>
                     </div>
                 </Col>
