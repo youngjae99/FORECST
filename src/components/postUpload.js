@@ -191,7 +191,7 @@ function PostUpload(props){
 
     const { Option } = Select;
     
-    const map = todolist.map((word)=><Option>{word}</Option>)
+    const map = todolist.map((word)=><Option value={word}>{word}</Option>)
     
     return(
         <div style={{fontFamily: "Roboto", width: 1000, margin: "auto", paddingTop: 20}}>

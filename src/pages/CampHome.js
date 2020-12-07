@@ -24,6 +24,7 @@ class CampHome extends Component {
 
   componentDidMount() {
     this.getMarker();
+    this.getMyToDo();
   }
 
   getMarker = async () => {
