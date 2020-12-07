@@ -77,13 +77,22 @@ class FeedComment extends Component {
     };
     console.log(window.sessionStorage.getItem("id"));
   }
-
-  componentDidMount() {
+  componentDidMount(){
     this.getComments();
     this.getwatering();
   }
-
+  componentDidUpdate(prevProps) {
+    // 전형적인 사용 사례 (props 비교를 잊지 마세요)
+    console.log(prevProps.posting)
+    if (this.props.posting !== prevProps.posting) {
+      console.log("change");
+      this.getComments();
+      this.getwatering();
+  
+    }
+  }
   getComments = async () => {
+    console.log(this.props.posting)
     const snapshot = await db
       .collection("Feeds/" + this.props.posting + "/Comments")
       .orderBy("datetime")

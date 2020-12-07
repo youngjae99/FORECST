@@ -74,7 +74,7 @@ class Feed extends Component {
             />
             {/* {item.data().time} */}
             {item.data().writing}
-            <FeedComment posting={item.id} id={item.data().id}></FeedComment>
+            {<FeedComment posting={item.id} id={item.data().id}></FeedComment>}
           </List.Item>
         )}
       />
