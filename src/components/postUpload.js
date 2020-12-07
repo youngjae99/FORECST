@@ -88,7 +88,7 @@ function PostUpload(props){
             backend_WGO(currentUser,Date.now(),"post")
         }
 
-        if(props.newUser){
+        if(props.newUser=="true"){
             Modal.info({
                 title: "Now, your first post is uploaded!",
                 content: (
@@ -104,7 +104,6 @@ function PostUpload(props){
                 ),
                 width: 500,
                 centered: true,
-                okButtonProps: {style: {display: "none"}},
                 onCancel(){}
                 });  
         }
