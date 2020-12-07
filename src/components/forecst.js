@@ -118,16 +118,16 @@ class Forecst extends React.Component {
           padding: "0.5rem 5rem 0.5rem 5rem"
         }}
       >
-        {this.state.currentUser==="" ? 
+        {this.state.isLoggedIn? 
         <Link
           className="navbar-brand logo-image"
-          to="/FORECST"
+          to="/camp"
         >
           <img src={logo} alt="alternative" />
         </Link> :
         <Link
           className="navbar-brand logo-image"
-          to="/camp"
+          to="/FORECST"
         >
           <img src={logo} alt="alternative" />
         </Link>}
