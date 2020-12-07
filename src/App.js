@@ -74,6 +74,7 @@ class App extends React.Component {
         <Router history={browserHistory}>
           <Route path="/" component={Home}></Route>
           <Route
+          
             path="/FORECST"
             component={MainPage}
           ></Route>
