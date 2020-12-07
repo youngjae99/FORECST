@@ -106,7 +106,7 @@ function PostUpload(props){
         var alert="";
         var alertPoint=parseInt(nextPoint)-parseInt(point)-5;
 
-        switch(alertPoint){
+        switch(parseInt(prevPoint)-parseInt(point)-5){
             case 0: 
                 alert="Congratulations! Level UP!";
                 break;
