@@ -185,6 +185,7 @@ class IndividualPage extends React.Component{
 
                     <List
                         bordered
+                        locale={{emptyText: 'Write a To-Do!'}}
                         dataSource={this.state.todo}
                         renderItem={item => (
                             <List.Item>
@@ -206,6 +207,7 @@ class IndividualPage extends React.Component{
                     <h5>Completed!</h5>
                     <List
                         bordered
+                        locale={{emptyText: 'No To-do is Completed!'}}
                         dataSource={this.state.completed}
                         renderItem={item => (
                             <List.Item>
