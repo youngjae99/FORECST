@@ -151,7 +151,9 @@ class PageCamp extends React.Component {
               situation!
               <Button
                 type="primary"
-                style={{ float: "right", marginLeft: 10, marginRight: 40 }}
+                shape="round"
+                className="BtnClass"
+                style={{ float: "right", marginLeft: 10, marginRight: 40}}
               >
                 <Link to={"/uploadproject"} style={{ fontSize: 18 }}>
                   SUBMIT your project!
