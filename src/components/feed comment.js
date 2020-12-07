@@ -19,11 +19,10 @@ import { backend_Feed_watering } from "../backend";
 import watering0 from "../watericon0.png";
 import watering1 from "../watericon1.png";
 import popup_water from "../popup_water.jpg";
-
 import { MessageOutlined } from "@ant-design/icons";
-import InfiniteScroll from "react-infinite-scroller";
 import "./feedcomment.css";
 import Profile from "./profile";
+import {Link} from 'react-router-dom';
 
 const count = 1;
 
@@ -230,12 +229,7 @@ class FeedComment extends Component {
         {text}
       </Space>
     );
-    // const getwatering =async()=>{
-    //   const water=await db.collection("Users").doc(this.props.status.currentUser).collection("watering").doc(this.props.posting).get()
-    //   const exist = await water.exists;
-    //   if(exist)
-    //     console.log(water.data().watering);
-    // }
+
     const watering = ()=> {
       if (this.state.watered == 0) {
         return watering0;
@@ -280,52 +274,6 @@ class FeedComment extends Component {
       ) : null;
 
     return (
-      /*
-      <div className="demo-infinite-container">
-        <InfiniteScroll
-          initialLoad={false}
-          pageStart={0}
-          loadMore={this.handleInfiniteOnLoad}
-          hasMore={!this.state.loading && this.state.hasMore}
-          useWindow={false}
-        >
-          <List
-            className="comment-list"
-            header={
-              <div>
-                <a onClick={this.handleWatering} style={{float: "right"}}>
-                  <img src={watering()} alt ="wc" style={{width:"25px", height:"25px"}}/>
-                </a>
-                <IconText icon={MessageOutlined} text={comments.length} key="list-vertical-message" />
-              </div>
-            }
-            itemLayout="horizontal"
-            dataSource={comments}
-            renderItem={item => (
-                <li>
-                <Comment
-                    author={item.author}
-                    content={item.content}
-                    datetime={item.datetime.fromNow}
-                    avatar={
-                    <Profile
-                      writer={item.author}>
-                    </Profile>
-                    }
-                />
-                </li>
-            )}
-          >
-          {this.state.loading && this.state.hasMore && (
-            <div className="demo-loading-container">
-              <Spin />
-            </div>
-          )}
-          </List>
-          {this.props.status.isLoggedIn ? addComment : null}
-        </InfiniteScroll>
-      </div>
-      */
       <div>
         <List
           className="comment-list"
@@ -369,7 +317,7 @@ class FeedComment extends Component {
           renderItem={(item) => (
             <li>
               <Comment
-                author={item.author}
+                author={<Link to={{pathname: `/mypage/${item.author}`}}>{item.author}</Link>}
                 content={item.content}
                 datetime={item.datetime.fromNow}
                 avatar={<Profile writer={item.author}></Profile>}

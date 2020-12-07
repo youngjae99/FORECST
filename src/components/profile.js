@@ -48,7 +48,9 @@ class Profile extends React.Component{
         }
 
         return(
-            <Avatar src={currentTree} ></Avatar>
+            // <Link to={{pathname: `/mypage/${window.sessionStorage.getItem("id")}`}}>
+            <Avatar src={currentTree}></Avatar>
+
         );
     }
 }

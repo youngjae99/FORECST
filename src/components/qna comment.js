@@ -6,24 +6,16 @@ import {
   List,
   Input,
   Space,
-  Spin,
-  Popconfirm,
-  message,
-  Modal
+  Spin
 } from "antd";
 import moment from "moment";
 import { db } from "../firebase";
 import { connect } from "react-redux";
 import { getLevel } from "../actions/authentication";
-import { backend_Feed_watering,backend_Point } from "../backend";
-import watering0 from "../watericon0.png";
-import watering1 from "../watericon1.png";
-import popup_water from "../popup_water.jpg";
-
-import { MessageOutlined } from "@ant-design/icons";
-import InfiniteScroll from "react-infinite-scroller";
+import { backend_Point } from "../backend";
 import "./feedcomment.css";
 import Profile from "./profile";
+import {Link} from 'react-router-dom';
 
 const count = 1;
 
@@ -231,7 +223,7 @@ class QnAComment extends Component {
           renderItem={(item) => (
             <li>
               <Comment
-                author={item.author}
+                author={<Link to={{pathname: `/mypage/${item.author}`}}>{item.author}</Link>}
                 content={item.content}
                 datetime={item.datetime.fromNow}
                 avatar={<Profile writer={item.author}></Profile>}
