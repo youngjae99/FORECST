@@ -59,7 +59,7 @@ class App extends React.Component {
     });
     //SessionStorage Clear
     window.sessionStorage.clear();
-    this.props.history.push("/CS473DesignProject-FORECST");
+    this.props.history.push("/FORECST");
   };
 
   componentDidMount() {
@@ -73,7 +73,7 @@ class App extends React.Component {
         <Router history={browserHistory}>
           <Route path="/" component={Home}></Route>
           <Route
-            path="/CS473DesignProject-FORECST"
+            path="/FORECST"
             component={MainPage}
           ></Route>
           <Route component={Explore} path="/explore" />

@@ -14,7 +14,7 @@ class CampJoin extends React.Component{
                 <div>
                     <img src={campjoin} style={{width: 350, margin:"20px"}}></img>
                 </div>
-                <Link className="btn-solid-lg page-scroll" to="/CS473DesignProject-FORECST">
+                <Link className="btn-solid-lg page-scroll" to="/FORECST">
                       Go to Main page
                 </Link>
             </div>

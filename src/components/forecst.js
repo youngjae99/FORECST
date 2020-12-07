@@ -24,7 +24,7 @@ class Forecst extends React.Component {
   }
 
   handleHome() {
-    this.props.history.push("/CS473DesignProject-FORECST");
+    this.props.history.push("/FORECST");
   }
 
   // Login Func
@@ -41,7 +41,7 @@ class Forecst extends React.Component {
     });
     //SessionStorage Clear
     window.sessionStorage.clear();
-    this.props.history.push("/CS473DesignProject-FORECST");
+    this.props.history.push("/FORECST");
   };
 
   componentWillMount() {
@@ -128,7 +128,7 @@ class Forecst extends React.Component {
       >
         <Link
           className="navbar-brand logo-image"
-          to="/CS473DesignProject-FORECST"
+          to="/FORECST"
         >
           <img src={logo} alt="alternative" />
         </Link>
@@ -170,7 +170,7 @@ class Forecst extends React.Component {
             >
               <a
                 className="nav-link page-scroll"
-                href="https://github.com/youngjae99/CS473DesignProject-FORECST"
+                href="https://github.com/youngjae99/FORECST"
               >
                 Github
               </a>
