@@ -1,11 +1,38 @@
 import React, {Component} from 'react';
 // import { Menu} from '../components';
 import { Progress, Row, Col, Typography, Alert } from 'antd';
+import { db,storage } from "../firebase";
 const { Title } = Typography;
 
 
 class CampRankResult extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state={
+          projects: [],
+        }
+    }
+
+    componentWillMount(){
+        this.getProject();
+      }
+    
+    getProject = async () => {
+        const snapshot = await db.collection("Projects").get();
+        console.log(snapshot.docs.map((doc)=>(doc.data())));
+        setTimeout(()=>{
+          this.setState({projects: snapshot.docs.map((doc)=>(doc.data()))})
+        },100);
+    }
+
     render(){
+        const map = this.state.projects.map((word) => <div>
+                                                        <div>
+                                                            {word.projectTitle}
+                                                        </div>
+                                                        <Progress percent={word.votes} strokeColor={'#99ceff'} strokeWidth={'15px'}>
+                                                        </Progress>
+                                                      </div>)
         return (
             <div style={{padding:20, fontFamily: "Roboto"}}>
                 <Alert
@@ -19,9 +46,10 @@ class CampRankResult extends React.Component {
                 Results for the Final Ranking
                 </div>
                 <div style={{fontSize: 16, paddingBottom: 10}}>
-                'Project D' is the winner. Congratulations!
+                    The Final Result will come out in 3 days!
                 </div>
-                Project A
+                {map}
+                {/* Project A
                 <Progress percent={8} strokeColor={'#99ceff'} strokeWidth={'15px'}></Progress>
                 Project B
                 <Progress percent={15} strokeColor={'#99ceff'} strokeWidth={'15px'}></Progress>
@@ -40,7 +68,7 @@ class CampRankResult extends React.Component {
                 Project I
                 <Progress percent={4} strokeColor={'#99ceff'} strokeWidth={'15px'}></Progress>
                 Project J
-                <Progress percent={2} strokeColor={'#99ceff'} strokeWidth={'15px'}></Progress>
+                <Progress percent={2} strokeColor={'#99ceff'} strokeWidth={'15px'}></Progress> */}
             </div>
         )
     }

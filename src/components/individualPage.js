@@ -101,7 +101,7 @@ class IndividualPage extends React.Component{
         });
     
         setTimeout(() => {
-       db.collection("Users").doc(this.props.userName).update("newbie",firebase.firestore.FieldValue.increment(-1))
+       db.collection("Users").doc(this.props.userName).update("newbie",false)
         backend_makeToDo(this.props.userName, this.state.makeToDo)
           this.setState({
             submitting: false,

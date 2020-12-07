@@ -37,41 +37,41 @@ class CampQnA extends Component {
       });
   };
 
-  setNoSort = () => {
-      this.setState({
-          sortedInfo: {
-          order: 'descend',
-          columnKey: 'no',
-          },
-      });
-  };
+  // setNoSort = () => {
+  //     this.setState({
+  //         sortedInfo: {
+  //         order: 'descend',
+  //         columnKey: 'no',
+  //         },
+  //     });
+  // };
 
-  setDateSort = () => {
-      this.setState({
-          sortedInfo: {
-          order: 'descend',
-          columnKey: 'date',
-          },
-      });
-  };
+  // setDateSort = () => {
+  //     this.setState({
+  //         sortedInfo: {
+  //         order: 'descend',
+  //         columnKey: 'date',
+  //         },
+  //     });
+  // };
 
-  setLikesSort = () => {
-      this.setState({
-          sortedInfo: {
-          order: 'descend',
-          columnKey: 'likes',
-          },
-      });
-  };
+  // setLikesSort = () => {
+  //     this.setState({
+  //         sortedInfo: {
+  //         order: 'descend',
+  //         columnKey: 'likes',
+  //         },
+  //     });
+  // };
 
-  setViewsSort = () => {
-      this.setState({
-          sortedInfo: {
-          order: 'descend',
-          columnKey: 'views',
-          },
-      });
-  };
+  // setViewsSort = () => {
+  //     this.setState({
+  //         sortedInfo: {
+  //         order: 'descend',
+  //         columnKey: 'views',
+  //         },
+  //     });
+  // };
 
   getColumnSearchProps = dataIndex => ({
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
@@ -137,16 +137,16 @@ class CampQnA extends Component {
       let {sortedInfo} = this.state;
       sortedInfo = sortedInfo || {};
       const columns = [
-          {
-              title: 'No.',
-              dataIndex: 'no',
-              key: 'no',
-              align: 'center',
-              sorter: (a, b) => a.no - b.no,
-              sortOrder: sortedInfo.columnKey === 'no' && sortedInfo.order,
-              ellipsis: true,
-              color: '#1890ff',
-          },
+          // {
+          //     title: 'No.',
+          //     dataIndex: 'no',
+          //     key: 'no',
+          //     align: 'center',
+          //     sorter: (a, b) => a.no - b.no,
+          //     sortOrder: sortedInfo.columnKey === 'no' && sortedInfo.order,
+          //     ellipsis: true,
+          //     color: '#1890ff',
+          // },
           {
               title: 'Title',
               dataIndex: 'title',
@@ -170,38 +170,39 @@ class CampQnA extends Component {
               dataIndex: 'date',
               key: 'date',
               align: 'center',
-              sorter: (a, b) => a.date - b.date,
-              sortOrder: sortedInfo.columnKey === 'date' && sortedInfo.order,
-              ellipsis: true,
+              ...this.getColumnSearchProps('date'),
+              // sorter: (a, b) => a.date - b.date,
+              // sortOrder: sortedInfo.columnKey === 'date' && sortedInfo.order,
+              // ellipsis: true,
           },
-          {
-              title: 'Likes',
-              dataIndex: 'likes',
-              key: 'likes',
-              align: 'center',
-              sorter: (a, b) => a.likes - b.likes,
-              sortOrder: sortedInfo.columnKey === 'likes' && sortedInfo.order,
-              ellipsis: true,
-          },
-          {
-              title: 'Views',
-              dataIndex: 'views',
-              key: 'views',
-              align: 'center',
-              sorter: (a, b) => a.views - b.views,
-              sortOrder: sortedInfo.columnKey === 'views' && sortedInfo.order,
-              ellipsis: true,
-          },
+          // {
+          //     title: 'Likes',
+          //     dataIndex: 'likes',
+          //     key: 'likes',
+          //     align: 'center',
+          //     sorter: (a, b) => a.likes - b.likes,
+          //     sortOrder: sortedInfo.columnKey === 'likes' && sortedInfo.order,
+          //     ellipsis: true,
+          // },
+          // {
+          //     title: 'Views',
+          //     dataIndex: 'views',
+          //     key: 'views',
+          //     align: 'center',
+          //     sorter: (a, b) => a.views - b.views,
+          //     sortOrder: sortedInfo.columnKey === 'views' && sortedInfo.order,
+          //     ellipsis: true,
+          // },
       ]
 
       return(
         <div style={{padding:20, paddingBottom: 140}}>
-          <Space style={{marginBottom: 16}}>
+          {/* <Space style={{marginBottom: 16}}>
             <Button onClick={this.setNoSort}>Sort by No.</Button>
             <Button onClick={this.setNoSort}>Sort by Date</Button>
             <Button onClick={this.setLikesSort}>Sort by Likes</Button>
             <Button onClick={this.setViewsSort}>Sort by Views</Button>
-          </Space>
+          </Space> */}
           
           <Button type="primary" style={{float: "right"}}>
             <Link to="/qnawrite">WRITE</Link>

@@ -15,6 +15,7 @@ import {
   UploadQnA,
   CampRankResult,
   Explore,
+  UploadProject,
   CampDescription,
   Tutorial
 } from "./pages";
@@ -89,6 +90,7 @@ class App extends React.Component {
           <Route component={UploadQnA} path="/qnawrite" />
           <Route component={CampRankResult} path="/camprankresult" />
           <Route component={QnAsingle} path="/campqnaview" />
+          <Route component={UploadProject} path="/uploadproject" />
           <Route component={CampDescription} path="/campdescription" />
           <Route component={Tutorial} path="/tutorial" />
         </Router>

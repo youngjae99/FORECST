@@ -17,7 +17,7 @@ const { Title } = Typography;
 class MainPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state={new:0}
+    this.state={new:false}
   }
 
   componentWillMount() {
@@ -36,13 +36,17 @@ class MainPage extends React.Component {
   }
   getNewbie = async()=>{
     if(window.sessionStorage.getItem("id")){
+      console.log(window.sessionStorage.getItem("id"))
       const newbie = await db.collection("Users").doc(window.sessionStorage.getItem("id")).get()
+      console.log(newbie.data().newbie)
+
       this.setState({new:newbie.data().newbie})
     }
   }
 
 
   render() {
+
     const joinPage = (
       <div className="banner" style={{ fontFamily: "Roboto" }}>
         <link
