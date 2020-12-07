@@ -31,6 +31,22 @@ function UploadQnA(props){
         Modal.destroyAll();
     }
 
+    const handleModal=()=>{
+        const modal=Modal.info({
+            title: "Your Question grow your tree 2 point!",
+            content: (
+                <img src={grow_tree} alt="wc" style={{ width: 400}}/>
+            ),
+            width: 500,
+            centered: true,
+            onCancel(){},
+            okButtonProps: {style: {display: "none"}},
+        });
+        setTimeout(() => {
+            modal.destroy();
+        }, 2000);  
+    }
+
     const handlePost = async() =>{
         const currentUser = await window.sessionStorage.getItem("id")
         console.log(currentUser)
@@ -38,16 +54,7 @@ function UploadQnA(props){
         console.log('Uploaded a blob or file!');
         backend_Point(currentUser,"question");
         backend_WGO(currentUser,Date.now(),"question")
-
-        Modal.info({
-            title: "Your Question grow your tree 2 point!",
-            content: (
-                <img src={grow_tree} alt="wc" style={{ width: 400}}/>
-            ),
-            width: 500,
-            centered: true,
-            onCancel(){}
-        });  
+        handleModal();
     }  
     
     return(
