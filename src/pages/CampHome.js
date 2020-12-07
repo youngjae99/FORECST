@@ -87,7 +87,6 @@ class CampHome extends Component {
                   <Link to={{pathname: `/mypage/${window.sessionStorage.getItem("id")}`}}>
                     <Button
                       className="BtnClass"  
-                      type="primary"
                       shape="round"
                       icon={<PlusOutlined />}
                       size={"large"}
@@ -108,7 +107,7 @@ class CampHome extends Component {
                       icon={<PlusOutlined />}
                       size={"large"}
                     >
-                      Add Completed
+                      Post Completed task
                     </Button>
                   </Link>
                 </div>
