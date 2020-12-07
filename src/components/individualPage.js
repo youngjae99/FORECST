@@ -223,7 +223,7 @@ class IndividualPage extends React.Component {
                   title="What are the examples of to-do list?"
                   content={
                     <div>
-                      <p>[Your first to-do list] Making a project name</p>
+                      <p>Setting development environment</p>
                       <p>Make tab structure</p>
                       <p>Implement authentication</p>
                     </div>
@@ -340,7 +340,9 @@ class IndividualPage extends React.Component {
                 Currently in:
               </div>
               <div style={{ fontSize: 16 }}>
-                Make an application for the pandemic COVID 19 situation!
+                <Link to={"/camp"} style={{textDecoration: "none"}}>
+                    Make an application for the pandemic COVID 19 situation!
+                </Link>
               </div>
             </Col>
             <Col span={12}>
