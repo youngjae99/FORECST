@@ -205,7 +205,7 @@ class CampQnA extends Component {
             <Button onClick={this.setViewsSort}>Sort by Views</Button>
           </Space> */}
           
-          <Button type="primary" style={{float: "right"}}>
+          <Button type="primary" style={{float: "right", marginBottom: 10}}>
             <Link to="/qnawrite">WRITE</Link>
           </Button>
 
