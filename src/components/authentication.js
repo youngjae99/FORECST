@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Input, Modal, Card, Button, Form, Checkbox, Progress, Avatar } from 'antd';
 import {Link} from 'react-router-dom';
 import {browserHistory} from 'react-router';
-import {backend_Join} from "../backend";
+import {backend_Join,backend_Point} from "../backend";
 import { db } from "../firebase";
 import { message} from 'antd';
 import welcome from '../pages/template/images/welcome.png';
@@ -61,6 +61,8 @@ class Authentication extends React.Component{
             const wait = await db.collection('Users').doc(id).get()      
             console.log("user exist: ", wait.exists);
             if(wait.exists){
+                backend_Point = (id,"login")
+
                 this.props.onLogin(id,wait.data().newbie);
                 window.sessionStorage.setItem('login', true); // Login 유지
                 window.sessionStorage.setItem('id', id); // Login 유지 - id 저장
