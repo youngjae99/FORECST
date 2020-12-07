@@ -115,19 +115,13 @@ class CampPage extends React.Component {
               borderBottom: "1px solid var(--colors-border)",
             }}
           >
-          <Row>
-            <Col>
-              <Title level={3} id="camptitle" style={{ margin: 0, padding: 0 }}>
-                CAMP | Make an application for the pandemic COVID 19 situation!
-              </Title>
-              {/* <p>this is the camp about the </p> */}
-            </Col>
-            <Col>
-              <Button type="primary" style={{float: "right", marginLeft: 10}}>
+
+          <Title level={3} id="camptitle" style={{ margin: 0, padding: 0, paddingTop: 10, textAlign: "center", width: "100%", paddingLeft: 200}}>
+            Hackathon | Make an application for the pandemic COVID 19 situation!
+            <Button type="primary" style={{float: "right", marginLeft: 10, marginRight: 40}}>
               <Link to={"/uploadproject"} style={{fontSize: 18}}>SUBMIT your project!</Link>
-              </Button>
-            </Col>
-          </Row>
+            </Button>
+          </Title> 
           </div>
 
           <Layout>

@@ -122,7 +122,7 @@ function UploadQnA(props){
 
                     <div style={{textAlign: "right"}}>
                         <Button type='primary' style={{marginLeft: 100}} onClick={handlePost}>
-                            <Link to={"/mypage"} style={{fontSize: 18}}>UPLOAD</Link>
+                            <Link to={"/camp"} style={{fontSize: 18}}>UPLOAD</Link>
                         </Button>
                     </div>
                 </Col>
