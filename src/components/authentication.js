@@ -59,13 +59,14 @@ class Authentication extends React.Component{
         }
         else 
         {
-            const wait = await db.collection('Users').doc(id).get()
+            const wait = await db.collection('Users').doc(id).get()      
             console.log("user exist: ", wait.exists);
             if(wait.exists){
-                this.props.onLogin(id);
+                this.props.onLogin(id,wait.data().newbie);
                 window.sessionStorage.setItem('login', true); // Login 유지
                 window.sessionStorage.setItem('id', id); // Login 유지 - id 저장
-                {<Link to={"/campjoin"} style={{fontSize: 18}}></Link>}
+                console.log("newbie: ", wait.data().newbie);
+
             }
             else
                 message.error('User not exists!');
