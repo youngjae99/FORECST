@@ -245,7 +245,7 @@ PageCamp.propTypes={
 };
 
 PageCamp.defaultProps={
-    tab: "2"
+    tab: "1"
 };
 
 export default PageCamp;
