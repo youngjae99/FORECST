@@ -25,7 +25,6 @@ class CampHome extends Component {
   componentDidMount() {
     this.getMarker();
   }
-
   getMarker = async () => {
     const snapshot = await db.collection("Feeds").orderBy("time","desc").get(); // Server data 가져오기
     console.log(snapshot.docs); // feed 정보 불러옴

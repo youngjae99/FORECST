@@ -63,7 +63,7 @@ function PostUpload(props){
     }
 
     const handleOk=()=>{
-        // props.history.push(`/mypage/${window.sessionStorage.getItem("id")}`);
+        window.location.replace(`/mypage/${window.sessionStorage.getItem("id")}`);
         Modal.destroyAll();
     }
     const handleModal = ()=>{
