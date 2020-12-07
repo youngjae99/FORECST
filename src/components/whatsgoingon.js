@@ -53,7 +53,7 @@ class WGO extends Component {
     console.log();
 
     return (
-      <div className="WGObox shadowbox" style={{ height: "100vh" }}>
+      <div className="WGObox shadowbox" >
         <h6 style={{ marginLeft: "10px" }}>
           What's going on
         </h6>
@@ -62,18 +62,27 @@ class WGO extends Component {
           itemLayout="vertical"
           locale={{ emptyText: "Nothing is going on!" }}
           size="large"
-          dataSource={this.state.wgo.slice(0, 15)}
-          style={{ marginTop: "20px", overflowY: "scroll" }}
+          dataSource={this.state.wgo.slice(0, 20)}
+          style={{ marginTop: "10px", overflowY: "scroll",
+          background:"#fff",
+          height: "350px",}}
+          
           renderItem={(item) => (
-            <div className="WGOitem" style={{ margin: "10px" }}>
+            <div className="WGOitem" style={{ margin: "10px"}}>
+              <div style={{
+                  display:"block",
+                  verticalAlign: "bottom",
+                }}>
               <img src={logo(item.data().mode)} style={typeimgStyle} />
               {item.data().content}
+              </div>
               <div
                 style={{
                   fontSize: 9,
                   float: "right",
+                  display:"block",
+                  lineHeight:"20px",
                   verticalAlign: "bottom",
-                  lineHeight: "25px",
                 }}
               >
                 {this.toTime(parseInt(item.data().time))}
@@ -87,9 +96,10 @@ class WGO extends Component {
 }
 
 const typeimgStyle = {
-  width: "20px",
-  height: "20px",
-  marginRight: "6px",
+  width: "15px",
+  height: "15px",
+  marginLeft: "4px",
+  marginRight: "10px",
 };
 
 export default WGO;

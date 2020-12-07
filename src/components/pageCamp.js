@@ -152,7 +152,7 @@ class PageCamp extends React.Component {
 
           <Layout>
             <div className="sidenav left">
-              <div className="white_sidenav">
+              <div className="white_sidenav left">
                 <Menu
                   theme="light"
                   mode="inline"
@@ -195,7 +195,7 @@ class PageCamp extends React.Component {
                       content={
                         <div>
                           <p> Tree level : lv0 ~ lv3 </p>
-                          <tr style={{textAlign:"center"}}>
+                          <tr style={{ textAlign: "center" }}>
                             <td>
                               <img
                                 src={l0_trans}
@@ -204,7 +204,8 @@ class PageCamp extends React.Component {
                                   height: "80px",
                                 }}
                               />
-                              <p className="point_d">lv0</p><p className="point_d">0~10 points </p>
+                              <p className="point_d">lv0</p>
+                              <p className="point_d">0~10 points </p>
                             </td>
                             <td>
                               <img
@@ -214,7 +215,8 @@ class PageCamp extends React.Component {
                                   height: "80px",
                                 }}
                               />
-                              <p className="point_d"> lv1</p><p className="point_d">10~30 points </p>
+                              <p className="point_d"> lv1</p>
+                              <p className="point_d">10~30 points </p>
                             </td>
                             <td>
                               <img
@@ -224,7 +226,8 @@ class PageCamp extends React.Component {
                                   height: "80px",
                                 }}
                               />
-                              <p className="point_d"> lv2</p><p className="point_d">30~60 points </p>
+                              <p className="point_d"> lv2</p>
+                              <p className="point_d">30~60 points </p>
                             </td>
                             <td>
                               <img
@@ -234,7 +237,8 @@ class PageCamp extends React.Component {
                                   height: "80px",
                                 }}
                               />
-                              <p className="point_d"> lv3</p><p className="point_d">60~points </p>
+                              <p className="point_d"> lv3</p>
+                              <p className="point_d">60~points </p>
                             </td>
                           </tr>
                           <br></br>
@@ -243,7 +247,6 @@ class PageCamp extends React.Component {
                           <p className="point_d"> Login : 1 points</p>
                           <p className="point_d"> QnA post : 3 points</p>
                           <p className="point_d"> Watering : 2 points</p>
-                          
                         </div>
                       }
                     >
@@ -312,30 +315,29 @@ class PageCamp extends React.Component {
               <CampTabView tabnum={parseInt(this.state.tab)}></CampTabView>
             </Layout>
 
-            <div></div>
-
             <div className="sidenav right">
-              <div
-                className="timeleftbox shadowbox"
-                style={{
-                  background: "#fff",
-                  borderRadius: "10px",
-                  margin: "10px",
-                  paddingTop: "10px",
-                  paddingLeft: "10px",
-                  paddingRight: "10px",
-                  paddingBottom: "10px",
-                }}
-              >
-                <h6>Time left</h6>
-                <Countdown
-                  style={{ margin: "10px" }}
-                  value={this.state.timer}
-                  format="Dday H:m:s"
-                />
+              <div className="white_sidenav right">
+                <div
+                  className="timeleftbox shadowbox"
+                  style={{
+                    background: "#fff",
+                    borderRadius: "10px",
+                    margin: "10px",
+                    paddingTop: "10px",
+                    paddingLeft: "10px",
+                    paddingRight: "10px",
+                    paddingBottom: "10px",
+                  }}
+                >
+                  <h6>Time left</h6>
+                  <Countdown
+                    style={{ margin: "10px" }}
+                    value={this.state.timer}
+                    format="Dday H:m:s"
+                  />
+                </div>
+                <WGO wgo={this.state.whatsgoingon} />
               </div>
-
-              <WGO wgo={this.state.whatsgoingon} />
             </div>
           </Layout>
         </div>
