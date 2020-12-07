@@ -52,7 +52,6 @@ class IndividualPage extends React.Component{
             feed: [],
             userName: "",
             makeToDo:"",
-            // newUser: true
         }
 
         this.handleChange=this.handleChange.bind(this);
@@ -150,6 +149,16 @@ class IndividualPage extends React.Component{
             </div>
         )
 
+        var todoText="";
+        switch(this.state.todo.length+this.state.completed.length){
+            case 0: 
+                todoText="Add 'Making a project name'";
+                break;
+            default:
+                todoText="Write a to-do!";
+                break;
+        }
+
         const BookmarkView=(
             <Row>
                 <Progress
@@ -185,7 +194,7 @@ class IndividualPage extends React.Component{
 
                     <List
                         bordered
-                        locale={{emptyText: 'Write a To-Do!'}}
+                        locale={{emptyText: todoText}}
                         dataSource={this.state.todo}
                         renderItem={item => (
                             <List.Item>
