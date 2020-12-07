@@ -208,7 +208,7 @@ class CampQnA extends Component {
             <Link to="/qnawrite">WRITE</Link>
           </Button>
 
-          <Table columns={columns} dataSource={this.state.data} onChange={this.handleChange} pagination={{position: ["bottomCenter"]}}/>
+          <Table columns={columns} dataSource={this.state.data} onChange={this.handleChange} pagination={{position: ["bottomCenter"], pageSize: 10}}/>
         </div>
       )
     }

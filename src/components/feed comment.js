@@ -329,6 +329,7 @@ class FeedComment extends Component {
       <div>
         <List
           className="comment-list"
+          locale={{emptyText: 'No comments yet!'}}
           header={
             <div>
               {this.state.watered==0||window.sessionStorage.getItem("id")==this.props.id?<Popconfirm
