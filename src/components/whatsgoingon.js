@@ -17,20 +17,6 @@ class WGO extends Component {
     };
   }
 
-  //componentDidMount() {
-  // const url = `https://newsapi.org/v2/${this.props.news.type}?${this.props.news.query}&apiKey=56538f95cb824a6ca0acf842f60a5fed`;
-
-  // fetch(url)
-  //     .then((response) => {
-  //         return response.json();
-  //     })
-  //     .then((data) => {
-  //         this.setState({
-  //             news: data.articles
-  //         })
-  //     })
-  //     .catch((error) => console.log(error));
-  //}
   componentDidMount() {
     this.getWGO();
   }
@@ -78,7 +64,7 @@ class WGO extends Component {
           dataSource={this.state.wgo}
           style={{ marginTop: "20px" }}
           renderItem={(item) => (
-            <div className="WGOitem" style={{ margin: "10px" }}>
+            <div className="WGOitem" style={{ margin: "10px"}}>
               <img src={logo(item.data().mode)} style={typeimgStyle} />
               {item.data().content}
               <div style={{ fontSize: 9, float: "right", verticalAlign: "bottom", lineHeight:"25px"}}>
