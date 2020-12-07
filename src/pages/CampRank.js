@@ -177,9 +177,11 @@ class CampRank extends Component {
               {map2}
             </Radio.Group>
             <Col>
-              <Button type="primary" onClick={this.votebtnclick}>
-                Submit
-              </Button>
+              <div style={{float: "right", marginTop: 10}}>
+                <Button type="primary" onClick={this.votebtnclick}>
+                  Submit
+                </Button>
+              </div>
             </Col>
           </Col>
         </Row>
