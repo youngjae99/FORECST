@@ -15,7 +15,7 @@ import moment from "moment";
 import { db } from "../firebase";
 import { connect } from "react-redux";
 import { getLevel } from "../actions/authentication";
-import { backend_Feed_watering } from "../backend";
+import { backend_Feed_watering,backend_Point } from "../backend";
 import watering0 from "../watericon0.png";
 import watering1 from "../watericon1.png";
 import popup_water from "../popup_water.jpg";
@@ -112,6 +112,7 @@ class QnAComment extends Component {
     });
 
     setTimeout(() => {
+      backend_Point(window.sessionStorage.getItem("id"),"comment")
       db.collection("QnAList")
         .doc(this.props.posting)
         .collection("Comments")
