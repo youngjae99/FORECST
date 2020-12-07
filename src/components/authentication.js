@@ -61,7 +61,7 @@ class Authentication extends React.Component{
             const wait = await db.collection('Users').doc(id).get()      
             console.log("user exist: ", wait.exists);
             if(wait.exists){
-                backend_Point = (id,"login")
+                backend_Point(id,"login")
 
                 this.props.onLogin(id,wait.data().newbie);
                 window.sessionStorage.setItem('login', true); // Login 유지
