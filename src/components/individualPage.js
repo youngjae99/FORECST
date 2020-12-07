@@ -265,9 +265,9 @@ class IndividualPage extends React.Component{
                         </Col>
     
                         <Col span={8}>
-                            <div style={{marginTop: 5, fontWeight: "bold", fontSize: 20}}>{this.props.userName}</div>
-                            <div style={{marginTop: 10, fontSize: 18}}>Joined Today.</div>
-                            <div style={{marginTop: 10, fontSize: 18}}>KAIST School of Computing</div>
+                            <div style={{marginTop: 5, fontWeight: "bold", fontSize: 25}}>{this.props.userName}</div>
+                            <div style={{marginTop: 5, fontSize: 18, fontWeight: "bold"}}>Currently in:</div>
+                            <div style={{fontSize: 16}}>Make an application for the pandemic COVID 19 situation!</div>
                         </Col>
     
                         <Col span={12}>
