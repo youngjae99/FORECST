@@ -3,6 +3,8 @@
 # Forecst
 > KAIST CS473 Introduction to Social Computing Design Project 
 
+https://youngjae99.github.io/FORECST
+
 
 ## Table of contents
 * [General info](#general-info)
