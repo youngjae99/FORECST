@@ -67,7 +67,7 @@ function UploadQnA(props){
         var alert="";
         var alertPoint=parseInt(nextPoint)-parseInt(point)-3;
 
-        switch(alertPoint){
+        switch(parseInt(prevPoint)-parseInt(point)-3){
             case 0: 
                 alert="Congratulations! Level UP!";
                 break;
