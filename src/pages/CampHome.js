@@ -26,11 +26,14 @@ class CampHome extends Component {
     this.getMarker();
   }
   getMarker = async () => {
-    const snapshot = await db.collection("Feeds").orderBy("time","desc").get(); // Server data 가져오기
-    console.log(snapshot.docs); // feed 정보 불러옴
-    this.setState({ feed: snapshot.docs });
-    console.log("loaded");
-    this.setState({ loading: false });
+    await db.collection("Feeds").orderBy("time","desc")
+    .onSnapshot({
+      includeMetadataChanges: true
+    },(snapshot) => {
+      const data = snapshot.docs;    
+      this.setState({ feed: data });
+      this.setState({ loading: false });
+    });
   };
 
   render() {
