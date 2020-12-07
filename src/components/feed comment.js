@@ -151,12 +151,17 @@ class FeedComment extends Component {
   };
 
   handleWatering = (e) => {
-    if (this.state.watered == 0) {
-      backend_Feed_watering(this.props.posting, this.props.id,window.sessionStorage.getItem("id"));
-      this.modal_water()
-      setTimeout(() => {
-        this.setState({ watered: 1,modal_visible:true });
-      }, 100);
+    if(window.sessionStorage.getItem("id")!=this.props.id){
+      if (this.state.watered == 0) {
+        backend_Feed_watering(this.props.posting, this.props.id,window.sessionStorage.getItem("id"));
+        this.modal_water()
+        setTimeout(() => {
+          this.setState({ watered: 1,modal_visible:true });
+        }, 100);
+      }  
+    }
+    else{
+      message.error('You can not water to your POST!!')
     }
   };
     getwatering =async()=>{
@@ -326,7 +331,7 @@ class FeedComment extends Component {
           className="comment-list"
           header={
             <div>
-              {this.state.watered==0?<Popconfirm
+              {this.state.watered==0||window.sessionStorage.getItem("id")==this.props.id?<Popconfirm
                 title="Are you sure to water this post?"
                 onConfirm={this.handleWatering}
                 onCancel={null}
