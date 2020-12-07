@@ -13,7 +13,6 @@ class MyPage extends React.Component{
         return (
             <IndividualPage
             userName={this.props.location.pathname.split("/")[2]}>
-                
             </IndividualPage>
         );
     }
