@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import { Header, Menu } from "../components";
 import Feed from "../components/feed";
-import { db, storage } from "../firebase";
-import { Spin, Button, Input, Typography } from "antd";
+import { db } from "../firebase";
+import { Spin, Button, Input, Typography, Row, Col } from "antd";
 import { Link } from "react-router-dom";
-import { SmileOutlined ,FlagOutlined, ShareAltOutlined, PlusOutlined } from "@ant-design/icons";
+import { PlusOutlined } from "@ant-design/icons";
 const { Title } = Typography;
 const { TextArea } = Input;
 
@@ -19,12 +18,14 @@ class CampHome extends Component {
         query: "domains=techcrunch.com&language=en",
       },
       loading: true,
+      todo: [],
     };
   }
 
   componentDidMount() {
     this.getMarker();
   }
+
   getMarker = async () => {
     await db.collection("Feeds").orderBy("time","desc")
     .onSnapshot({
@@ -35,6 +36,14 @@ class CampHome extends Component {
       this.setState({ loading: false });
     });
   };
+
+  getMyToDo = async () =>{
+    const todo = await db.collection("Users").doc(window.sessionStorage.getItem("id")).collection("todo").where('check','==',false).get();
+    const completed = await db.collection("Users").doc(window.sessionStorage.getItem("id")).collection("todo").where('check','==',true).get();
+
+    this.setState({todo:todo.docs.map(doc=>doc.data())});
+    this.setState({completed:completed.docs.map(doc=>doc.data())});
+}
 
   render() {
     if (this.state.loading == true) {
@@ -58,7 +67,7 @@ class CampHome extends Component {
             className="TopBar"
             style={{
               width: "100%",
-              height: "120px",
+              height: 80,
               padding: "15px",
               backgroundColor: "white",
               marginBottom: "15px",
@@ -67,19 +76,44 @@ class CampHome extends Component {
               boxShadow: "0px 2px 5px 2px rgba(0,0,0,0.16)"
             }}
           >
-            <Title level={4}>Share what you have done freely!</Title>
-            <Link to="/UploadPost">
-            <Button
-            className="BtnClass"  
-              type="primary"
-              shape="round"
-              icon={<PlusOutlined />}
-              size={"large"}
-              style={{float: "right"}}
-            >
-              New Post
-            </Button>
-            </Link>
+            <Row>
+              <Col span={12}>
+                <Title level={4} style={{marginTop: 10, marginLeft: 10}}>You have {this.state.todo.length} left to-do!</Title>
+              </Col>
+
+              <Col span={6}>
+                <div style={{float: "right"}}>
+                  <Link to={{pathname: `/mypage/${window.sessionStorage.getItem("id")}`}}>
+                    <Button
+                      className="BtnClass"  
+                      type="primary"
+                      shape="round"
+                      icon={<PlusOutlined />}
+                      size={"large"}
+                    >
+                      Add To-do
+                    </Button>
+                  </Link>
+                </div>
+              </Col>
+
+              <Col span={6}>
+                <div style={{float: "right"}}>
+                  <Link to="/UploadPost">
+                    <Button
+                      className="BtnClass"  
+                      type="primary"
+                      shape="round"
+                      icon={<PlusOutlined />}
+                      size={"large"}
+                    >
+                      Add Completed
+                    </Button>
+                  </Link>
+                </div>
+              </Col>
+            </Row>
+
           </div>
           <div className="container">
             <div className="row">
