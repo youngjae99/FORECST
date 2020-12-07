@@ -119,8 +119,7 @@ class CampPage extends React.Component {
             <Col>
               <Title level={3} id="camptitle" style={{ margin: 0, padding: 0 }}>
                 CAMP | Make an application for the pandemic COVID 19 situation!
-              </Title>
-              {/* <p>this is the camp about the </p> */}
+              </Title> 
             </Col>
             <Col>
               <Button type="primary" style={{float: "right", marginLeft: 10}}>
