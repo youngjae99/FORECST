@@ -42,7 +42,7 @@ function UploadQnA(props){
     }
 
     const handleModal=()=>{
-        const level=props.getLevel(parseInt(point));
+        const level=props.getLevel(parseInt(point)+3);
         const prevPoint=props.getPrevPoint(level);
         const nextPoint=props.getNextPoint(level);
         let profileTree=null;
@@ -54,6 +54,8 @@ function UploadQnA(props){
             case 2:
                 profileTree=<img src={lv2}></img>
                 break;
+            case 3:
+                profileTree=<img src={lv3}></img>
             default:
                 profileTree=<img src={lv0}></img>
                 break;
@@ -61,6 +63,18 @@ function UploadQnA(props){
         
         console.log("point: ", point-prevPoint+5);
         console.log("nextpoint: ", nextPoint-prevPoint);
+
+        var alert="";
+        var alertPoint=parseInt(nextPoint)-parseInt(point)-3;
+
+        switch(alertPoint){
+            case 0: 
+                alert="Congratulations! Level UP!";
+                break;
+            default:
+                alert=alertPoint.toString()+" points left to level up!"
+                break;
+        }
 
         const modal=Modal.info({
             title: "Your Question grow your tree 3 point!",
@@ -75,7 +89,7 @@ function UploadQnA(props){
                     percent={(point-prevPoint+3)/(nextPoint-prevPoint)*100}
                     style={{marginTop: 10}}
                     />
-                    {nextPoint-point} points left to level up!
+                    {alert}
                 </div>
 
             ),

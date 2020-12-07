@@ -81,7 +81,7 @@ function PostUpload(props){
     }
 
    const handleModal=()=>{
-        const level=props.getLevel(parseInt(point));
+        const level=props.getLevel(parseInt(point)+5);
         const prevPoint=props.getPrevPoint(level);
         const nextPoint=props.getNextPoint(level);
         let profileTree=null;
@@ -93,6 +93,8 @@ function PostUpload(props){
             case 2:
                 profileTree=<img src={lv2}></img>
                 break;
+            case 3:
+                profileTree=<img src={lv3}></img>
             default:
                 profileTree=<img src={lv0}></img>
                 break;
@@ -100,6 +102,18 @@ function PostUpload(props){
         
         console.log("point: ", point-prevPoint+5);
         console.log("nextpoint: ", nextPoint-prevPoint);
+
+        var alert="";
+        var alertPoint=parseInt(nextPoint)-parseInt(point)-5;
+
+        switch(alertPoint){
+            case 0: 
+                alert="Congratulations! Level UP!";
+                break;
+            default:
+                alert=alertPoint.toString()+" points left to level up!"
+                break;
+        }
 
         const modal=Modal.info({
             title: "Your Posting grow your tree 5 point!",
@@ -114,7 +128,7 @@ function PostUpload(props){
                     percent={(point-prevPoint+5)/(nextPoint-prevPoint)*100}
                     style={{marginTop: 10}}
                     />
-                    {nextPoint-point} points left to level up!
+                    {alert}
                 </div>
 
             ),
