@@ -80,6 +80,7 @@ class CampRank extends Component {
     .onSnapshot({
       includeMetadataChanges: true
     },(snapshot) => {
+      console.log(snapshot.data().timer)
       if (snapshot.data().timer==1607509290000)    
         this.setState({ visible: true });
     });
@@ -93,6 +94,7 @@ class CampRank extends Component {
 
   componentWillMount(){
     this.getProject();
+    this.getTime();
   }
 
   getProject = async () => {
@@ -203,8 +205,7 @@ class CampRank extends Component {
   }
   else{
     return(
-      <div></div>
-    );
+<h2>The vote is not available now. Please wait until the hackathon ends!</h2>    );
   }
 }
 }

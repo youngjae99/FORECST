@@ -47,17 +47,27 @@ class PageCamp extends React.Component {
 
   componentDidMount() {
     this.getMarker();
+    this.getTime();
     console.log("tab number: ", this.state.tab);
   }
 
   getMarker = async () => {
     const snapshot = await db.collection("Users").get();
-    const timer = await db.collection("Timer").doc("time").get();
 
     console.log(snapshot.docs);
     this.setState({ forest: snapshot.docs,
       num_p: snapshot.docs.length,
-      timer: timer.data().timer,
+    });
+  };
+  getTime = async () => {
+    await db.collection("Timer").doc("time")
+    .onSnapshot({
+      includeMetadataChanges: true
+    },(snapshot) => {
+      console.log(snapshot.data().timer)
+      this.setState({ 
+        timer: snapshot.data().timer
+      });
     });
   };
 

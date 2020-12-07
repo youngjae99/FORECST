@@ -56,10 +56,6 @@ class QnAsingle extends Component {
 
                             <Divider/>
                             
-                            <Row style={{marginBottom: '20px'}}>
-                                <h6>Likes | {item.data().likes}</h6>
-                                <h6 style={{marginLeft: '16px'}}>Views | {item.data().views}</h6>
-                            </Row>
 
                             <text style={{fontSize: 20}}>{item.data().writing}</text>
 

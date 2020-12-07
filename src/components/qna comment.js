@@ -76,8 +76,6 @@ class QnAComment extends Component {
     if (this.props.posting !== prevProps.posting) {
       console.log("change");
       this.getComments();
-      this.getwatering();
-  
     }
   }
   getComments = async () => {
@@ -223,32 +221,6 @@ class QnAComment extends Component {
     return (
       <div>
         <List
-<<<<<<< HEAD
-            className="comment-list"
-            locale={{emptyText: 'No answers yet!'}}
-            header={`${comments.length} answers`}
-            itemLayout="vertical"
-            dataSource={comments}
-            renderItem={item => (
-                // <li>
-                <Comment
-                    // actions={item.actions}
-                    author={item.author}
-                    content={item.content}
-                    datetime={item.datetime.fromNow}
-                    avatar={
-                      <Profile
-                        writer={item.author}>
-                      </Profile>
-                    }
-                />
-                // {/* {this.getPoints(item.author)} */}
-                // </li>
-            )}
-            />
-        {window.sessionStorage.getItem("id")? addComment : null}
-      </>
-=======
           className="comment-list"
           locale={{emptyText: 'No comments yet!'}}
           loading={initLoading}
@@ -275,7 +247,6 @@ class QnAComment extends Component {
 
         {window.sessionStorage.getItem("id") ? addComment : null}
       </div>
->>>>>>> 8b48b63ebd243aaccb9499bcb9dbb8da002e67ad
     );
   }
 }
