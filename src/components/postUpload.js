@@ -82,7 +82,7 @@ function PostUpload(props){
         console.log(currentUser)
             db.collection('Feeds').doc().set({id:currentUser,photo:await fileRef.getDownloadURL(),writing:writing,title:todolist[0],time: Date.now()});
             db.collection("Users").doc(currentUser).collection("todo").doc(todolist[0]).set({check:true, todo: todolist[0]});
-            db.collection("Users").doc(currentUser).update("newbie",firebase.firestore.FieldValue.increment(-1))
+            db.collection("Users").doc(currentUser).update("newbie",false);
             console.log('Uploaded a blob or file!');
             backend_Point(currentUser,"post")
             backend_WGO(currentUser,Date.now(),"post")
