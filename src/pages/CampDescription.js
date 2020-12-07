@@ -8,12 +8,8 @@ import "./template/css/magnific-popup.css";
 import "./template/css/bootstrap.css";
 import "./template/css/fontawesome-all.css";
 import mainimage from "./template/images/camp1.png";
-<<<<<<< HEAD
 import {Link} from 'react-router-dom';
 
-=======
-import { Link } from "react-router-dom";
->>>>>>> 333995f5c4b1e7af61e8bd87c2816acc17139693
 
 class CampDescription extends React.Component {
   constructor(props) {
