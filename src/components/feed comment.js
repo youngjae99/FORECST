@@ -206,7 +206,7 @@ class FeedComment extends Component {
     console.log("data", data);
     this.setState(
       {
-        list: this.state.list.concat(
+        list: (
           JSON.parse(JSON.stringify(this.state.comments))
         ),
         loading: false,
