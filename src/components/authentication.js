@@ -46,7 +46,7 @@ class Authentication extends React.Component{
         });
         setTimeout(() => {
             modal.destroy();
-        }, 2000);  
+        }, 3000);  
     }
 
     handleLogin= async ()=>{
