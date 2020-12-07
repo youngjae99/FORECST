@@ -44,6 +44,28 @@ export function getLevel(point){
     }
 }
 
+export function getPrevPoint(level){
+    console.log("get prev point", level);
+
+    if(parseInt(level)==1){
+        return 10;
+    }else if(parseInt(level)==2){
+        return 30;
+    }else{
+        return 0;
+    }
+}
+
+export function getNextPoint(level){
+    if(parseInt(level)==1){
+        return 30;
+    }else if(parseInt(level)==2){
+        return 70;
+    }else{
+        return 10;
+    }
+}
+
 /** VOTE */
 export function voteRequest(){
     return (dispatch)=>{
