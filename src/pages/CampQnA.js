@@ -36,42 +36,6 @@ class CampQnA extends Component {
       });
   };
 
-  // setNoSort = () => {
-  //     this.setState({
-  //         sortedInfo: {
-  //         order: 'descend',
-  //         columnKey: 'no',
-  //         },
-  //     });
-  // };
-
-  // setDateSort = () => {
-  //     this.setState({
-  //         sortedInfo: {
-  //         order: 'descend',
-  //         columnKey: 'date',
-  //         },
-  //     });
-  // };
-
-  // setLikesSort = () => {
-  //     this.setState({
-  //         sortedInfo: {
-  //         order: 'descend',
-  //         columnKey: 'likes',
-  //         },
-  //     });
-  // };
-
-  // setViewsSort = () => {
-  //     this.setState({
-  //         sortedInfo: {
-  //         order: 'descend',
-  //         columnKey: 'views',
-  //         },
-  //     });
-  // };
-
   getColumnSearchProps = dataIndex => ({
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
       <div style={{ padding: 8 }}>
@@ -136,16 +100,6 @@ class CampQnA extends Component {
       let {sortedInfo} = this.state;
       sortedInfo = sortedInfo || {};
       const columns = [
-          // {
-          //     title: 'No.',
-          //     dataIndex: 'no',
-          //     key: 'no',
-          //     align: 'center',
-          //     sorter: (a, b) => a.no - b.no,
-          //     sortOrder: sortedInfo.columnKey === 'no' && sortedInfo.order,
-          //     ellipsis: true,
-          //     color: '#1890ff',
-          // },
           {
               title: 'Title',
               dataIndex: 'title',
@@ -171,39 +125,11 @@ class CampQnA extends Component {
               align: 'center',
               ...this.getColumnSearchProps('date'),
               render: now => new Date(now).getFullYear() + "-" + (new Date(now).getMonth() + 1) + "-" + new Date(now).getDate() + " " + new Date(now).getHours() + ":" + new Date(now).getMinutes() + ":" + new Date(now).getSeconds() + " "
-              // sorter: (a, b) => a.date - b.date,
-              // sortOrder: sortedInfo.columnKey === 'date' && sortedInfo.order,
-              // ellipsis: true,
           },
-          // {
-          //     title: 'Likes',
-          //     dataIndex: 'likes',
-          //     key: 'likes',
-          //     align: 'center',
-          //     sorter: (a, b) => a.likes - b.likes,
-          //     sortOrder: sortedInfo.columnKey === 'likes' && sortedInfo.order,
-          //     ellipsis: true,
-          // },
-          // {
-          //     title: 'Views',
-          //     dataIndex: 'views',
-          //     key: 'views',
-          //     align: 'center',
-          //     sorter: (a, b) => a.views - b.views,
-          //     sortOrder: sortedInfo.columnKey === 'views' && sortedInfo.order,
-          //     ellipsis: true,
-          // },
       ]
 
       return(
         <div style={{padding:20, paddingTop:10, paddingBottom: 140}}>
-          {/* <Space style={{marginBottom: 16}}>
-            <Button onClick={this.setNoSort}>Sort by No.</Button>
-            <Button onClick={this.setNoSort}>Sort by Date</Button>
-            <Button onClick={this.setLikesSort}>Sort by Likes</Button>
-            <Button onClick={this.setViewsSort}>Sort by Views</Button>
-          </Space> */}
-
           <div style={{fontSize: 30, fontWeight: "bold"}}>
             QNA Board
           </div>
