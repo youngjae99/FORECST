@@ -19,6 +19,19 @@ class Forecst extends React.Component {
       point: 0,
       isLoggedIn: this.isLoggedIn
     };
+
+    this.handleHome = this.handleHome.bind(this);
+  }
+
+  handleHome() {
+    const id = window.sessionStorage.getItem("id");
+
+    console.log("handle home: ", id);
+    if(id!=null){
+      this.props.history.push("/camp/1");
+    }else{
+      this.props.history.push("/FORECST");
+    }
   }
 
   // Login Func
@@ -27,6 +40,7 @@ class Forecst extends React.Component {
       isLoggedIn: true,
     });
   };
+
   // Logout Func
   onLogout = () => {
     console.log("logout!");
@@ -118,19 +132,10 @@ class Forecst extends React.Component {
           padding: "0.5rem 5rem 0.5rem 5rem"
         }}
       >
-        {this.state.isLoggedIn? 
-        <Link
-          className="navbar-brand logo-image"
-          to="/camp"
-        >
-          <img src={logo} alt="alternative" />
-        </Link> :
-        <Link
-          className="navbar-brand logo-image"
-          to="/FORECST"
-        >
-          <img src={logo} alt="alternative" />
-        </Link>}
+
+        <a onClick={this.handleHome}>
+          <img src={logo} alt="alternative" style={{height: 50}}/>
+        </a>
 
         <button
           className="navbar-toggler"
