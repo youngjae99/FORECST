@@ -87,7 +87,6 @@ class IndividualPage extends React.Component {
 
   handleOk = () => {
     console.log(this.props.history);
-    // this.props.history.push('/uploadpost');
     Modal.destroyAll();
   };
 
@@ -288,17 +287,16 @@ class IndividualPage extends React.Component {
         break;
       case 2:
         prevPoint = 30;
-        nextPoint = 60;
+        nextPoint = 70;
         profileTree = <img src={lv2}></img>;
         currentTree = <img src={lv2} style={{ width: 120 }}></img>;
         nextTree = <img src={lv3} style={{ width: 70, marginTop: 50 }}></img>;
         break;
       case 3:
-        prevPoint = 60;
-        nextPoint = 100;
+        prevPoint = 70;
+        nextPoint = 270;
         profileTree = <img src={lv3}></img>;
         currentTree = <img src={lv3} style={{ width: 120 }}></img>;
-        nextTree = <img src={lv3} style={{ width: 70, marginTop: 50 }}></img>;
         break;
       default:
         prevPoint = 0;

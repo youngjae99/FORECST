@@ -39,8 +39,10 @@ export function getLevel(point){
         return 0;
     }else if(point<parseInt("30")){
         return 1;
-    }else{
+    }else if(point<parseInt("70")){
         return 2;
+    }else{
+        return 3;
     }
 }
 
