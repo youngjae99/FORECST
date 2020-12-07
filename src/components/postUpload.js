@@ -198,9 +198,14 @@ function PostUpload(props){
                     <div style={{fontSize: 18, marginTop: 20, textAlign: 'right', marginRight: 10}}>Choose a To-Do : </div>
                 </Col>
                 <Col>
-                    <Select labelInValue placeholder="Please Select your To-Do :D" style={{ width: 300, marginTop: 20 }} onChange={handleTodo}>
+                    <Select labelInValue placeholder="Please Select your To-Do :D" style={{ width: 300, marginTop: 20}} onChange={handleTodo}>
                         {map}
                     </Select>
+                    <Button type="primary" style={{fontSize: 14, marginLeft: 10}}>
+                        <Link to={{pathname: `/mypage/${window.sessionStorage.getItem("id")}`}}>
+                            Add to-do list
+                        </Link>
+                    </Button>
                 </Col>
             </Row>
 
