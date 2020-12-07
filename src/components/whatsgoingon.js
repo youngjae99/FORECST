@@ -60,6 +60,7 @@ class WGO extends Component {
         <h6 style={{marginLeft:"10px"}}>What's going on</h6>
         <List
           itemLayout="vertical"
+          locale={{emptyText: 'Nothing is going on!'}}
           size="large"
           dataSource={this.state.wgo}
           style={{ marginTop: "20px" }}

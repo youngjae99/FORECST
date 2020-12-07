@@ -155,6 +155,7 @@ class QnAComment extends Component {
       <>
         <List
             className="comment-list"
+            locale={{emptyText: 'No answers yet!'}}
             header={`${comments.length} answers`}
             itemLayout="vertical"
             dataSource={comments}
