@@ -146,8 +146,7 @@ class IndividualPage extends React.Component {
   getMyPost = async () => {
     const snapshot = await db
       .collection("Feeds")
-      .where("id", "==", this.props.userName)
-      .get();
+      .where("id", "==", this.props.userName).get()
     console.log(snapshot.docs);
     this.setState({ feed: snapshot.docs });
   };

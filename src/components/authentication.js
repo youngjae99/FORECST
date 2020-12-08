@@ -63,10 +63,9 @@ class Authentication extends React.Component{
             if(wait.exists){
                 backend_Point(id,"login")
 
-                this.props.onLogin(id,wait.data().newbie);
                 window.sessionStorage.setItem('login', true); // Login 유지
                 window.sessionStorage.setItem('id', id); // Login 유지 - id 저장
-                {<Link to={"/campjoin"} style={{fontSize: 18}}></Link>}
+                this.props.onLogin(id,wait.data().newbie);
 
                 this.handleModal();
             }
