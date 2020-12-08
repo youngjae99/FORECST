@@ -28,23 +28,38 @@ class CampHome extends Component {
   }
 
   getMarker = async () => {
-    await db.collection("Feeds").orderBy("time","desc")
-    .onSnapshot({
-      includeMetadataChanges: true
-    },(snapshot) => {
-      const data = snapshot.docs;    
-      this.setState({ feed: data });
-      this.setState({ loading: false });
-    });
+    await db
+      .collection("Feeds")
+      .orderBy("time", "desc")
+      .onSnapshot(
+        {
+          includeMetadataChanges: true,
+        },
+        (snapshot) => {
+          const data = snapshot.docs;
+          this.setState({ feed: data });
+          this.setState({ loading: false });
+        }
+      );
   };
 
-  getMyToDo = async () =>{
-    const todo = await db.collection("Users").doc(window.sessionStorage.getItem("id")).collection("todo").where('check','==',false).get();
-    const completed = await db.collection("Users").doc(window.sessionStorage.getItem("id")).collection("todo").where('check','==',true).get();
+  getMyToDo = async () => {
+    const todo = await db
+      .collection("Users")
+      .doc(window.sessionStorage.getItem("id"))
+      .collection("todo")
+      .where("check", "==", false)
+      .get();
+    const completed = await db
+      .collection("Users")
+      .doc(window.sessionStorage.getItem("id"))
+      .collection("todo")
+      .where("check", "==", true)
+      .get();
 
-    this.setState({todo:todo.docs.map(doc=>doc.data())});
-    this.setState({completed:completed.docs.map(doc=>doc.data())});
-}
+    this.setState({ todo: todo.docs.map((doc) => doc.data()) });
+    this.setState({ completed: completed.docs.map((doc) => doc.data()) });
+  };
 
   render() {
     if (this.state.loading == true) {
@@ -63,7 +78,7 @@ class CampHome extends Component {
       );
     } else {
       return (
-        <div className="CampHome" style={{ padding:"5px 20px 20px 20px" }}>
+        <div className="CampHome" style={{ padding: "5px 20px 20px 20px" }}>
           <div
             className="TopBar"
             style={{
@@ -74,46 +89,50 @@ class CampHome extends Component {
               marginBottom: "15px",
               //outline: "2px solid black",
               borderRadius: "12px",
-              boxShadow: "0px 2px 5px 2px rgba(0,0,0,0.16)"
+              boxShadow: "0px 2px 5px 2px rgba(0,0,0,0.16)",
             }}
           >
-            <Row>
-              <Col span={12}>
-                <Title level={4} style={{marginTop: 10, marginLeft: 10}}>You have {this.state.todo.length} left to-do!</Title>
-              </Col>
-
-              <Col span={6}>
-                <div style={{float: "right"}}>
-                  <Link to={{pathname: `/mypage/${window.sessionStorage.getItem("id")}`}}>
-                    <Button
-                      className="BtnClass"  
-                      shape="round"
-                      icon={<PlusOutlined />}
-                      size={"large"}
+            <div>
+                <Title
+                  level={4}
+                  style={{ marginTop: 10, marginLeft: 10, float: "left" }}
+                >
+                  You have {this.state.todo.length} left to-do!
+                </Title>
+                <div style={{ float: "right" }}>
+                  <div style={{ float: "right" }}>
+                    <Link
+                      to={{
+                        pathname: `/mypage/${window.sessionStorage.getItem(
+                          "id"
+                        )}`,
+                      }}
                     >
-                      Add To-do
-                    </Button>
-                  </Link>
+                      <Button
+                        className="BtnClass"
+                        shape="round"
+                        icon={<PlusOutlined />}
+                        size={"large"}
+                      >
+                        Add To-do
+                      </Button>
+                    </Link>
+                  </div>
+                  <div style={{ float: "right" }}>
+                    <Link to="/UploadPost">
+                      <Button
+                        className="BtnClass"
+                        type="primary"
+                        shape="round"
+                        icon={<PlusOutlined />}
+                        size={"large"}
+                      >
+                        Post Completed task
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
-              </Col>
-
-              <Col span={6}>
-                <div style={{float: "right"}}>
-                  <Link to="/UploadPost">
-                    <Button
-                      className="BtnClass"  
-                      type="primary"
-                      shape="round"
-                      icon={<PlusOutlined />}
-                      size={"large"}
-                    >
-                      Post Completed task
-                    </Button>
-                  </Link>
-                </div>
-              </Col>
-            </Row>
-
+            </div>
           </div>
           <div className="container">
             <div className="row">
