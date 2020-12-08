@@ -134,7 +134,7 @@ class Forecst extends React.Component {
       >
 
         <a onClick={this.handleHome}>
-          <img src={logo} alt="alternative" style={{height: 50}}/>
+          <img src={logo} alt="alternative" style={{height: 35}}/>
         </a>
 
         <button
