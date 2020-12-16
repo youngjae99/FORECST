@@ -68,8 +68,9 @@ import 'antd/dist/antd.css';
 //       });
 
 //     }
-    export const backend_Join = (id) => {
+    export const backend_Join = (id,password) => {
         db.collection("Users").doc(id).set({
+            password:password,
             level:0,
             point:0,
             active:true,

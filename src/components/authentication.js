@@ -60,7 +60,7 @@ class Authentication extends React.Component{
         {
             const wait = await db.collection('Users').doc(id).get()      
             console.log("user exist: ", wait.exists);
-            if(wait.exists){
+            if(wait.exists&&wait.data().password==this.state.password){
                 backend_Point(id,"login")
 
                 window.sessionStorage.setItem('login', true); // Login 유지
@@ -74,9 +74,24 @@ class Authentication extends React.Component{
         }
     }
 
-    handleRegister(){
-        browserHistory.push('/login')
-        backend_Join(this.state.username)
+    handleRegister=async ()=>{
+        let id=this.state.username;
+        console.log("user input id:", id);
+        if(id===""||this.state.password===""){
+            console.log("empty box");
+            return;
+        }
+        else{
+            const wait = await db.collection('Users').doc(id).get()      
+            console.log("user exist: ", wait.exists);
+            if(!wait.exists){
+                browserHistory.push('/login')
+                backend_Join(this.state.username,this.state.password)
+            }
+            else
+                message.error('User ID exists!');
+
+        }
     }
 
     handleKeyPress(e) {
@@ -171,8 +186,8 @@ class Authentication extends React.Component{
                 
                 <Form.Item {...tailLayout}> 
                     <Button type='primary' htmlType='submit' onClick={this.handleRegister} style={{marginLeft: 110}}>
-                        {this.state.password==='' ? 
-                        <div style={{fontSize: 18}}>Create Account</div> : 
+                        {this.state.password===''||this.state.username===''?
+                        <div style={{fontSize: 18}}>Create Account</div> :
                         <Link to={"/login"} style={{fontSize: 18}}>Create Account</Link>}
                     </Button>
                 </Form.Item>
