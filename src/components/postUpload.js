@@ -215,6 +215,9 @@ function PostUpload(props){
                     <Select labelInValue placeholder="Please Select your To-Do :D" style={{ width: 300, marginTop: 20}} onChange={handleTodo}>
                         {map}
                     </Select>
+                    <text style={{marginLeft: 10, color: "gray"}}>
+                    No to-do list you want?
+                    </text>
                     <Button type="primary" style={{fontSize: 14, marginLeft: 10}}>
                         <Link to={{pathname: `/mypage/${window.sessionStorage.getItem("id")}`}}>
                             Add to-do list
@@ -231,6 +234,9 @@ function PostUpload(props){
                 </Col>
                 <Col span={20} style={{marginTop: 20}}>
                     <input type="file" name="file" onChange={handleImage}/>
+                    <div style={{marginTop: 10, color: "gray"}}>
+                        Upload a representative picture that shows what you have done!
+                    </div>
                 </Col>
             </Row>
 

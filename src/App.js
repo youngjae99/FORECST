@@ -20,9 +20,9 @@ import {
   Tutorial
 } from "./pages";
 // Components
-import QnAsingle from "./components/QnAsingle";
+import { QnAsingle, IndividualPage } from "./components/index";
 // Router
-import { Route, Router, Redirect } from "react-router-dom";
+import { Route, Router } from "react-router-dom";
 import "antd/dist/antd.css";
 // Redux
 import { Provider } from "react-redux";
@@ -30,7 +30,6 @@ import { createStore, applyMiddleware } from "redux";
 import reducers from "./reducers";
 import thunk from "redux-thunk";
 import { createBrowserHistory } from "history";
-import { identity } from "../node_modules/rxjs/index";
 
 
 const store = createStore(reducers, applyMiddleware(thunk));
@@ -63,10 +62,6 @@ class App extends React.Component {
     this.props.history.push("/FORECST");
   };
 
-  componentDidMount() {
-
-  }
-
   render() {
     const { logged, onLogout } = this.state;
     return (
@@ -94,6 +89,7 @@ class App extends React.Component {
           <Route component={UploadProject} path="/uploadproject" />
           <Route component={CampDescription} path="/campdescription" />
           <Route component={Tutorial} path="/tutorial" />
+          <Route component={IndividualPage} path="/individual" />
         </Router>
       </Provider>
     );

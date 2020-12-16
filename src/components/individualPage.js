@@ -28,9 +28,8 @@ import {getLevel, getPrevPoint, getNextPoint} from '../actions/authentication';
 import { MyFeed } from "../components";
 import { db } from "../firebase";
 import PropTypes from "prop-types";
-import { backend_makeToDo, backend_getToDo } from "../backend";
+import { backend_makeToDo } from "../backend";
 import { QuestionCircleOutlined } from "@ant-design/icons";
-import firebase from "firebase/app";
 
 const { TabPane } = Tabs;
 
@@ -86,8 +85,8 @@ class IndividualPage extends React.Component {
   };
 
   handleOk = () => {
-    console.log(this.props.history);
     Modal.destroyAll();
+    this.props.history.push('/uploadpost/true')
   };
 
   handleSubmit = () => {
@@ -104,7 +103,7 @@ class IndividualPage extends React.Component {
             <br></br>'Making a project name'.
             <div style={{ float: "right", marginTop: 20 }}>
               <Button type="primary" onClick={this.handleOk}>
-                <a href="/uploadpost/true">GO</a>
+                GO
               </Button>
             </div>
           </div>
