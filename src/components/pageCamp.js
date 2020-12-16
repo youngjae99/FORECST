@@ -147,8 +147,7 @@ class PageCamp extends React.Component {
                 color: "black",
               }}
             >
-              Hackathon | Make an application for the pandemic COVID 19
-              situation!
+              Hackathon | Make an python crawling application for the Movie!
               <Link to={"/uploadproject"}>
               <Button
               size="large"

@@ -31,11 +31,13 @@ class CampDescription extends React.Component {
                   <div className="text-container">
                     <h1>
                       <span className="primaryColor" style={{fontSize: 40, color: "#482482"}}> Welcome to Hackathon: </span>
-                      <br></br> Make an application for the pandemic COVID 19 situation!
+                      <br></br> Make an python crawling application for the Movie!
                     </h1>
                     <p className="p-large">
-                      On 11/24~12/1, you are going to make an application for the pandemic COVID 19 situation, 
-                      using any tools you want.
+                      On 12/16~12/20, you are going to make a python application to crawl any data from NAVER movie(https://movie.naver.com/) or IMDB(https://www.imdb.com/)
+                      use any tools you want.
+                      <br/> <br/>
+                      Web scraping, often called web crawling or web spidering, or “programmatically going over a collection of web pages and extracting data,” is a powerful tool for working with data on the web.
                     </p>
                     <Link className="btn-solid-lg page-scroll" to="/tutorial" style={{backgroundColor: "#482482", borderColor: "#482482"}}>
                       NEXT

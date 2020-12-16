@@ -214,14 +214,14 @@ class MainPage extends React.Component {
               <div className="site-card-wrapper" style={{marginTop:"40px"}}>
                 <Row className="camp-row" gutter={16}>
                   <Col span={8}>
-                    <Card title="12/3 ~ 12/10" extra={<Button danger>{this.state.new?<Link to={"/campdescription"} className="nowOn">JOIN NOW</Link>:<Link to={"/camp"} className="nowOn">ENTER NOW</Link>}</Button>} style={{ width: 300 }}>
-                    <h6>Make an application for the pandemic COVID 19 situation!
-                    (12/3 ~ 12/10)</h6>
+                    <Card title="12/16 ~ 12/20" extra={<Button danger>{this.state.new?<Link to={"/campdescription"} className="nowOn">JOIN NOW</Link>:<Link to={"/camp"} className="nowOn">ENTER NOW</Link>}</Button>} style={{ width: 300 }}>
+                    <h6>Make an python crawling application for the Movie!
+                    (12/16 ~ 12/20)</h6>
                     <p style={{color:"red", fontWeight:"bold"}}>Now on going!</p>
                   </Card>
                   </Col>
                   <Col span={8}>
-                  <Card title="12/11~" extra={<Button danger disabled><Link to={"/camp"} className="nowOn">ENTER NOW</Link></Button>} style={{ width: 300 }}>
+                  <Card title="12/21~25" extra={<Button danger disabled><Link to={"/camp"} className="nowOn">ENTER NOW</Link></Button>} style={{ width: 300 }}>
                     <h6>Create a website using React and Firebase. (Starting from
                     12/11)</h6>
                   </Card>
