@@ -82,7 +82,7 @@ class CampRank extends Component {
       includeMetadataChanges: true
     },(snapshot) => {
       console.log(snapshot.data().timer)
-      if (snapshot.data().timer==1607509290000)    
+      if (new Date(snapshot.data().timer).getTime()<=new Date("2020-12-20").getTime())    
         this.setState({ visible: true });
     });
   };

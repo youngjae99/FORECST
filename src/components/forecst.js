@@ -25,7 +25,6 @@ class Forecst extends React.Component {
 
   handleHome() {
     const id = window.sessionStorage.getItem("id");
-
     console.log("handle home: ", id);
     if(id!=null){
       this.props.history.push("/camp/1");
@@ -53,6 +52,8 @@ class Forecst extends React.Component {
   };
 
   componentWillMount() {
+    console.log(new Date(2020, 11, 20).getTime())
+
     const id = window.sessionStorage.getItem("id");
     console.log("setting compoent did moun in forecst", id);
     if (id) {

@@ -75,9 +75,10 @@ class PageCamp extends React.Component {
     .onSnapshot({
       includeMetadataChanges: true
     },(snapshot) => {
-      console.log(snapshot.data().timer)
+      var now = new Date(snapshot.data().timer)
+      console.log(now.getTime())
       this.setState({ 
-        timer: snapshot.data().timer
+        timer: now.getTime()
       });
     });
   };
