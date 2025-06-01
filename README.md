@@ -78,7 +78,7 @@ To-do list: (improvement to be done)
 * watering(like) undo
 
 ## Status
-Project is: _in progress_
+Project is: _Done_
 
 ## Inspiration
 Programming alone and finishing a project at home due to COVID19 have a high rate of failure due to the lack of motivation and laziness and leads to no progress on one's programming ability.
